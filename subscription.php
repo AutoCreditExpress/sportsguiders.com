@@ -1,7 +1,9 @@
 <?php require 'inc/config.php';
 
 $SubscriberDAO=new SubscriberDAO($db);
-
+/**
+ * block subscribed user from processing form
+ */
 if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['isActive']!='1'){
 ?>
 <!DOCTYPE html>
@@ -249,7 +251,7 @@ if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['isActive']!='1'){
                 </div>
             </noscript>
             <?php
-            require 'lib/Stripe.php';    ////autoloader
+            //require 'lib/Stripe.php';    ////autoloader
 
             if ($_POST) {
                 Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
@@ -266,7 +268,7 @@ if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['isActive']!='1'){
                     ///get the id from stripe
                     //////post form data to the subscribe table
                     $SubscriberDAO = new SubscriberDAO($db);
-                        if($SubscriberDAO->getSubscriberByEmail($_POST['email'])==""){
+                        if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['IsActive']!="1"){
                             $SubscriberDAO->createSubscriber(array(
                                 'email' => $_POST['email'],
                                 'address' => $_POST['street'],

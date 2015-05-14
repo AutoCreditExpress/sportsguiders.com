@@ -25,10 +25,11 @@ if($StripeWebhookHandler->getEventType()=="customer.created"){
     $StripeWebhookHandler->updateSubscriberId($subscriberEmail,$subscriberID);
 }
 
-if($StripeWebhookHandler->getEventType()=="invoice.payment_successful"){
+if($StripeWebhookHandler->getEventType()=="invoice.payment_succeeded"){
     $StripeWebhookHandler->updateSubscriberIsActive($StripeWebhookHandler->getSubscriberId());
 }
 
+////invoice reject email user using mail method
 
 http_response_code(200); // PHP 5.4 or greater
 ?>

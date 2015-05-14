@@ -110,8 +110,14 @@ class SubscriberDAO{
     }
 
     function updateSubscriberIsActive($subscriberEmail){
-
-        $sql = "UPDATE subscriber SET isActive='1', update_date=CURDATE() WHERE email = ".$subscriberEmail."";
+        $qSubscriber = $this->db->prepare("UPDATE subscriber SET isActive='1', update_date=CURDATE() WHERE email = '".$subscriberEmail."'");
+        try{
+            $qSubscriber->execute();
+            return TRUE;
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
