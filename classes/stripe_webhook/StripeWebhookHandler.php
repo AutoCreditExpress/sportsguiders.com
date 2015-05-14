@@ -1,8 +1,10 @@
 <?php
 class StripeWebhookHandler{
     public $WorkingData;
+    protected $db = '';
 
-    public function __construct($input){
+    public function __construct($pdo,$input){
+        $this->db = $pdo;
         if($input){
             $this->WorkingData = $input;
         }else{
@@ -22,14 +24,49 @@ class StripeWebhookHandler{
         return $this->WorkingData['type'];
     }
 
-    public function processEvent(){
-        if($this->getEventType()=="customer.created"){
+    public function getSubscriberEmail(){
+        return $this->WorkingData['data']['object']['email'];
+    }
 
-        }elseif($this->getEventType()=="invoice.payment_successful"){
+    public function getSubscriberId(){
+        return $this->WorkingData['data']['object']['id'];
+    }
 
+    function updateUserSubscriberId($subscriberEmail,$subscriberID){
+        $qUpdateSubscriber = $this->db->prepare("UPDATE users SET subscriber_id = '".$subscriberID."' WHERE user_email = '".$subscriberEmail."'");
+        try{
+            $qUpdateSubscriber->execute();
+
+            return TRUE;
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
         }
     }
 
+    function updateSubscriberId($subscriberEmail,$subscriberID){
+        $qUpdateSubscriber = $this->db->prepare("UPDATE subscriber SET subscriber_id = '".$subscriberID."' WHERE email = '".$subscriberEmail."'");
+        try{
+            $qUpdateSubscriber->execute();
+
+            return TRUE;
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
+
+    function updateSubscriberIsActive($subscriberID){
+        $qUpdateSubscriber = $this->db->prepare("UPDATE subscriber SET isActive = '1' WHERE subscriber_id = '".$subscriberID."'");
+        try{
+            $qUpdateSubscriber->execute();
+
+            return TRUE;
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
     public function MailData(){
         $message = $this->WorkingData;
         if($message){

@@ -262,9 +262,25 @@
                             "plan" => "test",
                             "email" => $_POST['email'])
                     );
+                    ///get the id from stripe
+                    //////post form data to the subscribe table
+                    $SubscriberDAO = new SubscriberDAO();
+                        if($SubscriberDAO->getSubscriberByEmail($_POST['email'])==""){
+                            $SubscriberDAO->createSubscriber(array(
+                                'email' => $_POST['email'],
+                                'address' => $_POST['street'],
+                                'city' => $_POST['city'],
+                                'state' => $_POST['state'],
+                                'zip' => $_POST['zip'],
+                                'create_date' => date("Y-m-d")
+                            ));
+                        }
+
+                    //////if no error caught
                     $success = '<div class="alert alert-success">
                 <strong>Success!</strong> Your payment was successful.
 				</div>';
+
                 }
                 catch (Exception $e) {
                     $error = '<div class="alert alert-danger">

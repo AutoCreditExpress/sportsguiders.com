@@ -10,13 +10,25 @@ Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
 $input = @file_get_contents("php://input");
 $event_json = json_decode($input, true);
 
-$StripeWebhookHandler = new StripeWebhookHandler($event_json);
+$StripeWebhookHandler = new StripeWebhookHandler($db,$event_json);
 
-$StripeWebhookHandler->DisplayData();
+$StripeWebhookHandler->DisplayData();   ///disable for live testing
 
-$StripeWebhookHandler->processEvent();
+//$DataObject->MailData();    //enable for live testing
+////update customer id
+if($StripeWebhookHandler->getEventType()=="customer.created"){
 
-//$DataObject->MailData();
+    /// ge the user email and the user id from the datastream and set the subscriber_id in usertable
+    $subscriberEmail = $StripeWebhookHandler->getSubscriberEmail();
+    $subscriberID = $StripeWebhookHandler->getSubscriberId();
+    $StripeWebhookHandler->updateUserSubscriberId($subscriberEmail,$subscriberID);
+    $StripeWebhookHandler->updateSubscriberId($subscriberEmail,$subscriberID);
+}
+
+if($StripeWebhookHandler->getEventType()=="invoice.payment_successful"){
+    $StripeWebhookHandler->updateSubscriberIsActive($StripeWebhookHandler->getSubscriberId());
+}
+
 
 http_response_code(200); // PHP 5.4 or greater
 ?>

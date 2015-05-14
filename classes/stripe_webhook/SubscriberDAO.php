@@ -14,7 +14,7 @@ $SubscriberInfo = $SubscriberDAO->getSubscriberInfo();
  * Time: 12:16 PM
  */
 
-class SubscriberDAO extends StripeWebhookHandler {
+class SubscriberDAO{
 
     protected $db = '';
 
@@ -48,6 +48,11 @@ class SubscriberDAO extends StripeWebhookHandler {
         return $results;
     }
 
+    function getSubscriberIsActive($subscriberEmail){
+        $sql = "SELECT isActive FROM subscriber WHERE email = '".$subscriberEmail."'";
+        $results = $this->fetchSql($sql);
+        return $results;
+    }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
     //                                                  Create
@@ -56,7 +61,7 @@ class SubscriberDAO extends StripeWebhookHandler {
     function createSubscriber(array $subscriberArray){
         $qCreateSubscriber = $this->db->prepare("
             INSERT INTO subscriber (email,address,city,state,zip,create_date)
-            VALUES(:subscriber_id,:address,:city,:state,:zip,:create_date)
+            VALUES(:email,:address,:city,:state,:zip,:create_date)
         ");
 
        try{
@@ -87,6 +92,11 @@ class SubscriberDAO extends StripeWebhookHandler {
         $sql = "UPDATE subscriber SET address = '".$subscriberArray['address']."',
         city = '".$subscriberArray['city']."', state='".$subscriberArray['state']."', zip='".$subscriberArray['zip']."', update_date=CURDATE()
         WHERE subscriber_id = ".$subscriberArray['subscriber_id']."";
+    }
+
+    function updateSubscriberIsActive($subscriberEmail){
+
+        $sql = "UPDATE subscriber SET isActive='1', update_date=CURDATE() WHERE email = ".$subscriberEmail."";
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
