@@ -4,7 +4,7 @@ class Autoloader{
     protected $basePath = '';
     protected $classes = array(
         'SubscriberDAO'                   => 'classes/subscriber/SubscriberDAO.php',
-        'StripeWebhookHandler'            => 'classes/stripe_webhook/WebhookHandler.php'
+        'StripeWebhookHandler'            => 'classes/stripe_webhook/StripeWebhookHandler.php'
     );
 
     public function __construct($basePath) {

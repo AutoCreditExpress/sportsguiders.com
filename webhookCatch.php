@@ -2,8 +2,10 @@
 // Set your secret key: remember to change this to your live secret key in production
 // See your keys here https://dashboard.stripe.com/account/apikeys
 require 'lib/Stripe.php';
+
 require 'inc/config.php';
-require 'classes/stripe_webhook/WebhookHandler.php';
+
+require 'classes/stripe_webhook/StripeWebhookHandler.php';
 
 Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
 
