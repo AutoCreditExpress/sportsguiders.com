@@ -12,10 +12,10 @@ $event_json = json_decode($input, true);
 
 $StripeWebhookHandler = new StripeWebhookHandler($db,$event_json);
 
-$StripeWebhookHandler->DisplayData();   ///disable for live testing
+$StripeWebhookHandler->DisplayData();   ///enable for local testing
 
 //$DataObject->MailData();    //enable for live testing
-////update customer id
+
 if($StripeWebhookHandler->getEventType()=="customer.created"){
 
     /// get the user email from stripe webhook
@@ -30,11 +30,12 @@ if($StripeWebhookHandler->getEventType()=="customer.created"){
     }
 }
 
+
 if($StripeWebhookHandler->getEventType()=="invoice.payment_succeeded"){
     $StripeWebhookHandler->updateSubscriberIsActive($StripeWebhookHandler->getSubscriberId());
 }
 
-////invoice reject email user using mail method
 
+/////leave the http response code of 200 for the stripe webhook
 http_response_code(200); // PHP 5.4 or greater
 ?>
