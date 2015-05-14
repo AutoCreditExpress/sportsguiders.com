@@ -34,7 +34,6 @@ class StripeWebhookHandler{
     }
 
     public function getSubscriberId(){
-        echo "grabbing subscriber id...";
         if($this->getEventType()=="customer.created"){
             return $this->WorkingData['data']['object']['id'];
         }elseif($this->getEventType()=="invoice.payment_succeeded"){
@@ -54,6 +53,19 @@ class StripeWebhookHandler{
             return FALSE;
         }
     }
+
+    public function getSubscriberIsActive($subscriberEmail){
+        $Subscriber = $this->db->prepare("SELECT isActive FROM subscriber WHERE email = '".$subscriberEmail."'");
+        try{
+            $Subscriber->execute();
+            $results = $Subscriber->fetchAll();
+            return $results[0]['isActive'];
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
+
     function updateUserSubscriberId($subscriberEmail,$subscriberID){
         $qUpdateSubscriber = $this->db->prepare("UPDATE users SET subscriber_id = '".$subscriberID."' WHERE user_email = '".$subscriberEmail."'");
         try{

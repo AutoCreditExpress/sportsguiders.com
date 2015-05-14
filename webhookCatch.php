@@ -18,21 +18,32 @@ $StripeWebhookHandler->DisplayData();   ///enable for local testing
 
 if($StripeWebhookHandler->getEventType()=="customer.created"){
 
-    /// get the user email from stripe webhook
+    /// get the user email from stripe webhook data
     $subscriberEmail = $StripeWebhookHandler->getSubscriberEmail();
 
-    //if the users email address in our database, listed in the stripe data has no id, add the id to the database
+    //if the users email address is in our database and has no subscriber id add the id to the database
     if($StripeWebhookHandler->getUserHasId($subscriberEmail)['subscriber_id']==""){
-        /// get the user email and the user id from the datastream and set the subscriber_id in usertable
+
+        /// get the user id from stripe data
         $subscriberID = $StripeWebhookHandler->getSubscriberId();
+
+        //update user table with id
         $StripeWebhookHandler->updateUserSubscriberId($subscriberEmail, $subscriberID);
+
+        //update subscriber table with id
         $StripeWebhookHandler->updateSubscriberId($subscriberEmail, $subscriberID);
     }
 }
 
 
 if($StripeWebhookHandler->getEventType()=="invoice.payment_succeeded"){
-    $StripeWebhookHandler->updateSubscriberIsActive($StripeWebhookHandler->getSubscriberId());
+    //get the subscriberId from the stripe data
+    $subscriberID = $StripeWebhookHandler->getSubscriberId();
+
+    //if the user doesnot have an active subscription after payment, update the table
+    if($StripeWebhookHandler->getSubscriberIsActive($subscriberID)!=1) {
+        $StripeWebhookHandler->updateSubscriberIsActive($StripeWebhookHandler->getSubscriberId());
+    }
 }
 
 

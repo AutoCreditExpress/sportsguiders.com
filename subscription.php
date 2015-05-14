@@ -268,6 +268,8 @@ if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['isActive']!='1'){
                     ///get the id from stripe
                     //////post form data to the subscribe table
                     $SubscriberDAO = new SubscriberDAO($db);
+
+                        //prevent double payment subscriptions
                         if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['IsActive']!="1"){
                             $SubscriberDAO->createSubscriber(array(
                                 'email' => $_POST['email'],
@@ -284,10 +286,12 @@ if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['isActive']!='1'){
                                     "email" => $_POST['email'])
                             );
 
-                            //////if no error caught
+                            //////if no error caught display success message
                             $success = '<div class="alert alert-success">
                                 <strong>Success!</strong> Your payment was successful.
 				                </div>';
+
+                            ///change the location of the page
                             echo "<script>location.assign('index.php');</script>";
                         }
 
