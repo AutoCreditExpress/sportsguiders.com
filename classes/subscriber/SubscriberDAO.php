@@ -33,25 +33,41 @@ class SubscriberDAO{
      * @return array|bool
      */
     function getSubscriberByID($subscriberID){
-        $sql = "SELECT * FROM subscriber WHERE subscriber_id = '".$subscriberID."'";
-        $results = $this->fetchSql($sql);
-        return $results;
+
+        $qSubscriber = $this->db->prepare("SELECT * FROM subscriber WHERE subscriber_id = '".$subscriberID."'");
+        try{
+            $qSubscriber->execute();
+
+            return TRUE;
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
     }
 
-    /**
-     * @param $customberID
-     * @return array|bool
-     */
+
     function getSubscriberByEmail($subscriberEmail){
-        $sql = "SELECT * FROM subscriber WHERE email = '".$subscriberEmail."'";
-        $results = $this->fetchSql($sql);
-        return $results;
+        $qSubscriber = $this->db->prepare("SELECT * FROM subscriber WHERE email = '".$subscriberEmail."'");
+        try{
+            $qSubscriber->execute();
+            $results = $qSubscriber->fetchAll();
+            return $results[0];
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
     }
 
     function getSubscriberIsActive($subscriberEmail){
-        $sql = "SELECT isActive FROM subscriber WHERE email = '".$subscriberEmail."'";
-        $results = $this->fetchSql($sql);
-        return $results;
+        $qSubscriber = $this->db->prepare("SELECT isActive FROM subscriber WHERE email = '".$subscriberEmail."'");
+        try{
+            $qSubscriber->execute();
+
+            return TRUE;
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
@@ -61,13 +77,12 @@ class SubscriberDAO{
     function createSubscriber(array $subscriberArray){
         $qCreateSubscriber = $this->db->prepare("
             INSERT INTO subscriber (email,address,city,state,zip,create_date)
-            VALUES(:email,:address,:city,:state,:zip,:create_date)
+            VALUES('".$subscriberArray['email']."','".$subscriberArray['address']."','".$subscriberArray['city']."','".$subscriberArray['state']."','".$subscriberArray['zip']."','".$subscriberArray['create_date']."')
         ");
 
        try{
             $qCreateSubscriber->execute();
-
-            return $this->db->lastInsertID();
+            return TRUE;
         }catch(PDOException $e){
             //TODO: add logging
             return FALSE;

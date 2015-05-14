@@ -1,3 +1,4 @@
+<?php require 'inc/config.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -257,14 +258,9 @@
                         throw new Exception("The Stripe Token was not generated correctly");
                     $token = $_POST['stripeToken'];
 
-                    $customer = Stripe_Customer::create(array(
-                            "source" => $token,
-                            "plan" => "test",
-                            "email" => $_POST['email'])
-                    );
                     ///get the id from stripe
                     //////post form data to the subscribe table
-                    $SubscriberDAO = new SubscriberDAO();
+                    $SubscriberDAO = new SubscriberDAO($db);
                         if($SubscriberDAO->getSubscriberByEmail($_POST['email'])==""){
                             $SubscriberDAO->createSubscriber(array(
                                 'email' => $_POST['email'],
@@ -274,12 +270,19 @@
                                 'zip' => $_POST['zip'],
                                 'create_date' => date("Y-m-d")
                             ));
-                        }
 
-                    //////if no error caught
-                    $success = '<div class="alert alert-success">
-                <strong>Success!</strong> Your payment was successful.
-				</div>';
+                            $customer = Stripe_Customer::create(array(
+                                    "source" => $token,
+                                    "plan" => "test",
+                                    "email" => $_POST['email'])
+                            );
+
+                            //////if no error caught
+                            $success = '<div class="alert alert-success">
+                                <strong>Success!</strong> Your payment was successful.
+				                </div>';
+                            echo "<script>location.assign('index.php');</script>";
+                        }
 
                 }
                 catch (Exception $e) {
@@ -295,7 +298,7 @@
   <?= $success ?>
   <?= $error ?>
   </span>
-            <fieldset>
+            <fieldset id="SubscriptionForm">
 
                 <!-- Form Name -->
                 <legend>Billing Details</legend>
