@@ -22,7 +22,7 @@ if($StripeWebhookHandler->getEventType()=="customer.created"){
     $subscriberEmail = $StripeWebhookHandler->getSubscriberEmail();
 
     //if the users email address in our database, listed in the stripe data has no id, add the id to the database
-    if($StripeWebhookHandler->getUserHasId($subscriberEmail)['user_email']==""){
+    if($StripeWebhookHandler->getUserHasId($subscriberEmail)['subscriber_id']==""){
         /// get the user email and the user id from the datastream and set the subscriber_id in usertable
         $subscriberID = $StripeWebhookHandler->getSubscriberId();
         $StripeWebhookHandler->updateUserSubscriberId($subscriberEmail, $subscriberID);
