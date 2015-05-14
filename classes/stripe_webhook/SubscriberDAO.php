@@ -14,7 +14,7 @@ $SubscriberInfo = $SubscriberDAO->getSubscriberInfo();
  * Time: 12:16 PM
  */
 
-class SubscriberDAO {
+class SubscriberDAO extends StripeWebhookHandler {
 
     protected $db = '';
 
