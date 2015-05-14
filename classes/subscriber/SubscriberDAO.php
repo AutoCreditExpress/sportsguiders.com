@@ -62,8 +62,8 @@ class SubscriberDAO{
         $qSubscriber = $this->db->prepare("SELECT isActive FROM subscriber WHERE email = '".$subscriberEmail."'");
         try{
             $qSubscriber->execute();
-
-            return TRUE;
+            $results = $qSubscriber->fetchAll();
+            return $results[0];
         }catch(PDOException $e){
             //TODO: add logging
             return FALSE;
@@ -77,7 +77,7 @@ class SubscriberDAO{
     function createSubscriber(array $subscriberArray){
         $qCreateSubscriber = $this->db->prepare("
             INSERT INTO subscriber (email,address,city,state,zip,create_date)
-            VALUES('".$subscriberArray['email']."','".$subscriberArray['address']."','".$subscriberArray['city']."','".$subscriberArray['state']."','".$subscriberArray['zip']."','".$subscriberArray['create_date']."')
+            VALUES('".strtolower($subscriberArray['email'])."','".$subscriberArray['address']."','".$subscriberArray['city']."','".$subscriberArray['state']."','".$subscriberArray['zip']."','".$subscriberArray['create_date']."')
         ");
 
        try{

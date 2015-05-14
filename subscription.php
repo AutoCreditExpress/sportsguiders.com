@@ -1,4 +1,9 @@
-<?php require 'inc/config.php';?>
+<?php require 'inc/config.php';
+
+$SubscriberDAO=new SubscriberDAO($db);
+
+if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['isActive']!='1'){
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -437,3 +442,6 @@
 </form>
 </body>
 </html>
+<?php } else {
+    echo "<h1>You are not authorized to access this page!!</h1>";
+}?>
