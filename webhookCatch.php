@@ -18,11 +18,16 @@ $StripeWebhookHandler->DisplayData();   ///disable for live testing
 ////update customer id
 if($StripeWebhookHandler->getEventType()=="customer.created"){
 
-    /// ge the user email and the user id from the datastream and set the subscriber_id in usertable
+    /// get the user email from stripe webhook
     $subscriberEmail = $StripeWebhookHandler->getSubscriberEmail();
-    $subscriberID = $StripeWebhookHandler->getSubscriberId();
-    $StripeWebhookHandler->updateUserSubscriberId($subscriberEmail,$subscriberID);
-    $StripeWebhookHandler->updateSubscriberId($subscriberEmail,$subscriberID);
+
+    //if the users email address in our database, listed in the stripe data has no id, add the id to the database
+    if($StripeWebhookHandler->getUserHasId($subscriberEmail)['user_email']==""){
+        /// get the user email and the user id from the datastream and set the subscriber_id in usertable
+        $subscriberID = $StripeWebhookHandler->getSubscriberId();
+        $StripeWebhookHandler->updateUserSubscriberId($subscriberEmail, $subscriberID);
+        $StripeWebhookHandler->updateSubscriberId($subscriberEmail, $subscriberID);
+    }
 }
 
 if($StripeWebhookHandler->getEventType()=="invoice.payment_succeeded"){
