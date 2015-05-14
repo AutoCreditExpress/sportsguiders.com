@@ -51,7 +51,7 @@ try{
 
 //Checks to see if the class path has been defined
 if( !defined('SG_CLASSPATH') ) {
-    define('SG_CLASSPATH', 'classes');
+    define('SG_CLASSPATH', '');
 }
 
 require_once($docPath.'classes/framework/autoload/Autoloader.php');

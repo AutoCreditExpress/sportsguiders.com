@@ -3,6 +3,7 @@
 class Autoloader{
     protected $basePath = '';
     protected $classes = array(
+        'Stripe'                          => 'lib/Stripe.php',
         'SubscriberDAO'                   => 'classes/subscriber/SubscriberDAO.php',
         'StripeWebhookHandler'            => 'classes/stripe_webhook/StripeWebhookHandler.php'
     );
