@@ -74,6 +74,7 @@ class SubscriberDAO{
     //                                                  Create
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     function createSubscriber(array $subscriberArray){
         $qCreateSubscriber = $this->db->prepare("
             INSERT INTO subscriber (email,address,city,state,zip,create_date)
