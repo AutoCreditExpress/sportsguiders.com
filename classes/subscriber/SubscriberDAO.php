@@ -97,12 +97,13 @@ class SubscriberDAO{
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+    //TODO: finish this method
     function updateUserSubscriberId($subscriberEmail,$subscriberID){
 
         $sql = "UPDATE users SET subscriber_id = '".$subscriberID."' WHERE email = ".$subscriberEmail."";
     }
 
+    //TODO: finish this method
     function updateSubscriber(array $subscriberArray){
 
         $sql = "UPDATE subscriber SET address = '".$subscriberArray['address']."',
