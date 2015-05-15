@@ -18,7 +18,7 @@ $StripeWebhookHandler->DisplayData();   ///enable for local testing
 
 if($StripeWebhookHandler->getEventType()=="customer.created"){
 
-    /// get the user email from stripe webhook data
+    /// get the users email addrss from stripe webhook data
     $subscriberEmail = $StripeWebhookHandler->getSubscriberEmail();
 
     //if the users email address is in our database and has no subscriber id add the id to the database
@@ -42,10 +42,12 @@ if($StripeWebhookHandler->getEventType()=="invoice.payment_succeeded"){
 
     //if the user doesnot have an active subscription after payment, update the table
     if($StripeWebhookHandler->getSubscriberIsActive($subscriberID)!=1) {
-        $StripeWebhookHandler->updateSubscriberIsActive($StripeWebhookHandler->getSubscriberId());
+        $StripeWebhookHandler->updateSubscriberIsActive($subscriberID);
     }
+
 }
 
+//
 
 /////leave the http response code of 200 for the stripe webhook
 http_response_code(200); // PHP 5.4 or greater
