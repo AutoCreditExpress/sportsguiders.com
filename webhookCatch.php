@@ -40,9 +40,9 @@ if($StripeWebhookHandler->getEventType()=="customer.created"){
     //if the users card id is not in the database add it
     if($StripeWebhookHandler->checkSubscriberCardId($subscriberEmail)==""){
         //update subscribe table user card id
-        echo 'updateing card id...';
         $StripeWebhookHandler->updateSubscriberCardId($subscriberEmail,$subscriberCardID);
     }
+
 }
 
 
@@ -55,6 +55,13 @@ if($StripeWebhookHandler->getEventType()=="invoice.payment_succeeded"){
         $StripeWebhookHandler->updateSubscriberIsActive($subscriberID);
     }
 
+    //get the subscription id from the stripe data
+    $subscriberSubscriptionID = $StripeWebhookHandler->getSubscriberSubscriptionId();
+    //if the users subscription id is not in the database add it
+    if($StripeWebhookHandler->checkSubscriberSubscriptionId($subscriberEmail)==""){
+        //update subscribe table subscription id
+        $StripeWebhookHandler->updateSubscriberSubscriptionId($subscriberID,$subscriberSubscriptionID);
+    }
 }
 
 //
