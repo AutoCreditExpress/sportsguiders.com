@@ -312,7 +312,14 @@ if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['isActive']!='1'){
 				                </div>';
 
                             ///change the location of the page
-                            echo "<script>location.assign('index.php');</script>";
+                            echo "<script>location.assign('index.php?Message=Payment_successful');</script>";
+                        }else{
+                            ///update subscription
+                            $customer = Stripe_Customer::create(array(
+                                    "source" => $token,
+                                    "plan" => "test",
+                                    "email" => $_POST['email'])
+                            );
                         }
 
                 }

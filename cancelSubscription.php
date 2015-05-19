@@ -10,5 +10,6 @@ $customer = Stripe_Customer::retrieve('cus_6GiWyernrdD6u8');
 //delete customer from stripe
 //$customer->delete();
 
+//TODO: add user email
 //$SubscriberDAO->updateSubscriberIsActive({user_email},"0");  //disable subscription in table
 ?>
