@@ -37,8 +37,8 @@ class SubscriberDAO{
         $qSubscriber = $this->db->prepare("SELECT * FROM subscriber WHERE subscriber_id = '".$subscriberID."'");
         try{
             $qSubscriber->execute();
-
-            return TRUE;
+            $results = $qSubscriber->fetchAll();
+            return $results[0];
         }catch(PDOException $e){
             //TODO: add logging
             return FALSE;
@@ -69,6 +69,21 @@ class SubscriberDAO{
             return FALSE;
         }
     }
+
+    /**
+     * @param $subscriberID
+     * @return Stripe subscription Id - String
+     */
+    function getSubscriptionId($subscriberID){
+        try{
+            $customer = Stripe_Customer::retrieve($subscriberID);
+            return $customer['subscriptions']['data'];
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
     //                                                  Create
@@ -111,8 +126,8 @@ class SubscriberDAO{
         WHERE subscriber_id = ".$subscriberArray['subscriber_id']."";
     }
 
-    function updateSubscriberIsActive($subscriberEmail){
-        $qSubscriber = $this->db->prepare("UPDATE subscriber SET isActive='1', update_date=CURDATE() WHERE email = '".$subscriberEmail."'");
+    function updateSubscriberIsActive($subscriberEmail, $value){
+        $qSubscriber = $this->db->prepare("UPDATE subscriber SET isActive='".$value."', update_date=CURDATE() WHERE email = '".$subscriberEmail."'");
         try{
             $qSubscriber->execute();
             return TRUE;

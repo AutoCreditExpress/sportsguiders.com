@@ -1,8 +1,9 @@
-<?php require 'inc/config.php';
+<?php
+require 'inc/config.php';
 
 $SubscriberDAO=new SubscriberDAO($db);
 /**
- * block subscribed user from processing form
+ * block previously subscribed user from processing form
  */
 if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['isActive']!='1'){
 ?>
@@ -209,6 +210,24 @@ if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['isActive']!='1'){
                 },
             }
         });
+
+        $(".cancelSubscription").click(function(){
+            $("#payment-form").css('display', 'none');
+            $.get("cancelSubscription.php", function(data, status){
+                if(status="success"){
+                    location.assign('index.php');
+                }else{
+                    alert('Cancel has failed, please contact support');
+                }
+            });
+        });
+
+        $(".updateSubscription").click(function(){
+            $.get("updateSubscription.php", function(data, status){
+                alert("Data: " + data + "\nStatus: " + status);
+            });
+        });
+
     });
 </script>
 <script type="text/javascript">
@@ -271,6 +290,7 @@ if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['isActive']!='1'){
 
                         //prevent double payment subscriptions
                         if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['IsActive']!="1"){
+                            //add subscriber to DB
                             $SubscriberDAO->createSubscriber(array(
                                 'email' => $_POST['email'],
                                 'address' => $_POST['street'],
@@ -279,7 +299,7 @@ if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['isActive']!='1'){
                                 'zip' => $_POST['zip'],
                                 'create_date' => date("Y-m-d")
                             ));
-
+                            //contact stripe via api to add customer to subscription list
                             $customer = Stripe_Customer::create(array(
                                     "source" => $token,
                                     "plan" => "test",
@@ -440,12 +460,17 @@ if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['isActive']!='1'){
                         <div class="control-group">
                             <div class="controls">
                                 <center>
-                                    <button class="btn btn-success" type="submit">Pay Now</button>
+                                    <button class="btn btn-danger cancelSubscription">Cancel subscription</button>
+                                    <button class="btn btn-warning updateSubscription">Update details</button>
+                                    <button class="btn btn-success payNow" type="submit">Pay Now</button>
                                 </center>
                             </div>
                         </div>
                 </fieldset>
 </form>
+<div id="loadingcontainer" style="display:none;">
+    <img src="img/loading.gif">
+</div>
 </body>
 </html>
 <?php } else {
