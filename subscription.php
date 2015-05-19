@@ -314,6 +314,8 @@ if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['isActive']!='1'){
                             ///change the location of the page
                             echo "<script>location.assign('index.php?Message=Payment_successful');</script>";
                         }else{
+
+
                             ///update subscription
                             $customer = Stripe_Customer::create(array(
                                     "source" => $token,
@@ -460,6 +462,7 @@ if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['isActive']!='1'){
                                 <p>Your card will be charged $1 after submit.</p>
                                 <p>Your account statement will show the following booking text:
                                     XXXXXXX </p>
+
                             </div>
                         </div>
 
@@ -467,9 +470,18 @@ if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['isActive']!='1'){
                         <div class="control-group">
                             <div class="controls">
                                 <center>
-                                    <button class="btn btn-danger cancelSubscription">Cancel subscription</button>
-                                    <button class="btn btn-warning updateSubscription">Update details</button>
-                                    <button class="btn btn-success payNow" type="submit">Pay Now</button>
+                                    <?php
+                                    if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['IsActive']=="1"){
+                                        ?>
+                                        <button class="btn btn-danger cancelSubscription">Cancel subscription</button>
+                                        <button class="btn btn-warning updateSubscription">Update details</button>
+                                        <?php
+                                    }else{
+                                        ?>
+                                        <button class="btn btn-success payNow" type="submit">Subscribe</button>
+                                        <?php
+                                    }
+                                    ?>
                                 </center>
                             </div>
                         </div>
