@@ -39,6 +39,10 @@ class StripeWebhookHandler{
         return $this->WorkingData['data']['object']['email'];
     }
 
+    public function getSubscriberCardId(){
+        return $this->WorkingData['data']['object']['default_source'];
+    }
+
     public function getSubscriberId(){
         if($this->getEventType()=="customer.created"){
             return $this->WorkingData['data']['object']['id'];
@@ -66,6 +70,20 @@ class StripeWebhookHandler{
             $Subscriber->execute();
             $results = $Subscriber->fetchAll();
             return $results[0]['isActive'];
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
+
+
+    public function checkSubscriberCardId($subscriberEmail){
+        $Subscriber = $this->db->prepare("SELECT card_id FROM subscriber WHERE email = '".$subscriberEmail."'");
+        try{
+            $Subscriber->execute();
+            $results = $Subscriber->fetchAll();
+            echo $results;
+            return $results['card_id'];
         }catch(PDOException $e){
             //TODO: add logging
             return FALSE;
@@ -116,7 +134,19 @@ class StripeWebhookHandler{
         }
     }
 
+    function updateSubscriberCardId($subscriberEmail,$cardID){
+        echo "tying update on...".$subscriberEmail."...";
+        $qUpdateSubscriber = $this->db->prepare("UPDATE subscriber SET card_id = '".$cardID."' WHERE email = '".$subscriberEmail."'");
+        try{
 
+            $qUpdateSubscriber->execute();
+            echo "update successful";
+            return TRUE;
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
     //                                                  Create

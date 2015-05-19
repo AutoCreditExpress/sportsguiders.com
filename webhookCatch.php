@@ -33,6 +33,16 @@ if($StripeWebhookHandler->getEventType()=="customer.created"){
         //update subscriber table with id
         $StripeWebhookHandler->updateSubscriberId($subscriberEmail, $subscriberID);
     }
+
+    ///get cardId from stripe data
+    $subscriberCardID = $StripeWebhookHandler->getSubscriberCardId();
+
+    //if the users card id is not in the database add it
+    if($StripeWebhookHandler->checkSubscriberCardId($subscriberEmail)==""){
+        //update subscribe table user card id
+        echo 'updateing card id...';
+        $StripeWebhookHandler->updateSubscriberCardId($subscriberEmail,$subscriberCardID);
+    }
 }
 
 
