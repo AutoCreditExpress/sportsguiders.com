@@ -266,7 +266,7 @@ $SubscriberDAO=new SubscriberDAO($db);
                 </div>
             </noscript>
             <?php
-            //if there is post data and the user has already subscribed update the card info
+            //if there is post data and the user has already subscribed, update the card info
             if($POST and $SubscriberDAO->checkSubscriberIsActive($_SESSION['User_Email'])=="TRUE"){
                 Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
                 $error = '';
@@ -289,7 +289,7 @@ $SubscriberDAO=new SubscriberDAO($db);
                     //create a new card from the information
                     $cu->sources->create(array("source" => $token));
 
-                    echo "<script>location.assign('index.php?Message=Card_Created');</script>";
+                    echo "<script>location.assign('index.php?Message=Card_Updated');</script>";
 
                 }
                 catch (Exception $e) {

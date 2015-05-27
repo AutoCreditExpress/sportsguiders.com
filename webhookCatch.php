@@ -64,6 +64,19 @@ if($StripeWebhookHandler->getEventType()=="invoice.payment_succeeded"){
     }
 }
 
+
+if($StripeWebhookHandler->getEventType()=="customer.source.created"){
+
+    // get users subscriber id from webhook data
+    $subscriberID = $StripeWebhookHandler->getSubscriberId();
+
+    ///get cardId from stripe data
+    $subscriberCardID = $StripeWebhookHandler->getSubscriberCardId();
+
+    //update subscriber card id in database
+    $StripeWebhookHandler->updateSubscriberCardIdBySubscriptionID($subscriberID,$subscriberCardID);
+
+}
 //
 
 /////leave the http response code of 200 for the stripe webhook
