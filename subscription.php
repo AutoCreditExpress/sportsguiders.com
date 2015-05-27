@@ -1,4 +1,5 @@
 <?php
+///this is a test
 require 'inc/config.php';
 
 $SubscriberDAO=new SubscriberDAO($db);
