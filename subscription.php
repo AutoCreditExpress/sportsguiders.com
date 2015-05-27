@@ -500,7 +500,7 @@ $SubscriberDAO=new SubscriberDAO($db);
                                     if($SubscriberDAO->checkSubscriberIsActive($_SESSION['User_Email'])=="TRUE"){
                                         ?>
                                         <button class="btn btn-danger cancelSubscription">Cancel subscription</button>
-                                        <button class="btn btn-warning updateSubscription" type="submit" formaction="updateSubscription.php">Update details</button>
+                                        <button class="btn btn-warning updateSubscription" type="submit">Update details</button>
                                         <?php
                                     }else{
                                         ?>
