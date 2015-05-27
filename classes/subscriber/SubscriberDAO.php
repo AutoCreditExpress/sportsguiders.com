@@ -98,6 +98,17 @@ class SubscriberDAO{
             return FALSE;
         }
     }
+    function getSubscriberCardIdByEmail($subscriberEmail){
+        $qSubscriber = $this->db->prepare("SELECT card_id FROM subscriber WHERE email = '".$subscriberEmail."'");
+        try{
+            $qSubscriber->execute();
+            $results = $qSubscriber->fetchAll();
+            return $results[0]['card_id'];
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
     /**
      * @param $subscriberID
      * @return Stripe subscription Id - String

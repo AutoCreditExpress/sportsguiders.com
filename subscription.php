@@ -1,12 +1,13 @@
 <?php
 ///this is a test
 require 'inc/config.php';
+$_SESSION['User_Email']="jmct0425@gmail.com";
+
 
 $SubscriberDAO=new SubscriberDAO($db);
 /**
  * block previously subscribed user from processing form
  */
-if($SubscriberDAO->checkSubscriberIsActive($_POST['email'])!='TRUE'){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -216,16 +217,10 @@ if($SubscriberDAO->checkSubscriberIsActive($_POST['email'])!='TRUE'){
             $("#payment-form").css('display', 'none');
             $.get("cancelSubscription.php", function(data, status){
                 if(status="success"){
-                    location.assign('index.php');
+                    location.assign('index.php?Message=Subscription_Canceled');
                 }else{
                     alert('Cancel has failed, please contact support');
                 }
-            });
-        });
-
-        $(".updateSubscription").click(function(){
-            $.get("updateSubscription.php", function(data, status){
-                alert("Data: " + data + "\nStatus: " + status);
             });
         });
 
@@ -271,9 +266,39 @@ if($SubscriberDAO->checkSubscriberIsActive($_POST['email'])!='TRUE'){
                 </div>
             </noscript>
             <?php
-            //require 'lib/Stripe.php';    ////autoloader
+            //if there is post data and the user has already subscribed update the card info
+            if($POST and $SubscriberDAO->checkSubscriberIsActive($_SESSION['User_Email'])=="TRUE"){
+                Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
+                $error = '';
+                $success = '';
+                try {
 
-            if ($_POST) {
+                    if (empty($_POST['street']) || empty($_POST['city']) || empty($_POST['zip']))
+                        throw new Exception("Fill out all required fields.");
+                    if (!isset($_POST['stripeToken']))
+                        throw new Exception("The Stripe Token was not generated correctly");
+                    $token = $_POST['stripeToken'];
+
+                    $SubscriberDAO = new SubscriberDAO($db);
+                    //grab customer from stripe using subscriber id
+                    $cu = Stripe_Customer::retrieve($SubscriberDAO->getSubscriberIdByEmail($_SESSION['User_Email']));
+
+                    //grab customer card id from subscriber table and delete associated card
+                    $cu->sources->retrieve($SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['User_Email']))->delete();
+
+                    //create a new card from the information
+                    $cu->sources->create(array("source" => $token));
+
+                    echo "<script>location.assign('index.php?Message=Card_Created');</script>";
+
+                }
+                catch (Exception $e) {
+                    $error = '<div class="alert alert-danger">
+			  <strong>Error!</strong> '.$e->getMessage().'
+			  </div>';
+                }
+            //if there is post data and the user is not active
+            }elseif ($_POST) {
                 Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
                 $error = '';
                 $success = '';
@@ -472,10 +497,10 @@ if($SubscriberDAO->checkSubscriberIsActive($_POST['email'])!='TRUE'){
                             <div class="controls">
                                 <center>
                                     <?php
-                                    if($SubscriberDAO->checkSubscriberIsActive($_POST['email'])=="TRUE"){
+                                    if($SubscriberDAO->checkSubscriberIsActive($_SESSION['User_Email'])=="TRUE"){
                                         ?>
                                         <button class="btn btn-danger cancelSubscription">Cancel subscription</button>
-                                        <button class="btn btn-warning updateSubscription">Update details</button>
+                                        <button class="btn btn-warning updateSubscription" type="submit" formaction="updateSubscription.php">Update details</button>
                                         <?php
                                     }else{
                                         ?>
@@ -493,6 +518,3 @@ if($SubscriberDAO->checkSubscriberIsActive($_POST['email'])!='TRUE'){
 </div>
 </body>
 </html>
-<?php } else {
-    echo "<h1>You are not authorized to access this page!!</h1>";
-}?>
