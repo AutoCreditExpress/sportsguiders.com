@@ -6,7 +6,7 @@ $SubscriberDAO=new SubscriberDAO($db);
 /**
  * block previously subscribed user from processing form
  */
-if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['isActive']!='1'){
+if($SubscriberDAO->checkSubscriberIsActive($_POST['email'])!='TRUE'){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -290,7 +290,7 @@ if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['isActive']!='1'){
                     $SubscriberDAO = new SubscriberDAO($db);
 
                         //prevent double payment subscriptions
-                        if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['IsActive']!="1"){
+                        if($SubscriberDAO->checkSubscriberIsActive($_POST['email'])!="TRUE"){
                             //add subscriber to DB
                             $SubscriberDAO->createSubscriber(array(
                                 'email' => $_POST['email'],
@@ -472,7 +472,7 @@ if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['isActive']!='1'){
                             <div class="controls">
                                 <center>
                                     <?php
-                                    if($SubscriberDAO->getSubscriberIsActive($_POST['email'])['IsActive']=="1"){
+                                    if($SubscriberDAO->checkSubscriberIsActive($_POST['email'])=="TRUE"){
                                         ?>
                                         <button class="btn btn-danger cancelSubscription">Cancel subscription</button>
                                         <button class="btn btn-warning updateSubscription">Update details</button>

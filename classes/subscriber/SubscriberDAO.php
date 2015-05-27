@@ -58,24 +58,41 @@ class SubscriberDAO{
         }
     }
 
-    function getSubscriberIsActive($subscriberEmail){
+    function checkSubscriberIsActive($subscriberEmail){
         $qSubscriber = $this->db->prepare("SELECT isActive FROM subscriber WHERE email = '".$subscriberEmail."'");
         try{
             $qSubscriber->execute();
             $results = $qSubscriber->fetchAll();
-            return $results[0];
+
+            if($results[0]['isActive']=="1"){
+                return TRUE;
+            }else{
+                return FALSE;
+            }
         }catch(PDOException $e){
             //TODO: add logging
             return FALSE;
         }
     }
 
-    function getSubscriberBySubscriptionId($subscriberSubscriptionID){
-        $qSubscriber = $this->db->prepare("SELECT isActive FROM subscriber WHERE email = '".$subscriberEmail."'");
+    function getSubscriberIdByEmail($subscriberEmail){
+        $qSubscriber = $this->db->prepare("SELECT subscriber_id FROM users WHERE user_email = '".$subscriberEmail."'");
         try{
             $qSubscriber->execute();
             $results = $qSubscriber->fetchAll();
-            return $results[0];
+            return $results[0]['subscriber_id'];
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
+
+    function getSubscriptionIdByEmail($subscriberEmail){
+        $qSubscriber = $this->db->prepare("SELECT subscription_id FROM subscriber WHERE email = '".$subscriberEmail."'");
+        try{
+            $qSubscriber->execute();
+            $results = $qSubscriber->fetchAll();
+            return $results[0]['subscription_id'];
         }catch(PDOException $e){
             //TODO: add logging
             return FALSE;
@@ -148,6 +165,16 @@ class SubscriberDAO{
         }
     }
 
+    function updateSubscriberSubscriptionId($subscriberEmail, $value){
+        $qSubscriber = $this->db->prepare("UPDATE subscriber SET subscription_id='".$value."', update_date=CURDATE() WHERE email = '".$subscriberEmail."'");
+        try{
+            $qSubscriber->execute();
+            return TRUE;
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
     //                                                  Delete

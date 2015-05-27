@@ -5,7 +5,6 @@ Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
 
 $SubscriberDAO = new SubscriberDAO($db);
 
-
 /**
  * Destroy old card and create new card and apply it to the subscription
  */

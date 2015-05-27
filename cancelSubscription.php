@@ -2,14 +2,19 @@
 require 'inc/config.php';
 
 Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
+$_SESSION['User_Email']="jmct0425@gmail.com";
 
 $SubscriberDAO = new SubscriberDAO($db);
 
-$customer = Stripe_Customer::retrieve('cus_6GiWyernrdD6u8');
+//grab customer from stripe using subscriber id
+$cu = Stripe_Customer::retrieve($SubscriberDAO->getSubscriberIdByEmail($_SESSION['User_Email']));
 
-//delete customer from stripe
-//$customer->delete();
+//cancel subscription on stripe using subscription id
+$cu->subscriptions->retrieve($SubscriberDAO->getSubscriptionIdByEmail($_SESSION['User_Email']))->cancel();
 
-//TODO: add user email
-//$SubscriberDAO->updateSubscriberIsActive({user_email},"0");  //disable subscription in table
+//disable subscription in table
+$SubscriberDAO->updateSubscriberIsActive($_SESSION['User_Email'],"0");
+
+//remove subscription_id from subscriber table
+$SubscriberDAO->updateSubscriberSubscriptionId($_SESSION['User_Email'],null);
 ?>
