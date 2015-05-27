@@ -70,6 +70,17 @@ class SubscriberDAO{
         }
     }
 
+    function getSubscriberBySubscriptionId($subscriberSubscriptionID){
+        $qSubscriber = $this->db->prepare("SELECT isActive FROM subscriber WHERE email = '".$subscriberEmail."'");
+        try{
+            $qSubscriber->execute();
+            $results = $qSubscriber->fetchAll();
+            return $results[0];
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
     /**
      * @param $subscriberID
      * @return Stripe subscription Id - String

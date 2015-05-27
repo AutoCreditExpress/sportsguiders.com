@@ -1,5 +1,6 @@
 <?php
 require 'inc/config.php';
+
 Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
 
 $SubscriberDAO = new SubscriberDAO($db);
