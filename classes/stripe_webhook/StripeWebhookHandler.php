@@ -52,9 +52,7 @@ class StripeWebhookHandler{
     public function getSubscriberId(){
         if($this->getEventType()=="customer.created"){
             return $this->WorkingData['data']['object']['id'];
-        }elseif($this->getEventType()=="invoice.payment_succeeded"){
-            return $this->WorkingData['data']['object']['customer'];
-        }elseif($this->getEventType()=="customer.source.created"){
+        }elseif($this->getEventType()=="invoice.payment_succeeded" or $this->getEventType()=="customer.source.created"){
             return $this->WorkingData['data']['object']['customer'];
         }
 
