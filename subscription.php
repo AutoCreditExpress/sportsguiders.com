@@ -267,7 +267,7 @@ $SubscriberDAO=new SubscriberDAO($db);
             </noscript>
             <?php
             //if there is post data and the user has already subscribed, update the card info
-            if($POST and $SubscriberDAO->checkSubscriberIsActive($_SESSION['User_Email'])=="TRUE"){
+            if($_POST and $SubscriberDAO->checkSubscriberIsActive($_SESSION['User_Email'])=="TRUE"){
                 Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
                 $error = '';
                 $success = '';
