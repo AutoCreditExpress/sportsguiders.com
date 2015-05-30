@@ -9,6 +9,83 @@
 
 
 /* =======================================================
+  PAGE HEADER
+======================================================= */
+.page-header {
+  background: #39404b;
+  background: url(../images/report/page-header-bg.jpg) center -450px no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 100px 15px;
+}
+
+.page-header h1 {
+  display: block;
+  font-family: 'Raleway';
+  font-size: 80px;
+  line-height: 80px;
+  font-weight: 100;
+  position: relative;
+}
+
+.page-header h1:before {
+  content: '';
+  display: block;
+  width: 150px;
+  height: 2px;
+  background: #FFF;
+  background: rgba(255,255,255,.2);
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  margin-left: 50px;
+}
+
+.page-header h1:after {
+  content: '';
+  display: block;
+  width: 150px;
+  height: 2px;
+  background: #FFF;
+  background: rgba(255,255,255,.2);
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  margin-left: -200px;
+}
+
+.page-header .desc {
+  display: block;
+  color: #FFF;
+  color: rgba(255,255,255,.5);
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.page-header .fa {
+  font-size: 50px;
+  line-height: 50px;
+  width: 50px;
+  margin: 0;
+  color: #5e6878;
+  color: rgba(255,255,255,.3);
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .page-header h1 {
+    font-size: 50px;
+    line-height: 50px;
+  }
+
+  .page-header h1:before,
+  .page-header h1:after {
+    display: none;
+  }
+}
+
+
+/* =======================================================
 //////////////////////////////////////////////////////////
   
   THE REPORT
