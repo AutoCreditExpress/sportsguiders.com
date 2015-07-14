@@ -18,14 +18,14 @@ $i = str_replace(":80", "", $_SERVER['HTTP_HOST']);
 */
 switch ($i) {
 case "sportsguiders.localhost.com":
-$docPath = "/wamp/www/sportsguiders.com/";
+$docPath = "/Users/brianslaght/Sites/sportsguiders.com/test/";
 $webPath = "http://sportsguiders.localhost.com/";
 
 //ACE Dealer Services DB
 $dbhost = "localhost";
 $dbname = "sportsguiders"; //Main DB Name
 $dbuser = "root"; //Main DB User
-$dbpass = "985exBDqCfL4bGtQ"; //main DB Password
+$dbpass = "tjrnb9093"; //main DB Password
 
 break;
 
@@ -38,7 +38,6 @@ break;
 //                                                 PLEASE NOTE:
 //      There are two connection for each database because the code is in transition from mysql_connect() to PDO (BJS)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 //PDO DB Connection for modern code
 try{
@@ -58,4 +57,8 @@ require_once($docPath.'classes/framework/autoload/Autoloader.php');
 
 $sg_autoloader = new Autoloader($docPath . SG_CLASSPATH);
 spl_autoload_register(array($sg_autoloader, 'autoload'));
+
+include('login_config.php');
+
+$login = new Login();
 ?>
