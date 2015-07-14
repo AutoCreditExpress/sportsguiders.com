@@ -216,7 +216,7 @@ $SubscriberDAO=new SubscriberDAO($db);
         $(".cancelSubscription").click(function(){
             $("#payment-form").css('display', 'none');
             $.get("cancelSubscription.php", function(data, status){
-                if(status="success"){
+                if(status=="success"){
                     location.assign('index.php?Message=Subscription_Canceled');
                 }else{
                     alert('Cancel has failed, please contact support');
@@ -267,10 +267,12 @@ $SubscriberDAO=new SubscriberDAO($db);
             </noscript>
             <?php
             //if there is post data and the user has already subscribed, update the card info
+            Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
+            $error = '';
+            $success = '';
+            //if the user is active
             if($_POST and $SubscriberDAO->checkSubscriberIsActive($_SESSION['User_Email'])=="TRUE"){
-                Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
-                $error = '';
-                $success = '';
+
                 try {
 
                     if (empty($_POST['street']) || empty($_POST['city']) || empty($_POST['zip']))
@@ -278,16 +280,17 @@ $SubscriberDAO=new SubscriberDAO($db);
                     if (!isset($_POST['stripeToken']))
                         throw new Exception("The Stripe Token was not generated correctly");
                     $token = $_POST['stripeToken'];
-
+                    //
                     $SubscriberDAO = new SubscriberDAO($db);
-                    //grab customer from stripe using subscriber id
-                    $cu = Stripe_Customer::retrieve($SubscriberDAO->getSubscriberIdByEmail($_SESSION['User_Email']));
 
-                    //grab customer card id from subscriber table and delete associated card
-                    $cu->sources->retrieve($SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['User_Email']))->delete();
+                        //grab customer from stripe using subscriber email
+                        $cu = Stripe_Customer::retrieve($SubscriberDAO->getSubscriberIdByEmail($_SESSION['User_Email']));
 
-                    //create a new card from the information
-                    $cu->sources->create(array("source" => $token));
+                        //grab customer card id from subscriber table and delete associated card
+                        $cu->sources->retrieve($SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['User_Email']))->delete();
+
+                        //create a new card from the information
+                        $cu->sources->create(array("source" => $token));
 
                     echo "<script>location.assign('index.php?Message=Card_Updated');</script>";
 
@@ -297,11 +300,10 @@ $SubscriberDAO=new SubscriberDAO($db);
 			  <strong>Error!</strong> '.$e->getMessage().'
 			  </div>';
                 }
+
             //if there is post data and the user is not active
             }elseif ($_POST) {
-                Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
-                $error = '';
-                $success = '';
+
 
                 try {
                     if (empty($_POST['street']) || empty($_POST['city']) || empty($_POST['zip']))

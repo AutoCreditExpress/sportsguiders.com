@@ -21,11 +21,14 @@ if($StripeWebhookHandler->getEventType()=="customer.created"){
     /// get the users email addrss from stripe webhook data
     $subscriberEmail = $StripeWebhookHandler->getSubscriberEmail();
 
+    /// get the user id from stripe data
+    $subscriberID = $StripeWebhookHandler->getSubscriberId();
+
+    ///get cardId from stripe data
+    $subscriberCardID = $StripeWebhookHandler->getSubscriberCardId();
+
     //if the users email address is in our database and has no subscriber id add the id to the database
     if($StripeWebhookHandler->getUserHasId($subscriberEmail)['subscriber_id']==""){
-
-        /// get the user id from stripe data
-        $subscriberID = $StripeWebhookHandler->getSubscriberId();
 
         //update user table with id
         $StripeWebhookHandler->updateUserSubscriberId($subscriberEmail, $subscriberID);
@@ -34,13 +37,24 @@ if($StripeWebhookHandler->getEventType()=="customer.created"){
         $StripeWebhookHandler->updateSubscriberId($subscriberEmail, $subscriberID);
     }
 
-    ///get cardId from stripe data
-    $subscriberCardID = $StripeWebhookHandler->getSubscriberCardId();
-
+    echo $subscriberCardID;
     //if the users card id is not in the database add it
     if($StripeWebhookHandler->checkSubscriberCardId($subscriberEmail)==""){
         //update subscribe table user card id
         $StripeWebhookHandler->updateSubscriberCardId($subscriberEmail,$subscriberCardID);
+    }
+
+    //if members table isActive=0
+    if($StripeWebhookHandler->getSubscriberIsActive($subscriberID)!=1) {
+        echo "member not active<br>";
+        //if isactive Table isActive=1 then update memberstable
+        if($StripeWebhookHandler->checkSubscriberIsActiveBySubscriberID($subscriberID)!=null) {
+            echo "customer active in active table<br>";
+            $StripeWebhookHandler->updateSubscriberIsActive($subscriberID);
+            //delete record from isActive table
+            echo "deleting isActive record<br>";
+            $StripeWebhookHandler->delSubscriberIsActiveInTable($subscriberID);
+        }
     }
 
 }
@@ -50,31 +64,46 @@ if($StripeWebhookHandler->getEventType()=="invoice.payment_succeeded"){
     //get the subscriberId from the stripe data
     $subscriberID = $StripeWebhookHandler->getSubscriberId();
 
-    //if the user doesnot have an active subscription after payment, update the table
-    if($StripeWebhookHandler->getSubscriberIsActive($subscriberID)!=1) {
-        $StripeWebhookHandler->updateSubscriberIsActive($subscriberID);
-    }
+    //get subscription id from stripe data
+    $subscriptionID = $StripeWebhookHandler->getSubscriberSubscriptionId();
 
-    //get the subscription id from the stripe data
-    $subscriberSubscriptionID = $StripeWebhookHandler->getSubscriberSubscriptionId();
-    //if the users subscription id is not in the database add it
-    if($StripeWebhookHandler->checkSubscriberSubscriptionId($subscriberEmail)==""){
-        //update subscribe table subscription id
-        $StripeWebhookHandler->updateSubscriberSubscriptionId($subscriberID,$subscriberSubscriptionID);
+    //check the subscriber table for subscriberID
+    if($StripeWebhookHandler->getSubscriberSubscriberId($subscriberID)!=null){
+        echo "subscriber found";
+        //if the user doesnt have an active subscription after payment, update the table
+        if($StripeWebhookHandler->getSubscriberIsActive($subscriberID)!=1) {
+
+            //if the isActiveTable==1
+            //if ($StripeWebhookHandler->checkSubscriberIsActiveBySubscriberID($subscriberID) == 1) {
+            //update memebers table
+            $StripeWebhookHandler->updateSubscriberIsActive($subscriberID);
+
+            //update suscription id in the the table
+            $StripeWebhookHandler->updateSubscriberSubscriptionId($subscriberID);
+            //}
+        }
+    }else{  //subscriberID was not found in table, write the action to isActiveTable
+        echo "updating isActive table..";
+        echo $subscriberID."<br>";
+        $StripeWebhookHandler->updateSubscriberIsActiveTable($subscriberID);
     }
 }
-
 
 if($StripeWebhookHandler->getEventType()=="customer.source.created"){
 
     // get users subscriber id from webhook data
     $subscriberID = $StripeWebhookHandler->getSubscriberId();
 
+    //grab customer card id from database
+    $subscriberOriginalCardID = $StripeWebhookHandler->getSubscriberSubscriberId($subscriberID);
+
     ///get cardId from stripe data
     $subscriberCardID = $StripeWebhookHandler->getSubscriberCardId();
 
     //update subscriber card id in database
-    $StripeWebhookHandler->updateSubscriberCardIdBySubscriptionID($subscriberID,$subscriberCardID);
+    if($subscriberOriginalCardID!=$subscriberCardID){
+        $StripeWebhookHandler->updateSubscriberCardIdBySubscriptionID($subscriberID,$subscriberCardID);
+    }
 
 }
 //
