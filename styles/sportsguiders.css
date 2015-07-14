@@ -1,0 +1,987 @@
+/* =======================================================
+  HEADER / SUB PAGES
+======================================================= */
+.header.header-sub {
+  background: #5e6878;
+  height: 120px;
+  position: relative;
+}
+
+
+/* =======================================================
+  PAGE HEADER
+======================================================= */
+.page-header {
+  background: #39404b;
+  background: url(../images/report/page-header-bg.jpg) center -450px no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 100px 15px;
+}
+
+.page-header h1 {
+  display: block;
+  font-family: 'Raleway';
+  font-size: 80px;
+  line-height: 80px;
+  font-weight: 100;
+  position: relative;
+}
+
+.page-header h1:before {
+  content: '';
+  display: block;
+  width: 150px;
+  height: 2px;
+  background: #FFF;
+  background: rgba(255,255,255,.2);
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  margin-left: 50px;
+}
+
+.page-header h1:after {
+  content: '';
+  display: block;
+  width: 150px;
+  height: 2px;
+  background: #FFF;
+  background: rgba(255,255,255,.2);
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  margin-left: -200px;
+}
+
+.page-header .desc {
+  display: block;
+  color: #FFF;
+  color: rgba(255,255,255,.5);
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.page-header .fa {
+  font-size: 50px;
+  line-height: 50px;
+  width: 50px;
+  margin: 0;
+  color: #5e6878;
+  color: rgba(255,255,255,.3);
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .page-header h1 {
+    font-size: 50px;
+    line-height: 50px;
+  }
+
+  .page-header h1:before,
+  .page-header h1:after {
+    display: none;
+  }
+}
+
+
+/* =======================================================
+//////////////////////////////////////////////////////////
+  
+  THE REPORT
+
+//////////////////////////////////////////////////////////
+======================================================= */
+
+.info-icon {
+  display: block;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: 0;
+  outline: 0;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.info-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+.info-icon:hover { opacity: .75; }
+
+/*team colors*/
+svg.min { fill: #3b1973; }
+svg.det { fill: #006db0; }
+svg.gb { fill: #313f36; }
+svg.chi { fill: #df6108; }
+
+/* =======================================================
+  TOP PERFORMERS
+======================================================= */
+.top-performers {
+  background: #f6f8fc;
+  padding: 50px 15px 60px;
+}
+
+.top-performers .heading-icon {
+  width: 196px;
+}
+
+.top-performers .heading {
+  display: block;
+  font-family: 'Source Sans Pro';
+  font-weight: bold;
+  color: #39404b;
+  font-size: 72px;
+  line-height: 72px;
+  margin: 15px auto;
+}
+
+.top-performers .info-icon {
+  margin-bottom: 60px;
+}
+
+@media (max-width: 768px) {
+  .top-performers .heading {
+    font-size: 36px;
+    line-height: 36px;
+  }
+
+  .top-performers .heading-icon {
+    width: 100px;
+  }
+}
+
+/*positions*/
+.top-performers .position {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  padding: 0 25px;
+  background: grey;
+  color: white;
+  overflow: hidden;
+  margin-bottom: 30px;
+  cursor: cell;
+  transition: all .25s;
+}
+
+/*list*/
+.top-performers .position ol {
+  position: relative;
+  margin-top: 800px;
+  opacity: 0;
+  z-index: 2;
+  transition: all .25s;
+}
+
+/*title*/
+.top-performers .position .title {
+  display: block;
+  position: relative;
+  font-family: 'Source Sans Pro';
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 24px;
+  text-transform: uppercase;
+  margin-top: 300px;
+  z-index: 2;
+  transition: all .25s;
+}
+
+/*cover*/
+.top-performers .position .cover {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+  transition: all .25s;
+}
+
+/*specific positions*/
+.top-performers .position.qb { background: #01ad7f url(../images/report/top-performers-qb.png) center 100px no-repeat; background-size: 127px 148px; }
+.top-performers .position.wr { background: #016ead url(../images/report/top-performers-wr.png) center 100px no-repeat; background-size: 127px 148px; }
+.top-performers .position.rb { background: #7a01ad url(../images/report/top-performers-rb.png) center 100px no-repeat; background-size: 165px 148px; }
+.top-performers .position.te { background: #5e6878 url(../images/report/top-performers-te.png) center 100px no-repeat; background-size: 178px 148px; }
+.top-performers .position.k  { background: #ad0119 url(../images/report/top-performers-k.png)  center 100px no-repeat; background-size: 139px 148px; }
+.top-performers .position.ds { background: #ad6e01 url(../images/report/top-performers-ds.png) center 100px no-repeat; background-size: 253px 148px; }
+
+.top-performers .position.qb .cover { background: #01ad7f; }
+.top-performers .position.wr .cover { background: #016ead; }
+.top-performers .position.rb .cover { background: #7a01ad; }
+.top-performers .position.te .cover { background: #5e6878; }
+.top-performers .position.k  .cover { background: #ad0119; }
+.top-performers .position.ds .cover { background: #ad6e01; }
+
+
+/*hover / show list*/
+.top-performers .position:hover > ol {
+  margin-top: 30px;
+  opacity: 1;
+}
+
+.top-performers .position:hover > .title {
+  margin-top: 50px;
+  opacity: .8;
+}
+
+.top-performers .position:hover > .cover {
+  opacity: .75;
+}
+
+
+/* =======================================================
+  WAIVER WINNERS
+======================================================= */
+.waiver-adds { padding: 100px 15px; }
+
+.waiver-adds .heading-col {
+  text-align: right;
+}
+
+.waiver-adds .heading-icon {
+  width: 138px;
+  text-align: right;
+  display: inline-block;
+}
+
+.waiver-adds .heading {
+  display: block;
+  font-family: 'Source Sans Pro';
+  font-weight: 100;
+  color: #2f3744;
+  font-size: 60px;
+  line-height: 45px;
+  margin-top: 50px;
+}
+
+.waiver-adds .heading b {
+  display: block;
+  color: #5e6878;
+}
+
+.waiver-adds .info-icon {
+  float: right;
+  margin-top: 30px;
+}
+
+/*stats*/
+.waiver-adds .stat {
+  padding-left: 30px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #d1d4d9;
+}
+
+.waiver-adds .stat .number {
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  line-height: 60px;
+  background: #f6f8fc;
+  font-family: 'Source Sans Pro';
+  color: #3491d8;
+  font-weight: 100;
+  text-align: center;
+  border-radius: 100%;
+  float: left;
+  margin-right: 30px;
+  margin-bottom: 50px;
+}
+
+.waiver-adds .name {
+  font-family: 'Source Sans Pro';
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: 600;
+  color: #465366;
+  text-transform: uppercase;
+  margin: 15px 0 10px;
+}
+
+.waiver-adds .name .position {
+  color: #808ea1;
+  font-weight: normal;
+  margin-left: 10px;
+}
+
+.waiver-adds .name .team {
+  color: #465366;
+  font-weight: 200;
+  margin-left: 10px;
+}
+
+.waiver-adds .desc {
+  color: #717d90;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+
+/* =======================================================
+  INJURY REPORT
+======================================================= */
+.injury-report {
+  background: #d83435;
+  color: #FFF;
+  padding: 100px 15px;
+}
+
+.injury-report .heading-icon {
+  width: 100px;
+}
+
+.injury-report .heading {
+  display: block;
+  font-family: 'Source Sans Pro';
+  font-weight: 100;
+  color: #242a33;
+  font-size: 60px;
+  line-height: 45px;
+  margin-top: 20px;
+}
+
+.injury-report .heading b {
+  display: block;
+  color: #FFF;
+  font-weight: bold;
+}
+
+.injury-report .info-icon {
+  margin: 30px auto;
+}
+
+.injury-report .player {
+  margin-bottom: 50px;
+}
+
+.injury-report .player .helmet {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background: #FFF;
+  background: rgba(255,255,255,.5);
+  float: left;
+  margin-right: 30px;
+  position: relative;
+  box-shadow: 0 6px 10px rgba(0,0,0,.2);
+}
+
+.injury-report .player .helmet svg {
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  width: 102px;
+  height: 98px;
+}
+
+.injury-report .player .city {
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  opacity: .7;
+}
+
+.injury-report .player .name {
+  font-family: 'Source Sans Pro';
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: 600;
+  color: #FFF;
+  text-transform: uppercase;
+  margin: 15px 0 10px;
+}
+
+.injury-report .player .name .position {
+  color: #ffa2a3;
+  font-weight: normal;
+  margin-left: 10px;
+}
+
+.injury-report .player .name .team {
+  color: #ffc9c9;
+  font-weight: 200;
+  margin-left: 10px;
+}
+
+.injury-report .player .desc {
+  color: #FFF;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 100;
+  opacity: .8;
+}
+
+.injury-report .player .desc b {
+  display: block;
+  font-weight: normal;
+  opacity: .7;
+}
+
+
+/* =======================================================
+  POWER RANKING
+======================================================= */
+.power-ranking {
+  background: #1c2128;
+  padding: 100px 15px;
+}
+
+.power-ranking .heading {
+  display: block;
+  font-family: 'Source Sans Pro';
+  font-weight: bold;
+  color: #ffba00;
+  font-size: 72px;
+  line-height: 45px;
+}
+
+.power-ranking .heading b {
+  color: #FFF;
+  font-weight: normal;
+}
+
+.power-ranking .heading i {
+  display: block;
+  color: #FFF;
+  color: rgba(255,255,255,.5);
+  font-size: 24px;
+  font-weight: 100;
+  font-style: normal;
+}
+
+@media (max-width: 768px) {
+  .power-ranking .heading {
+    font-size: 36px;
+    line-height: 36px;
+  }
+}
+
+.power-ranking .info-icon {
+  margin: 30px auto;
+}
+
+.power-ranking .table {
+  background: #fff;
+  margin-bottom: 30px;
+}
+
+.power-ranking .table .fa-caret-up   { color: #01ad7f; }
+.power-ranking .table .fa-caret-down { color: #d83435; }
+
+
+.power-ranking .table thead {
+  background: #465366;
+  color: #FFF;
+  text-align: center;
+  font-family: 'Source Sans Pro';
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: bold;
+}
+
+.power-ranking .table thead tr th { padding: 10px 0; }
+
+
+/* =======================================================
+  TRENDING UPWARDS
+======================================================= */
+.trending { padding: 100px 15px; }
+.trending .upwards { border-right: 1px solid #eee; }
+
+@media (max-width: 768px) {
+  .trending .upwards { border: 0; }
+}
+
+.trending .heading-icon { width: 118px; height: 110px; }
+
+.trending .heading {
+  display: block;
+  font-family: 'Source Sans Pro';
+  font-weight: 100;
+  color: #5e6878;
+  font-size: 50px;
+  line-height: 50px;
+  margin-top: 20px;
+}
+
+.trending .heading b { font-weight: bold; }
+.trending .info-icon { margin: 30px auto; }
+
+.trending .upwards .heading b   { color: #01ad7f; }
+.trending .downwards .heading b { color: #d83435; }
+
+@media (max-width: 768px) {
+  .trending .heading {
+    font-size: 30px;
+    line-height: 30px;
+  }
+}
+
+.trending .player {
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #d1d4d9;
+}
+
+.trending .downwards .player { opacity: .8; }
+
+.trending .player .name {
+  display: block;
+  font-family: 'Source Sans Pro';
+  font-size: 30px;
+  line-height: 30px;
+  color: #465366;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.trending .player .desc {
+  font-size: 18px;
+  line-height: 18px;
+  color: #717d90;
+}
+
+
+/* =======================================================
+  FUN FACTS
+======================================================= */
+.fun-facts { 
+  padding: 100px 15px;
+  background: url(../images/report/fun-facts-bg.jpg) center center no-repeat;
+  background-attachment: fixed;
+}
+
+.fun-facts .heading {
+  display: block;
+  font-family: 'Source Sans Pro';
+  font-weight: bold;
+  color: #FFF;
+  font-size: 60px;
+  line-height: 60px;
+  margin-top: 20px;
+}
+
+.fun-facts .heading b {
+  font-weight: 100;
+  color: #d83435;
+}
+
+.fun-facts .info-icon { margin: 30px auto; }
+
+.fun-facts .fact {
+  padding: 30px;
+  background: #5e6878;
+  background: rgba(94,104,120,.8);
+  color: #FFF;
+  box-shadow: 0 6px 10px rgba(0,0,0,.2);
+}
+
+.fun-facts .fact .category {
+  display: block;
+  font-family: 'Source Sans Pro';
+  font-size: 24px;
+  line-height: 24px;
+  color: #FFF;
+  color: rgba(255,255,255,.6);
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.fun-facts .fact .info {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+
+/* =======================================================
+  UPCOMING SCHEDULE
+======================================================= */
+.schedule {
+  background: #1c2128;
+  padding: 100px 15px;
+}
+
+.schedule .heading {
+  display: block;
+  font-family: 'Source Sans Pro';
+  font-weight: 100;
+  color: #FFF;
+  font-size: 72px;
+  line-height: 45px;
+}
+
+.schedule .heading b {
+  color: #d83435;
+  font-weight: bold;
+}
+
+.schedule .heading i {
+  display: block;
+  color: #FFF;
+  color: rgba(255,255,255,.5);
+  font-size: 24px;
+  font-weight: 100;
+  font-style: normal;
+}
+
+@media (max-width: 768px) {
+  .schedule .heading {
+    font-size: 30px;
+    line-height: 30px;
+  }
+}
+
+.schedule .info-icon {
+  margin: 30px auto;
+}
+
+.schedule .game {
+  position: relative;
+  margin-bottom: 100px;
+}
+
+.schedule .game .helmet {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background: #FFF;
+  background: rgba(255,255,255,.5);
+  position: relative;
+  box-shadow: 0 6px 10px rgba(0,0,0,.2);
+}
+
+.schedule .game .helmet.left {
+  float: left;
+  transf orm: skewX(5deg);
+  margin-left: 20px;
+}
+
+.schedule .game .helmet.right {
+  float: right;
+  transf orm: skewX(-5deg);
+  margin-right: 20px;
+}
+
+.schedule .game .helmet svg {
+  display: block;
+  position: absolute;
+  width: 102px;
+  height: 98px;
+}
+
+.schedule .game .helmet.left svg {
+  top: 2px;
+  left: 3px;
+}
+
+.schedule .game .helmet.right svg {
+  top: 2px;
+  right: 3px;
+}
+
+.schedule .game .city {
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  opacity: .7;
+  color: #FFF;
+}
+
+.schedule .game .vs {
+  display: block;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  color: #8693a9;
+  font-size: 24px;
+  line-height: 24px;
+  top: 40px;
+  left: 0;
+}
+
+
+/* =======================================================
+  TEAM POWER RANKINGS
+======================================================= */
+.team-rankings { padding: 100px 15px; }
+
+.team-rankings .heading-col {
+  text-align: right;
+}
+
+.team-rankings .heading-icon {
+  width: 109px;
+  text-align: right;
+  display: inline-block;
+}
+
+.team-rankings .heading {
+  display: block;
+  font-family: 'Source Sans Pro';
+  font-weight: 100;
+  color: #2f3744;
+  font-size: 60px;
+  line-height: 45px;
+  margin-top: 50px;
+}
+
+.team-rankings .heading b {
+  display: block;
+  color: #5e6878;
+}
+
+.team-rankings .heading i {
+  display: block;
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: normal;
+  font-style: normal;
+  color: #d83435;
+}
+
+.team-rankings .info-icon {
+  float: right;
+  margin-top: 30px;
+}
+
+/*stats*/
+.team-rankings .stat {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #d1d4d9;
+}
+
+.team-rankings .stat .helmet {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background: #FFF;
+  background: rgba(255,255,255,.5);
+  margin: 0 auto;
+  position: relative;
+  box-shadow: 0 6px 10px rgba(0,0,0,.2);
+}
+
+.team-rankings .stat .helmet svg {
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  width: 102px;
+  height: 98px;
+}
+
+.team-rankings .stat .city {
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  opacity: .7;
+  color: #FFF;
+}
+
+.team-rankings .stat .desc {
+  display: block;
+  color: #717d90;
+  font-size: 18px;
+  line-height: 18px;
+  text-transform: uppercase;
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+/* =======================================================
+  NFL STANDINGS
+======================================================= */
+.standings {
+  padding: 100px 15px;
+  background: #f6f8fc;
+}
+
+.standings .heading {
+  display: block;
+  font-family: 'Source Sans Pro';
+  font-weight: bold;
+  color: #d83435;
+  font-size: 60px;
+  line-height: 60px;
+}
+
+.standings .heading b {
+  color: #5e6878;
+  font-weight: 100;
+}
+
+@media (max-width: 768px) {
+  .standings .heading {
+    font-size: 36px;
+    line-height: 36px;
+  }
+}
+
+.standings .info-icon {
+  margin: 30px auto 50px;
+}
+
+.standings .table-expand {
+  background: #5e6878;
+  color: #FFF;
+  font-family: 'Source Sans Pro';
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: bold;
+  padding: 25px 15px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.standings table thead {
+  background: #1c2128;
+  color: #FFF;
+  color: rgba(255,255,255,.7);
+}
+
+
+/* =======================================================
+  NFL SCORES
+======================================================= */
+.scores {
+  background: #1c2128;
+  padding: 100px 15px;
+}
+
+.scores .heading {
+  display: block;
+  font-family: 'Source Sans Pro';
+  font-weight: 100;
+  color: #FFF;
+  font-size: 72px;
+  line-height: 45px;
+}
+
+.scores .heading b {
+  color: #ffba00;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .scores .heading {
+    font-size: 36px;
+    line-height: 36px;
+  }
+}
+
+.scores .info-icon {
+  margin: 30px auto 50px;
+}
+
+.scores .game {
+  position: relative;
+  margin-bottom: 150px;
+}
+
+.scores .game .helmet {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background: #FFF;
+  background: rgba(255,255,255,.5);
+  position: relative;
+  box-shadow: 0 6px 10px rgba(0,0,0,.2);
+}
+
+.scores .game .helmet.left {
+  float: left;
+  margin-left: 20px;
+}
+
+.scores .game .helmet.right {
+  float: right;
+  margin-right: 20px;
+}
+
+.scores .game .helmet svg {
+  display: block;
+  position: absolute;
+  width: 102px;
+  height: 98px;
+}
+
+.scores .game .helmet.left svg {
+  top: 2px;
+  left: 3px;
+}
+
+.scores .game .helmet.right svg {
+  top: 2px;
+  right: 3px;
+}
+
+.scores .game .city {
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  opacity: .7;
+  color: #FFF;
+}
+
+.scores .game .helmet .score {
+  display: block;
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: bold;
+  text-align: center;
+  color: #FFF;
+  margin-top: 120px;
+}
+
+.scores .game .vs {
+  display: block;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  color: #8693a9;
+  font-size: 24px;
+  line-height: 24px;
+  top: 40px;
+  left: 0;
+}
+
+.scores .game .helmet.loss {
+  opacity: .5;
+  -webkit-filter: grayscale(30%);
+}
+
+
+
+
+
+

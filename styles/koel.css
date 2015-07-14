@@ -1991,6 +1991,12 @@ img.img-thumbnail {
   width: 100%;
   padding: 0;
 }
+.header.header-sub {
+    background: #5e6878;
+    height: 120px;
+    position: relative;
+}
+
 .header article {
   padding: 180px 0;
 }
