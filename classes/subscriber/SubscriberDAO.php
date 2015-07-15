@@ -176,8 +176,29 @@ class SubscriberDAO{
         }
     }
 
+    function updateSubscriberIsActiveUsersTable($subscriberEmail, $value){
+        $qSubscriber = $this->db->prepare("UPDATE users SET isActive='".$value."' WHERE email = '".$subscriberEmail."'");
+        try{
+            $qSubscriber->execute();
+            return TRUE;
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
+
     function updateSubscriberSubscriptionId($subscriberEmail, $value){
         $qSubscriber = $this->db->prepare("UPDATE subscriber SET subscription_id='".$value."', update_date=CURDATE() WHERE email = '".$subscriberEmail."'");
+        try{
+            $qSubscriber->execute();
+            return TRUE;
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
+    function updateSubscriberSubscriptionIdUserTable($subscriberEmail, $value){
+        $qSubscriber = $this->db->prepare("UPDATE users SET subscription_id='".$value."' WHERE email = '".$subscriberEmail."'");
         try{
             $qSubscriber->execute();
             return TRUE;

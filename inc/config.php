@@ -18,14 +18,14 @@ $i = str_replace(":80", "", $_SERVER['HTTP_HOST']);
 */
 switch ($i) {
 case "sportsguiders.localhost.com":
-$docPath = "/Users/brianslaght/Sites/sportsguiders.com/test/";
+$docPath = "/wamp/www/sportsguiders.com/";
 $webPath = "http://sportsguiders.localhost.com/";
 
 //ACE Dealer Services DB
 $dbhost = "localhost";
 $dbname = "sportsguiders"; //Main DB Name
 $dbuser = "root"; //Main DB User
-$dbpass = "tjrnb9093"; //main DB Password
+$dbpass = ""; //main DB Password
 
 break;
 
@@ -38,6 +38,7 @@ break;
 //                                                 PLEASE NOTE:
 //      There are two connection for each database because the code is in transition from mysql_connect() to PDO (BJS)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 //PDO DB Connection for modern code
 try{

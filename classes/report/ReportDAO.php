@@ -20,7 +20,7 @@ class ReportDAO {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function getLatestReport(){
 
-        $getReport = $this->db->prepare("SELECT report_id from report order by report_create_date desc");
+        $getReport = $this->db->prepare("SELECT report_id from report WHERE report_status=1 order by report_create_date desc");
 
         $getReport->execute();
         $reportResult = $getReport->fetch();
@@ -29,6 +29,7 @@ class ReportDAO {
         $Waivers = $this->getReportWaivers($reportID);
         $TrendingUp = $this->getRepotTrending($reportID, 'up');
         $TrendingDown = $this->getRepotTrending($reportID, 'down');
+
 
         $Report = new Report();
         $Report->setWaiver($Waivers);

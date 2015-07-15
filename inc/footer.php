@@ -33,7 +33,6 @@
 
 
 <!-- Scripts -->
-<script type="text/javascript" src="<?php echo $webPath;?>scripts/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo $webPath;?>rs-plugin/js/jquery.themepunch.tools.min.js"></script>
 <script type="text/javascript" src="<?php echo $webPath;?>rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <script src="<?php echo $webPath;?>scripts/retina.min.js"></script>

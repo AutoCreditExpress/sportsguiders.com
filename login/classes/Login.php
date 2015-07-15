@@ -502,17 +502,6 @@ class Login
      */
     public function editUserPassword($user_password_old, $user_password_new, $user_password_repeat)
     {
-        if (empty($user_password_new) || empty($user_password_repeat) || empty($user_password_old)) {
-            $this->errors[] = MESSAGE_PASSWORD_EMPTY;
-        // is the repeat password identical to password
-        } elseif ($user_password_new !== $user_password_repeat) {
-            $this->errors[] = MESSAGE_PASSWORD_BAD_CONFIRM;
-        // password need to have a minimum length of 6 characters
-        } elseif (strlen($user_password_new) < 6) {
-            $this->errors[] = MESSAGE_PASSWORD_TOO_SHORT;
-
-        // all the above tests are ok
-        } else {
             // database query, getting hash of currently logged in user (to check with just provided password)
             $result_row = $this->getUserData($_SESSION['user_name']);
 
@@ -550,7 +539,7 @@ class Login
             } else {
                 $this->errors[] = MESSAGE_USER_DOES_NOT_EXIST;
             }
-        }
+
     }
 
     /**

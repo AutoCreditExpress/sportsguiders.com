@@ -35,6 +35,7 @@
 
     <!-- Scripts -->
     <script src="<?php echo $webPath;?>scripts/modernizr.js"></script>
+    <script type="text/javascript" src="<?php echo $webPath;?>scripts/jquery.min.js"></script>
     <!-- End Scripts -->
 
 </head>

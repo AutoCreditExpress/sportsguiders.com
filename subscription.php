@@ -266,12 +266,12 @@ $SubscriberDAO=new SubscriberDAO($db);
                 </div>
             </noscript>
             <?php
-            //if there is post data and the user has already subscribed, update the card info
+            //if there is post data and the user has already been created and is active, update the card info
             Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
             $error = '';
             $success = '';
             //if the user is active
-            if($_POST and $SubscriberDAO->checkSubscriberIsActive($_SESSION['User_Email'])=="TRUE"){
+            if($_POST and $_SESSION and $SubscriberDAO->checkSubscriberIsActive($_SESSION['User_Email'])=="TRUE"){
 
                 try {
 
@@ -301,8 +301,8 @@ $SubscriberDAO=new SubscriberDAO($db);
 			  </div>';
                 }
 
-            //if there is post data and the user is not active
-            }elseif ($_POST) {
+            //if there is post data and no session data, create user in table and on stripe
+            }elseif ($_POST and !$_SESSION) {
 
 
                 try {
@@ -316,6 +316,10 @@ $SubscriberDAO=new SubscriberDAO($db);
                     //////post form data to the subscribe table
                     $SubscriberDAO = new SubscriberDAO($db);
 
+
+                    //////////////
+                   // add create user code
+                    ///////////////
                         //prevent double payment subscriptions
                         if($SubscriberDAO->checkSubscriberIsActive($_POST['email'])!="TRUE"){
                             //add subscriber to DB
@@ -358,8 +362,58 @@ $SubscriberDAO=new SubscriberDAO($db);
 			  <strong>Error!</strong> '.$e->getMessage().'
 			  </div>';
                 }
-            }
+                ///if there is post data and session data but the user is not subscribed
+            }elseif($_POST and $_SESSION and $SubscriberDAO->checkSubscriberIsActive($_SESSION['User_Email'])!="TRUE"){
+                try {
+                    //////if no error caught display success message
+                    $success = '<div class="alert alert-error">
+                                <strong>Success!</strong> Please update your subscription.
+				                </div>';
 
+                    if (empty($_POST['street']) || empty($_POST['city']) || empty($_POST['zip']))
+                        throw new Exception("Fill out all required fields.");
+                    if (!isset($_POST['stripeToken']))
+                        throw new Exception("The Stripe Token was not generated correctly");
+                    $token = $_POST['stripeToken'];
+
+                    ///get the id from stripe
+                    //////post form data to the subscribe table
+                    $SubscriberDAO = new SubscriberDAO($db);
+
+                        //prevent double payment subscriptions
+                        if($SubscriberDAO->checkSubscriberIsActive($_POST['email'])!="TRUE"){
+                            //add subscriber to DB
+                            $SubscriberDAO->createSubscriber(array(
+                                'email' => $_POST['email'],
+                                'address' => $_POST['street'],
+                                'city' => $_POST['city'],
+                                'state' => $_POST['state'],
+                                'zip' => $_POST['zip'],
+                                'create_date' => date("Y-m-d")
+                            ));
+                            //contact stripe via api to add customer to subscription list
+                            $customer = Stripe_Customer::create(array(
+                                    "source" => $token,
+                                    "plan" => "test",
+                                    "email" => $_POST['email'])
+                            );
+
+                            //////if no error caught display success message
+                            $success = '<div class="alert alert-success">
+                                <strong>Success!</strong> Your payment was successful.
+				                </div>';
+
+                            ///change the location of the page
+                            echo "<script>location.assign('index.php?Message=Payment_successful');</script>";
+                        }
+
+                }
+                catch (Exception $e) {
+                    $error = '<div class="alert alert-danger">
+			  <strong>Error!</strong> '.$e->getMessage().'
+			  </div>';
+                }
+            }
             ?>
             <div class="alert alert-danger" id="a_x200" style="display: none;"> <strong>Error!</strong> <span class="payment-errors"></span> </div>
   <span class="payment-success">

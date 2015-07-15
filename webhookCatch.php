@@ -85,7 +85,7 @@ if($StripeWebhookHandler->getEventType()=="invoice.payment_succeeded"){
     }else{  //subscriberID was not found in table, write the action to isActiveTable
         echo "updating isActive table..";
         echo $subscriberID."<br>";
-        $StripeWebhookHandler->updateSubscriberIsActiveTable($subscriberID);
+        $StripeWebhookHandler->updateSubscriberIsActiveTable($subscriberID,$subscriptionID);
     }
 }
 

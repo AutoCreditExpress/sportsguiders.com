@@ -16,7 +16,7 @@
 define("DB_HOST", "localhost");
 define("DB_NAME", "sportsguiders");
 define("DB_USER", "root");
-define("DB_PASS", "tjrnb9093");
+define("DB_PASS", "");
 
 /**
  * Configuration for: Cookies

@@ -230,9 +230,9 @@ class StripeWebhookHandler{
         }
     }
 
-    function updateSubscriberIsActiveTable($subscriberID){
+    function updateSubscriberIsActiveTable($subscriberID,$subscriptinID){
         echo "tying update on...".$subscriberID."...";
-        $qUpdateSubscriber = $this->db->prepare("INSERT INTO isactive (id,isActive, subscriber_id) VALUES ('','1','".$subscriberID."')");
+        $qUpdateSubscriber = $this->db->prepare("INSERT INTO isactive (id,isActive, subscriber_id,subscription_id) VALUES ('','1','".$subscriberID."','".$subscriptionID."')");
         //$qUpdateSubscriber = $this->db->prepare("UPDATE isActive SET isActive='1', subscriber_id='".$subscriberID."' WHERE id='1'");
         try{
             $qUpdateSubscriber->execute();

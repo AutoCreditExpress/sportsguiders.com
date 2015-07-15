@@ -1,4 +1,4 @@
-<?php include('../../inc/config.php');?>
+<?php include('../inc/config.php');?>
 <?php include('_header.php'); ?>
 <!DOCTYPE html>
 <html>
