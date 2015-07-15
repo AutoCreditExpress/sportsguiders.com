@@ -18,7 +18,16 @@ class Autoloader{
         'Player'                            => 'classes/report/Player.php',
         'PlayerDAO'                         => 'classes/report/PlayerDAO.php',
         'PowerRankings'                     => 'classes/report/PowerRankings.php',
-        'PowerRankingDAO'                   => 'classes/report/PowerRankingDAO.php'
+        'PowerRankingDAO'                   => 'classes/report/PowerRankingDAO.php',
+        'TrendingDAO'                       => 'classes/report/TrendingDAO.php',
+        'FactsDAO'                           => 'classes/report/FactsDAO.php',
+        'Team'                              => 'classes/report/Team.php',
+        'TeamDAO'                           => 'classes/report/TeamDAO.php',
+        'EasySchedule'                      => 'classes/report/EasySchedule.php',
+        'EasyScheduleDAO'                   => 'classes/report/EasyScheduleDAO.php',
+        'ScoreDAO'                             => 'classes/report/ScoreDAO.php',
+        'TopPerformers'                         => 'classes/report/TopPerformers.php',
+        'TopPerformersDAO'              => 'classes/report/TopPerformersDAO.php'
     );
 
     public function __construct($basePath) {

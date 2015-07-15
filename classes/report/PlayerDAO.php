@@ -32,6 +32,38 @@ class PlayerDAO {
         }
     }
 
+    function getPlayerFromID($playerID){
+        $sql = "select * from player where player_id = '".$playerID."'";
+
+        $player = $this->db->prepare($sql);
+        try{
+            $player->execute();
+
+            $results = $this->mapPlayerToObjects($player);
+
+            return $results;
+
+
+        }catch(PDOException $e){
+            return false;
+        }
+    }
+
+    function getPositionIDFromPositionShortName($position){
+        $sql = $this->db->prepare("SELECT position_id from position where position_short_name = '".$position."'");
+
+        try{
+
+            $sql->execute();
+            $result = $sql->fetchColumn();
+
+            return $result;
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
     function addTopPerformersToReport($players, $position, $reportID){
 
         foreach($players as $player) {
@@ -73,6 +105,7 @@ class PlayerDAO {
                     $player->setPosition($aRow['player_position']);
                     $player->setTeam($aRow['player_team']);
                     $player->setName($aRow['player_name']);
+                    $player->setNumber($aRow['player_number']);
                     $players[] = $player;
                 }
 

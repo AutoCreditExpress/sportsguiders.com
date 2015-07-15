@@ -12,6 +12,25 @@ class Player {
     protected $name = '';
     protected $position = '';
     protected $team = '';
+    protected $number = '';
+
+    /**
+     * @return string
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+    /**
+     * @param string $number
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+    }
+
+
 
     /**
      * @return int

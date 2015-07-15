@@ -6,6 +6,7 @@ include('inc/config.php');
 //}
 
 $ReportDAO = new ReportDAO($db);
+$PlayerDAO = new PlayerDAO($db);
 
 
 $Report = $ReportDAO->getLatestReport();
@@ -44,16 +45,11 @@ include($docPath.'inc/header.php');
                         <span class="title">Quarterback</span>
 
                         <ol>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
+                            <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 16): ?>
+                                <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
+                            <li><?php echo $Player->getName();?></li>
+                            <?php endif; endforeach; ?>
+
                         </ol>
                         <div class="cover"></div>
                     </div>
@@ -64,16 +60,10 @@ include($docPath.'inc/header.php');
                         <span class="title">Wide Reciever</span>
 
                         <ol>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
+                            <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 1): ?>
+                                <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
+                                <li><?php echo $Player->getName();?></li>
+                            <?php endif; endforeach; ?>
                         </ol>
                         <div class="cover"></div>
                     </div>
@@ -84,16 +74,10 @@ include($docPath.'inc/header.php');
                         <span class="title">Running Back</span>
 
                         <ol>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
+                            <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 2): ?>
+                                <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
+                                <li><?php echo $Player->getName();?></li>
+                            <?php endif; endforeach; ?>
                         </ol>
                         <div class="cover"></div>
                     </div>
@@ -104,16 +88,10 @@ include($docPath.'inc/header.php');
                         <span class="title">Tight End</span>
 
                         <ol>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
+                            <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 7): ?>
+                                <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
+                                <li><?php echo $Player->getName();?></li>
+                            <?php endif; endforeach; ?>
                         </ol>
                         <div class="cover"></div>
                     </div>
@@ -124,16 +102,10 @@ include($docPath.'inc/header.php');
                         <span class="title">Kicker</span>
 
                         <ol>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
+                            <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 20): ?>
+                                <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
+                                <li><?php echo $Player->getName();?></li>
+                            <?php endif; endforeach; ?>
                         </ol>
                         <div class="cover"></div>
                     </div>
@@ -144,16 +116,10 @@ include($docPath.'inc/header.php');
                         <span class="title">Defense/Special</span>
 
                         <ol>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
+                            <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 29): ?>
+                                <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
+                                <li><?php echo $Player->getName();?></li>
+                            <?php endif; endforeach; ?>
                         </ol>
                         <div class="cover"></div>
                     </div>
@@ -178,26 +144,14 @@ include($docPath.'inc/header.php');
 
                 <div class="col-xs-12 col-sm-8">
                     <?php $waiverDelay = 25;?>
-                    <?php foreach($Report->getWaiver() as $Waiver): ?>
-                        <?php ?>
+                    <?php foreach($Report->getWaiver() as $Waiver):; ?>
+                        <?php $Player = $PlayerDAO->getPlayerFromID($Waiver->getPlayerID()) ?>
                     <section class="stat wow fadeInDown clearfix" data-wow-delay=".25s">
-                        <div class="number">1</div>
-                        <div class="name">Mike Wallace <span class="position">WR</span> <span class="team">MIN</span></div>
+                        <div class="number"><?php echo $Player->getNumber();?></div>
+                        <div class="name"><?php echo $Player->getName(); ?> <span class="position"><?php echo $Player->getPosition(); ?></span> <span class="team"><?php echo $Player->getTeam(); ?></span></div>
                         <span class="desc"><?php echo $Waiver->getValue(); ?></span>
                     </section>
                     <?php endforeach; ?>
-
-                    <section class="stat wow fadeInDown clearfix" data-wow-delay=".45s">
-                        <div class="number">2</div>
-                        <div class="name">Mike Wallace <span class="position">WR</span> <span class="team">MIN</span></div>
-                        <span class="desc">With Greg Jennings out for weeks, Wallace should see a huge increase in targets.</span>
-                    </section>
-
-                    <section class="stat wow fadeInDown clearfix" data-wow-delay=".65s">
-                        <div class="number">3</div>
-                        <div class="name">Mike Wallace <span class="position">WR</span> <span class="team">MIN</span></div>
-                        <span class="desc">With Greg Jennings out for weeks, Wallace should see a huge increase in targets.</span>
-                    </section>
                 </div>
             </div>
         </div>

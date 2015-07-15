@@ -39,7 +39,7 @@ foreach($Players as $player){
                 <div class="block-title">
 
 
-                    <h2>Players Power Ranking - Quarterbacks</h2>
+                    <h2>Players Power Ranking - Running Back</h2>
                 </div>
                 <!-- END Select Component Title -->
 
@@ -147,7 +147,7 @@ foreach($Players as $player){
 
                     <div class="form-group form-actions">
                         <div class="col-md-9 col-md-offset-3">
-                        <input type="hidden" name="position" value="16">
+                        <input type="hidden" name="position" value="2">
                             <button type="submit" class="btn btn-effect-ripple btn-primary">Save</button>
                         </div>
                     </div>
@@ -175,12 +175,12 @@ foreach($Players as $player){
 <script src="js/pages/uiProgress.js"></script>
 <script>$(function(){ UiProgress.init(); });</script>
 
-<?php if($_GET['k']): ?>
+<?php if($_GET['wr']): ?>
     <script>
         $(document).ready(function()
         {
             var growlType = 'success';
-            $.bootstrapGrowl('<h4><strong>Success!</strong></h4> <p>You have added the kickers...</p>', {
+            $.bootstrapGrowl('<h4><strong>Success!</strong></h4> <p>You have added the Wider Receivers...</p>', {
                 type: growlType,
                 delay: 3000,
                 allow_dismiss: true,
