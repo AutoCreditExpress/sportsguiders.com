@@ -18,6 +18,36 @@ class ReportDAO {
 //                                                  Find
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    function createNewReport(){
+        $new = $this->db->prepare("INSERT INTO report (report_create_date,report_status) VALUES (:reportDate,:reportStatus)");
+
+        try{
+            $new->execute(array(
+                ':reportDate' => date('Y-m-d H:i:s'),
+                ':reportStatus' => 0
+            ));
+
+            return $this->db->lastInsertId();
+        }catch(PDOException $e){
+            return FALSE;
+        }
+
+    }
+
+    function getPendingReportID(){
+        $pendingReport = $this->db->prepare("SELECT report_id from report where report_status = '0' order by report_create_date desc");
+
+        try{
+            $pendingReport->execute();
+            $results = $pendingReport->fetchColumn();
+
+            return $results;
+        }catch(PDOException $e){
+            //echo $e;
+            return FALSE;
+        }
+    }
+
     function getLatestReport(){
 
         $getReport = $this->db->prepare("SELECT report_id from report order by report_create_date desc");
@@ -33,7 +63,7 @@ class ReportDAO {
         $Report = new Report();
         $Report->setWaiver($Waivers);
         $Report->setTrendingUp($TrendingUp);
-        $Report->setTrendingUp($TrendingDown);
+        $Report->setTrendingDown($TrendingDown);
         //var_dump($Waivers);
 
         return $Report;

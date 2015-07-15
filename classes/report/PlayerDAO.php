@@ -45,8 +45,11 @@ class PlayerDAO {
                     ':playerID' => $player
                 ));
 
+                return TRUE;
+
             } catch (PDOException $e) {
-                echo $e;
+
+                return FALSE;
             }
         }
 

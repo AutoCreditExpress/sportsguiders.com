@@ -10,11 +10,15 @@ class Autoloader{
         'ReportDAO'                       => 'classes/report/ReportDAO.php',
         'Report'                          => 'classes/report/Report.php',
         'Waiver'                          => 'classes/report/Waiver.php',
+        'WaiverDAO'                          => 'classes/report/WaiverDAO.php',
         'Facts'                             => 'classes/report/Facts.php',
         'Injuries'                          => 'classes/report/Injuries.php',
+        'InjuryDAO'                         => 'classes/report/InjuryDAO.php',
         'Trending'                          => 'classes/report/Trending.php',
         'Player'                            => 'classes/report/Player.php',
-        'PlayerDAO'                         => 'classes/report/PlayerDAO.php'
+        'PlayerDAO'                         => 'classes/report/PlayerDAO.php',
+        'PowerRankings'                     => 'classes/report/PowerRankings.php',
+        'PowerRankingDAO'                   => 'classes/report/PowerRankingDAO.php'
     );
 
     public function __construct($basePath) {
