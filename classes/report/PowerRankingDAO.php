@@ -17,7 +17,7 @@ class PowerRankingDAO {
 
  function addPowerRanking($reportID,$playerID,$position,$points,$trend){
      $add = $this->db->prepare("
-        INSERT INTO report_power_ranking (rpr_report_id,rpr_player_id,rpr_position_id,rpr_points,rpr_trend)
+        INSERT INTO report_power_rankings (rpr_report_id,rpr_player_id,rpr_position_id,rpr_points,rpr_trend)
         VALUES (:reportID,:playerID,:positionID,:points,:trend)");
 
      try{
@@ -30,9 +30,27 @@ class PowerRankingDAO {
              ':trend'   => $trend
          ));
      }catch(PDOException $e){
+         echo $e;
          return FALSE;
      }
  }
+
+    function addPowerRankingTeam($reportID,$teamID){
+        $add = $this->db->prepare("
+        INSERT INTO report_power_ranking_team (rprt_report_id,rprt_team_id)
+        VALUES (:reportID,:teamID)");
+
+        try{
+
+            $add->execute(array(
+                ':reportID' => $reportID,
+                ':teamID' => $teamID
+            ));
+        }catch(PDOException $e){
+            echo $e;
+            return FALSE;
+        }
+    }
 
     function mapPowerRankingToObjects(PDOStatement $stmt){
 

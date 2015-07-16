@@ -34,6 +34,18 @@ class ReportDAO {
 
     }
 
+    function publishReport($reportID){
+        $sql = $this->db->prepare("Update report set report_status = '1' where report_id = '".$reportID."'");
+
+        try{
+            $sql->execute();
+            return TRUE;
+        }catch(PDOException $e){
+            return FALSE;
+        }
+
+    }
+
     function getPendingReportID(){
         $pendingReport = $this->db->prepare("SELECT report_id from report where report_status = '0' order by report_create_date desc");
 
@@ -50,7 +62,7 @@ class ReportDAO {
 
     function getLatestReport(){
 
-        $getReport = $this->db->prepare("SELECT report_id from report WHERE report_status=1 order by report_create_date desc");
+        $getReport = $this->db->prepare("SELECT report_id from report order by report_create_date desc limit 1");
 
         $getReport->execute();
         $reportResult = $getReport->fetch();
@@ -59,12 +71,17 @@ class ReportDAO {
         $Waivers = $this->getReportWaivers($reportID);
         $TrendingUp = $this->getRepotTrending($reportID, 'up');
         $TrendingDown = $this->getRepotTrending($reportID, 'down');
-
+        $TopPerformersDAO = new TopPerformersDAO($this->db);
+        $TopPerformers = $TopPerformersDAO->getTopPerformersForReport($reportID);
+        $InjuryDAO = new InjuryDAO($this->db);
+        $Injury = $InjuryDAO->getInjuryForReport($reportID);
 
         $Report = new Report();
         $Report->setWaiver($Waivers);
         $Report->setTrendingUp($TrendingUp);
         $Report->setTrendingDown($TrendingDown);
+        $Report->setTopPerformers($TopPerformers);
+        $Report->setInjuries($Injury);
         //var_dump($Waivers);
 
         return $Report;
@@ -131,7 +148,7 @@ class ReportDAO {
     }
 
     function getRepotTrending($reportID,$type){
-        $sql = "Select * from report_trending where rt_report_id = '".$reportID."' and tr_type = '".$type."'";
+        $sql = "Select * from report_trending where rt_report_id = '".$reportID."' and rt_type = '".$type."'";
         $query = $this->db->prepare($sql);
         $query->execute();
         try{

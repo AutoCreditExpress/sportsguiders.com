@@ -39,4 +39,69 @@ class InjuryDAO
 
     }
 
+    function getInjuryForReport($reportID){
+        $sql = "select * from report_injuries where ri_report_id = '".$reportID."'";
+
+        $results = $this->fetchSql($sql);
+
+        return $results;
+
+
+    }
+
+    function fetchSql($sql){
+
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        try{
+            $results = $this->mapInjuryToObjects($query);
+
+            return $results;
+
+        }
+        catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function mapInjuryToObjects(PDOStatement $stmt){
+
+        $injuries = array();
+        try{
+
+            if( ($aRow = $stmt->fetch()) === false) {
+                return array();
+            }
+
+            $injuryArray = array();
+
+            do{
+                if(!in_array($aRow['ri_id'],$injuryArray)){
+                    $injury = new Injuries();
+                    $injury->setID($aRow['ri_id']);
+                    $injury->setReportID($aRow['ri_report_id']);
+                    $injury->setPlayerID($aRow['ri_player_id']);
+                    $injury->setQuarter($aRow['ri_quarter']);
+                    $injury->setDuration($aRow['ri_duration']);
+                    $injury->setDescription($aRow['ri_description']);
+                    $injuries[] = $injury;
+                }
+
+            } while(($aRow = $stmt->fetch()) !== false);
+
+        } catch(\Exception $e){
+            return false;
+        }
+
+        $count = count($injuries);
+
+        if($count == 1){
+            return $injuries[0];
+        }
+        else{
+            return $injuries ;
+        }
+
+    }
+
 }
