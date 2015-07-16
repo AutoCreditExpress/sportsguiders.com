@@ -39,12 +39,12 @@ foreach($Players as $player){
                 <div class="block-title">
 
 
-                    <h2>Top Performers - Quarterback</h2>
+                    <h2>Power Rankings - Quarterback</h2>
                 </div>
                 <!-- END Select Component Title -->
 
                 <!-- Select Component Content -->
-                <form action="<?php echo $webPath;?>inc/report/add_top_performers.php" method="post" class="form-horizontal form-bordered" >
+                <form action="<?php echo $webPath;?>inc/report/add_power_rankings.php" method="post" class="form-horizontal form-bordered" >
                     <!-- Chosen plugin (class is initialized in js/app.js -> uiInit()), for extra usage examples you can check out http://harvesthq.github.io/chosen/ -->
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="example-chosen">Player 1</label>

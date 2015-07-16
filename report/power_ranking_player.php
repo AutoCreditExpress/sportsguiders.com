@@ -39,19 +39,41 @@ foreach($Players as $player){
                 <div class="block-title">
 
 
-                    <h2>Top Performers - Quarterback</h2>
+                    <h2>Players Power Ranking - Quarterbacks</h2>
                 </div>
                 <!-- END Select Component Title -->
 
                 <!-- Select Component Content -->
-                <form action="<?php echo $webPath;?>inc/report/add_top_performers.php" method="post" class="form-horizontal form-bordered" >
+                <form action="<?php echo $webPath;?>inc/report/add_power_rankings.php" method="post" class="form-horizontal form-bordered" >
                     <!-- Chosen plugin (class is initialized in js/app.js -> uiInit()), for extra usage examples you can check out http://harvesthq.github.io/chosen/ -->
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="example-chosen">Player 1</label>
                         <div class="col-md-5">
-                            <select id="player1" name="player[]" class="select-chosen" data-placeholder="Choose a Player.." style="width: 250px;">
+                            <select id="player1" name="player1" class="select-chosen" data-placeholder="Choose a Player.." style="width: 250px;">
                                 <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
                                 <?php echo $playerInput; ?>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="example-chosen">Player 1 Points</label>
+                        <div class="col-md-3">
+                            <select id="player1" name="player1points" class="select-chosen" data-placeholder="Choose a Points.." style="width: 250px;">
+                                <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                                <?php $i = 0;while($i <= 500){?>
+                                <option value="<?php echo $i;?>"><?php echo $i;?></option>
+                                <?php $i++;}; ?>
+
+
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select id="player1" name="player1trend" class="select-chosen" data-placeholder="Trend Up or Down?" style="width: 250px;">
+                                <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                                <option value="up">Up</option>
+                                <option value="down">Down</option>
+
 
                             </select>
                         </div>
@@ -59,9 +81,31 @@ foreach($Players as $player){
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="example-chosen">Player 2</label>
                         <div class="col-md-5">
-                            <select id="player2" name="player[]" class="select-chosen" data-placeholder="Choose a Player.." style="width: 250px;">
+                            <select id="player1" name="player2" class="select-chosen" data-placeholder="Choose a Player.." style="width: 250px;">
                                 <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
                                 <?php echo $playerInput; ?>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="example-chosen">Player 2 Points</label>
+                        <div class="col-md-3">
+                            <select id="player1" name="player2points" class="select-chosen" data-placeholder="Choose a Points.." style="width: 250px;">
+                                <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                                <?php $i = 0;while($i <= 500){?>
+                                <option value="<?php echo $i;?>"><?php echo $i;?></option>
+                                <?php $i++;}; ?>
+
+
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select id="player1" name="player2trend" class="select-chosen" data-placeholder="Trend Up or Down?" style="width: 250px;">
+                                <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                                <option value="up">Up</option>
+                                <option value="down">Down</option>
+
 
                             </select>
                         </div>
@@ -69,7 +113,7 @@ foreach($Players as $player){
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="example-chosen">Player 3</label>
                         <div class="col-md-5">
-                            <select id="player3" name="player[]" class="select-chosen" data-placeholder="Choose a Player.." style="width: 250px;">
+                            <select id="player1" name="player3" class="select-chosen" data-placeholder="Choose a Player.." style="width: 250px;">
                                 <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
                                 <?php echo $playerInput; ?>
 
@@ -77,79 +121,33 @@ foreach($Players as $player){
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-chosen">Player 4</label>
-                        <div class="col-md-5">
-                            <select id="player4" name="player[]" class="select-chosen" data-placeholder="Choose a Player.." style="width: 250px;">
+                        <label class="col-md-3 control-label" for="example-chosen">Player 3 Points</label>
+                        <div class="col-md-3">
+                            <select id="player1" name="player3points" class="select-chosen" data-placeholder="Choose a Points.." style="width: 250px;">
                                 <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
-                                <?php echo $playerInput; ?>
+                                <?php $i = 0;while($i <= 500){?>
+    <option value="<?php echo $i;?>"><?php echo $i;?></option>
+    <?php $i++;}; ?>
+
+
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select id="player1" name="player3trend" class="select-chosen" data-placeholder="Trend Up or Down?" style="width: 250px;">
+                                <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                                <option value="up">Up</option>
+                                <option value="down">Down</option>
+
 
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-chosen">Player 5</label>
-                        <div class="col-md-5">
-                            <select id="player5" name="player[]" class="select-chosen" data-placeholder="Choose a Player.." style="width: 250px;">
-                                <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
-                                <?php echo $playerInput; ?>
 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-chosen">Player 6</label>
-                        <div class="col-md-5">
-                            <select id="player6" name="player[]" class="select-chosen" data-placeholder="Choose a Player.." style="width: 250px;">
-                                <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
-                                <?php echo $playerInput; ?>
 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-chosen">Player 7</label>
-                        <div class="col-md-5">
-                            <select id="player7" name="player[]" class="select-chosen" data-placeholder="Choose a Player.." style="width: 250px;">
-                                <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
-                                <?php echo $playerInput; ?>
 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-chosen">Player 8</label>
-                        <div class="col-md-5">
-                            <select id="player8" name="player[]" class="select-chosen" data-placeholder="Choose a Player.." style="width: 250px;">
-                                <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
-                                <?php echo $playerInput; ?>
-
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-chosen">Player 9</label>
-                        <div class="col-md-5">
-                            <select id="player9" name="player[]" class="select-chosen" data-placeholder="Choose a Player.." style="width: 250px;">
-                                <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
-                                <?php echo $playerInput; ?>
-
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="example-chosen">Player 10</label>
-                        <div class="col-md-5">
-                            <select id="player10" name="player[]" class="select-chosen" data-placeholder="Choose a Player.." style="width: 250px;">
-                                <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
-                                <?php echo $playerInput; ?>
-
-                            </select>
-                        </div>
-                    </div>
                     <div class="form-group form-actions">
                         <div class="col-md-9 col-md-offset-3">
                         <input type="hidden" name="position" value="16">
-                        <input type="hidden" name="report" value="<?php $_GET['report'];?>">
                             <button type="submit" class="btn btn-effect-ripple btn-primary">Save</button>
                         </div>
                     </div>
@@ -177,12 +175,12 @@ foreach($Players as $player){
 <script src="js/pages/uiProgress.js"></script>
 <script>$(function(){ UiProgress.init(); });</script>
 
-<?php if($_GET['report']): ?>
+<?php if($_GET['k']): ?>
     <script>
         $(document).ready(function()
         {
             var growlType = 'success';
-            $.bootstrapGrowl('<h4><strong>Success!</strong></h4> <p>You have created a new report...</p>', {
+            $.bootstrapGrowl('<h4><strong>Success!</strong></h4> <p>You have added the kickers...</p>', {
                 type: growlType,
                 delay: 3000,
                 allow_dismiss: true,

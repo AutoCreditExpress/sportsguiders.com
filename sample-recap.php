@@ -1,5 +1,9 @@
 <?php
 include('inc/config.php');
+if ($login->isUserLoggedIn() == true) {
+} else {
+    header("Location: ".$webPath."login/");
+}
 
 $ReportDAO = new ReportDAO($db);
 
