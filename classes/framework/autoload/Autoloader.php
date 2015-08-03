@@ -17,6 +17,8 @@ class Autoloader{
         'Trending'                          => 'classes/report/Trending.php',
         'Player'                            => 'classes/report/Player.php',
         'PlayerDAO'                         => 'classes/report/PlayerDAO.php',
+        'Registration'                      => 'classes/login/Registration.php',
+        'PHPMailer'                         => 'classes/libraries/PHPMailer.php',
         'PowerRankings'                     => 'classes/report/PowerRankings2.php',
         'PowerRankingDAO'                   => 'classes/report/PowerRankingDAO.php',
         'TrendingDAO'                       => 'classes/report/TrendingDAO.php',

@@ -219,7 +219,7 @@ svg.chi { fill: #df6108; }
 .top-performers .position.ds .cover { background: #ad6e01; }
 
 
-/*hover / show list*/
+
 .top-performers .position:hover > ol {
   margin-top: 30px;
   opacity: 1;
@@ -234,6 +234,30 @@ svg.chi { fill: #df6108; }
   opacity: .75;
 }
 
+
+.TPmobileClickNotification {display:none;}
+
+
+@media only screen and (max-device-width: 768px){
+
+    .TPmobileClickNotification {display:none;}
+
+/*
+    .top-performers .position > ol {
+        margin-top: 30px;
+        opacity: 1;
+    }
+
+    .top-performers .position > .title {
+        margin-top: 50px;
+        opacity: .8;
+    }
+
+    .top-performers .position > .cover {
+        opacity: .75;
+    }
+    */
+}
 
 /* =======================================================
   WAIVER WINNERS

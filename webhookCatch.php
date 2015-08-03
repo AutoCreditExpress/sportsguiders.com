@@ -15,7 +15,7 @@ $StripeWebhookHandler = new StripeWebhookHandler($db,$event_json);
 $StripeWebhookHandler->DisplayData();   ///enable for local testing
 
 //$DataObject->MailData();    //enable for live testing
-
+/*
 if($StripeWebhookHandler->getEventType()=="customer.created"){
 
     /// get the users email addrss from stripe webhook data
@@ -106,7 +106,80 @@ if($StripeWebhookHandler->getEventType()=="customer.source.created"){
     }
 
 }
-//
+
+if($StripeWebhookHandler->getEventType()=="invoice.payment_failed"){
+
+    // get users subscriber id from webhook data
+    $subscriberID = $StripeWebhookHandler->getSubscriberId();
+
+    //grab customer card id from database
+    $subscriberOriginalCardID = $StripeWebhookHandler->getSubscriberSubscriberId($subscriberID);
+
+    ///get cardId from stripe data
+    $subscriberCardID = $StripeWebhookHandler->getSubscriberCardId();
+
+    //update subscriber card id in database
+    if($subscriberOriginalCardID!=$subscriberCardID){
+        $StripeWebhookHandler->updateSubscriberCardIdBySubscriptionID($subscriberID,$subscriberCardID);
+    }
+
+}
+//*/
+
+if($StripeWebhookHandler->getEventType()=="invoice.payment_failed"){
+
+    //get the subscriberId from the stripe data
+    $subscriberID = $StripeWebhookHandler->getSubscriberId();
+
+    //get user id based on stripe subscriber id
+    $SubscriberDAO = new SubscriberDAO($db);
+
+    //load customer email address
+    $subscriberEmail = $SubscriberDAO->getSubscriberByID($subscriberID)['email'];
+
+    //get subscription id from stripe data
+    $subscriptionID = $StripeWebhookHandler->getSubscriberSubscriptionId();
+    echo $subscriberEmail.'...';
+    echo $subscriberID.'...';
+    echo $subscriptionID.'...';
+    //check the subscriber table for subscriberID
+    if($StripeWebhookHandler->getSubscriberSubscriberId($subscriberID)!=null){
+        echo "subscriber found...";
+
+        //disable user account
+        $SubscriberDAO->updateSubscriberIsActiveUsersTable($subscriberEmail,'0');
+        echo "disabling user...";
+        //send email with link to billing update page
+        $mail = new PHPMailer;
+        //Set who the message is to be sent from
+        //$mail->setFrom('sportguiders.com', 'INFO');
+        $mail->From = 'info@sportsguiders.com';
+        $mail->FromName = 'Sportsguiders';
+        //Set an alternative reply-to address
+        $mail->addReplyTo('info@sportguiders.com', 'sportsguiders.com');
+        //Set who the message is to be sent to
+        $mail->addAddress($subscriberEmail);
+        //Set the subject line
+        $mail->Subject = 'Payment has failed';
+        //Read an HTML message body from an external file, convert referenced images to embedded,
+        //convert HTML into a basic plain-text alternative body
+        $mail->isHTML(true);
+        //$mail->msgHTML(file_get_contents('http://www.sportsguiders.com/email/subscription/signup/index.html'), dirname(__FILE__));
+        $mail->Body = "Your recent payment has failed, and your account has been deactivated.<br>Please update your billing information by clicking the <a href=\"http://www.sportsguiders.com/make-Payment/?subscriber_id=".$subscriberID."&user_email=".$subscriberEmail."\">link</a>.";
+
+        //send the message, check for errors
+        if (!$mail->send()) {
+            echo "Mailer Error: " . $mail->ErrorInfo;
+        } else {
+            echo "Mail Success...";
+            session_destroy();
+        }
+
+        //on success enable the user account
+        //on fail resend new email
+
+    }
+}
 
 /////leave the http response code of 200 for the stripe webhook
 http_response_code(200); // PHP 5.4 or greater

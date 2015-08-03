@@ -1,10 +1,16 @@
 <?php require 'inc/config.php';
-include($docPath.'inc/header.php');
-
-//$_SESSION['User_Email']="jmct0425@gmail.com";
-
-
 $SubscriberDAO=new SubscriberDAO($db);
+
+//check GET creds to validate user in DB
+if(!$SubscriberDAO->validateUserToMakePayment($_GET['user_email'],$_GET['subscriber_id'])){
+    if(!$_POST){
+        header('Location: '.$webPath.'?Message=You_are_not_authorized');
+    }
+}elseif($SubscriberDAO->getUserIsActiveByEmail($_GET['user_email'])){
+    header('Location: '.$webPath.'login/?Message=Your_account_is_already_active');
+}
+
+include($docPath.'inc/header.php');
 ?>
     <link rel="stylesheet" href="<?php echo $webPath;?>css/bootstrap-min.css">
     <link rel="stylesheet" href="<?php echo $webPath;?>css/bootstrap-formhelpers-min.css" media="screen">
@@ -223,7 +229,7 @@ $SubscriberDAO=new SubscriberDAO($db);
     Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
     $error = '';
     $success = '';
-        if ($_POST and $SubscriberDAO->getSubscriptionIdByEmail($_SESSION['user_email'])!=null) {
+        if ($_POST) {
         try {
             if (empty($_POST['street']) || empty($_POST['city']) || empty($_POST['zip']))
                 throw new Exception("Fill out all required fields.");
@@ -234,16 +240,16 @@ $SubscriberDAO=new SubscriberDAO($db);
             $SubscriberDAO = new SubscriberDAO($db);
 
             //grab customer from stripe using subscriber email
-            $cu = Stripe_Customer::retrieve($SubscriberDAO->getSubscriberIdByEmail($_SESSION['user_email']));
+            $cu = Stripe_Customer::retrieve($SubscriberDAO->getSubscriberIdByEmail($_GET['user_email']));
 
             //create a new card from the information
             $createcard = $cu->sources->create(array("source" => $token));
 
             //grab customer card id from subscriber table and delete associated card
-            $deletecard = $cu->sources->retrieve($SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['user_email']))->delete();
+            $deletecard = $cu->sources->retrieve($SubscriberDAO->getSubscriberCardIdByEmail($_GET['user_email']))->delete();
 
             //update subscriber table with new card id
-            $SubscriberDAO->updateSubscriberCardId($_SESSION['user_email'],$createcard->id);
+            $SubscriberDAO->updateSubscriberCardId($_GET['user_email'],$createcard->id);
 
             //update subscriber table with new user billing info
             $SubscriberDAO->updateSubscriberBillingInfo(array(
@@ -258,8 +264,11 @@ $SubscriberDAO=new SubscriberDAO($db);
                 $success = '<div class="alert alert-success">
                                 <strong>Success!</strong> Your card has been updated successful.</div>';
 
+            //enable user account
+            $SubscriberDAO->updateSubscriberIsActiveUsersTable($_GET['user_email'],'1');
+
                 ///change the location of the page
-                echo "<script>location.assign('my-account/?Message=Card_Updated');</script>";
+                echo "<script>var webPath = '".$webPath."';location.assign(webPath+'login/?Message=Card_Updated');</script>";
             }
 
 
@@ -269,77 +278,6 @@ $SubscriberDAO=new SubscriberDAO($db);
 			  </div>';
         }
         ///if there is post data and no subscriptionID in the table
-        }elseif($_POST and $SubscriberDAO->getSubscriptionIdByEmail($_SESSION['user_email'])==null){
-            try {
-                if (empty($_POST['street']) || empty($_POST['city']) || empty($_POST['zip']))
-                    throw new Exception("Fill out all required fields.");
-                if (!isset($_POST['stripeToken']))
-                    throw new Exception("The Stripe Token was not generated correctly");
-                $token = $_POST['stripeToken'];
-
-                //retrieve customer data from stripe
-                $cu = Stripe_Customer::retrieve($SubscriberDAO->getSubscriberIdByEmail($_SESSION['user_email']));
-
-                //create a new card from the information being posted
-                $createcard = $cu->sources->create(array("source" => $token));
-
-                //grab customer card id from subscriber table and delete associated card
-                $deletecard = $cu->sources->retrieve($SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['user_email']))->delete();
-
-                //create a new subscription
-                $cu2 = $cu->subscriptions->create(array("plan" => "basic"));
-
-                //write subscription in to table
-                $SubscriberDAO->updateSubscriberSubscriptionId($_SESSION['user_email'],$cu2->id);
-
-                //check new customer info
-                $customer2 = Stripe_Customer::retrieve($SubscriberDAO->getSubscriberIdByEmail($_SESSION['user_email']));
-
-                //update subscriber table with card id
-                $SubscriberDAO->updateSubscriberCardId($_SESSION['user_email'],$customer2->default_source);
-
-                //update subscriber is active in subscriber table
-                $SubscriberDAO->updateSubscriberIsActive($_SESSION['user_email'],'1');
-                //update subscriber table with new user billing info
-
-                $SubscriberDAO->updateSubscriberBillingInfo(array(
-                    'address'=>$_POST['street'],
-                    'city'=>$_POST['city'],
-                    'state'=>$_POST['state'],
-                    'zip'=>$_POST['zip'],
-                    'update_date'=>date('Y-m-d h:i:s')
-                ));
-                //////if no error caught display success message
-                $success = '<div class="alert alert-success">
-                                <strong>Success!</strong> Your card has been updated successful.</div>';
-
-                ///change the location of the page
-                echo "<script>location.assign('my-account/?Message=Card_Updated');</script>";
-             }
-
-
-            catch (Exception $e) {
-                $error = '<div class="alert alert-danger">
-                      <strong>Error!</strong> '.$e->getMessage().'
-                      </div>';
-            }
-        }elseif($SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['user_email'])!=null){
-
-
-
-               $customer = Stripe_Customer::retrieve($SubscriberDAO->getSubscriberByEmail($_SESSION['user_email'])['subscriber_id']);
-                $card = $customer->sources->retrieve($SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['user_email']));
-
-                $thenumber = '**** **** ****'.$card->last4;
-                $expmonth=$card->exp_month;
-                $expyear = $card->exp_year;
-                $addressline1=$card->address_line1;
-                $addresscity=$card->address_city;
-                $addressstate = $card->address_state;
-                $addresszip = $card->address_zip;
-
-
-
         }
     ?>
     <div class="alert alert-danger" id="a_x200" style="display: none;"> <strong>Error!</strong> <span class="payment-errors"></span> </div>

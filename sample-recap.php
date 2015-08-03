@@ -1,13 +1,14 @@
 <?php
 include('inc/config.php');
-if ($login->isUserLoggedIn() == true) {
-} else {
-    header("Location: ".$webPath."login/");
-}
 
 $ReportDAO = new ReportDAO($db);
+$PlayerDAO = new PlayerDAO($db);
 
-$Report = $ReportDAO->getLatestReport();
+//standard report code
+//$Report = $ReportDAO->getLatestReport();
+
+//modified to only show reports with id of 1
+$Report = $ReportDAO->getLatestReport(true);
 include($docPath.'inc/header.php');
 ?>
 
@@ -15,145 +16,141 @@ include($docPath.'inc/header.php');
     <section class="page-header">
         <div class="container text-center">
             <i class="fa fa-book"></i>
-            <h1>THE<b>REPORT</b></h1>
+            <h1>THE<b>RECAP</b></h1>
             <span class="desc"><?php echo $_SESSION['user_first']."'s";?> Insider's Guide to Mastering Fantasy Football</span>
         </div>
     </section>
     <!--/PAGE HEADER -->
+<style>
 
+    /*patch for mobile devices undert the top performers*/
+    @media only screen and (max-device-width: 768px){
 
+    .TPmobileClickNotification {display:block;}
+</style>
+<script>
+    function showTP(section){
+        if($(document).width()<=768) {
+            var thetitle = '.' + section + 'title';
+            var theol = '.' + section + 'ol';
+            var thecover = '.' + section + 'cover';
+
+            if ($(theol).css('opacity') != '1') {
+                //update elements with new values
+                $(thetitle).css('margin-top', '50px');
+                $(thetitle).css('opacity', '.8');
+                $(theol).css('margin-top', '30px');
+                $(theol).css('opacity', '1');
+                $(thecover).css('opacity', '.75');
+            } else {
+                //reset elements
+                $(thetitle).css('margin-top', '300px');
+                $(thetitle).css('opacity', '1');
+                $(theol).css('margin-top', '800px');
+                $(theol).css('opacity', '0');
+                $(thecover).css('opacity', '0');
+            }
+        }
+    }
+</script>
     <!-- TOP PERFORMERS -->
     <section class="top-performers">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-center">
-                    <img class="heading-icon wow bounceInUp" src="images/report/top-performers-icon.png">
+                    <img class="heading-icon wow bounceInUp" src="<?=$webPath?>images/report/top-performers-icon.png">
                     <span class="heading wow bounceInUp">TOP PERFORMERS</span>
-                    
+
                     <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know who dominated the world of fantasy football last weekend. Having a quick recap of who the weeks' top performers were allows you to make quick decisions the following week on who to target in trades, start and sit.">
-                        <img src="images/report/info-icon-dark.png">
+                        <img src="<?=$webPath?>images/report/info-icon-dark.png">
                     </button>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-xs-12 col-sm-4 text-center">
-                    <div class="position qb wow fadeInLeft">
-                        <span class="title">Quarterback</span>
+                    <div class="position qb wow fadeInLeft" onclick="showTP('qb');">
+                        <span class="title qbtitle" onclick="showTP('qb');">Quarterback</span>
+                        <span class="TPmobileClickNotification">Click Here</span>
 
-                        <ol>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
+                        <ol class="qbol">
+                            <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 16): ?>
+                                <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
+                            <li><?php echo $Player->getName();?></li>
+                            <?php endif; endforeach; ?>
+
                         </ol>
-                        <div class="cover"></div>
+                        <div class="cover qbcover"></div>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-4 text-center">
-                    <div class="position wr wow fadeInUp">
-                        <span class="title">Wide Reciever</span>
-
-                        <ol>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
+                    <div class="position wr wow fadeInUp"   onclick="showTP('wr');">
+                        <span class="title wrtitle"  onclick="showTP('wr');">Wide Reciever</span>
+                        <span class="TPmobileClickNotification">Click Here</span>
+                        <ol class="wrol">
+                            <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 1): ?>
+                                <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
+                                <li><?php echo $Player->getName();?></li>
+                            <?php endif; endforeach; ?>
                         </ol>
-                        <div class="cover"></div>
+                        <div class="cover wrcover"></div>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-4 text-center">
-                    <div class="position rb wow fadeInRight">
-                        <span class="title">Running Back</span>
-
-                        <ol>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
+                    <div class="position rb wow fadeInRight" onclick="showTP('rb');">
+                        <span class="title rbtitle " onclick="showTP('rb');">Running Back</span>
+                        <span class="TPmobileClickNotification">Click Here</span>
+                        <ol  class="rbol">
+                            <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 2): ?>
+                                <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
+                                <li><?php echo $Player->getName();?></li>
+                            <?php endif; endforeach; ?>
                         </ol>
-                        <div class="cover"></div>
+                        <div class="cover rbcover"></div>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-4 text-center">
-                    <div class="position te wow fadeInLeft">
-                        <span class="title">Tight End</span>
-
-                        <ol>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
+                    <div class="position te wow fadeInLeft" onclick="showTP('te');">
+                        <span class="title tetitle" onclick="showTP('te');">Tight End</span>
+                        <span class="TPmobileClickNotification">Click Here</span>
+                        <ol class="teol">
+                            <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 7): ?>
+                                <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
+                                <li><?php echo $Player->getName();?></li>
+                            <?php endif; endforeach; ?>
                         </ol>
-                        <div class="cover"></div>
+                        <div class="cover tecover"></div>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-4 text-center">
-                    <div class="position k wow fadeInUp">
-                        <span class="title">Kicker</span>
-
-                        <ol>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
+                    <div class="position k wow fadeInUp" onclick="showTP('k');">
+                        <span class="title ktitle" onclick="showTP('k');">Kicker</span>
+                        <span class="TPmobileClickNotification">Click Here</span>
+                        <ol class="kol">
+                            <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 20): ?>
+                                <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
+                                <li><?php echo $Player->getName();?></li>
+                            <?php endif; endforeach; ?>
                         </ol>
-                        <div class="cover"></div>
+                        <div class="cover kcover"></div>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-4 text-center">
-                    <div class="position ds wow fadeInRight">
-                        <span class="title">Defense/Special</span>
-
-                        <ol>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
-                            <li>Aaron Rodgers</li>
+                    <div class="position ds wow fadeInRight" onclick="showTP('ds');">
+                        <span class="title dstitle" onclick="showTP('ds');">Defense/Special</span>
+                        <span class="TPmobileClickNotification">Click Here</span>
+                        <ol class="dsol">
+                            <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 29): ?>
+                                <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
+                                <li><?php echo $Player->getName();?></li>
+                            <?php endif; endforeach; ?>
                         </ol>
-                        <div class="cover"></div>
+                        <div class="cover dscover"></div>
                     </div>
                 </div>
             </div>
@@ -166,36 +163,24 @@ include($docPath.'inc/header.php');
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-4 heading-col">
-                    <img class="heading-icon wow tada" src="images/report/waiver-winners-icon.png">
+                    <img class="heading-icon wow tada" src="<?=$webPath?>images/report/waiver-winners-icon.png">
                     <span class="heading wow fadeInRight">WAIVER <b>ADDS</b></span>
-                    
+
                     <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know who to pick up off your league's waiver wire this week. Adding waivers and continuing to improve the depth of your team throughout the year will allow you to sustain injuries, add value to trades, and most importantly - make a run in the playoffs. ">
-                        <img src="images/report/info-icon-dark.png">
+                        <img src="<?=$webPath?>images/report/info-icon-dark.png">
                     </button>
                 </div>
 
                 <div class="col-xs-12 col-sm-8">
                     <?php $waiverDelay = 25;?>
-                    <?php foreach($Report->getWaiver() as $Waiver): ?>
-                        <?php ?>
+                    <?php foreach($Report->getWaiver() as $Waiver):; ?>
+                        <?php $Player = $PlayerDAO->getPlayerFromID($Waiver->getPlayerID()) ?>
                     <section class="stat wow fadeInDown clearfix" data-wow-delay=".25s">
-                        <div class="number">1</div>
-                        <div class="name">Mike Wallace <span class="position">WR</span> <span class="team">MIN</span></div>
+                        <div class="number"><?php echo $Player->getNumber();?></div>
+                        <div class="name"><?php echo $Player->getName(); ?> <span class="position"><?php echo $Player->getPosition(); ?></span> <span class="team"><?php echo $Player->getTeam(); ?></span></div>
                         <span class="desc"><?php echo $Waiver->getValue(); ?></span>
                     </section>
                     <?php endforeach; ?>
-
-                    <section class="stat wow fadeInDown clearfix" data-wow-delay=".45s">
-                        <div class="number">2</div>
-                        <div class="name">Mike Wallace <span class="position">WR</span> <span class="team">MIN</span></div>
-                        <span class="desc">With Greg Jennings out for weeks, Wallace should see a huge increase in targets.</span>
-                    </section>
-
-                    <section class="stat wow fadeInDown clearfix" data-wow-delay=".65s">
-                        <div class="number">3</div>
-                        <div class="name">Mike Wallace <span class="position">WR</span> <span class="team">MIN</span></div>
-                        <span class="desc">With Greg Jennings out for weeks, Wallace should see a huge increase in targets.</span>
-                    </section>
                 </div>
             </div>
         </div>
@@ -207,11 +192,11 @@ include($docPath.'inc/header.php');
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-center">
-                    <img class="heading-icon wow fadeInUp" src="images/report/injury-report-icon.png">
+                    <img class="heading-icon wow fadeInUp" src="<?=$webPath?>images/report/injury-report-icon.png">
                     <span class="heading wow fadeInDown">INJURY <b>REPORT</b></span>
-                    
+
                     <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know who you need to keep an eye on throughout the week. Never have an injured player in your starting lineup again by taking a minute to browse this list of damaged players each week.">
-                        <img src="images/report/info-icon-white.png">
+                        <img src="<?=$webPath?>images/report/info-icon-white.png">
                     </button>
                 </div>
             </div>
@@ -359,9 +344,9 @@ include($docPath.'inc/header.php');
             <div class="row">
                 <div class="col-xs-12 text-center">
                     <span class="heading wow slideInUp"><i>NFL TEAMS</i> POWER<b>RANKINGS</b></span>
-                    
+
                     <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which NFL teams will dominate the rest of the way. Finding stud players on prospering teams is a recipe for success in fantasy football.">
-                        <img src="images/report/info-icon-white.png">
+                        <img src="<?=$webPath?>images/report/info-icon-white.png">
                     </button>
                 </div>
             </div>
@@ -559,11 +544,11 @@ include($docPath.'inc/header.php');
             <section class="col-xs-12 col-sm-6 upwards">
                 <div class="row">
                     <div class="text-center">
-                        <img class="heading-icon wow tada" src="images/report/trending-upwards-icon.png">
+                        <img class="heading-icon wow tada" src="<?=$webPath?>images/report/trending-upwards-icon.png">
                         <span class="heading wow fadeInLeft">TRENDING<b>UPWARDS</b></span>
-                        
+
                         <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to get a quick glance at who has been performing well consistently over the last 3 weeks. These players aren't flaky, you can trust them to score some point this week. If you don't own them, try trading for them this week.">
-                            <img src="images/report/info-icon-dark.png">
+                            <img src="<?=$webPath?>images/report/info-icon-dark.png">
                         </button>
 
                         <div class="stats wow fadeIn">
@@ -602,11 +587,11 @@ include($docPath.'inc/header.php');
             <section class="col-xs-12 col-sm-6 downwards">
                 <div class="row">
                     <div class="text-center">
-                        <img class="heading-icon wow tada" src="images/report/trending-downwards-icon.png">
+                        <img class="heading-icon wow tada" src="<?=$webPath?>images/report/trending-downwards-icon.png">
                         <span class="heading wow fadeInRight">TRENDING<b>DOWNWARDS</b></span>
-                        
+
                         <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to get a quick glance at who has been performing well consistently over the last 3 weeks. These players aren't flaky, you can trust them to score some point this week. If you don't own them, try trading for them this week.">
-                            <img src="images/report/info-icon-dark.png">
+                            <img src="<?=$webPath?>images/report/info-icon-dark.png">
                         </button>
 
                         <div class="stats wow fadeIn">
@@ -651,9 +636,9 @@ include($docPath.'inc/header.php');
             <div class="row">
                 <div class="col-xs-12 text-center">
                     <span class="heading">FUN<b>FACTS</b></span>
-                        
+
                     <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to wow your friends, family and co-workers with your superior NFL knowledge. Use these facts in conversation to reign as Most Knowledgeable among your peers.">
-                        <img src="images/report/info-icon-white.png">
+                        <img src="<?=$webPath?>images/report/info-icon-white.png">
                     </button>
                 </div>
             </div>
@@ -690,9 +675,9 @@ include($docPath.'inc/header.php');
             <div class="row">
                 <div class="col-xs-12 text-center">
                     <span class="heading wow slideInUp"><i>EASIEST</i> UPCOMING<b>SCHEDULE</b></span>
-                    
+
                     <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which players will be playing the worst defensive in coming weeks. Playing a poor defensive is always a quick fix to a struggling player. Now might be the time to buy cheap on a player who has been struggling on one of these teams.">
-                        <img src="images/report/info-icon-white.png">
+                        <img src="<?=$webPath?>images/report/info-icon-white.png">
                     </button>
                 </div>
             </div>
@@ -1027,11 +1012,11 @@ include($docPath.'inc/header.php');
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-4 heading-col">
-                    <img class="heading-icon wow tada" src="images/report/power-rankings-icon.png">
+                    <img class="heading-icon wow tada" src="<?=$webPath?>images/report/power-rankings-icon.png">
                     <span class="heading wow fadeInRight"><i>NFL TEAMS</i> POWER <b>RANKINGS</b></span>
-                    
+
                     <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which NFL teams will dominate the rest of the way. Finding stud players on prospering teams is a recipe for success in fantasy football.">
-                        <img src="images/report/info-icon-dark.png">
+                        <img src="<?=$webPath?>images/report/info-icon-dark.png">
                     </button>
                 </div>
 
@@ -1219,9 +1204,9 @@ include($docPath.'inc/header.php');
             <div class="row">
                 <div class="col-xs-12 text-center">
                 <span class="heading wow slideInUp">NFL<b>STANDINGS</b></span>
-                    
+
                     <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which players will be playing the worst defensive in coming weeks. Playing a poor defensive is always a quick fix to a struggling player. Now might be the time to buy cheap on a player who has been struggling on one of these teams.">
-                        <img src="images/report/info-icon-dark.png">
+                        <img src="<?=$webPath?>images/report/info-icon-dark.png">
                     </button>
                 </div>
             </div>
@@ -1643,9 +1628,9 @@ include($docPath.'inc/header.php');
             <div class="row">
                 <div class="col-xs-12 text-center">
                     <span class="heading wow slideInUp">NFL<b>SCORES</b></span>
-                    
+
                     <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which players will be playing the worst defensive in coming weeks. Playing a poor defensive is always a quick fix to a struggling player. Now might be the time to buy cheap on a player who has been struggling on one of these teams.">
-                        <img src="images/report/info-icon-white.png">
+                        <img src="<?=$webPath?>images/report/info-icon-white.png">
                     </button>
                 </div>
             </div>

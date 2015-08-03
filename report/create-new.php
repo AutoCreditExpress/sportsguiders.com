@@ -53,10 +53,10 @@
 <?php include 'inc/template_scripts.php'; ?>
 
 <!-- ckeditor.js, load it only in the page you would like to use CKEditor (it's a heavy plugin to include it with the others!) -->
-<script src="js/plugins/ckeditor/ckeditor.js"></script>
+<script src="<?php echo $webPath;?>report/js/plugins/ckeditor/ckeditor.js"></script>
 
 <!-- Load and execute javascript code used only in this page -->
-<script src="js/pages/formsComponents.js"></script>
+<script src="<?php echo $webPath;?>report/js/pages/formsComponents.js"></script>
 <script>$(function(){ FormsComponents.init(); });</script>
 
 <?php include 'inc/template_end.php'; ?>

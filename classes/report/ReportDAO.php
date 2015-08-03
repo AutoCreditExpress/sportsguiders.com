@@ -60,13 +60,18 @@ class ReportDAO {
         }
     }
 
-    function getLatestReport(){
+    function getLatestReport($isSample=null){
 
         $getReport = $this->db->prepare("SELECT report_id from report order by report_create_date desc limit 1");
 
         $getReport->execute();
         $reportResult = $getReport->fetch();
-        $reportID = $reportResult['report_id'];
+        if($isSample){
+            $reportID = 1;
+        }else{
+            $reportID = $reportResult['report_id'];
+        }
+
 
         $Waivers = $this->getReportWaivers($reportID);
         $TrendingUp = $this->getRepotTrending($reportID, 'up');
@@ -177,7 +182,207 @@ class ReportDAO {
         }
     }
 
+    function checkTopPerformers($positionID){
 
+        $reportID = $this->getPendingReportID();
+
+        $checkTP = $this->db->prepare("SELECT count(*) as cnt from report_top_performers where rtp_report_id = '".$reportID."' and rtp_position_id = '".$positionID."'");
+
+        try{
+            $checkTP->execute();
+            $results = $checkTP->fetchColumn();
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function checkPowerRankings($positionID){
+
+        $reportID = $this->getPendingReportID();
+
+        $check = $this->db->prepare("SELECT count(*) as cnt from report_power_rankings where rpr_report_id = '".$reportID."' and rpr_position_id = '".$positionID."'");
+
+        try{
+            $check->execute();
+            $results = $check->fetchColumn();
+
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+    function checkWaivers(){
+
+        $reportID = $this->getPendingReportID();
+
+        $check = $this->db->prepare("SELECT count(*) as cnt from report_waiver where rw_report_id = '".$reportID."'");
+
+        try{
+            $check->execute();
+            $results = $check->fetchColumn();
+
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function checkInjuryReport(){
+
+        $reportID = $this->getPendingReportID();
+
+        $check = $this->db->prepare("SELECT count(*) as cnt from report_injuries where ri_report_id = '".$reportID."'");
+
+        try{
+            $check->execute();
+            $results = $check->fetchColumn();
+
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+    function checkTrending($trendType){
+
+        $reportID = $this->getPendingReportID();
+
+        $check = $this->db->prepare("SELECT count(*) as cnt from report_trending where rt_report_id = '".$reportID."' and tr_type='".$trendType."'");
+
+        try{
+            $check->execute();
+            $results = $check->fetchColumn();
+
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function checkFacts($factType){
+        //history
+        //fantasy
+        //life
+        $reportID = $this->getPendingReportID();
+        $check = $this->db->prepare("SELECT count(*) as cnt from report_facts where rf_report_id = '".$reportID."' and rf_type='".$factType."'");
+
+        try{
+            $check->execute();
+            $results = $check->fetchColumn();
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function checkSchedule(){
+
+        $reportID = $this->getPendingReportID();
+
+        $check = $this->db->prepare("SELECT count(*) as cnt from report_easy_schedule where res_report_id = '".$reportID."'");
+
+        try{
+            $check->execute();
+            $results = $check->fetchColumn();
+
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+    function checkTeamPowerRankings(){
+
+        $reportID = $this->getPendingReportID();
+
+        $check = $this->db->prepare("SELECT count(*) as cnt from report_team_power_rankings where rtpr_report_id = '".$reportID."'");
+
+        try{
+            $check->execute();
+            $results = $check->fetchColumn();
+
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+    function checkScore(){
+
+        $reportID = $this->getPendingReportID();
+
+        $check = $this->db->prepare("SELECT count(*) as cnt from score where score_report_id = '".$reportID."'");
+
+        try{
+            $check->execute();
+            $results = $check->fetchColumn();
+
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //                                                  Create

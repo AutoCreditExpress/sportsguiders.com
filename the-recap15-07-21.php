@@ -21,38 +21,46 @@ include($docPath.'inc/header.php');
         </div>
     </section>
     <!--/PAGE HEADER -->
-<style>
-
-    /*patch for mobile devices undert the top performers*/
-    @media only screen and (max-device-width: 768px){
-
-    .TPmobileClickNotification {display:block;}
-</style>
+<!--
 <script>
-    function showTP(section){
-        if($(document).width()<=768) {
-            var thetitle = '.' + section + 'title';
-            var theol = '.' + section + 'ol';
-            var thecover = '.' + section + 'cover';
-
-            if ($(theol).css('opacity') != '1') {
-                //update elements with new values
-                $(thetitle).css('margin-top', '50px');
-                $(thetitle).css('opacity', '.8');
-                $(theol).css('margin-top', '30px');
-                $(theol).css('opacity', '1');
-                $(thecover).css('opacity', '.75');
-            } else {
-                //reset elements
-                $(thetitle).css('margin-top', '300px');
-                $(thetitle).css('opacity', '1');
-                $(theol).css('margin-top', '800px');
-                $(theol).css('opacity', '0');
-                $(thecover).css('opacity', '0');
+    $(document).ready(function(){
+        $('.top-performers .position > ol').click(function(){
+            if($(document).width()<="768") {
+                if ($(this).css('opacity') != 1) {
+                    $(this).css('margin-top', '30px');
+                    $(this).css('opacity', '1');
+                } else {
+                    $(this).css('margin-top', '0px');
+                    $(this).css('opacity', '0');
+                }
             }
-        }
-    }
+        });
+        $('.top-performers .position > .title').click(function(){
+            if($(document).width()<="768") {
+                if ($(this).css('opacity') != .8) {
+                    $(this).css('margin-top','50px');
+                    $(this).css('opacity','.8');
+                } else {
+                    $(this).css('margin-top', '0px');
+                    $(this).css('opacity', '0');
+                }
+            }
+        });
+        $('.top-performers .position > .cover').click(function(){
+
+            if($(document).width()<="768") {
+                if ($(this).css('opacity') != .75) {
+                    $(this).css('opacity','.75');
+                } else {
+                    $(this).css('margin-top', '0px');
+                    $(this).css('opacity', '0');
+                }
+            }
+        });
+    });
 </script>
+-->
+
     <!-- TOP PERFORMERS -->
     <section class="top-performers">
         <div class="container">
@@ -69,88 +77,88 @@ include($docPath.'inc/header.php');
 
             <div class="row">
                 <div class="col-xs-12 col-sm-4 text-center">
-                    <div class="position qb wow fadeInLeft" onclick="showTP('qb');">
-                        <span class="title qbtitle" onclick="showTP('qb');">Quarterback</span>
+                    <div class="position qb wow fadeInLeft">
+                        <span class="title">Quarterback</span>
                         <span class="TPmobileClickNotification">Click Here</span>
 
-                        <ol class="qbol">
+                        <ol>
                             <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 16): ?>
                                 <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
                             <li><?php echo $Player->getName();?></li>
                             <?php endif; endforeach; ?>
 
                         </ol>
-                        <div class="cover qbcover"></div>
+                        <div class="cover"></div>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-4 text-center">
-                    <div class="position wr wow fadeInUp"   onclick="showTP('wr');">
-                        <span class="title wrtitle"  onclick="showTP('wr');">Wide Reciever</span>
+                    <div class="position wr wow fadeInUp">
+                        <span class="title">Wide Reciever</span>
                         <span class="TPmobileClickNotification">Click Here</span>
-                        <ol class="wrol">
+                        <ol>
                             <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 1): ?>
                                 <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
                                 <li><?php echo $Player->getName();?></li>
                             <?php endif; endforeach; ?>
                         </ol>
-                        <div class="cover wrcover"></div>
+                        <div class="cover"></div>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-4 text-center">
-                    <div class="position rb wow fadeInRight" onclick="showTP('rb');">
-                        <span class="title rbtitle " onclick="showTP('rb');">Running Back</span>
+                    <div class="position rb wow fadeInRight">
+                        <span class="title">Running Back</span>
                         <span class="TPmobileClickNotification">Click Here</span>
-                        <ol  class="rbol">
+                        <ol>
                             <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 2): ?>
                                 <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
                                 <li><?php echo $Player->getName();?></li>
                             <?php endif; endforeach; ?>
                         </ol>
-                        <div class="cover rbcover"></div>
+                        <div class="cover"></div>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-4 text-center">
-                    <div class="position te wow fadeInLeft" onclick="showTP('te');">
-                        <span class="title tetitle" onclick="showTP('te');">Tight End</span>
+                    <div class="position te wow fadeInLeft">
+                        <span class="title">Tight End</span>
                         <span class="TPmobileClickNotification">Click Here</span>
-                        <ol class="teol">
+                        <ol>
                             <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 7): ?>
                                 <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
                                 <li><?php echo $Player->getName();?></li>
                             <?php endif; endforeach; ?>
                         </ol>
-                        <div class="cover tecover"></div>
+                        <div class="cover"></div>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-4 text-center">
-                    <div class="position k wow fadeInUp" onclick="showTP('k');">
-                        <span class="title ktitle" onclick="showTP('k');">Kicker</span>
+                    <div class="position k wow fadeInUp">
+                        <span class="title">Kicker</span>
                         <span class="TPmobileClickNotification">Click Here</span>
-                        <ol class="kol">
+                        <ol>
                             <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 20): ?>
                                 <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
                                 <li><?php echo $Player->getName();?></li>
                             <?php endif; endforeach; ?>
                         </ol>
-                        <div class="cover kcover"></div>
+                        <div class="cover"></div>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-4 text-center">
-                    <div class="position ds wow fadeInRight" onclick="showTP('ds');">
-                        <span class="title dstitle" onclick="showTP('ds');">Defense/Special</span>
+                    <div class="position ds wow fadeInRight">
+                        <span class="title">Defense/Special</span>
                         <span class="TPmobileClickNotification">Click Here</span>
-                        <ol class="dsol">
+                        <ol>
                             <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 29): ?>
                                 <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
                                 <li><?php echo $Player->getName();?></li>
                             <?php endif; endforeach; ?>
                         </ol>
-                        <div class="cover dscover"></div>
+                        <div class="cover"></div>
                     </div>
                 </div>
             </div>

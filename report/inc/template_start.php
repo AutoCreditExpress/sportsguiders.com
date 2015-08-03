@@ -24,35 +24,35 @@
 
         <!-- Icons -->
         <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-        <link rel="shortcut icon" href="img/favicon.png">
-        <link rel="apple-touch-icon" href="img/icon57.png" sizes="57x57">
-        <link rel="apple-touch-icon" href="img/icon72.png" sizes="72x72">
-        <link rel="apple-touch-icon" href="img/icon76.png" sizes="76x76">
-        <link rel="apple-touch-icon" href="img/icon114.png" sizes="114x114">
-        <link rel="apple-touch-icon" href="img/icon120.png" sizes="120x120">
-        <link rel="apple-touch-icon" href="img/icon144.png" sizes="144x144">
-        <link rel="apple-touch-icon" href="img/icon152.png" sizes="152x152">
-        <link rel="apple-touch-icon" href="img/icon180.png" sizes="180x180">
+        <link rel="shortcut icon" href="<?php echo $webPath;?>report/img/favicon.png">
+        <link rel="apple-touch-icon" href="<?php echo $webPath;?>report/img/icon57.png" sizes="57x57">
+        <link rel="apple-touch-icon" href="<?php echo $webPath;?>report/img/icon72.png" sizes="72x72">
+        <link rel="apple-touch-icon" href="<?php echo $webPath;?>report/img/icon76.png" sizes="76x76">
+        <link rel="apple-touch-icon" href="<?php echo $webPath;?>report/img/icon114.png" sizes="114x114">
+        <link rel="apple-touch-icon" href="<?php echo $webPath;?>report/img/icon120.png" sizes="120x120">
+        <link rel="apple-touch-icon" href="<?php echo $webPath;?>report/img/icon144.png" sizes="144x144">
+        <link rel="apple-touch-icon" href="<?php echo $webPath;?>report/img/icon152.png" sizes="152x152">
+        <link rel="apple-touch-icon" href="<?php echo $webPath;?>report/img/icon180.png" sizes="180x180">
         <!-- END Icons -->
 
         <!-- Stylesheets -->
         <!-- Bootstrap is included in its original form, unaltered -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo $webPath;?>report/css/bootstrap.min.css">
 
         <!-- Related styles of various icon packs and plugins -->
-        <link rel="stylesheet" href="css/plugins.css">
+        <link rel="stylesheet" href="<?php echo $webPath;?>report/css/plugins.css">
 
         <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="<?php echo $webPath;?>report/css/main.css">
 
         <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
-        <?php if ($template['theme']) { ?><link rel="stylesheet" href="css/themes/<?php echo $template['theme']; ?>.css" id="theme-link"><?php } ?>
+        <?php if ($template['theme']) { ?><link rel="stylesheet" href="<?php echo $webPath;?>report/css/themes/<?php echo $template['theme']; ?>.css" id="theme-link"><?php } ?>
 
         <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
-        <link rel="stylesheet" href="css/themes.css">
+        <link rel="stylesheet" href="<?php echo $webPath;?>report/css/themes.css">
         <!-- END Stylesheets -->
 
         <!-- Modernizr (browser feature detection library) -->
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="<?php echo $webPath;?>report/js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>

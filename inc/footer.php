@@ -6,7 +6,7 @@
 
         <!-- Footer Logo -->
         <div class="footer-logo">
-            <a href="#"><img src="<?php echo $webPath;?>images/logo/sg-logo.png" alt=""></a>
+            <a href="#"><img src="<?php echo $webPath;?>images/logo/logo-black.png" alt=""></a>
         </div>
         <!-- End Footer Logo -->
 
@@ -18,10 +18,34 @@
             </ul>
         </div>
         <!-- End Footer Social Links -->
+        <!--
+        <script type="text/javascript" src="../source/jquery.fancybox.js?v=2.1.5"></script>
+        <link rel="stylesheet" type="text/css" href="../source/jquery.fancybox.css?v=2.1.5" media="screen" />
+        <script>
+$(document).ready(function(){
+    $('.dialog').click(function(){
+        var filename=this.getAttribute('data-file');
+        $.get(filename+'.html', function(data, status){
+            $('#'+filename).html(data);
+            $('#'+filename).dialog();
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+    });
+});
+                $( ".dialog" ).dialog();
 
+
+        </script>
+        -->
         <!-- Copyright -->
         <div class="footer-copy">
             &copy; <b>Sports Guiders</b> 2015.
+
+            <span>     |     </span>
+            <a style="cursor:pointer;text-decoration:underline;" target="_blank" href="<?php echo $webPath;?>privacy.html" >Privacy</a>
+            <span>     |     </span>
+            <a style="cursor:pointer;text-decoration:underline;" target="_blank" href="<?php echo $webPath;?>tos.html">TOS</a>
+
         </div>
         <!-- End Copyright -->
 

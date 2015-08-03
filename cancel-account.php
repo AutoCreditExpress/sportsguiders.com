@@ -15,7 +15,7 @@ if($_POST){
         <div class="breadcrumbs">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="splash-backup/index.html">Home</a></li>
                     <li class="active"><?php echo $_SESSION['user_first'].' '.$_SESSION['user_last'].'s';?> Account</li>
                 </ol>
             </div>
@@ -37,12 +37,12 @@ if($_POST){
                         <div class="col-md-6">
                             <?php
                             if($cancelAccountMessage) {
-                                echo '<form method="post" action="cancel.php"><div class="alert alert-danger" style="height:100px;">
-                                <strong>Error!</strong> ' . $cancelAccountMessage.'<br>' .$cancelButton. '
+                                echo '<form method="post" action="'.$webPath.'cancel.php"><div class="alert alert-danger" style="height:100px;">
+                                 ' . $cancelAccountMessage.'<br>' .$cancelButton. '
                             </div></form>';
                             }
                             ?>
-                            <p style="font-size:22px;">By clicking Cancel you acknowledge the cancellation of your account.</p>
+                            <p style="font-size:22px;">By clicking Cancel you acknowledge the cancellation of your account.  If you wish to restore your account you must contact support.  This account cancelation will also remove your active subscription.</p>
                         </div>
                         <div class="col-md-6">
                             <form method="post">

@@ -45,6 +45,18 @@ class SubscriberDAO{
         }
     }
 
+    function getUserById($id){
+
+        $qSubscriber = $this->db->prepare("SELECT * FROM users WHERE user_id = '".$id."'");
+        try{
+            $qSubscriber->execute();
+            $results = $qSubscriber->fetchAll();
+            return $results[0];
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
 
     function getSubscriberByEmail($subscriberEmail){
         $qSubscriber = $this->db->prepare("SELECT * FROM subscriber WHERE email = '".$subscriberEmail."'");
@@ -123,6 +135,69 @@ class SubscriberDAO{
         }
     }
 
+    function getRoleId($email){
+    $q = $this->db->prepare("SELECT * FROM users WHERE user_email = '".$email."'");
+    try{
+        $q->execute();
+        $results = $q->fetchAll();
+        if($results[0]['role_id']==1){
+            return true;
+        }else{
+            return false;
+        }
+    }catch(PDOException $e){
+        //TODO: add logging
+        return FALSE;
+    }
+}
+
+    function getPlanUsingCoupon($coupon, $check = null){
+        $q = $this->db->prepare("SELECT * FROM coupon WHERE BINARY code='".$coupon."'");
+        try{
+            $q->execute();
+            $results = $q->fetchAll();
+            if($results[0]['plan_name']!=null and $check==null) {
+                return $results[0]['plan_name'];
+            }elseif($check!=null){
+                return $results;
+            }elseif($check==null){
+                return 'basic';
+            }
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
+
+    function validateUserToMakePayment($userEmail, $subID){
+        $q = $this->db->prepare("SELECT * FROM subscriber WHERE email='".$userEmail."' and subscriber_id='".$subID."'");
+        try{
+            $q->execute();
+            $results = $q->fetchAll();
+            if($results[0]!=null) {
+                return $results[0];
+            }
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
+
+    function getUserIsActiveByEmail($email){
+        $q = $this->db->prepare("SELECT * FROM users WHERE user_email = '".$email."'");
+        try{
+            $q->execute();
+            $results = $q->fetchAll();
+            if($results[0]['user_active']==1){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
     //                                                  Create
@@ -150,11 +225,45 @@ class SubscriberDAO{
     //                                                  Update
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    function updateSubscriberBillingInfo(array $subscriberArray){
+        $qCreateSubscriber = $this->db->prepare("UPDATE subscriber SET address='".$subscriberArray['address']."',city='".$subscriberArray['city']."',state='".$subscriberArray['state']."',zip='".$subscriberArray['zip']."',update_date='".$subscriberArray['update_date']."' WHERE email='".$_SESSION['user_email']."'");
 
-    //TODO: finish this method
-    function updateUserSubscriberId($subscriberEmail,$subscriberID){
+        try{
+            $qCreateSubscriber->execute();
+            return TRUE;
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
 
-        $sql = "UPDATE users SET subscriber_id = '".$subscriberID."' WHERE email = ".$subscriberEmail."";
+    function updateSubscriberId($table,$subscriberEmail,$subscriberID){
+        if($table=='users'){
+            $sql = $this->db->prepare("UPDATE users SET subscriber_id='".$subscriberID."' WHERE user_email = '".$subscriberEmail."'");
+        }else{
+            $sql = $this->db->prepare("UPDATE subscriber SET subscriber_id='".$subscriberID."', update_date=CURDATE() WHERE email = '".$subscriberEmail."'");
+        }
+        try{
+            $sql->execute();
+            return TRUE;
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
+
+    function updateSubscriberCardId($subscriberEmail,$cardID){
+
+        $qUpdateSubscriber = $this->db->prepare("UPDATE subscriber SET card_id = '".$cardID."' WHERE email = '".$subscriberEmail."'");
+        try{
+
+            $qUpdateSubscriber->execute();
+
+            return TRUE;
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
     }
 
     //TODO: finish this method
@@ -177,9 +286,23 @@ class SubscriberDAO{
     }
 
     function updateSubscriberIsActiveUsersTable($subscriberEmail, $value){
-        $qSubscriber = $this->db->prepare("UPDATE users SET isActive='".$value."' WHERE email = '".$subscriberEmail."'");
+        $qSubscriber = $this->db->prepare("UPDATE users SET user_active='".$value."' WHERE user_email = '".$subscriberEmail."'");
         try{
             $qSubscriber->execute();
+            return TRUE;
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
+
+    function updateUserActiveUsingIdHash($id, $hash){
+
+        $qSubscriber = $this->db->prepare("UPDATE users SET user_active='1' WHERE user_id = '".$id."' and user_activation_hash='".$hash."'");
+        try{
+
+            $qSubscriber->execute();
+
             return TRUE;
         }catch(PDOException $e){
             //TODO: add logging
@@ -197,8 +320,9 @@ class SubscriberDAO{
             return FALSE;
         }
     }
-    function updateSubscriberSubscriptionIdUserTable($subscriberEmail, $value){
-        $qSubscriber = $this->db->prepare("UPDATE users SET subscription_id='".$value."' WHERE email = '".$subscriberEmail."'");
+
+    function updateNewletterTable($email){
+        $qSubscriber = $this->db->prepare("INSERT INTO newsletter (id, email, create_date) VALUES ('','".$email."','".date("Y-m-d h:i:s")."')");
         try{
             $qSubscriber->execute();
             return TRUE;
@@ -207,6 +331,7 @@ class SubscriberDAO{
             return FALSE;
         }
     }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
     //                                                  Delete

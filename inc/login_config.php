@@ -14,9 +14,9 @@
  * DB_PASS: the password of the above user
  */
 define("DB_HOST", "localhost");
-define("DB_NAME", "sportsguiders");
-define("DB_USER", "root");
-define("DB_PASS", "");
+define("DB_NAME", "sportsguiders_main");
+define("DB_USER", "sgfantasy");
+define("DB_PASS", "*DE5bBPa%.@Z");
 
 /**
  * Configuration for: Cookies
@@ -83,7 +83,7 @@ define("EMAIL_PASSWORDRESET_CONTENT", "Please click on this link to reset your p
  * Configuration for: verification email data
  * Set the absolute URL to register.php, necessary for email verification links
  */
-define("EMAIL_VERIFICATION_URL", "http://127.0.0.1/php-login-advanced/register.php");
+define("EMAIL_VERIFICATION_URL", "http://www.sportsguiders.com/login/verify-registration.php");
 define("EMAIL_VERIFICATION_FROM", "no-reply@example.com");
 define("EMAIL_VERIFICATION_FROM_NAME", "My Project");
 define("EMAIL_VERIFICATION_SUBJECT", "Account activation for PROJECT XY");

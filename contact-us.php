@@ -1,4 +1,37 @@
-<?php include('inc/config.php'); include($docPath.'inc/header.php'); ?>
+<?php include('inc/config.php');
+
+
+if($_POST) {
+    //Create a new PHPMailer instance
+    $mail = new PHPMailer;
+    //Set who the message is to be sent from
+    //$mail->setFrom('sportguiders.com', 'INFO');
+    $mail->From = 'info@sportsguiders.com';
+    $mail->FromName = 'Sportsguiders';
+    //Set an alternative reply-to address
+    $mail->addReplyTo('info@sportguiders.com', 'sportsguiders.com');
+    //Set who the message is to be sent to
+    $mail->addAddress($_POST['email'], $_POST['name']);
+    //Set the subject line
+    $mail->Subject = 'Contact form mail';
+    //Read an HTML message body from an external file, convert referenced images to embedded,
+    //convert HTML into a basic plain-text alternative body
+    $mail->isHTML(true);
+    //$mail->msgHTML(file_get_contents('http://www.sportsguiders.com/email/subscription/signup/index.html'), dirname(__FILE__));
+    $mail->Body = "<?doctype html><html><head></head><body><h1>" . $_POST['name'] . "</h1>
+    <h2>" . $_POST['company'] . "</h2>
+    <h3>" . $_POST['email'] . ", " . $_POST['phone'] . "</h3>
+    <p>" . $_POST['message'] . "</p></body></html>";
+
+    //send the message, check for errors
+    if (!$mail->send()) {
+        echo "Mailer Error: " . $mail->ErrorInfo;
+    } else {
+        header('Location: '.$webPath);
+    }
+}
+include($docPath.'inc/header.php');
+?>
     <!-- Main -->
     <main role="main">
 
@@ -54,7 +87,7 @@
                         <!-- End Contacts Information -->
 
                         <!-- Contacts Form -->
-                        <form>
+                        <form method="post" action="">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <input type="text" id="name" class="form-control" name="name" placeholder="Full Name">
@@ -93,7 +126,7 @@
         <section id="newsletter" class="section-light newsletter text-center">
 
             <!-- Newsletter Container -->
-            <div class="container">
+            <div class="container newsletterContainer">
 
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
@@ -104,11 +137,26 @@
                             <h4>Subscribe to our newsletter</h4>
                         </header>
                         <!-- End Newsletter Header -->
-
+                        <script>
+                            function submitNewsletterInfo(){
+                                var email = $('.email').val();
+                                if(email!="") {
+                                    $.get("recordNewsletterInfo.php?email=" + email, function (data, status) {
+                                        if (status == 'success') {
+                                            //alert('Successful'+data);
+                                            $('.newsletterContainer').fadeOut(400);
+                                        } else {
+                                            alert('Failed to send, please contact support');
+                                        }
+                                    });
+                                }
+                                return false;
+                            }
+                        </script>
                         <!-- Newsletter Form -->
-                        <form class="form-inline">
+                        <form class="form-inline" onsubmit="submitNewsletterInfo(); return false;">
                             <div class="form-group">
-                                <input placeholder="Email Address" class="form-control" type="email">
+                                <input placeholder="Email Address" class="form-control email" type="email">
                             </div>
                             <button type="submit" class="btn btn-primary">
                                 Subscribe

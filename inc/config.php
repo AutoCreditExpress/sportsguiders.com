@@ -30,6 +30,14 @@ $dbpass = ""; //main DB Password
 break;
 
     default:
+        $docPath = "/home/sglogin/public_html/";
+        $webPath = "http://www.sportsguiders.com/";
+
+//ACE Dealer Services DB
+        $dbhost = "localhost";
+        $dbname = "sportsguiders_main"; //Main DB Name
+        $dbuser = "sgfantasy"; //Main DB User
+        $dbpass = "*DE5bBPa%.@Z"; //main DB Password
         break;
 
 }

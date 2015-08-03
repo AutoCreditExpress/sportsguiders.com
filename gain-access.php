@@ -1,15 +1,19 @@
 <?php require 'inc/config.php';
+
+if ($login->isUserLoggedIn() == true) {
+    header("Location: ".$webPath."my-account/");
+}
 include($docPath.'inc/header.php');
 
 
 
 $SubscriberDAO=new SubscriberDAO($db);
 ?>
-    <link rel="stylesheet" href="css/bootstrap-min.css">
-    <link rel="stylesheet" href="css/bootstrap-formhelpers-min.css" media="screen">
-    <link rel="stylesheet" href="css/bootstrapValidator-min.css"/>
+    <link rel="stylesheet" href="<?php echo $webPath;?>css/bootstrap-min.css">
+    <link rel="stylesheet" href="<?php echo $webPath;?>css/bootstrap-formhelpers-min.css" media="screen">
+    <link rel="stylesheet" href="<?php echo $webPath;?>css/bootstrapValidator-min.css"/>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
-    <link rel="stylesheet" href="css/bootstrap-side-notes.css" />
+    <link rel="stylesheet" href="<?php echo $webPath;?>css/bootstrap-side-notes.css" />
     <style type="text/css">
         .col-centered {
             display:inline-block;
@@ -24,9 +28,9 @@ $SubscriberDAO=new SubscriberDAO($db);
     </style>
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="js/bootstrap-min.js"></script>
-    <script src="js/bootstrap-formhelpers-min.js"></script>
-    <script type="text/javascript" src="js/bootstrapValidator-min.js"></script>
+    <script src="<?php echo $webPath;?>js/bootstrap-min.js"></script>
+    <script src="<?php echo $webPath;?>js/bootstrap-formhelpers-min.js"></script>
+    <script type="text/javascript" src="<?php echo $webPath;?>js/bootstrapValidator-min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#payment-form').bootstrapValidator({
@@ -112,7 +116,7 @@ $SubscriberDAO=new SubscriberDAO($db);
                         }
                     },
                     number: {
-                        selector: '#number',
+                        selector: '#thenumber',
                         validators: {
                             notEmpty: {
                                 message: 'The credit card number is required and can\'t be empty'
@@ -120,6 +124,14 @@ $SubscriberDAO=new SubscriberDAO($db);
                             creditCard: {
                                 message: 'The credit card number is invalid'
                             },
+                        }
+                    },
+                    state: {
+                        selector: '.state',
+                        validators: {
+                            notEmpty: {
+                                message: 'The state can\'t be empty'
+                            }
                         }
                     },
                     expiry: {
@@ -147,7 +159,7 @@ $SubscriberDAO=new SubscriberDAO($db);
 
             $(".cancelSubscription").click(function(){
                 $("#payment-form").css('display', 'none');
-                $.get("cancelSubscription.php", function(data, status){
+                $.get("<?php echo $webPath;?>cancelSubscription.php", function(data, status){
                     if(status=="success"){
                         location.assign('index.php?Message=Subscription_Canceled');
                     }else{
@@ -173,7 +185,6 @@ $SubscriberDAO=new SubscriberDAO($db);
                 if(expiry!=null) {
                     var expiryMonth = expiry.substring(0, 2);
                     var expiryYear = '20'+expiry.substring(5);
-                    alert('month:'+expiryMonth+'Year:'+expiryYear);
                 }
                 $(".payment-expiry").html(response.error);
                 $(".payment-errors").html(response.error.message);
@@ -270,32 +281,61 @@ $SubscriberDAO=new SubscriberDAO($db);
                                 $error = '<div class="alert alert-danger">
 			                                <strong>Error!</strong> User name already exists, please use a different email address.</div>';
                             }else{
-                                //
-                                $Registration = new Registration();
+                                if($_POST['password']!=$_POST['password2']) {
+                                    $error = '<div class="alert alert-danger">
+                                                <strong>Error!</strong> Passwords dont match</div>';
+                                }else{
 
-                                //$Registration->registerNewUser($_POST['name'],substr($_POST['name'],0,strpos($_POST['name']," ")),substr($_POST['name'],strpos($_POST['name']," ")),$_POST['email'],$_POST['password'],$_POST['password2']);
-                                //create user in table
-                                $SubscriberDAO->createSubscriber(array(
-                                    'email' => $_POST['email'],
-                                    'address' => $_POST['street'],
-                                    'city' => $_POST['city'],
-                                    'state' => $_POST['state'],
-                                    'zip' => $_POST['zip'],
-                                    'create_date' => date("Y-m-d")
-                                ));
+                                    $Registration = new Registration();
 
-                                $customer = Stripe_Customer::create(array(
-                                        "source" => $token,
-                                        "plan" => "test",
-                                        "email" => $_POST['email'])
-                                );
+                                    //$Registration->registerNewUser($_POST['name'],substr($_POST['name'],0,strpos($_POST['name']," ")),substr($_POST['name'],strpos($_POST['name']," ")),$_POST['email'],$_POST['password'],$_POST['password2']);
+                                    //create user in table
+                                    $SubscriberDAO->createSubscriber(array(
+                                        'email' => $_POST['email'],
+                                        'address' => $_POST['street'],
+                                        'city' => $_POST['city'],
+                                        'state' => $_POST['state'],
+                                        'zip' => $_POST['zip'],
+                                        'create_date' => date("Y-m-d")
+                                    ));
 
-                                //////if no error caught display success message
-                                $success = '<div class="alert alert-success">
-                                <strong>Success!</strong> Your payment was successful.</div>';
+                                    //create customer on stripe
+                                    $customer = Stripe_Customer::create(array(
+                                            "source" => $token,
+                                            "email" => $_POST['email'])
+                                    );
 
-                                ///change the location of the page
-                                //echo "<script>location.assign('index.php?Message=Payment_successful');</script>";
+                                    //check plan using coupon code
+                                    $plan = $SubscriberDAO->getPlanUsingCoupon($_POST['coupon']);
+                                    echo $plan;
+                                    echo '...';
+                                    $subscriberEmail = $_POST['email'];
+
+                                    //create subscription
+                                    $cu = Stripe_Customer::retrieve($customer->id);
+                                    $cu2 = $cu->subscriptions->create(array("plan" => $plan));
+
+                                    //update subscriber table with id
+                                    $SubscriberDAO->updateSubscriberId('subscriber', $subscriberEmail, $customer->id);
+
+                                    //update user table with id
+                                    $SubscriberDAO->updateSubscriberId('users', $subscriberEmail, $customer->id);
+
+                                    //update subscriber table with card id
+                                    $SubscriberDAO->updateSubscriberCardId($subscriberEmail, $customer->default_source);
+
+                                    //update is active in subscriber table
+                                    $SubscriberDAO->updateSubscriberIsActive($subscriberEmail, '1');
+
+                                    //write subscription into table
+                                    $SubscriberDAO->updateSubscriberSubscriptionId($subscriberEmail, $cu2->id);
+
+                                    $success = '<div class="alert alert-success">
+                                    <strong>Success!</strong> Your payment was successful.</div>';
+
+                                    ///change the location of the page
+                                    echo "<script>location.assign('http://www.sportsguiders.com/login/?Message=Payment_successful');</script>";
+                                }
                             }
 
                          }
@@ -317,12 +357,6 @@ $SubscriberDAO=new SubscriberDAO($db);
                         <div class="well form-container active">
                             <div class="card-wrapper"></div>
                             <form method="post" id="payment-form">
-                            <?php
-                            ///hidden value for user registration
-                            if($_POST and !$_SESSION) {
-                                   echo '<input type = "hidden" value = "1" name="register">';
-                            }
-                            ?>
                             <!-- Billing Form -->
                             <h3 class="text-center">Billing Details</h3>
                             <div class="row">
@@ -330,7 +364,7 @@ $SubscriberDAO=new SubscriberDAO($db);
                                 <!-- Card Number -->
                                 <div class="col-xs-6">
                                     <div class="form-group">
-                                        <input type="text" name="number" class="form-control number" placeholder="Card Number" data-by-field="number">
+                                        <input value="" type="text" id="number" name="number" class="form-control number" placeholder="Card Number" data-by-field="number">
                                     </div>
                                 </div>
                                 <!-- End Card Number -->
@@ -338,7 +372,7 @@ $SubscriberDAO=new SubscriberDAO($db);
                                 <!-- Card Number -->
                                 <div class="col-xs-3">
                                     <div class="form-group">
-                                        <input type="text" name="expiry" class="form-control expiry" placeholder="MM/YY"  data-by-field="expiry">
+                                        <input value="" type="text" name="expiry" class="form-control expiry" placeholder="MM/YY"  data-by-field="expiry">
                                     </div>
                                 </div>
                                 <!-- End Card Number -->
@@ -346,7 +380,7 @@ $SubscriberDAO=new SubscriberDAO($db);
                                 <!-- Card Number -->
                                 <div class="col-xs-3">
                                     <div class="form-group">
-                                        <input type="text" name="cvc" class="form-control cvc" placeholder="CVC" data-by-field="cvc">
+                                        <input value="" type="text" name="cvc" class="form-control cvc" placeholder="CVC" data-by-field="cvc">
                                     </div>
                                 </div>
                                 <!-- End Card Number -->
@@ -354,7 +388,7 @@ $SubscriberDAO=new SubscriberDAO($db);
                                 <!-- First Name -->
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control name" placeholder="Full Name" data-by-field="name">
+                                        <input value="" type="text" name="name" class="form-control name" placeholder="Full Name" data-by-field="name">
                                     </div>
                                 </div>
                                 <!-- End First Name -->
@@ -396,7 +430,32 @@ $SubscriberDAO=new SubscriberDAO($db);
                                     </div>
                                 </div>
                                 <!-- End Post Code -->
-
+                                <script>
+                                    $(document).ready(function(){
+                                        $('.couponButton').click(function(){
+                                            var coupon = $('.coupon').val();
+                                            if(coupon!='') {
+                                                $.get("<?php echo $webPath;?>check-coupon.php?code=" + coupon, function (data, status) {
+                                                    if (status == "success") {
+                                                        alert(data);
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    });
+                                </script>
+                                <!-- coupon -->
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <div class="col-xs-3">
+                                            <button type="button" class="btn btn-success couponButton">Check Coupon</button>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input type="text" name="coupon" class="form-control coupon" placeholder="Coupon Code:(case sensitive)"  data-by-field="coupon">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- coupon -->
                                 <h3 class="text-center">Login Details</h3>
 
                                 <!-- Email Address -->
@@ -412,7 +471,7 @@ $SubscriberDAO=new SubscriberDAO($db);
                                 <!-- password 1 -->
                                 <div class="col-xs-6">
                                     <div class="form-group">
-                                        <input type="password" name="password" min="6" class="form-control password" placeholder="Password"  data-by-field="password">
+                                        <input type="password" name="password" class="form-control password" placeholder="Password"  data-by-field="password">
                                     </div>
                                 </div>
                                 <!-- End password 1 -->
@@ -420,7 +479,7 @@ $SubscriberDAO=new SubscriberDAO($db);
                                 <!-- password 2 -->
                                 <div class="col-xs-6">
                                     <div class="form-group">
-                                        <input type="password" name="password2" min="6" class="form-control password2" placeholder="Confirm Password"  data-by-field="password2">
+                                        <input type="password" name="password2" class="form-control password2" placeholder="Confirm Password"  data-by-field="password2">
                                     </div>
                                 </div>
                                 <!-- End password 1 -->
@@ -461,11 +520,26 @@ $SubscriberDAO=new SubscriberDAO($db);
                             <h4>Subscribe to our newsletter</h4>
                         </header>
                         <!-- End Newsletter Header -->
-
+                        <script>
+                            function submitNewsletterInfo(){
+                                var email = $('.emailNews').val();
+                                if(email!="") {
+                                    $.get("<?php echo $webPath;?>recordNewsletterInfo.php?email=" + email, function (data, status) {
+                                        if (status == 'success') {
+                                            //alert('Successful'+data);
+                                            $('#newsletter').fadeOut(400);
+                                        } else {
+                                            alert('Failed to send, please contact support');
+                                        }
+                                    });
+                                }
+                                return false;
+                            }
+                        </script>
                         <!-- Newsletter Form -->
-                        <form class="form-inline">
+                        <form class="form-inline" onsubmit="submitNewsletterInfo(); return false;">
                             <div class="form-group">
-                                <input placeholder="Email Address" class="form-control" type="email">
+                                <input placeholder="Email Address" class="form-control emailNews" type="email">
                             </div>
                             <button type="submit" class="btn btn-primary">
                                 Subscribe

@@ -48,7 +48,11 @@
     <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 </div>
 <![endif]-->
-
+<style>
+    @media screen and (max-width: 768px) {
+        .dropdown-toggle {background-color:#d83435;}
+    }
+</style>
 <!-- Header -->
 <section id="header" class="header header-revolution <?php if($pageID != 'home'){ echo 'header-sub';}?>">
 
@@ -68,25 +72,27 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="<?php echo $webPath;?>about/" class="dropdown-toggle" aria-expanded="false">About</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" aria-expanded="false">Save Time</a>
-                    </li>
+                    <!--<li class="dropdown">
+                        <a href="<?php //echo $webPath;?>about/" class="dropdown-toggle" aria-expanded="false">About</a>
+                    </li> -->
+
                     <li class="dropdown">
                         <?php if($_SESSION['user_name']): ?>
-                        <a href="<?php echo $webPath;?>the-recap.php" class="dropdown-toggle" aria-expanded="false">The Recap</a>
+                        <a href="<?php echo $webPath;?>the-recap/" class="dropdown-toggle" aria-expanded="false">The Recap</a>
                         <?php else: ?>
                         <a href="<?php echo $webPath;?>gain-access/" class="dropdown-toggle" aria-expanded="false">The Recap</a>
                         <?php endif; ?>
 
                     </li>
                     <li class="dropdown">
-                        <a href="<?php echo $webPath;?>expert-advi" class="dropdown-toggle" aria-expanded="false">Expert Advise</a>
+                        <a href="<?php echo $webPath;?>contact-us/" class="dropdown-toggle" aria-expanded="false">Contact</a>
                     </li>
                     <li class="dropdown">
-                        <a href="<?php echo $webPath;?>contact-us/" class="dropdown-toggle" aria-expanded="false">Contact</a>
+                        <?php if($_SESSION['user_name']): ?>
+                            <a href="<?php echo $webPath;?>login/logout/" class="dropdown-toggle" aria-expanded="false">Logout</a>
+                        <?php else: ?>
+                            <a href="<?php echo $webPath;?>login/" class="dropdown-toggle" aria-expanded="false">Login</a>
+                        <?php endif; ?>
                     </li>
                     <li class="dropdown active">
                         <?php if($_SESSION['user_name']): ?>

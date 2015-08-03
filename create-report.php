@@ -10,7 +10,7 @@ include($docPath.'inc/header.php');
         <div class="breadcrumbs">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="splash-backup/index.html">Home</a></li>
                     <li class="active"><?php echo $_SESSION['user_first'].' '.$_SESSION['user_last'].'s';?> Account</li>
                 </ol>
             </div>

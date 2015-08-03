@@ -1,8 +1,29 @@
-<?php require 'inc/config.php';
+<?php include('inc/config.php');
 $pageID = 'home';
 include($docPath.'inc/header.php');
-?>
 
+?>
+<style>
+    .mainHead {font-size:104px;font-weight:100;}
+    .subHead {font-size:26px;}
+    @media screen and (max-width: 950px) {
+        .mainHead {font-size:54px;font-weight:100;}
+        .subHead {font-size:14px;margin-top:20px;}
+    }
+    @media screen and (max-width: 750px) {
+        .mainHead {font-size:44px;font-weight:100;}
+        .subHead {font-size:12px;margin-top:30px;}
+    }
+    @media screen and (max-width: 625px) {
+        .mainHead {font-size:38px;font-weight:100;}
+        .subHead {font-size:10px;margin-top:30px;}
+        .navbar-brand {padding:0px}
+    }
+    @media screen and (max-width: 425px) {
+        .mainHead {font-size:38px;font-weight:100;margin-top:30px;}
+        .subHead {font-size:10px;margin-top:30px;}
+    }
+</style>
 <!-- Revolution Slider -->
 <div class="revolution_container">
     <div class="revolution">
@@ -12,23 +33,23 @@ include($docPath.'inc/header.php');
                 <img src="images/slide1.jpg" alt="">
                 <div class="tp-caption"
                      data-x="center"
-                     data-y="120"
+                     data-y="180"
 
                      data-start="1000"
                      data-speed="600"
                     >
-                    <h1 style="font-size:64px;font-weight:100;" class="text-center">
+                    <h1 style="" class="text-center mainHead">
                         Winning is Easy
                     </h1>
                 </div>
                 <div class="tp-caption"
                      data-x="center"
-                     data-y="230"
+                     data-y="345"
 
                      data-start="1000"
                      data-speed="600"
                     >
-                    <h2 style="font-size:16px;" class="text-center">
+                    <h2 style="" class="text-center subHead">
                         Know everything you need to know in just minutes
                     </h2>
                 </div>
@@ -142,28 +163,24 @@ include($docPath.'inc/header.php');
                     <!-- Welcome Header -->
                     <header>
                         <h2 style="color: #101010;">The <b>Report</b></h2>
-                        <h3>Our weekly report will ... something blah and some other stuff and some other stuff that is really cool.</h3>
+                        <h3>Our weekly report will save you time and help you win by providing you simplified information in an easy-to-read format at just the right time every week.</h3>
                         <hr class="hr-left">
                     </header>
                     <!-- End Welcome Header -->
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p>This report is going to make your week so much easier! We provide you with only the high level information that matters, when it matters. We never try to bate you into clicking more links, and we will never show you an annoying slideshow. Our experts will curate a special report for you every week that will help you stay informed while maintaining a life outside of the game.</p>
                 </div>
                 <p>
-                    <a href="#" class="btn btn-lg btn-rounded btn-iconned"><i class="fa fa-search"></i> View Sample</a>
-                    <a href="#" class="btn btn-secondary btn-lg btn-rounded btn-iconned"><i class="fa fa-check"></i> Get Started</a>
+                    <a href="<?=$webPath;?>sample-recap/" class="btn btn-lg btn-rounded btn-iconned"><i class="fa fa-search"></i> View Sample</a>
+                    <a href="<?=$webPath;?>gain-access/" class="btn btn-secondary btn-lg btn-rounded btn-iconned"><i class="fa fa-check"></i> Get Started</a>
                 </p>
             </div>
             <!-- End Welcome Content -->
-
+            <div class="col-md-6" style="padding-bottom: 100px;">
             <!-- Welcome Image -->
             <img src="images/welcome.png" class="img-welcome wow fadeIn animated" data-wow-delay=".2s" style="visibility: visible; -webkit-animation-delay: 0.2s;">
             <!-- End Welcome Image -->
-
+            </div>
         </div>
     </div>
     <!-- End Welcome Container -->
@@ -188,13 +205,28 @@ include($docPath.'inc/header.php');
                         <h4>Subscribe to our newsletter</h4>
                     </header>
                     <!-- End Newsletter Header -->
-
+                    <script>
+                        function submitNewsletterInfo(){
+                            var email = $('.email').val();
+                            if(email!="") {
+                                $.get("recordNewsletterInfo.php?email=" + email, function (data, status) {
+                                    if (status == 'success') {
+                                        //alert('Successful'+data);
+                                        $('#newsletter').fadeOut(400);
+                                    } else {
+                                        alert('Failed to send, please contact support');
+                                    }
+                                });
+                            }
+                            return false;
+                        }
+                    </script>
                     <!-- Newsletter Form -->
-                    <form class="form-inline">
+                    <form class="form-inline" onsubmit="submitNewsletterInfo(); return false;">
                         <div class="form-group">
-                            <input placeholder="Email Address" class="form-control" type="email">
+                            <input placeholder="Email Address" class="form-control email" type="email" name="email">
                         </div>
-                        <button type="submit" class="btn btn-primary">
+                        <button class="btn btn-primary newslettersumbit">
                             Subscribe
                         </button>
                     </form>

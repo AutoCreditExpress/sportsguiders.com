@@ -37,14 +37,8 @@ class Registration
     public function __construct()
     {
         //session_start();
-
-        // if we have such a POST request, call the registerNewUser() method
-        if (isset($_POST["register"])) {
             $this->registerNewUser($_POST['name'],substr($_POST['name'],0,strpos($_POST['name']," ")),substr($_POST['name'],strpos($_POST['name']," ")), $_POST['email'], $_POST['password'], $_POST['password2']);
-        // if we have such a GET request, call the verifyNewUser() method
-        } else if (isset($_GET["id"]) && isset($_GET["verification_code"])) {
-            $this->verifyNewUser($_GET["id"], $_GET["verification_code"]);
-        }
+
     }
 
     /**
@@ -52,12 +46,10 @@ class Registration
      */
     private function databaseConnection()
     {
-        echo "connecting...";
         // connection already opened
         if ($this->db_connection != null) {
             return true;
         } else {
-            echo "connect else...";
             // create a database connection, using the constants from config/config.php
             try {
                 // Generate a database connection, using the PDO connector
@@ -66,7 +58,7 @@ class Registration
                 // @see http://wiki.hashphp.org/PDO_Tutorial_for_MySQL_Developers#Connecting_to_MySQL says:
                 // "Adding the charset to the DSN is very important for security reasons,
                 // most examples you'll see around leave it out. MAKE SURE TO INCLUDE THE CHARSET!"
-                $this->db_connection = new PDO('mysql:host=localhost;dbname=sportsguiders;charset=utf8', 'root', '');
+                $this->db_connection = new PDO('mysql:host=localhost;dbname=sportsguiders_main;charset=utf8', 'sgfantasy', '*DE5bBPa%.@Z');
                 return true;
             // If an error is catched, database connection failed
             } catch (PDOException $e) {
@@ -82,39 +74,30 @@ class Registration
      */
     public function registerNewUser($user_name, $user_first, $user_last, $user_email, $user_password, $user_password_repeat)
     {
-        echo "test...";
         // we just remove extra space on username and email
         $user_name  = trim($user_name);
         $user_email = trim($user_email);
-        echo "test1...";
+        $user_first = trim(substr($user_name,0,strpos($user_name," ")));
+        $user_last = trim(substr($user_name,strpos($user_name," ")));
         // check provided data validity
         // TODO: check for "return true" case early, so put this first
         if (empty($user_name)) {
-            echo 'bomb1';
             $this->errors[] = MESSAGE_USERNAME_EMPTY;
         } elseif (empty($user_password) || empty($user_password_repeat)) {
-            echo 'bomb2';
             $this->errors[] = MESSAGE_PASSWORD_EMPTY;
-
         } elseif ($user_password !== $user_password_repeat) {
-            echo 'bomb3';
             $this->errors[] = MESSAGE_PASSWORD_BAD_CONFIRM;
         } elseif (strlen($user_name) > 64 || strlen($user_name) < 2) {
-            echo 'bom5';
             $this->errors[] = MESSAGE_USERNAME_BAD_LENGTH;
         } elseif (empty($user_email)) {
-            echo 'bomb7';
             $this->errors[] = MESSAGE_EMAIL_EMPTY;
         } elseif (strlen($user_email) > 64) {
-            echo 'bomb8';
             $this->errors[] = MESSAGE_EMAIL_TOO_LONG;
         } elseif (!filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
-            echo 'bomb9';
             $this->errors[] = MESSAGE_EMAIL_INVALID;
 
         // finally if all the above checks are ok
         } else if ($this->databaseConnection()) {
-            echo "passed checks...";
             // check if username or email already exists
             $query_check_user_name = $this->db_connection->prepare('SELECT user_name, user_email FROM users WHERE user_name=:user_name OR user_email=:user_email');
             $query_check_user_name->bindValue(':user_name', $user_name, PDO::PARAM_STR);
@@ -142,8 +125,8 @@ class Registration
                 $user_activation_hash = sha1(uniqid(mt_rand(), true));
 
                 // write new users data into database
-                echo "preparing to create user";
-                $query_new_user_insert = $this->db_connection->prepare('INSERT INTO users (user_name, user_first, user_last, user_password_hash, user_email, user_activation_hash, user_registration_ip, user_registration_datetime) VALUES(:user_name, :userFirst, :userLast, :user_password_hash, :user_email, :user_activation_hash, :user_registration_ip, now())');
+
+                $query_new_user_insert = $this->db_connection->prepare('INSERT INTO users (user_name, user_first, user_last, user_password_hash, user_email, user_active, user_activation_hash, user_registration_ip, user_registration_datetime) VALUES(:user_name, :userFirst, :userLast, :user_password_hash, :user_email, :user_active, :user_activation_hash, :user_registration_ip, now())');
                 $query_new_user_insert->bindValue(':user_name', $user_name, PDO::PARAM_STR);
                 $query_new_user_insert->bindValue(':userLast', $user_last, PDO::PARAM_STR);
                 $query_new_user_insert->bindValue(':userFirst', $user_first, PDO::PARAM_STR);
@@ -151,8 +134,9 @@ class Registration
                 $query_new_user_insert->bindValue(':user_email', $user_email, PDO::PARAM_STR);
                 $query_new_user_insert->bindValue(':user_activation_hash', $user_activation_hash, PDO::PARAM_STR);
                 $query_new_user_insert->bindValue(':user_registration_ip', $_SERVER['REMOTE_ADDR'], PDO::PARAM_STR);
+                $query_new_user_insert->bindValue(':user_active', '0', PDO::PARAM_STR);
                 $query_new_user_insert->execute();
-                echo "creation executed";
+
 
                 // id of new user
                 $user_id = $this->db_connection->lastInsertId();
@@ -185,6 +169,7 @@ class Registration
      */
     public function sendVerificationEmail($user_id, $user_email, $user_activation_hash)
     {
+
         $mail = new PHPMailer;
 
         // please look into the config/config.php for much more info on how to use this!
@@ -207,22 +192,25 @@ class Registration
             $mail->Port = EMAIL_SMTP_PORT;
         } else {
             $mail->IsMail();
+
         }
 
-        $mail->From = EMAIL_VERIFICATION_FROM;
-        $mail->FromName = EMAIL_VERIFICATION_FROM_NAME;
+        $mail->From = 'info@sportsguiders.com';
+        $mail->FromName = 'Mailer';
         $mail->AddAddress($user_email);
-        $mail->Subject = EMAIL_VERIFICATION_SUBJECT;
+        $mail->Subject = 'web mail';
 
         $link = EMAIL_VERIFICATION_URL.'?id='.urlencode($user_id).'&verification_code='.urlencode($user_activation_hash);
 
         // the link to your register.php, please set this value in config/email_verification.php
         $mail->Body = EMAIL_VERIFICATION_CONTENT.' '.$link;
+        //$mail->Body = 'test data';
 
         if(!$mail->Send()) {
             $this->errors[] = MESSAGE_VERIFICATION_MAIL_NOT_SENT . $mail->ErrorInfo;
             return false;
         } else {
+            echo "mail sent....";
             return true;
         }
     }

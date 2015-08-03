@@ -3,6 +3,7 @@ include('inc/config.php');
 
 include($docPath.'inc/header.php');
 $resetError='';
+$resetSuccess='';
 if($_POST){
 
     if (empty($_POST['oldpass']) || empty($_POST['newpass']) || empty($_POST['newpass2'])) {
@@ -16,6 +17,7 @@ if($_POST){
         // all the above tests are ok
     }else{
         $login->editUserPassword($_POST['oldpass'],$_POST['newpass'],$_POST['newpass2']);
+        $resetSuccess=true;
     }
 }
 ?>
@@ -25,7 +27,7 @@ if($_POST){
         <div class="breadcrumbs">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="splash-backup/index.html">Home</a></li>
                     <li class="active"><?php echo $_SESSION['user_first'].' '.$_SESSION['user_last'].'s';?> Account</li>
                 </ol>
             </div>
@@ -50,6 +52,9 @@ if($_POST){
                                 echo '<div class="alert alert-danger">
                                 <strong>Error!</strong> ' . $resetError . '
                             </div>';
+                            }elseif($resetSuccess){
+                                echo '<div class="alert alert-success">
+                                <strong>Success!</strong> Your password was reset.</div>';
                             }
                             ?>
                             <p style="font-size:22px;">Please fill out the form and click 'reset' to change your password.</p>
