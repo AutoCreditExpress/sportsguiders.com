@@ -27,7 +27,7 @@ if($_POST) {
     if (!$mail->send()) {
         echo "Mailer Error: " . $mail->ErrorInfo;
     } else {
-        header('Location: '.$webPath);
+        header('Location: '.$webPath.'?Message=Mail_sent');
     }
 }
 include($docPath.'inc/header.php');
@@ -67,17 +67,12 @@ include($docPath.'inc/header.php');
                         <!-- Contacts Information -->
                         <div class="contacts-information">
                             <div class="row">
-                                <div class="col-xs-4">
-                                    <div class="fa fa-phone"></div>
-                                    <div class="type">Phone</div>
-                                    <div class="info">01 555 5555</div>
-                                </div>
-                                <div class="col-xs-4">
+                                <div class="col-xs-6">
                                     <div class="fa fa-map-marker"></div>
                                     <div class="type">Address</div>
-                                    <div class="info">23 Twenty Three Street</div>
+                                    <div class="info">28317 Beck Road<br>Suite E-17<br>Wixom, Michigan 48393</div>
                                 </div>
-                                <div class="col-xs-4">
+                                <div class="col-xs-6">
                                     <div class="fa fa-info"></div>
                                     <div class="type">E-Mail</div>
                                     <div class="info">support@sportsguiders.com</div>

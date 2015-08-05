@@ -50,6 +50,21 @@ $(document).ready(function(){
         <!-- End Copyright -->
 
     </div>
+    <div style="position:fixed;bottom:0px;width:100%;z-index:99999;">
+        <marquee style="color:black;font-size:22px;font-weight:900;">
+            <?php
+            $SubscriberDAO = new SubscriberDAO($db);
+            if($SubscriberDAO->getNumberOfActiveSubscribers()!=0){
+                echo 'Only '.$SubscriberDAO->getNumberOfActiveSubscribers();
+            }else{
+                echo 'Sorry, no more subscriptions are available for';
+            }
+            echo ' '.date('Y').' ';
+            ?>
+            Subscriptions Left!
+        </marquee>
+    </div>
+
     <!-- End Footer Container -->
 
 </footer>

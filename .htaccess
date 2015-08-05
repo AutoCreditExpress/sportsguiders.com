@@ -1,0 +1,6 @@
+Options +MultiViews
+DirectoryIndex index index.php index.html
+IndexIgnore */*
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^sportsguiders.com [NC]
+RewriteRule ^(.*)$ http://www.sportsguiders.com [L,R=301]

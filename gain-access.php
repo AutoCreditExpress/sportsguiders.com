@@ -1,13 +1,19 @@
 <?php require 'inc/config.php';
 
+$SubscriberDAO=new SubscriberDAO($db);
+
 if ($login->isUserLoggedIn() == true) {
     header("Location: ".$webPath."my-account/");
 }
+
 include($docPath.'inc/header.php');
+//if there is post data and the user has already been created and is active, update the card info
+Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
+$error = '';
+$success = '';
 
-
-
-$SubscriberDAO=new SubscriberDAO($db);
+//check number of subs, if subs > 3000 disable this page and display a message
+if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
 ?>
     <link rel="stylesheet" href="<?php echo $webPath;?>css/bootstrap-min.css">
     <link rel="stylesheet" href="<?php echo $webPath;?>css/bootstrap-formhelpers-min.css" media="screen">
@@ -231,20 +237,28 @@ $SubscriberDAO=new SubscriberDAO($db);
                             <h2 class="text-center" style="color: #465366;">Getting Started</h2>
 
                             <p>
-                                It only cost $9 for a year to gain access to The Recap and other expert advice that will make you a Fantasy Football winner.
+                                It only costs $9 for a year to gain access to The Recap and other expert advice that will make you a Fantasy Football winner.
                             </p>
                             <table class="table">
                                 <tr class="subtotal">
-                                    <td><b>Yearly Membership</b></td>
-                                    <td>$9</td>
+                                    <td><b>Basic Membership</b></td>
+                                    <td>FREE</td>
+                                    <td>Get regular emails about the hottest action</td>
                                 </tr>
                                 <tr class="shipping">
-                                    <td><b>Lifelong Friendship</b></td>
-                                    <td>Free</td>
+                                    <td><b>Guider Access</b></td>
+                                    <td>$9</td>
+                                    <td>Get regular emails about the hottest action and access to reports</td>
                                 </tr>
                                 <tr class="total">
-                                    <td><b>Total</b></td>
-                                    <td>$9</td>
+                                    <td><b>Expert Access</b></td>
+                                    <td>$19</td>
+                                    <td>Get regular emails about the hottest action, access to reports, and 1 on 1 chat with an expert every Sunday 8:30am - 12:30am</td>
+                                </tr>
+                                <tr>
+                                    <Td><b>**DEAL</b></Td>
+                                    <td><img id="fbShareButton" src="http://www.sportsguiders.com/img/fbshare.png" style="cursor:pointer;max-width:100px;"></td>
+                                    <td>Share us on facebook and receive a dollar off on your subscription</td>
                                 </tr>
                             </table>
                         </div>
@@ -260,10 +274,7 @@ $SubscriberDAO=new SubscriberDAO($db);
                         </div>
                     </noscript>
                     <?php
-                    //if there is post data and the user has already been created and is active, update the card info
-                    Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
-                    $error = '';
-                    $success = '';
+
                     //update the card
                     if ($_POST and !$_SESSION) {
                         try {
@@ -286,9 +297,33 @@ $SubscriberDAO=new SubscriberDAO($db);
                                                 <strong>Error!</strong> Passwords dont match</div>';
                                 }else{
 
+
+                                    //create customer on stripe
+                                    $customer = Stripe_Customer::create(array(
+                                            "source" => $token,
+                                            "email" => $_POST['email'])
+                                    );
+
+                                    //check plan using coupon code
+                                    $plan = $_POST['accountType'].$SubscriberDAO->getPlanUsingCoupon($_POST['coupon']);
+                                    $subscriberEmail = $_POST['email'];
+
+                                    //retrieve stripe customer
+                                    $cu = Stripe_Customer::retrieve($customer->id);
+                                    if($_POST['isFBshare']){
+                                        //create subscriptions
+                                        $cu2 = $cu->subscriptions->create(array(
+                                            "plan" => $plan,
+                                            "coupon" => Stripe_Coupon::retrieve("dollaroff"),
+                                        ));
+                                    }else{
+                                        //create subscriptions
+                                        $cu2 = $cu->subscriptions->create(array(
+                                            "plan" => $plan
+                                        ));
+                                    }
                                     $Registration = new Registration();
 
-                                    //$Registration->registerNewUser($_POST['name'],substr($_POST['name'],0,strpos($_POST['name']," ")),substr($_POST['name'],strpos($_POST['name']," ")),$_POST['email'],$_POST['password'],$_POST['password2']);
                                     //create user in table
                                     $SubscriberDAO->createSubscriber(array(
                                         'email' => $_POST['email'],
@@ -298,23 +333,6 @@ $SubscriberDAO=new SubscriberDAO($db);
                                         'zip' => $_POST['zip'],
                                         'create_date' => date("Y-m-d")
                                     ));
-
-                                    //create customer on stripe
-                                    $customer = Stripe_Customer::create(array(
-                                            "source" => $token,
-                                            "email" => $_POST['email'])
-                                    );
-
-                                    //check plan using coupon code
-                                    $plan = $SubscriberDAO->getPlanUsingCoupon($_POST['coupon']);
-                                    echo $plan;
-                                    echo '...';
-                                    $subscriberEmail = $_POST['email'];
-
-                                    //create subscription
-                                    $cu = Stripe_Customer::retrieve($customer->id);
-                                    $cu2 = $cu->subscriptions->create(array("plan" => $plan));
-
                                     //update subscriber table with id
                                     $SubscriberDAO->updateSubscriberId('subscriber', $subscriberEmail, $customer->id);
 
@@ -357,6 +375,10 @@ $SubscriberDAO=new SubscriberDAO($db);
                         <div class="well form-container active">
                             <div class="card-wrapper"></div>
                             <form method="post" id="payment-form">
+
+                                <!--hidden box for dollar off sharing-->
+                                <input type="hidden" id="isFBshare" name="isFBshare" value="<?php echo $_POST['isFBshare'];?>">
+
                             <!-- Billing Form -->
                             <h3 class="text-center">Billing Details</h3>
                             <div class="row">
@@ -455,8 +477,10 @@ $SubscriberDAO=new SubscriberDAO($db);
                                         </div>
                                     </div>
                                 </div>
-                                <!-- coupon -->
-                                <h3 class="text-center">Login Details</h3>
+
+                                <div class="col-xs-12">
+                                    <h3 class="text-center">Login Details</h3>
+                                </div>
 
                                 <!-- Email Address -->
                                 <div class="col-xs-12">
@@ -465,7 +489,15 @@ $SubscriberDAO=new SubscriberDAO($db);
                                     </div>
                                 </div>
                                 <!-- End Email Address -->
-
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <select class="form-control accountType" name="accountType" placeholder="Account Type" data-by-field="accountType">
+                                            <option value="basic">Basic -(FREE)</option>
+                                            <option value="guider">Guider Access -($9 annual)</option>
+                                            <option value="expert">Expert Access -($19 annual)</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <!-- End Phone -->
 
                                 <!-- password 1 -->
@@ -483,12 +515,13 @@ $SubscriberDAO=new SubscriberDAO($db);
                                     </div>
                                 </div>
                                 <!-- End password 1 -->
-
+                                <div class="col-xs-12">
+                                    <div style="float:right;">
+                                        <button class="btn btn-success payNow" type="submit" style="">Place Order</button>
+                                    </div>
+                                </div>
                             </div>
                             <!-- End Billing Form -->
-                                <div style="float:right;">
-                                        <button class="btn btn-success payNow" type="submit" style="">Place Order</button>
-                                </div>
                             </form>
 
                         </div>
@@ -571,4 +604,7 @@ $SubscriberDAO=new SubscriberDAO($db);
             container: '.card-wrapper'
         });
     </script>
+<?php }else{
+    echo '<h1 style="color:red;">We\'re Sorry, but we have reached our maximum subscription limit for '.date('Y').'</h1>';
+} ?>
 <?php include($docPath.'inc/footer.php'); ?>

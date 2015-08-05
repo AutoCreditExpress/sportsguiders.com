@@ -2090,7 +2090,7 @@ main section.section-secondary h2 b {
   position: relative;
 }
 .welcome .content {
-  padding: 60px 0;
+  padding: 10px 0;
 }
 .welcome .content h2 {
   font-weight: 200;
@@ -2103,7 +2103,7 @@ main section.section-secondary h2 b {
 .welcome .img-welcome {
   position: absolute;
   right: -330px;
-  top: 200px;
+  top: 75px;
 }
 /* Welcome Section Media Queries */
 @media only screen and (max-width: 767px) {

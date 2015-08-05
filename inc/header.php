@@ -11,6 +11,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
+    <meta property="og:url" content="http://www.sportsguiders.com" />
+    <meta property="og:title" content="Im signing up for sportsguiders.com" />
+    <meta property="og:description" content="&nbsp;" />
+    <meta property="og:site_name" content="SportsGuiders" />
+    <meta property="og:image" content="http://www.sportsguiders.com/img/fb-sg-logo-black.png" />
+    <meta property="og:image:width" content="200" />
+    <meta property="og:image:height" content="248" />
+
+    <div id="fb-root"></div>
+    <script src="http://connect.facebook.net/en_US/all.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        FB.init({
+            appId: 114945352184802,
+            status: true,
+            cookie: true,
+            xfbml: true
+        });
+        //FB.Canvas.setAutoResize();
+    </script>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=114945352184802";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
     <!-- Styles -->
     <link rel="stylesheet" href="<?php echo $webPath;?>styles/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo $webPath;?>styles/hover.min.css">
@@ -37,7 +65,30 @@
     <script src="<?php echo $webPath;?>scripts/modernizr.js"></script>
     <script type="text/javascript" src="<?php echo $webPath;?>scripts/jquery.min.js"></script>
     <!-- End Scripts -->
-
+    <Script>
+$(document).ready(function(){
+    $('#fbShareButton').click(function(){
+        FB.ui(
+            {
+                method: 'feed',
+                name: 'Im signing up for SportsGuiders!!',
+                link: 'http://www.sportsguiders.com',
+                picture: 'http://www.sportsguiders.com/img/fb-sg-logo-black.png'
+            },
+            function(response) {
+                if (response && response.post_id) {
+                    $('.payment-success').html('<span style="color:green;">Successful share on Facebook</span>');
+                    if(document.getElementById('isFBshare')){
+                        document.getElementById('isFBshare').value = '1';
+                    }
+                } else {
+                    alert('Error: Post was not published.');
+                }
+            }
+        );
+    });
+});
+    </Script>
 </head>
 <body>
 

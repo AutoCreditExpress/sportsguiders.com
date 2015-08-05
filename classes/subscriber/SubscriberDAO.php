@@ -198,6 +198,28 @@ class SubscriberDAO{
             return FALSE;
         }
     }
+
+    function getNumberOfActiveSubscribers($noFormat=null){
+        $q = $this->db->prepare("SELECT COUNT(isActive) as Total FROM subscriber WHERE isActive='1' and create_date LIKE '2015%'");
+        try{
+            $q->execute();
+            $results = $q->fetchAll();
+            $baseNumber = 3000;
+            if($noFormat) {
+                $totalSubsLeft = ($baseNumber - $results[0]['Total']);
+                return $totalSubsLeft;
+            }elseif($results[0]['Total']!=null){
+                $totalSubs = ($baseNumber - $results[0]['Total']);
+                $formattedNum = number_format($totalSubs);
+                return $formattedNum;
+            }else{
+                return $baseNumber;
+            }
+        }catch(PDOException $e){
+            //TODO: add logging
+            return FALSE;
+        }
+    }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
     //                                                  Create

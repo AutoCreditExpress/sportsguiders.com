@@ -162,16 +162,16 @@ include($docPath.'inc/header.php');
                 <div class="content wow fadeInUp animated" style="visibility: visible;">
                     <!-- Welcome Header -->
                     <header>
-                        <h2 style="color: #101010;">The <b>Report</b></h2>
+                        <h2 style="color: #101010;">The <b>Report</b>
+                            <a href="<?=$webPath;?>sample-recap/" class="btn btn-lg btn-rounded btn-iconned"><i class="fa fa-search fa-2x"></i> View Sample</a>
+                        </h2>
                         <h3>Our weekly report will save you time and help you win by providing you simplified information in an easy-to-read format at just the right time every week.</h3>
                         <hr class="hr-left">
                     </header>
                     <!-- End Welcome Header -->
-
                     <p>This report is going to make your week so much easier! We provide you with only the high level information that matters, when it matters. We never try to bate you into clicking more links, and we will never show you an annoying slideshow. Our experts will curate a special report for you every week that will help you stay informed while maintaining a life outside of the game.</p>
                 </div>
                 <p>
-                    <a href="<?=$webPath;?>sample-recap/" class="btn btn-lg btn-rounded btn-iconned"><i class="fa fa-search"></i> View Sample</a>
                     <a href="<?=$webPath;?>gain-access/" class="btn btn-secondary btn-lg btn-rounded btn-iconned"><i class="fa fa-check"></i> Get Started</a>
                 </p>
             </div>
