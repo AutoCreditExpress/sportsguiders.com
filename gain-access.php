@@ -382,7 +382,15 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                             <!-- Billing Form -->
                             <h3 class="text-center">Billing Details</h3>
                             <div class="row">
-
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <select class="form-control accountType" name="accountType" placeholder="Account Type" data-by-field="accountType">
+                                            <option value="basic">Basic -(FREE)</option>
+                                            <option value="guider">Guider Access -($9 annual)</option>
+                                            <option value="expert">Expert Access -($19 annual)</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <!-- Card Number -->
                                 <div class="col-xs-6">
                                     <div class="form-group">
@@ -489,15 +497,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                     </div>
                                 </div>
                                 <!-- End Email Address -->
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <select class="form-control accountType" name="accountType" placeholder="Account Type" data-by-field="accountType">
-                                            <option value="basic">Basic -(FREE)</option>
-                                            <option value="guider">Guider Access -($9 annual)</option>
-                                            <option value="expert">Expert Access -($19 annual)</option>
-                                        </select>
-                                    </div>
-                                </div>
+
                                 <!-- End Phone -->
 
                                 <!-- password 1 -->

@@ -12,6 +12,7 @@ if($_POST) {
     $mail->addReplyTo('info@sportguiders.com', 'sportsguiders.com');
     //Set who the message is to be sent to
     $mail->addAddress($_POST['email'], $_POST['name']);
+    //$mail->addAddress($_POST['email'], $_POST['name']);  owner email add
     //Set the subject line
     $mail->Subject = 'Contact form mail';
     //Read an HTML message body from an external file, convert referenced images to embedded,
