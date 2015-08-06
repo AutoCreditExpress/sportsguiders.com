@@ -8,20 +8,20 @@ include($docPath.'inc/header.php');
     .subHead {font-size:26px;}
     @media screen and (max-width: 950px) {
         .mainHead {font-size:54px;font-weight:100;}
-        .subHead {font-size:14px;margin-top:20px;}
+        .subHead {font-size:22px;margin-top:20px;}
     }
     @media screen and (max-width: 750px) {
         .mainHead {font-size:44px;font-weight:100;}
-        .subHead {font-size:12px;margin-top:30px;}
+        .subHead {font-size:20px;margin-top:15px;}
     }
     @media screen and (max-width: 625px) {
         .mainHead {font-size:38px;font-weight:100;}
-        .subHead {font-size:10px;margin-top:30px;}
+        .subHead {font-size:18px;margin-top:15px;}
         .navbar-brand {padding:0px}
     }
     @media screen and (max-width: 425px) {
         .mainHead {font-size:38px;font-weight:100;margin-top:30px;}
-        .subHead {font-size:10px;margin-top:30px;}
+        .subHead {font-size:16px;margin-top:15px;}
     }
 </style>
 <!-- Revolution Slider -->
@@ -30,7 +30,9 @@ include($docPath.'inc/header.php');
         <ul>
 
             <li data-transition="ZoomIn" data-slotamount="6">
-                <img src="images/slide1.jpg" alt="">
+                <!--<img src="images/slide1.jpg" alt="">-->
+                <img src="<?=$webPath;?>img/SG-main-bg.jpg" alt="">
+
                 <div class="tp-caption"
                      data-x="center"
                      data-y="180"
@@ -38,9 +40,9 @@ include($docPath.'inc/header.php');
                      data-start="1000"
                      data-speed="600"
                     >
-                    <h1 style="" class="text-center mainHead">
-                        Winning is Easy
-                    </h1>
+                   <!-- <h1 style="" class="text-center mainHead">
+                        Fantasy Football
+                    </h1>-->
                 </div>
                 <div class="tp-caption"
                      data-x="center"
@@ -50,7 +52,7 @@ include($docPath.'inc/header.php');
                      data-speed="600"
                     >
                     <h2 style="" class="text-center subHead">
-                        Know everything you need to know in just minutes
+                        Expert advice and curated reports
                     </h2>
                 </div>
 
@@ -61,86 +63,67 @@ include($docPath.'inc/header.php');
 </div>
 <!-- End Revolution Slider -->
 <header class="page-heading">
-    <h1 class="text-center"><a href="#how-it-works" style="color: #ffffff;">See How It Works</a></h1>
+    <h1 class="text-center"><a href="#how-it-works" style="color: #ffffff;">Ready to start winning your Fantasy Football league?</a></h1>
 </header>
 <section id="process">
     <a name="how-it-works"></a>
     <!-- Work Process Container -->
     <div class="container">
 
-        <div class="row" style="margin-top: 100px; ">
-
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-md-12">
+                <p style="text-align:center;font-size:18px;font-weight:400;margin-bottom:50px;">
+                    Check out the SG benefits by clicking the links below
+                </p>
+            </div>
             <!-- Steps -->
             <div class="steps">
 
                 <!-- Step -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="step">
-                        <div class="icon">
-                            <span class="icon-documents"></span>
+                <div class="col-sm-4">
+                    <a href="#cutClutter" style="text-decoration:none;">
+                        <div class="step">
+                            <div class="icon">
+                                <span class="icon-documents"></span>
+                            </div>
+                            <h4>1. Cut the Clutter</h4>
                         </div>
-                        <h4>1. Cut the Clutter</h4>
-                        <p>
-                            Our team of experts help you cut the informational clutter out of your life by curating
-                            easy-to-read reports that you will rely on every week. The reports contain only relevant
-                            content and useful information.
-                        </p>
-                    </div>
+                    </a>
                 </div>
                 <!-- End Step -->
 
                 <!-- Step -->
-                <div class="col-md-3 col-sm-6">
+                <div class="col-sm-4">
+                    <a href="#saveTime" style="text-decoration:none;">
                     <div class="step">
                         <div class="icon">
                             <span class="icon-trophy"></span>
                         </div>
                         <h4>2. Save Time and Win</h4>
-                        <p>
-                            You become the most knowledgeable person in your league without wasting your time by clicking
-                            on link after link and reading hours worth of useless information. You use your knowledge
-                            to dominate the waiver wire, make the right trades, and start the right players every week.
-                        </p>
                     </div>
+                    </a>
                 </div>
                 <!-- End Step -->
 
                 <!-- Step -->
-                <div class="col-md-3 col-sm-6">
+                <div class="col-sm-4">
+                    <a href="#goodLife" style="text-decoration:none;">
                     <div class="step">
                         <div class="icon">
                             <span class="icon-happy"></span>
                         </div>
                         <h4>3. Enjoy the Good Life</h4>
-                        <p>
-                            You no longer have to spend several hours researching every week because we've done that
-                            work for you. You'll keep your work and family lives in order with the time you've decided
-                            to save. Winning is easy with SportGuiders!
-                        </p>
                     </div>
+                    </a>
                 </div>
                 <!-- End Step -->
-
-                <!-- Step -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="step">
-                        <div class="icon">
-                            <span class="icon-lock"></span>
-                        </div>
-                        <h4>Gain Access Now</h4>
-                        <p>
-                            Having Guider Access will give you an advantage in your fantasy matchups by keeping you
-                            informed about the entire league in the most simple way possible.
-                            <br/>
-                            <br/>
-                            <a href="<?php echo $webPath;?>gain-access/" class="btn btn-red btn-lg btn-rounded">
-                                Get Started <b>Here</b>
-                            </a>
-                        </p>
+                <div class="col-md-12">
+                    <div style="width:178px;margin:0px auto;margin-top:50px;">
+                        <a href="<?php echo $webPath;?>gain-access/" class="btn btn-red btn-lg btn-rounded">
+                            Get Started <b>Here</b>
+                        </a>
                     </div>
                 </div>
-                <!-- End Step -->
-
             </div>
             <!-- End Steps -->
 
@@ -150,13 +133,12 @@ include($docPath.'inc/header.php');
     <!-- End Work Process Container -->
 
 </section>
-<section id="welcome" class="welcome section-primary"  style="margin-top: 100px; background: #f6f8fc;">
-
+<section id="welcome" class="welcome section-primary"  style="margin-top: 50px; background: #f6f8fc;">
     <!-- Welcome Container -->
     <div class="container">
         <div class="row">
 
-            <div class="col-md-6" style="padding-bottom: 100px;">
+            <div class="col-md-6" style="padding-bottom: 50px;padding-top:50px;">
 
                 <!-- Welcome Content -->
                 <div class="content wow fadeInUp animated" style="visibility: visible;">
@@ -186,6 +168,67 @@ include($docPath.'inc/header.php');
 
 </section>
 
+<!--Start step container-->
+    <!--First step container-->
+    <section id="welcome" class="welcome section-primary"  style="background: white;">
+        <div class="container">
+             <div class="row">
+                    <div id="cutClutter" class="col-md-6" style="padding-bottom: 50px;padding-top:50px;">
+                        <h4 style="font-size:48px;">Cut <span style="color:#d83435">the Clutter</span></h4>
+                        <p>
+                            Our team of experts help you cut the informational clutter out of your life by curating
+                            easy-to-read reports that you will rely on every week. The reports contain only relevant
+                            content and useful information.
+                        </p>
+                    </div>
+                 <div id="" class="col-md-6" style="padding-bottom: 50px;padding-top:50px;">
+                     <div style="width:50%;margin:0px auto;">
+                        <img src="<?=$webPath;?>img/clutter.png" style="max-height:200px;">
+                     </div>
+                 </div>
+             </div>
+        </div>
+    </section>
+    <section id="welcome" class="welcome section-primary"  style="background: #f6f8fc;">
+        <div class="container">
+            <div class="row">
+                <div id="saveTime" class="col-md-6" style="padding-bottom: 50px;padding-top:50px;">
+                    <h4 style="font-size:48px;">Save <span style="color:#d83435">Time and Win</span></h4>
+                    <p>
+                        You become the most knowledgeable person in your league without wasting your time by clicking
+                        on link after link and reading hours worth of useless information. You use your knowledge
+                        to dominate the waiver wire, make the right trades, and start the right players every week.
+                    </p>
+                </div>
+                <div id="" class="col-md-6" style="padding-bottom: 50px;">
+                    <div style="width:50%;margin:0px auto;">
+                        <img src="<?=$webPath;?>img/save-time.png" style="max-height:250px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="welcome" class="welcome section-primary"  style="background: white;">
+        <div class="container">
+            <div class="row">
+                <div id="goodLife" class="col-md-6" style="padding-bottom: 50px;padding-top:50px;">
+                    <h4 style="font-size:48px;">Enjoy <span style="color:#d83435">the Good Life</span></h4>
+                    <p>
+                        You no longer have to spend several hours researching every week because we've done that
+                        work for you. You'll keep your work and family lives in order with the time you've decided
+                        to save. Winning is easy with SportGuiders!
+                    </p>
+                </div>
+                <div id="" class="col-md-6" style="padding-bottom: 50px;">
+                    <div style="width:50%;margin:0px auto;">
+                        <img src="<?=$webPath;?>img/enjoy-life.png" style="max-height:200px;margin-top:50px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End step container-->
 <!-- Main -->
 <main role="main">
 
@@ -210,8 +253,15 @@ include($docPath.'inc/header.php');
                             if(email!="") {
                                 $.get("recordNewsletterInfo.php?email=" + email, function (data, status) {
                                     if (status == 'success') {
-                                        //alert('Successful'+data);
-                                        $('#newsletter').fadeOut(400);
+                                            $(document).ready(function(){
+                                                var growlType = 'success';
+                                                $.bootstrapGrowl('<h4><strong>Success!</strong></h4> <p>You have signed up for the newsletter...</p>', {
+                                                    type: growlType,
+                                                    delay: 3000,
+                                                    allow_dismiss: true,
+                                                    offset: {from: 'top', amount: 20}
+                                                });
+                                            });
                                     } else {
                                         alert('Failed to send, please contact support');
                                     }

@@ -501,8 +501,8 @@ svg.chi { fill: #df6108; }
   margin-bottom: 30px;
 }
 
-.power-ranking .table .fa-caret-up   { color: #01ad7f; }
-.power-ranking .table .fa-caret-down { color: #d83435; }
+.power-ranking .table .fa-caret-up,.upwards table .fa-caret-up,.downwards table .fa-caret-up   { color: #01ad7f; }
+.power-ranking .table .fa-caret-down,.upwards table .fa-caret-down,.downwards table .fa-caret-down   { color: #d83435; }
 
 
 .power-ranking .table thead {

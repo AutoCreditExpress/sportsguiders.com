@@ -429,7 +429,7 @@ $SubscriberDAO=new SubscriberDAO($db);
             </div>
             <!-- End Billing Form -->
             <div style="float:right;">
-                    <button class="btn btn-warning updateSubscription" type="submit">Update details</button>
+                    <button class="btn btn-success updateSubscription" type="submit">Update details</button>
                     <button class="btn btn-danger cancelSubscription">Cancel subscription</button>
             </div>
         </form>

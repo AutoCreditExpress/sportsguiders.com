@@ -70,6 +70,7 @@
         </fieldset>
         <footer>
             <button type="submit" name="login" class="button">Log in</button>
+            <button type="button" name="" class="button" onclick="location.assign('//www.sportsguiders.com');">Back</button>
             <a href="#" class="button button-secondary">Register</a>
         </footer>
     </form>

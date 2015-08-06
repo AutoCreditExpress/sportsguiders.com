@@ -17,30 +17,8 @@
                 <li><a href="#" class="hvr-rectangle-out hvr-twitter"><i class="fa fa-twitter"></i></a></li>
             </ul>
         </div>
-        <!-- End Footer Social Links -->
-        <!--
-        <script type="text/javascript" src="../source/jquery.fancybox.js?v=2.1.5"></script>
-        <link rel="stylesheet" type="text/css" href="../source/jquery.fancybox.css?v=2.1.5" media="screen" />
-        <script>
-$(document).ready(function(){
-    $('.dialog').click(function(){
-        var filename=this.getAttribute('data-file');
-        $.get(filename+'.html', function(data, status){
-            $('#'+filename).html(data);
-            $('#'+filename).dialog();
-            alert("Data: " + data + "\nStatus: " + status);
-        });
-    });
-});
-                $( ".dialog" ).dialog();
-
-
-        </script>
-        -->
-        <!-- Copyright -->
         <div class="footer-copy">
             &copy; <b>Sports Guiders</b> 2015.
-
             <span>     |     </span>
             <a style="cursor:pointer;text-decoration:underline;" target="_blank" href="<?php echo $webPath;?>privacy.html" >Privacy</a>
             <span>     |     </span>
@@ -50,21 +28,44 @@ $(document).ready(function(){
         <!-- End Copyright -->
 
     </div>
-    <div style="position:fixed;bottom:0px;width:100%;z-index:99999;">
-        <marquee style="color:black;font-size:22px;font-weight:900;">
+
+    <?php
+    if(!$_SESSION){
+    ?>
+    <div style="position:fixed;bottom:0px;right:5%;z-index:99999;padding:7px;padding-bottom:0px;">
+        <div id="arrowContainer" style="float:right;">
+            <img id="subArrow" src="<?=$webPath;?>img/arrow.png" style="max-width:170px;max-height:250px;display:none;">
+        </div>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script>
+            $( document ).ready(function() {
+                setTimeout(function(){
+                    $( "#subArrow" ).show( "bounce", { times: 3 }, 2000, function(){
+                        setTimeout(function(){
+                            $('#subArrow').fadeOut();
+                        },2000);
+                    } );
+                }, 1000);
+            });
+        </script>
+        <div style="clear:both;"></div>
+        <div style="color:white;background-color:#d83435;padding:7px;border-radius:15px 15px 0px 0px;border:1px solid white;border-bottom:0px;">
+            <p style="font-size:14px;font-weight:900;margin:0px;">
+            <a href="//www.sportsguiders.com/gain-access/" style="text-decoration:none;color:white;">
             <?php
             $SubscriberDAO = new SubscriberDAO($db);
             if($SubscriberDAO->getNumberOfActiveSubscribers()!=0){
-                echo 'Only '.$SubscriberDAO->getNumberOfActiveSubscribers();
+                echo 'Only '.$SubscriberDAO->getNumberOfActiveSubscribers().' '.date('Y').' Subscriptions Left!';
             }else{
-                echo 'Sorry, no more subscriptions are available for';
+                echo 'Sorry, no more subscriptions are available for '.date('Y').' ';
             }
-            echo ' '.date('Y').' ';
-            ?>
-            Subscriptions Left!
-        </marquee>
-    </div>
 
+            ?>
+                </a>
+            </p>
+        </div>
+    </div>
+<?php } ?>
     <!-- End Footer Container -->
 
 </footer>

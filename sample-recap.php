@@ -16,8 +16,8 @@ include($docPath.'inc/header.php');
     <section class="page-header">
         <div class="container text-center">
             <i class="fa fa-book"></i>
-            <h1>THE<b>RECAP</b></h1>
-            <span class="desc"><?php echo $_SESSION['user_first']."'s";?> Insider's Guide to Mastering Fantasy Football</span>
+            <h1 style="font-size:140px;">THE<b>RECAP</b></h1>
+            <span class="desc" style="padding-top:10px;">Your Insider's Guide to Mastering Fantasy Football</span>
         </div>
     </section>
     <!--/PAGE HEADER -->
@@ -58,7 +58,7 @@ include($docPath.'inc/header.php');
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-center">
-                    <img class="heading-icon wow bounceInUp" src="<?=$webPath?>images/report/top-performers-icon.png">
+                    <img class="heading-icon wow bounceInUp" style="max-width:125px;" src="<?=$webPath?>images/report/top-performers-icon.png">
                     <span class="heading wow bounceInUp">TOP PERFORMERS</span>
 
                     <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know who dominated the world of fantasy football last weekend. Having a quick recap of who the weeks' top performers were allows you to make quick decisions the following week on who to target in trades, start and sit.">
@@ -74,10 +74,16 @@ include($docPath.'inc/header.php');
                         <span class="TPmobileClickNotification">Click Here</span>
 
                         <ol class="qbol">
-                            <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 16): ?>
-                                <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
-                            <li><?php echo $Player->getName();?></li>
-                            <?php endif; endforeach; ?>
+                            <li>Drew Brees</li>
+                            <li>Eli Manning</li>
+                            <li>Alex Smith</li>
+                            <li>Matt Ryan</li>
+                            <li>Tony Romo</li>
+                            <li>Tom Brady</li>
+                            <li>Derek Anderson</li>
+                            <li>Robert Griffin III</li>
+                            <li>Ryan Tannehill</li>
+                            <li>Teddy Bridgewater</li>
 
                         </ol>
                         <div class="cover qbcover"></div>
@@ -89,10 +95,17 @@ include($docPath.'inc/header.php');
                         <span class="title wrtitle"  onclick="showTP('wr');">Wide Reciever</span>
                         <span class="TPmobileClickNotification">Click Here</span>
                         <ol class="wrol">
-                            <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 1): ?>
-                                <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
-                                <li><?php echo $Player->getName();?></li>
-                            <?php endif; endforeach; ?>
+                            <li>Odell Beckham Jr.</li>
+                            <li>Dez Bryant</li>
+                            <li>Demaryius Thomas</li>
+                            <li>Harry Douglas</li>
+                            <li>Julian Edelman</li>
+                            <li>Antonio Brown</li>
+                            <li>Mike Wallace</li>
+                            <li>James Jones</li>
+                            <li>Devin Hester</li>
+                            <li>Roddy White</li>
+
                         </ol>
                         <div class="cover wrcover"></div>
                     </div>
@@ -103,10 +116,16 @@ include($docPath.'inc/header.php');
                         <span class="title rbtitle " onclick="showTP('rb');">Running Back</span>
                         <span class="TPmobileClickNotification">Click Here</span>
                         <ol  class="rbol">
-                            <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 2): ?>
-                                <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
-                                <li><?php echo $Player->getName();?></li>
-                            <?php endif; endforeach; ?>
+                            <li>Le'Veon Bell</li>
+                            <li>Jeremy Hill</li>
+                            <li>Matt Asiata</li>
+                            <li>DeMarco Murray</li>
+                            <li>Knile Davis</li>
+                            <li>Eddie Lacy</li>
+                            <li>Marshawn Lynch</li>
+                            <li>Arian Foster</li>
+                            <li>Pierre Thomas</li>
+                            <li>Joique Bell</li>
                         </ol>
                         <div class="cover rbcover"></div>
                     </div>
@@ -117,10 +136,16 @@ include($docPath.'inc/header.php');
                         <span class="title tetitle" onclick="showTP('te');">Tight End</span>
                         <span class="TPmobileClickNotification">Click Here</span>
                         <ol class="teol">
-                            <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 7): ?>
-                                <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
-                                <li><?php echo $Player->getName();?></li>
-                            <?php endif; endforeach; ?>
+                            <li>Greg Olsen</li>
+                            <li>Rob Gronkowski</li>
+                            <li>Antonio Gates</li>
+                            <li>Owen Daniels</li>
+                            <li>Josh Hill</li>
+                            <li>Travis Kelce</li>
+                            <li>Jason Witten</li>
+                            <li>Kyle Rudolph</li>
+                            <li>Jimmy Graham</li>
+                            <li>Delanie Walker</li>
                         </ol>
                         <div class="cover tecover"></div>
                     </div>
@@ -131,10 +156,16 @@ include($docPath.'inc/header.php');
                         <span class="title ktitle" onclick="showTP('k');">Kicker</span>
                         <span class="TPmobileClickNotification">Click Here</span>
                         <ol class="kol">
-                            <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 20): ?>
-                                <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
-                                <li><?php echo $Player->getName();?></li>
-                            <?php endif; endforeach; ?>
+                            <li>Josh Scobee</li>
+                            <li>Connor Barth</li>
+                            <li>Dan Carpenter</li>
+                            <li>Chandler Catanzaro</li>
+                            <li>Graham Gano</li>
+                            <li>Mike Nugent</li>
+                            <li>Stephen Gostkowski</li>
+                            <li>Ryan Succop</li>
+                            <li>Matt Prater</li>
+                            <li>Sebastian Janikowski</li>
                         </ol>
                         <div class="cover kcover"></div>
                     </div>
@@ -145,10 +176,16 @@ include($docPath.'inc/header.php');
                         <span class="title dstitle" onclick="showTP('ds');">Defense/Special</span>
                         <span class="TPmobileClickNotification">Click Here</span>
                         <ol class="dsol">
-                            <?php foreach($Report->getTopPerformers() as $tp): if($tp->getPositionID() == 29): ?>
-                                <?php $Player = $PlayerDAO->getPlayerFromID($tp->getPlayerID()) ?>
-                                <li><?php echo $Player->getName();?></li>
-                            <?php endif; endforeach; ?>
+                            <li>Ravens</li>
+                            <li>Patriots</li>
+                            <li>Bengals</li>
+                            <li>Bills</li>
+                            <li>Chiefs</li>
+                            <li>Saints</li>
+                            <li>Cardinals</li>
+                            <li>Texans</li>
+                            <li>Giants</li>
+                            <li>Panthers</li>
                         </ol>
                         <div class="cover dscover"></div>
                     </div>
@@ -172,15 +209,21 @@ include($docPath.'inc/header.php');
                 </div>
 
                 <div class="col-xs-12 col-sm-8">
-                    <?php $waiverDelay = 25;?>
-                    <?php foreach($Report->getWaiver() as $Waiver):; ?>
-                        <?php $Player = $PlayerDAO->getPlayerFromID($Waiver->getPlayerID()) ?>
                     <section class="stat wow fadeInDown clearfix" data-wow-delay=".25s">
-                        <div class="number"><?php echo $Player->getNumber();?></div>
-                        <div class="name"><?php echo $Player->getName(); ?> <span class="position"><?php echo $Player->getPosition(); ?></span> <span class="team"><?php echo $Player->getTeam(); ?></span></div>
-                        <span class="desc"><?php echo $Waiver->getValue(); ?></span>
+                        <div class="number">28</div>
+                        <div class="name">Rueben Randle<span class="position">WR</span> <span class="team">Giants</span></div>
+                        <span class="desc"></span>
                     </section>
-                    <?php endforeach; ?>
+                    <section class="stat wow fadeInDown clearfix" data-wow-delay=".25s">
+                        <div class="number">17</div>
+                        <div class="name">Ryan Tannehill<span class="position">QB</span> <span class="team">Dolphins</span></div>
+                        <span class="desc"></span>
+                    </section>
+                    <section class="stat wow fadeInDown clearfix" data-wow-delay=".25s">
+                        <div class="number">82</div>
+                        <div class="name">Luke Wilson<span class="position">TE</span> <span class="team">Seahawks</span></div>
+                        <span class="desc"></span>
+                    </section>
                 </div>
             </div>
         </div>
@@ -209,7 +252,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#A71930" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -224,13 +267,14 @@ include($docPath.'inc/header.php');
                                 -6z"/>
                                 </g>
                             </svg>
-                            <span class="city">MIN</span>
+                            <span class="city">ATL</span>
                         </div>
 
-                        <div class="name">Mike Wallace <span class="position">WR</span> <span class="team">MIN</span></div>
+                        <div class="name">Julio Jones<span class="position"></span> <span class="team">Falcons</span></div>
                         <span class="desc">
-                            4Q – Ankle Sprain – Out 1-2 Weeks
-                            <b>Stepped on linemans foot</b>
+                            Hip
+                            <b>Game Time Decision
+                            </b>
                         </span>
                     </section>
                 </div>
@@ -242,7 +286,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#773141" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -257,13 +301,14 @@ include($docPath.'inc/header.php');
                                 -6z"/>
                                 </g>
                             </svg>
-                            <span class="city">DET</span>
+                            <span class="city">WAS</span>
                         </div>
 
-                        <div class="name">Mike Wallace <span class="position">WR</span> <span class="team">MIN</span></div>
+                        <div class="name">DeSean Jackson
+                            <span class="position"></span> <span class="team">Redskins</span></div>
                         <span class="desc">
-                            4Q – Ankle Sprain – Out 1-2 Weeks
-                            <b>Stepped on linemans foot</b>
+                            Leg
+                            <b>Gametime Decision</b>
                         </span>
                     </section>
                 </div>
@@ -275,7 +320,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#004953" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -290,48 +335,19 @@ include($docPath.'inc/header.php');
                                 -6z"/>
                                 </g>
                             </svg>
-                            <span class="city">GB</span>
+                            <span class="city">PHI</span>
                         </div>
 
-                        <div class="name">Mike Wallace <span class="position">WR</span> <span class="team">MIN</span></div>
+                        <div class="name">Ryan Matthews <span class="position"></span> <span class="team">Eagles</span></div>
                         <span class="desc">
-                            4Q – Ankle Sprain – Out 1-2 Weeks
-                            <b>Stepped on linemans foot</b>
+                            Ankle
+                            <b>Questionable</b>
                         </span>
                     </section>
                 </div>
 
                 <div class="col-xs-12 col-sm-6">
-                    <section class="player wow fadeIn">
-                        <div class="helmet">
-                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                             preserveAspectRatio="xMidYMid meet">
-                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
-                                <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                                </g>
-                            </svg>
-                            <span class="city">CHI</span>
-                        </div>
 
-                        <div class="name">Mike Wallace <span class="position">WR</span> <span class="team">MIN</span></div>
-                        <span class="desc">
-                            4Q – Ankle Sprain – Out 1-2 Weeks
-                            <b>Stepped on linemans foot</b>
-                        </span>
-                    </section>
                 </div>
             </div>
         </div>
@@ -343,7 +359,7 @@ include($docPath.'inc/header.php');
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-center">
-                    <span class="heading wow slideInUp"><i>NFL TEAMS</i> POWER<b>RANKINGS</b></span>
+                    <span class="heading wow slideInUp"><i>NFL PLAYER</i> POWER<b>RANKINGS</b></span>
 
                     <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which NFL teams will dominate the rest of the way. Finding stud players on prospering teams is a recipe for success in fantasy football.">
                         <img src="<?=$webPath?>images/report/info-icon-white.png">
@@ -360,23 +376,23 @@ include($docPath.'inc/header.php');
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th>A. Rodgers, GB</th>
+                        <tr>
+                                <th>Aaron Rodgers</th>
                                 <td>ADP</td>
                                 <td><i class="fa fa-caret-up"></i></td>
-                                <td>22</td>
+                                <td>342.00</td>
                             </tr>
                             <tr>
-                                <th>A. Rodgers, GB</th>
+                                <th>Andrew Luck</th>
                                 <td>ADP</td>
                                 <td><i class="fa fa-caret-down"></i></td>
-                                <td>22</td>
+                                <td>336.00</td>
                             </tr>
                             <tr>
-                                <th>A. Rodgers, GB</th>
+                                <th>Russell Wilson</th>
                                 <td>ADP</td>
                                 <td><i class="fa fa-caret-down"></i></td>
-                                <td>22</td>
+                                <td>312.00</td>
                             </tr>
                         </tbody>
                     </table>
@@ -390,23 +406,23 @@ include($docPath.'inc/header.php');
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th>A. Rodgers, GB</th>
+                        <tr>
+                                <th>Antonio Brown</th>
                                 <td>ADP</td>
                                 <td><i class="fa fa-caret-up"></i></td>
-                                <td>22</td>
+                                <td>251.00</td>
                             </tr>
                             <tr>
-                                <th>A. Rodgers, GB</th>
+                                <th>Demaryius Thomas</th>
                                 <td>ADP</td>
                                 <td><i class="fa fa-caret-down"></i></td>
-                                <td>22</td>
+                                <td>223.00</td>
                             </tr>
                             <tr>
-                                <th>A. Rodgers, GB</th>
+                                <th>Jordy Nelson</th>
                                 <td>ADP</td>
                                 <td><i class="fa fa-caret-down"></i></td>
-                                <td>22</td>
+                                <td>221.00</td>
                             </tr>
                         </tbody>
                     </table>
@@ -420,23 +436,23 @@ include($docPath.'inc/header.php');
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th>A. Rodgers, GB</th>
+                        <tr>
+                                <th>DeMarco Murray</th>
                                 <td>ADP</td>
                                 <td><i class="fa fa-caret-up"></i></td>
-                                <td>22</td>
+                                <td>282.00</td>
                             </tr>
                             <tr>
-                                <th>A. Rodgers, GB</th>
+                                <th>Le'Veon Bell</th>
                                 <td>ADP</td>
                                 <td><i class="fa fa-caret-down"></i></td>
-                                <td>22</td>
+                                <td>272.00</td>
                             </tr>
                             <tr>
-                                <th>A. Rodgers, GB</th>
+                                <th>Marshawn Lynch</th>
                                 <td>ADP</td>
                                 <td><i class="fa fa-caret-down"></i></td>
-                                <td>22</td>
+                                <td>253.00</td>
                             </tr>
                         </tbody>
                     </table>
@@ -452,23 +468,23 @@ include($docPath.'inc/header.php');
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th>A. Rodgers, GB</th>
+                        <tr>
+                                <th>Rob Gronkowski</th>
                                 <td>ADP</td>
                                 <td><i class="fa fa-caret-up"></i></td>
-                                <td>22</td>
+                                <td>178.00</td>
                             </tr>
                             <tr>
-                                <th>A. Rodgers, GB</th>
+                                <th>Antonio Gates</th>
                                 <td>ADP</td>
                                 <td><i class="fa fa-caret-down"></i></td>
-                                <td>22</td>
+                                <td>148.00</td>
                             </tr>
                             <tr>
-                                <th>A. Rodgers, GB</th>
+                                <th>Jimmy Graha</th>
                                 <td>ADP</td>
                                 <td><i class="fa fa-caret-down"></i></td>
-                                <td>22</td>
+                                <td>137.00</td>
                             </tr>
                         </tbody>
                     </table>
@@ -482,23 +498,23 @@ include($docPath.'inc/header.php');
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th>A. Rodgers, GB</th>
+                        <tr>
+                                <th>Stephen Gostkowski</th>
                                 <td>ADP</td>
                                 <td><i class="fa fa-caret-up"></i></td>
-                                <td>22</td>
+                                <td>168.00</td>
                             </tr>
                             <tr>
-                                <th>A. Rodgers, GB</th>
+                                <th>Cody Parkey</th>
                                 <td>ADP</td>
                                 <td><i class="fa fa-caret-down"></i></td>
-                                <td>22</td>
+                                <td>158.00</td>
                             </tr>
                             <tr>
-                                <th>A. Rodgers, GB</th>
+                                <th>Adam Vinatieri</th>
                                 <td>ADP</td>
                                 <td><i class="fa fa-caret-down"></i></td>
-                                <td>22</td>
+                                <td>152.00</td>
                             </tr>
                         </tbody>
                     </table>
@@ -512,23 +528,23 @@ include($docPath.'inc/header.php');
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th>A. Rodgers, GB</th>
+                        <tr>
+                                <th>Bills</th>
                                 <td>ADP</td>
                                 <td><i class="fa fa-caret-up"></i></td>
-                                <td>22</td>
+                                <td>170.00</td>
                             </tr>
                             <tr>
-                                <th>A. Rodgers, GB</th>
+                                <th>Eagles</th>
                                 <td>ADP</td>
                                 <td><i class="fa fa-caret-down"></i></td>
-                                <td>22</td>
+                                <td>153.00</td>
                             </tr>
                             <tr>
-                                <th>A. Rodgers, GB</th>
+                                <th>Seahawks</th>
                                 <td>ADP</td>
                                 <td><i class="fa fa-caret-down"></i></td>
-                                <td>22</td>
+                                <td>150.00</td>
                             </tr>
                         </tbody>
                     </table>
@@ -537,6 +553,7 @@ include($docPath.'inc/header.php');
         </div>
     </section>
     <!--/POWER RANKING-->
+
 
     <!--TRENDING-->
     <section class="trending">
@@ -553,31 +570,123 @@ include($docPath.'inc/header.php');
 
                         <div class="stats wow fadeIn">
                             <div class="col-xs-12 col-sm-6">
-                                <div class="player">
-                                    <span class="name">Tom Brady</span>
-                                    <span class="desc"><b>QB</b> - 90 PTS - 33 AVG</span>
-                                </div>
+                                <table class="stats table table-hover" style="border:1px solid #d1d4d9;">
+                                    <thead>
+                                    <tr style="background:#465366;">
+                                        <th colspan="4" class="text-center" style="color:white;">Odell Beckham Jr., WR</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th>Week 15</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-up"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Week 14</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-down"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Week 13</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-down"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
 
                             <div class="col-xs-12 col-sm-6">
-                                <div class="player">
-                                    <span class="name">Tom Brady</span>
-                                    <span class="desc"><b>QB</b> - 90 PTS - 33 AVG</span>
-                                </div>
+                                <table class="stats table table-hover" style="border:1px solid #d1d4d9;">
+                                    <thead>
+                                    <tr style="background:#465366;">
+                                        <th colspan="4" class="text-center" style="color:white;">Ravens, DST</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th>Week 15</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-up"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Week 14</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-down"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Week 13</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-down"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
 
                             <div class="col-xs-12 col-sm-6">
-                                <div class="player">
-                                    <span class="name">Tom Brady</span>
-                                    <span class="desc"><b>QB</b> - 90 PTS - 33 AVG</span>
-                                </div>
+                                <table class="stats table table-hover" style="border:1px solid #d1d4d9;">
+                                    <thead>
+                                    <tr style="background:#465366;">
+                                        <th colspan="4" class="text-center" style="color:white;">Matt Ryan, QB</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th>Week 15</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-up"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Week 14</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-down"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Week 13</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-down"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
 
                             <div class="col-xs-12 col-sm-6">
-                                <div class="player">
-                                    <span class="name">Tom Brady</span>
-                                    <span class="desc"><b>QB</b> - 90 PTS - 33 AVG</span>
-                                </div>
+                                <table class="stats table table-hover" style="border:1px solid #d1d4d9;">
+                                    <thead>
+                                    <tr style="background:#465366;">
+                                        <th colspan="4" class="text-center" style="color:white;">Le'Veon Bell, RB</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th>Week 15</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-up"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Week 14</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-down"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Week 13</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-down"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -596,31 +705,123 @@ include($docPath.'inc/header.php');
 
                         <div class="stats wow fadeIn">
                             <div class="col-xs-12 col-sm-6">
-                                <div class="player">
-                                    <span class="name">Tom Brady</span>
-                                    <span class="desc"><b>QB</b> - 90 PTS - 33 AVG</span>
-                                </div>
+                                <table class="stats table table-hover" style="border:1px solid #d1d4d9;">
+                                    <thead>
+                                    <tr style="background:#465366;">
+                                        <th colspan="4" class="text-center" style="color:white;">Andrew Lucy, QB</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                     <tr>
+                                        <th>Week 15</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-up"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Week 14</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-down"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Week 13</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-down"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
 
                             <div class="col-xs-12 col-sm-6">
-                                <div class="player">
-                                    <span class="name">Tom Brady</span>
-                                    <span class="desc"><b>QB</b> - 90 PTS - 33 AVG</span>
-                                </div>
+                                <table class="stats table table-hover" style="border:1px solid #d1d4d9;">
+                                    <thead>
+                                    <tr style="background:#465366;">
+                                        <th colspan="4" class="text-center" style="color:white;">Peyton Manning, QB</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th>Week 15</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-up"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Week 14</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-down"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Week 13</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-down"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
 
                             <div class="col-xs-12 col-sm-6">
-                                <div class="player">
-                                    <span class="name">Tom Brady</span>
-                                    <span class="desc"><b>QB</b> - 90 PTS - 33 AVG</span>
-                                </div>
+                                <table class="stats table table-hover" style="border:1px solid #d1d4d9;">
+                                    <thead>
+                                    <tr style="background:#465366;">
+                                        <th colspan="4" class="text-center" style="color:white;">Jamaal Charles, RB</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th>Week 15</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-up"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Week 14</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-down"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Week 13</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-down"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
 
                             <div class="col-xs-12 col-sm-6">
-                                <div class="player">
-                                    <span class="name">Tom Brady</span>
-                                    <span class="desc"><b>QB</b> - 90 PTS - 33 AVG</span>
-                                </div>
+                                <table class="stats table table-hover" style="border:1px solid #d1d4d9;">
+                                    <thead>
+                                    <tr style="background:#465366;">
+                                        <th colspan="4" class="text-center" style="color:white;">A.J. Green, WR</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th>Week 15</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-up"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Week 14</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-down"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Week 13</th>
+                                        <td>ADP</td>
+                                        <td><i class="fa fa-caret-down"></i></td>
+                                        <td>22</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -690,7 +891,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#00338D" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -705,7 +906,7 @@ include($docPath.'inc/header.php');
                                 -6z"/>
                                 </g>
                             </svg>
-                            <span class="city">CHI</span>
+                            <span class="city">BUF</span>
                         </div>
 
                         <div class="vs">AT</div>
@@ -715,7 +916,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#A5ACAF" stroke="none">
                                 <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
                                 18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
                                 -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
@@ -731,7 +932,7 @@ include($docPath.'inc/header.php');
                                 </g>
                             </svg>
 
-                            <span class="city">CHI</span>
+                            <span class="city">OAK</span>
                         </div>
                     </div>
                 </div>
@@ -743,7 +944,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#A71930" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -758,7 +959,7 @@ include($docPath.'inc/header.php');
                                 -6z"/>
                                 </g>
                             </svg>
-                            <span class="city">CHI</span>
+                            <span class="city">ATL</span>
                         </div>
 
                         <div class="vs">AT</div>
@@ -768,7 +969,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#9F8958" stroke="none">
                                 <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
                                 18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
                                 -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
@@ -784,7 +985,7 @@ include($docPath.'inc/header.php');
                                 </g>
                             </svg>
 
-                            <span class="city">CHI</span>
+                            <span class="city">NO</span>
                         </div>
                     </div>
                 </div>
@@ -796,7 +997,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#004953" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -811,7 +1012,7 @@ include($docPath.'inc/header.php');
                                 -6z"/>
                                 </g>
                             </svg>
-                            <span class="city">CHI</span>
+                            <span class="city">PHI</span>
                         </div>
 
                         <div class="vs">AT</div>
@@ -821,7 +1022,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#773141" stroke="none">
                                 <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
                                 18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
                                 -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
@@ -837,7 +1038,7 @@ include($docPath.'inc/header.php');
                                 </g>
                             </svg>
 
-                            <span class="city">CHI</span>
+                            <span class="city">WAS</span>
                         </div>
                     </div>
                 </div>
@@ -851,7 +1052,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#008E97" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -866,7 +1067,7 @@ include($docPath.'inc/header.php');
                                 -6z"/>
                                 </g>
                             </svg>
-                            <span class="city">CHI</span>
+                            <span class="city">MIA</span>
                         </div>
 
                         <div class="vs">AT</div>
@@ -876,7 +1077,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#4F2683" stroke="none">
                                 <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
                                 18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
                                 -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
@@ -892,7 +1093,7 @@ include($docPath.'inc/header.php');
                                 </g>
                             </svg>
 
-                            <span class="city">CHI</span>
+                            <span class="city">MIN</span>
                         </div>
                     </div>
                 </div>
@@ -904,7 +1105,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#002244" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -919,7 +1120,7 @@ include($docPath.'inc/header.php');
                                 -6z"/>
                                 </g>
                             </svg>
-                            <span class="city">CHI</span>
+                            <span class="city">DAL</span>
                         </div>
 
                         <div class="vs">AT</div>
@@ -929,7 +1130,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#002C5F" stroke="none">
                                 <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
                                 18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
                                 -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
@@ -945,7 +1146,7 @@ include($docPath.'inc/header.php');
                                 </g>
                             </svg>
 
-                            <span class="city">CHI</span>
+                            <span class="city">IND</span>
                         </div>
                     </div>
                 </div>
@@ -957,7 +1158,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#0B2265" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -972,7 +1173,7 @@ include($docPath.'inc/header.php');
                                 -6z"/>
                                 </g>
                             </svg>
-                            <span class="city">CHI</span>
+                            <span class="city">NYG</span>
                         </div>
 
                         <div class="vs">AT</div>
@@ -982,7 +1183,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#002244" stroke="none">
                                 <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
                                 18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
                                 -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
@@ -998,7 +1199,7 @@ include($docPath.'inc/header.php');
                                 </g>
                             </svg>
 
-                            <span class="city">CHI</span>
+                            <span class="city">STL</span>
                         </div>
                     </div>
                 </div>
@@ -1027,7 +1228,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#002244" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -1042,10 +1243,10 @@ include($docPath.'inc/header.php');
                                 -6z"/>
                                 </g>
                             </svg>
-                            <span class="city">CHI</span>
+                            <span class="city">NE</span>
                         </div>
 
-                        <span class="desc">Chicago</span>
+                        <span class="desc">Patriots</span>
                     </section>
                 </div>
 
@@ -1056,7 +1257,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#AA0000" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -1071,10 +1272,10 @@ include($docPath.'inc/header.php');
                                 -6z"/>
                                 </g>
                             </svg>
-                            <span class="city">CHI</span>
+                            <span class="city">SEA</span>
                         </div>
 
-                        <span class="desc">Chicago</span>
+                        <span class="desc">Seahawks</span>
                     </section>
                 </div>
 
@@ -1085,7 +1286,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#203731" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -1100,10 +1301,10 @@ include($docPath.'inc/header.php');
                                 -6z"/>
                                 </g>
                             </svg>
-                            <span class="city">CHI</span>
+                            <span class="city">GB</span>
                         </div>
 
-                        <span class="desc">Chicago</span>
+                        <span class="desc">Packers</span>
                     </section>
                 </div>
 
@@ -1114,7 +1315,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#002244" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -1129,10 +1330,10 @@ include($docPath.'inc/header.php');
                                 -6z"/>
                                 </g>
                             </svg>
-                            <span class="city">CHI</span>
+                            <span class="city">DEN</span>
                         </div>
 
-                        <span class="desc">Chicago</span>
+                        <span class="desc">Broncos</span>
                     </section>
                 </div>
 
@@ -1143,7 +1344,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#002C5F" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -1158,10 +1359,10 @@ include($docPath.'inc/header.php');
                                 -6z"/>
                                 </g>
                             </svg>
-                            <span class="city">CHI</span>
+                            <span class="city">IND</span>
                         </div>
 
-                        <span class="desc">Chicago</span>
+                        <span class="desc">Colts</span>
                     </section>
                 </div>
 
@@ -1172,7 +1373,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#002244" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -1187,10 +1388,10 @@ include($docPath.'inc/header.php');
                                 -6z"/>
                                 </g>
                             </svg>
-                            <span class="city">CHI</span>
+                            <span class="city">DAL</span>
                         </div>
 
-                        <span class="desc">Chicago</span>
+                        <span class="desc">Cowboys</span>
                     </section>
                 </div>
             </div>
@@ -1643,8 +1844,609 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
+                                fill="#A71930" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
+                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
+                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
+                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
+                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
+                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
+                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
+                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
+                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
+                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
+                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
+                                -6z"/>
+                                </g>
+                            </svg>
+                            <span class="city">ATL</span>
+                            <span class="score">24</span>
+                        </div>
+
+                        <div class="vs">AT</div>
+
+                        <div class="helmet right win">
+                            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                fill="#9F8958" stroke="none">
+                                <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
+                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
+                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
+                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
+                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
+                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
+                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
+                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
+                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
+                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
+                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
+                                30 205 28 23 -1 25 -4 22 -46z"/>
+                                </g>
+                            </svg>
+
+                            <span class="city">NO</span>
+                            <span class="score">14</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-4">
+                    <div class="game clearfix">
+                        <div class="helmet left loss">
+                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                fill="#002244" stroke="none">
+                                <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
+                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
+                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
+                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
+                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
+                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
+                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
+                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
+                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
+                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
+                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
+                                -6z"/>
+                                </g>
+                            </svg>
+                            <span class="city">NE</span>
+                            <span class="score">17</span>
+                        </div>
+
+                        <div class="vs">AT</div>
+
+                        <div class="helmet right win">
+                            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                fill="#203731" stroke="none">
+                                <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
+                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
+                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
+                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
+                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
+                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
+                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
+                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
+                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
+                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
+                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
+                                30 205 28 23 -1 25 -4 22 -46z"/>
+                                </g>
+                            </svg>
+
+                            <span class="city">NYJ</span>
+                            <span class="score">16</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-4">
+                    <div class="game clearfix">
+                        <div class="helmet left win">
+                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                fill="#E31837" stroke="none">
+                                <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
+                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
+                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
+                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
+                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
+                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
+                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
+                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
+                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
+                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
+                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
+                                -6z"/>
+                                </g>
+                            </svg>
+                            <span class="city">KC</span>
+                            <span class="score">12</span>
+                        </div>
+
+                        <div class="vs">AT</div>
+
+                        <div class="helmet right loss">
+                            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                fill="#000000" stroke="none">
+                                <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
+                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
+                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
+                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
+                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
+                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
+                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
+                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
+                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
+                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
+                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
+                                30 205 28 23 -1 25 -4 22 -46z"/>
+                                </g>
+                            </svg>
+
+                            <span class="city">PIT</span>
+                            <span class="score">20</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                    <div class="game clearfix">
+                        <div class="helmet left loss">
+                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                fill="#203731" stroke="none">
+                                <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
+                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
+                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
+                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
+                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
+                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
+                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
+                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
+                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
+                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
+                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
+                                -6z"/>
+                                </g>
+                            </svg>
+                            <span class="city">GB</span>
+                            <span class="score">20</span>
+                        </div>
+
+                        <div class="vs">AT</div>
+
+                        <div class="helmet right win">
+                            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                fill="#D50A0A" stroke="none">
+                                <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
+                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
+                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
+                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
+                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
+                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
+                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
+                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
+                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
+                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
+                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
+                                30 205 28 23 -1 25 -4 22 -46z"/>
+                                </g>
+                            </svg>
+
+                            <span class="city">TB</span>
+                            <span class="score">3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-4">
+                    <div class="game clearfix">
+                        <div class="helmet left loss">
+                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                fill="#00338D" stroke="none">
+                                <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
+                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
+                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
+                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
+                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
+                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
+                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
+                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
+                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
+                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
+                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
+                                -6z"/>
+                                </g>
+                            </svg>
+                            <span class="city">BUF</span>
+                            <span class="score">24</span>
+                        </div>
+
+                        <div class="vs">AT</div>
+
+                        <div class="helmet right win">
+                            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                fill="#A5ACAF" stroke="none">
+                                <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
+                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
+                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
+                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
+                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
+                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
+                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
+                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
+                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
+                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
+                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
+                                30 205 28 23 -1 25 -4 22 -46z"/>
+                                </g>
+                            </svg>
+
+                            <span class="city">OAK</span>
+                            <span class="score">26</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-4">
+                    <div class="game clearfix">
+                        <div class="helmet left win">
+                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                fill="#AA0000" stroke="none">
+                                <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
+                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
+                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
+                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
+                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
+                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
+                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
+                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
+                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
+                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
+                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
+                                -6z"/>
+                                </g>
+                            </svg>
+                            <span class="city">SEA</span>
+                            <span class="score">35</span>
+                        </div>
+
+                        <div class="vs">AT</div>
+
+                        <div class="helmet right loss">
+                            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                fill="#97233F" stroke="none">
+                                <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
+                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
+                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
+                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
+                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
+                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
+                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
+                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
+                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
+                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
+                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
+                                30 205 28 23 -1 25 -4 22 -46z"/>
+                                </g>
+                            </svg>
+
+                            <span class="city">ARI</span>
+                            <span class="score">6</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="game clearfix">
+                        <div class="helmet left win">
+                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                   fill="#002244" stroke="none">
+                                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
+                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
+                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
+                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
+                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
+                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
+                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
+                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
+                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
+                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
+                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
+                                -6z"/>
+                                </g>
+                            </svg>
+                            <span class="city">DEN</span>
+                            <span class="score">28</span>
+                        </div>
+
+                        <div class="vs">AT</div>
+
+                        <div class="helmet right loss">
+                            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                   fill="#000000" stroke="none">
+                                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
+                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
+                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
+                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
+                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
+                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
+                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
+                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
+                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
+                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
+                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
+                                30 205 28 23 -1 25 -4 22 -46z"/>
+                                </g>
+                            </svg>
+
+                            <span class="city">CIN</span>
+                            <span class="score">37</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="game clearfix">
+                        <div class="helmet left win">
+                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                   fill="#002244" stroke="none">
+                                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
+                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
+                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
+                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
+                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
+                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
+                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
+                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
+                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
+                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
+                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
+                                -6z"/>
+                                </g>
+                            </svg>
+                            <span class="city">TEN</span>
+                            <span class="score">13</span>
+                        </div>
+
+                        <div class="vs">AT</div>
+
+                        <div class="helmet right loss">
+                            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                   fill="#000000" stroke="none">
+                                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
+                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
+                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
+                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
+                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
+                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
+                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
+                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
+                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
+                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
+                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
+                                30 205 28 23 -1 25 -4 22 -46z"/>
+                                </g>
+                            </svg>
+
+                            <span class="city">JAX</span>
+                            <span class="score">21</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="game clearfix">
+                        <div class="helmet left win">
+                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                   fill="#004953" stroke="none">
+                                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
+                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
+                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
+                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
+                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
+                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
+                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
+                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
+                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
+                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
+                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
+                                -6z"/>
+                                </g>
+                            </svg>
+                            <span class="city">PHI</span>
+                            <span class="score">24</span>
+                        </div>
+
+                        <div class="vs">AT</div>
+
+                        <div class="helmet right loss">
+                            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                   fill="#773141" stroke="none">
+                                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
+                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
+                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
+                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
+                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
+                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
+                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
+                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
+                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
+                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
+                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
+                                30 205 28 23 -1 25 -4 22 -46z"/>
+                                </g>
+                            </svg>
+
+                            <span class="city">WAS</span>
+                            <span class="score">27</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="game clearfix">
+                        <div class="helmet left win">
+                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                   fill="#002244" stroke="none">
+                                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
+                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
+                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
+                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
+                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
+                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
+                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
+                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
+                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
+                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
+                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
+                                -6z"/>
+                                </g>
+                            </svg>
+                            <span class="city">SD</span>
+                            <span class="score">38</span>
+                        </div>
+
+                        <div class="vs">AT</div>
+
+                        <div class="helmet right loss">
+                            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                   fill="#002244" stroke="none">
+                                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
+                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
+                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
+                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
+                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
+                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
+                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
+                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
+                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
+                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
+                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
+                                30 205 28 23 -1 25 -4 22 -46z"/>
+                                </g>
+                            </svg>
+
+                            <span class="city">SF</span>
+                            <span class="score">35</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="game clearfix">
+                        <div class="helmet left win">
+                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                   fill="#FB4F14" stroke="none">
+                                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
+                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
+                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
+                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
+                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
+                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
+                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
+                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
+                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
+                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
+                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
+                                -6z"/>
+                                </g>
+                            </svg>
+                            <span class="city">CLE</span>
+                            <span class="score">13</span>
+                        </div>
+
+                        <div class="vs">AT</div>
+
+                        <div class="helmet right loss">
+                            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                   fill="#0085CA" stroke="none">
+                                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
+                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
+                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
+                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
+                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
+                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
+                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
+                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
+                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
+                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
+                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
+                                30 205 28 23 -1 25 -4 22 -46z"/>
+                                </g>
+                            </svg>
+
+                            <span class="city">CAR</span>
+                            <span class="score">17</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="game clearfix">
+                        <div class="helmet left win">
+                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                   fill="#005A8B" stroke="none">
+                                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
                                 -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
@@ -1659,128 +2461,18 @@ include($docPath.'inc/header.php');
                                 </g>
                             </svg>
                             <span class="city">DET</span>
-                            <span class="score">24</span>
-                        </div>
-
-                        <div class="vs">AT</div>
-
-                        <div class="helmet right win">
-                            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                             preserveAspectRatio="xMidYMid meet">
-                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
-                                <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                                </g>
-                            </svg>
-
-                            <span class="city">CHI</span>
-                            <span class="score">34</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-4">
-                    <div class="game clearfix">
-                        <div class="helmet left loss">
-                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                             preserveAspectRatio="xMidYMid meet">
-                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
-                                <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                                </g>
-                            </svg>
-                            <span class="city">CHI</span>
-                            <span class="score">34</span>
-                        </div>
-
-                        <div class="vs">AT</div>
-
-                        <div class="helmet right win">
-                            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                             preserveAspectRatio="xMidYMid meet">
-                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
-                                <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                                </g>
-                            </svg>
-
-                            <span class="city">CHI</span>
-                            <span class="score">34</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-4">
-                    <div class="game clearfix">
-                        <div class="helmet left win">
-                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                             preserveAspectRatio="xMidYMid meet">
-                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
-                                <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                                </g>
-                            </svg>
-                            <span class="city">CHI</span>
-                            <span class="score">34</span>
+                            <span class="score">20</span>
                         </div>
 
                         <div class="vs">AT</div>
 
                         <div class="helmet right loss">
                             <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                             preserveAspectRatio="xMidYMid meet">
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
-                                <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
+                                   fill="#0B162A" stroke="none">
+                                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
                                 18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
                                 -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
                                 159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
@@ -1796,132 +2488,19 @@ include($docPath.'inc/header.php');
                             </svg>
 
                             <span class="city">CHI</span>
-                            <span class="score">34</span>
+                            <span class="score">14</span>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-12 col-sm-4">
-                    <div class="game clearfix">
-                        <div class="helmet left loss">
-                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                             preserveAspectRatio="xMidYMid meet">
-                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
-                                <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                                </g>
-                            </svg>
-                            <span class="city">CHI</span>
-                            <span class="score">34</span>
-                        </div>
-
-                        <div class="vs">AT</div>
-
-                        <div class="helmet right win">
-                            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                             preserveAspectRatio="xMidYMid meet">
-                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
-                                <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                                </g>
-                            </svg>
-
-                            <span class="city">CHI</span>
-                            <span class="score">34</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-4">
-                    <div class="game clearfix">
-                        <div class="helmet left loss">
-                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                             preserveAspectRatio="xMidYMid meet">
-                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
-                                <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                                </g>
-                            </svg>
-                            <span class="city">CHI</span>
-                            <span class="score">34</span>
-                        </div>
-
-                        <div class="vs">AT</div>
-
-                        <div class="helmet right win">
-                            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                             preserveAspectRatio="xMidYMid meet">
-                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
-                                <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                                </g>
-                            </svg>
-
-                            <span class="city">CHI</span>
-                            <span class="score">34</span>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="col-xs-12 col-sm-4">
                     <div class="game clearfix">
                         <div class="helmet left win">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                             preserveAspectRatio="xMidYMid meet">
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
-                                <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
+                                   fill="#241773" stroke="none">
+                                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
                                 -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
@@ -1935,19 +2514,19 @@ include($docPath.'inc/header.php');
                                 -6z"/>
                                 </g>
                             </svg>
-                            <span class="city">CHI</span>
-                            <span class="score">34</span>
+                            <span class="city">BAL</span>
+                            <span class="score">13</span>
                         </div>
 
                         <div class="vs">AT</div>
 
                         <div class="helmet right loss">
                             <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                             preserveAspectRatio="xMidYMid meet">
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="" stroke="none">
-                                <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
+                                   fill="#03202F" stroke="none">
+                                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
                                 18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
                                 -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
                                 159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
@@ -1962,8 +2541,170 @@ include($docPath.'inc/header.php');
                                 </g>
                             </svg>
 
-                            <span class="city">CHI</span>
-                            <span class="score">34</span>
+                            <span class="city">HOU</span>
+                            <span class="score">25</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="game clearfix">
+                        <div class="helmet left win">
+                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                   fill="#4F2683" stroke="none">
+                                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
+                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
+                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
+                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
+                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
+                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
+                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
+                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
+                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
+                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
+                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
+                                -6z"/>
+                                </g>
+                            </svg>
+                            <span class="city">MIN</span>
+                            <span class="score">35</span>
+                        </div>
+
+                        <div class="vs">AT</div>
+
+                        <div class="helmet right loss">
+                            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                   fill="#008E97" stroke="none">
+                                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
+                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
+                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
+                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
+                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
+                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
+                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
+                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
+                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
+                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
+                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
+                                30 205 28 23 -1 25 -4 22 -46z"/>
+                                </g>
+                            </svg>
+
+                            <span class="city">MIA</span>
+                            <span class="score">37</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="game clearfix">
+                        <div class="helmet left win">
+                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                   fill="#0B2265" stroke="none">
+                                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
+                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
+                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
+                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
+                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
+                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
+                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
+                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
+                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
+                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
+                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
+                                -6z"/>
+                                </g>
+                            </svg>
+                            <span class="city">NYG</span>
+                            <span class="score">37</span>
+                        </div>
+
+                        <div class="vs">AT</div>
+
+                        <div class="helmet right loss">
+                            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                   fill="#002244" stroke="none">
+                                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
+                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
+                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
+                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
+                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
+                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
+                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
+                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
+                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
+                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
+                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
+                                30 205 28 23 -1 25 -4 22 -46z"/>
+                                </g>
+                            </svg>
+
+                            <span class="city">STL</span>
+                            <span class="score">27</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="game clearfix">
+                        <div class="helmet left win">
+                            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                   fill="#002C5F" stroke="none">
+                                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
+                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
+                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
+                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
+                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
+                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
+                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
+                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
+                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
+                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
+                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
+                                -6z"/>
+                                </g>
+                            </svg>
+                            <span class="city">IND</span>
+                            <span class="score">7</span>
+                        </div>
+
+                        <div class="vs">AT</div>
+
+                        <div class="helmet right loss">
+                            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                                 preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
+                                   fill="#002244" stroke="none">
+                                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
+                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
+                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
+                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
+                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
+                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
+                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
+                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
+                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
+                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
+                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
+                                30 205 28 23 -1 25 -4 22 -46z"/>
+                                </g>
+                            </svg>
+
+                            <span class="city">DAL</span>
+                            <span class="score">42</span>
                         </div>
                     </div>
                 </div>

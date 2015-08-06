@@ -64,6 +64,7 @@
     <!-- Scripts -->
     <script src="<?php echo $webPath;?>scripts/modernizr.js"></script>
     <script type="text/javascript" src="<?php echo $webPath;?>scripts/jquery.min.js"></script>
+    <script src="<?php echo $webPath;?>report/js/plugins.js"></script>
     <!-- End Scripts -->
     <Script>
 $(document).ready(function(){
@@ -117,9 +118,11 @@ $(document).ready(function(){
                 <button type="button" class="navbar-toggle collapsed">
                     <span class="fa fa-bars"></span>
                 </button>
+                <?php if($pageID !='home'):?>
                 <a class="navbar-brand" href="<?php echo $webPath;?>">
-                    <img alt="Sports Guiders Logo" height="30" width="200" src="<?php echo $webPath;?>images/logo/sg-logo.png" />
+                    <img alt="Sports Guiders Logo" src="<?php echo $webPath;?>images/logo/sg-logo.png" style="max-width:200px;">
                 </a>
+                <?php endif; ?>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">

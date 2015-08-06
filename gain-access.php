@@ -228,42 +228,41 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="alert alert-default">
-                            Already have an account? <a href="<?php echo $webPath;?>login/">Click here to login</a>
-                        </div>
 
                         <!-- Checkout Form -->
-                        <div class="checkout-form">
+                        <div class="checkout-form" style="border-radius:15px;">
                             <h2 class="text-center" style="color: #465366;">Getting Started</h2>
 
                             <p>
                                 It only costs $9 for a year to gain access to The Recap and other expert advice that will make you a Fantasy Football winner.
                             </p>
-                            <table class="table">
-                                <tr class="subtotal">
-                                    <td><b>Basic Membership</b></td>
-                                    <td>FREE</td>
-                                    <td>Get regular emails about the hottest action</td>
+                            <style>
+                                /*.table .middle td {box-shadow:0px 0px 12px #666,0px 0px 50px #666;}*/
+                            </style>
+                            <table class="table" style="">
+                                <tr class="subtotal" style="border-top:1px solid #bec9d9;">
+                                    <td class="cell1" style=""><b>Basic Membership</b></td>
+                                    <td class="cell2" style="">FREE</td>
+                                    <td class="cell3">Get regular emails about the hottest action</td>
                                 </tr>
-                                <tr class="shipping">
-                                    <td><b>Guider Access</b></td>
-                                    <td>$9</td>
-                                    <td>Get regular emails about the hottest action and access to reports</td>
+                                <tr style="border:1px solid #e3e3e3;font-weight:900;">
+                                    <td class="clonecell1" style="background: #d83435;color:white;"><b>Guider Access</b></td>
+                                    <td class="clonecell2" style="background: #d83435;color:white;font-size:18px;">$9</td>
+                                    <td class="clonecell3" style="background: #f5f5f5;">Get regular emails about the hottest action and access to reports</td>
                                 </tr>
-                                <tr class="total">
-                                    <td><b>Expert Access</b></td>
-                                    <td>$19</td>
+                                <tr class="">
+                                    <td style=""><b>Expert Access</b></td>
+                                    <td style="">$19</td>
                                     <td>Get regular emails about the hottest action, access to reports, and 1 on 1 chat with an expert every Sunday 8:30am - 12:30am</td>
-                                </tr>
-                                <tr>
-                                    <Td><b>**DEAL</b></Td>
-                                    <td><img id="fbShareButton" src="http://www.sportsguiders.com/img/fbshare.png" style="cursor:pointer;max-width:100px;"></td>
-                                    <td>Share us on facebook and receive a dollar off on your subscription</td>
                                 </tr>
                             </table>
                         </div>
                         <!-- End Checkout Form -->
-
+                        <div class="checkout-form" style="margin-top:25px;border-radius:15px">
+                            <h2 style="width:100%;">Want to save money??</h2>
+                            <p style="padding:7px;width:100%;">Share us on facebook and receive $1 off on your subscription</p>
+                            <img id="fbShareButton" src="http://www.sportsguiders.com/img/fbshare.png" style="cursor:pointer;max-width:200px;">
+                        </div>
                     </div>
 
                     <div class="col-sm-6">
@@ -374,7 +373,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                         <!-- Billing / Shipping Form -->
                         <div class="well form-container active">
                             <div class="card-wrapper"></div>
-                            <form method="post" id="payment-form">
+                            <form method="post" id="payment-form" style>
 
                                 <!--hidden box for dollar off sharing-->
                                 <input type="hidden" id="isFBshare" name="isFBshare" value="<?php echo $_POST['isFBshare'];?>">
@@ -477,10 +476,10 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                 <!-- coupon -->
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <div class="col-xs-3">
-                                            <button type="button" class="btn btn-success couponButton">Check Coupon</button>
+                                        <div class="col-xs-4">
+                                            <button type="button" class=" couponButton btn btn-red btn-lg btn-rounded" style="padding-top:5px;padding-bottom:5px;">Check Coupon</button>
                                         </div>
-                                        <div class="col-xs-9">
+                                        <div class="col-xs-8">
                                             <input type="text" name="coupon" class="form-control coupon" placeholder="Coupon Code:(case sensitive)"  data-by-field="coupon">
                                         </div>
                                     </div>
@@ -517,7 +516,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                 <!-- End password 1 -->
                                 <div class="col-xs-12">
                                     <div style="float:right;">
-                                        <button class="btn btn-success payNow" type="submit" style="">Place Order</button>
+                                        <button class="btn btn-red btn-lg btn-rounded payNow" type="submit" style="">Place Order</button>
                                     </div>
                                 </div>
                             </div>
@@ -559,8 +558,15 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                 if(email!="") {
                                     $.get("<?php echo $webPath;?>recordNewsletterInfo.php?email=" + email, function (data, status) {
                                         if (status == 'success') {
-                                            //alert('Successful'+data);
-                                            $('#newsletter').fadeOut(400);
+                                                $(document).ready(function(){
+                                                    var growlType = 'success';
+                                                    $.bootstrapGrowl('<h4><strong>Success!</strong></h4> <p>You have signed up for the newsletter...</p>', {
+                                                        type: growlType,
+                                                        delay: 3000,
+                                                        allow_dismiss: true,
+                                                        offset: {from: 'top', amount: 20}
+                                                    });
+                                                });
                                         } else {
                                             alert('Failed to send, please contact support');
                                         }

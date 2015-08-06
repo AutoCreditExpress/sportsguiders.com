@@ -12,7 +12,7 @@ if($_POST) {
     $mail->addReplyTo('info@sportguiders.com', 'sportsguiders.com');
     //Set who the message is to be sent to
     $mail->addAddress($_POST['email'], $_POST['name']);
-    //$mail->addAddress($_POST['email'], $_POST['name']);  owner email add
+    $mail->addAddress('support@sportsguiders.com', $_POST['name']);
     //Set the subject line
     $mail->Subject = 'Contact form mail';
     //Read an HTML message body from an external file, convert referenced images to embedded,
@@ -28,7 +28,8 @@ if($_POST) {
     if (!$mail->send()) {
         echo "Mailer Error: " . $mail->ErrorInfo;
     } else {
-        header('Location: '.$webPath.'?Message=Mail_sent');
+        //header('Location: '.$webPath.'?Message=Mail_sent');
+        $mailSuccess = true;
     }
 }
 include($docPath.'inc/header.php');
@@ -139,8 +140,15 @@ include($docPath.'inc/header.php');
                                 if(email!="") {
                                     $.get("recordNewsletterInfo.php?email=" + email, function (data, status) {
                                         if (status == 'success') {
-                                            //alert('Successful'+data);
-                                            $('.newsletterContainer').fadeOut(400);
+                                            $(document).ready(function(){
+                                                var growlType = 'success';
+                                                $.bootstrapGrowl('<h4><strong>Success!</strong></h4> <p>You have signed up for the newsletter...</p>', {
+                                                    type: growlType,
+                                                    delay: 3000,
+                                                    allow_dismiss: true,
+                                                    offset: {from: 'top', amount: 20}
+                                                });
+                                            });
                                         } else {
                                             alert('Failed to send, please contact support');
                                         }
@@ -177,4 +185,19 @@ include($docPath.'inc/header.php');
 
     </main>
     <!-- End Main -->
+<?php if($mailSuccess){
+    ?>
+    <script>
+        $(document).ready(function(){
+            var growlType = 'success';
+            $.bootstrapGrowl('<h4><strong>Success!</strong></h4> <p>Mail has been sent!!</p>', {
+                type: growlType,
+                delay: 3000,
+                allow_dismiss: true,
+                offset: {from: 'top', amount: 20}
+            });
+        });
+    </script>
+    <?
+}?>
 <?php include($docPath.'inc/footer.php'); ?>

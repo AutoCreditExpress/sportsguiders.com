@@ -43,12 +43,13 @@ if($_POST){
                             }
                             ?>
                             <p style="font-size:22px;">By clicking Cancel you acknowledge the cancellation of your account.  If you wish to restore your account you must contact support.  This account cancelation will also remove your active subscription.</p>
-                        </div>
-                        <div class="col-md-6">
                             <form method="post">
                                 <input type="hidden" name="dummy" value="1">
-                                <button class="btn btn-danger cancelSubscription" style="float:right;margin-top:10px;">Cancel</button>
+                                <button class="btn btn-danger cancelSubscription" style="float:left;margin-top:10px;">Cancel</button>
                             </form>
+                        </div>
+                        <div class="col-md-6">
+                            <img style ="width:100%;" src="<?=$webPath;?>img/sadface.jpeg">
                         </div>
                         <!-- End Step -->
 
