@@ -54,7 +54,7 @@ include($docPath.'inc/header.php');
     }
 </script>
     <!-- TOP PERFORMERS -->
-    <section class="top-performers">
+    <section class="top-performers" style="padding:50px 15px;">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-center">
@@ -196,7 +196,7 @@ include($docPath.'inc/header.php');
     <!--/TOP PERFORMERS -->
 
     <!-- WAIVER ADDS -->
-    <section class="waiver-adds">
+    <section class="waiver-adds" style="padding:50px 15px;">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-4 heading-col">
@@ -231,7 +231,7 @@ include($docPath.'inc/header.php');
     <!--/WAIVER WINNERS -->
 
     <!--INJURY REPORT-->
-    <section class="injury-report">
+    <section class="injury-report" style="padding:50px 15px;">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-center">
@@ -355,7 +355,7 @@ include($docPath.'inc/header.php');
     <!--/INJURY REPORT-->
 
     <!--POWER RANKING-->
-    <section class="power-ranking">
+    <section class="power-ranking" style="padding:50px 15px;">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-center">
@@ -556,7 +556,7 @@ include($docPath.'inc/header.php');
 
 
     <!--TRENDING-->
-    <section class="trending">
+    <section class="trending" style="padding:50px 15px;">
         <div class="container">
             <section class="col-xs-12 col-sm-6 upwards">
                 <div class="row">
@@ -832,7 +832,7 @@ include($docPath.'inc/header.php');
     <!--/TRENDING-->
 
     <!--FUN FACTS-->
-    <section class="fun-facts clearfix">
+    <section class="fun-facts clearfix" style="padding:50px 15px;">
         <div class="container clearfix">
             <div class="row">
                 <div class="col-xs-12 text-center">
@@ -871,7 +871,7 @@ include($docPath.'inc/header.php');
     <!--FUN FACTS-->
 
     <!--UPCOMING SCHEDULE-->
-    <section class="schedule">
+    <section class="schedule" style="padding:50px 15px;">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-center">
@@ -1209,7 +1209,7 @@ include($docPath.'inc/header.php');
     <!--/UPCOMING SCHEDULE-->
 
     <!-- TEAM POWER RANKINGS -->
-    <section class="team-rankings">
+    <section class="team-rankings" style="padding:50px 15px;">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-4 heading-col">
@@ -1400,7 +1400,7 @@ include($docPath.'inc/header.php');
     <!--/TEAM POWER RANKINGS -->
 
     <!-- NFL STANDINGS -->
-    <section class="standings">
+    <section class="standings" style="padding:50px 15px;">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-center">
@@ -1824,7 +1824,7 @@ include($docPath.'inc/header.php');
     <!--/NFL STANDINGS -->
 
     <!--NFL SCORES-->
-    <section class="scores">
+    <section class="scores" style="padding:50px 15px;">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-center">
