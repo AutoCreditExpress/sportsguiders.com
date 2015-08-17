@@ -28,7 +28,7 @@
     <![endif]-->
 </head>
 
-<body class="" style="background-color:black;">
+<body class="" style="background-color:black;color:white;">
 <div class="body body-s">
     <form action="<?php echo $webPath.'login/'; ?>" method="post" id="sky-form" class="sky-form" style="box-shadow:3px 3px 8px grey;">
         <header>SportsGuiders Login</header>

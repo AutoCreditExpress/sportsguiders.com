@@ -22,7 +22,7 @@ $mail->FromName = 'Sportsguiders';
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
 $mail->isHTML(true);
-$mail->msgHTML(file_get_contents('http://www.sportsguiders.com/email/subscription/signup/index.html'), dirname(__FILE__));
+$mail->msgHTML(file_get_contents('http://www.sportsguiders.com/email/subscription/signup/congratulations.php'), dirname(__FILE__));
 //Attach an image file
     //$mail->addAttachment('images/phpmailer_mini.png');
 

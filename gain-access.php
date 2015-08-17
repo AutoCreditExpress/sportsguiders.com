@@ -4,6 +4,8 @@ $SubscriberDAO=new SubscriberDAO($db);
 
 if ($login->isUserLoggedIn() == true) {
     header("Location: ".$webPath."my-account/");
+}elseif($_GET['ref']=='therecap'){
+    $therecapNotice = true;
 }
 
 include($docPath.'inc/header.php');
@@ -33,7 +35,6 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
         }
     </style>
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="<?php echo $webPath;?>js/bootstrap-min.js"></script>
     <script src="<?php echo $webPath;?>js/bootstrap-formhelpers-min.js"></script>
     <script type="text/javascript" src="<?php echo $webPath;?>js/bootstrapValidator-min.js"></script>
@@ -145,6 +146,11 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                         validators: {
                             notEmpty: {
                                 message: 'The expiration is required'
+                            },
+                            stringLength: {
+                                min: 7,
+                                max: 7,
+                                message: 'The expiry must be 5 digits'
                             }
                         }
                     },
@@ -163,17 +169,6 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                 }
             });
 
-            $(".cancelSubscription").click(function(){
-                $("#payment-form").css('display', 'none');
-                $.get("<?php echo $webPath;?>cancelSubscription.php", function(data, status){
-                    if(status=="success"){
-                        location.assign('index.php?Message=Subscription_Canceled');
-                    }else{
-                        alert('Cancel has failed, please contact support');
-                    }
-                });
-            });
-
         });
     </script>
     <script type="text/javascript">
@@ -181,28 +176,31 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
         Stripe.setPublishableKey('pk_live_Iouvsrt1T1v64gKETw0Q0FMP');
 
         function stripeResponseHandler(status, response) {
-            if (response.error) {
-                // re-enable the submit button
-                $('.submit-button').removeAttr("disabled");
-                // show hidden div
-                document.getElementById('a_x200').style.display = 'block';
-                // show the errors on the form
-                var expiry = $('.expiry').val();
-                if(expiry!=null) {
-                    var expiryMonth = expiry.substring(0, 2);
-                    var expiryYear = '20'+expiry.substring(5);
+            //if account type is a basic account skip validation
+            var accountType = $('.accountType').val();
+                if (response.error && accountType!='basic') {
+                    // re-enable the submit button
+                    $('.submit-button').removeAttr("disabled");
+                    // show hidden div
+                    document.getElementById('a_x200').style.display = 'block';
+                    // show the errors on the form
+                    var expiry = $('.expiry').val();
+                    if (expiry != null) {
+                        var expiryMonth = expiry.substring(0, 2);
+                        var expiryYear = '20' + expiry.substring(5);
+                    }
+                    $(".payment-expiry").html(response.error);
+                    $(".payment-errors").html(response.error.message);
+                } else {
+                    var form$ = $("#payment-form");
+                    // token contains id, last4, and card type
+                    var token = response['id'];
+                    // insert the token into the form so it gets submitted to the server
+                    form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+                    // and submit
+                    form$.get(0).submit();
                 }
-                $(".payment-expiry").html(response.error);
-                $(".payment-errors").html(response.error.message);
-            } else {
-                var form$ = $("#payment-form");
-                // token contains id, last4, and card type
-                var token = response['id'];
-                // insert the token into the form so it gets submitted to the server
-                form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
-                // and submit
-                form$.get(0).submit();
-            }
+
         }
 
 
@@ -243,25 +241,29 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                 <tr class="subtotal" style="border-top:1px solid #bec9d9;">
                                     <td class="cell1" style=""><b>Basic Membership</b></td>
                                     <td class="cell2" style="">FREE</td>
-                                    <td class="cell3">Get regular emails about the hottest action</td>
+                                    <td class="cell3">The most basic SportsGuiders account that allows you to read our articles and receive important email updates. </td>
                                 </tr>
                                 <tr style="border:1px solid #e3e3e3;font-weight:900;">
                                     <td class="clonecell1" style="background: #d83435;color:white;"><b>Guider Access</b></td>
                                     <td class="clonecell2" style="background: #d83435;color:white;font-size:18px;">$9</td>
-                                    <td class="clonecell3" style="background: #f5f5f5;">Get regular emails about the hottest action and access to reports</td>
+                                    <td class="clonecell3" style="background: #f5f5f5;">The most popular SportsGuiders account that gives you access to our articles, email updates and The Recap every week. </td>
                                 </tr>
                                 <tr class="">
                                     <td style=""><b>Expert Access</b></td>
-                                    <td style="">$19</td>
-                                    <td>Get regular emails about the hottest action, access to reports, and 1 on 1 chat with an expert every Sunday 8:30am - 12:30am</td>
+                                    <td style="">$49</td>
+                                    <td>This account is for serious fantasy football players that need access to our articles, emails, The Recap and a 1-on-1 expert advice chat line open every Sunday morning from 9:30am to 12:30pm. </td>
                                 </tr>
                             </table>
                         </div>
                         <!-- End Checkout Form -->
-                        <div class="checkout-form" style="margin-top:25px;border-radius:15px">
+                        <div class="checkout-form fbSave" style="margin-top:25px;border-radius:15px;display:none;">
                             <h2 style="width:100%;">Want to save money??</h2>
                             <p style="padding:7px;width:100%;">Share us on facebook and receive $1 off on your subscription</p>
                             <img id="fbShareButton" src="http://www.sportsguiders.com/img/fbshare.png" style="cursor:pointer;max-width:200px;">
+                        </div>
+                        <div class="checkout-form" style="margin-top:25px;border-radius:15px;height:175px;">
+                            <img id="" src="http://www.sportsguiders.com/images/ssl.jpg" style="float:left;max-height:150px;max-width:49%;">
+                            <h2 style="width:49%;margin:0px;padding:7px;float:right;font-family: 'Raleway', sans-serif;">This site is protected by SSL security.</h2>
                         </div>
                     </div>
 
@@ -286,10 +288,49 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                             $SubscriberDAO = new SubscriberDAO($db);
 
                             //check user exists in table
-                            if($SubscriberDAO->getSubscriberByEmail($_POST['email'])!=null){
+                            if($SubscriberDAO->getSubscriberByEmail($_POST['email'])!=null) {
                                 //user exist in table, display error
                                 $error = '<div class="alert alert-danger">
 			                                <strong>Error!</strong> User name already exists, please use a different email address.</div>';
+                            }elseif($_POST['accountType']=='basic'){
+                                //check password
+                                if($_POST['password']!=$_POST['password2']) {
+                                    $error = '<div class="alert alert-danger">
+                                                <strong>Error!</strong> Passwords dont match</div>';
+                                //basic plan
+                                }else{
+                                    $plan = $_POST['accountType'].$SubscriberDAO->getPlanUsingCoupon($_POST['coupon']);
+                                    $subscriberEmail = $_POST['email'];
+
+                                    $Registration = new Registration();
+
+                                    //create user in table
+                                    $SubscriberDAO->createSubscriber(array(
+                                        'email' => $_POST['email'],
+                                        'address' => $_POST['street'],
+                                        'city' => $_POST['city'],
+                                        'state' => $_POST['state'],
+                                        'zip' => $_POST['zip'],
+                                        'create_date' => date("Y-m-d")
+                                    ));
+
+                                    $uniqueID = uniqid();
+
+                                    //update subscriber table with id
+                                    $SubscriberDAO->updateSubscriberId('subscriber', $subscriberEmail, 'cus_'.$uniqueID);
+
+                                    //update user table with id
+                                    $SubscriberDAO->updateSubscriberId('users', $subscriberEmail, 'cus_'.$uniqueID);
+
+                                    //update is active in subscriber table
+                                    $SubscriberDAO->updateSubscriberIsActive($subscriberEmail, '1');
+
+                                    $success = '<div class="alert alert-success">
+                                    <strong>Success!</strong> Your payment was successful.</div>';
+
+                                    ///change the location of the page
+                                    echo "<script>location.assign('http://www.sportsguiders.com/login/?Message=Payment_successful');</script>";
+                                }
                             }else{
                                 if($_POST['password']!=$_POST['password2']) {
                                     $error = '<div class="alert alert-danger">
@@ -383,6 +424,19 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
+                                        <script>
+                                            $(document).ready(function(){
+                                                $( ".accountType" ).change(function() {
+                                                    if($('.accountType').val()=='basic'){
+                                                        $('.number, .cvc, .expiry').val(null);
+                                                        $('.fbSave,.number, .cvc, .expiry').fadeOut();
+                                                    }else{
+                                                        $('.number, .cvc, .expiry').val(null);
+                                                        $('.fbSave,.number, .cvc, .expiry').fadeIn();
+                                                    }
+                                                });
+                                            });
+                                        </script>
                                         <select class="form-control accountType" name="accountType" placeholder="Account Type" data-by-field="accountType">
                                             <option value="basic">Basic -(FREE)</option>
                                             <option value="guider">Guider Access -($9 annual)</option>
@@ -393,7 +447,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                 <!-- Card Number -->
                                 <div class="col-xs-6">
                                     <div class="form-group">
-                                        <input value="" type="text" id="number" name="number" class="form-control number" placeholder="Card Number" data-by-field="number">
+                                        <input value="" style="display:none;" type="text" id="number" name="number" class="form-control number" placeholder="Card Number" data-by-field="number">
                                     </div>
                                 </div>
                                 <!-- End Card Number -->
@@ -401,7 +455,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                 <!-- Card Number -->
                                 <div class="col-xs-3">
                                     <div class="form-group">
-                                        <input value="" type="text" name="expiry" class="form-control expiry" placeholder="MM/YY"  data-by-field="expiry">
+                                        <input value="" style="display:none;" type="text" name="expiry" class="form-control expiry" placeholder="MM/YY"  data-by-field="expiry">
                                     </div>
                                 </div>
                                 <!-- End Card Number -->
@@ -409,7 +463,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                 <!-- Card Number -->
                                 <div class="col-xs-3">
                                     <div class="form-group">
-                                        <input value="" type="text" name="cvc" class="form-control cvc" placeholder="CVC" data-by-field="cvc">
+                                        <input value="" style="display:none;" type="text" name="cvc" class="form-control cvc" placeholder="CVC" data-by-field="cvc">
                                     </div>
                                 </div>
                                 <!-- End Card Number -->
@@ -459,6 +513,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                     </div>
                                 </div>
                                 <!-- End Post Code -->
+
                                 <script>
                                     $(document).ready(function(){
                                         $('.couponButton').click(function(){
@@ -477,7 +532,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                 <div class="col-xs-12">
                                     <div class="form-group">
                                         <div class="col-xs-4">
-                                            <button type="button" class=" couponButton btn btn-red btn-lg btn-rounded" style="padding-top:5px;padding-bottom:5px;">Check Coupon</button>
+                                            <button type="button" class=" couponButton btn btn-red btn-lg btn-rounded" style="padding-top:5px;padding-bottom:5px;">Verify Coupon</button>
                                         </div>
                                         <div class="col-xs-8">
                                             <input type="text" name="coupon" class="form-control coupon" placeholder="Coupon Code:(case sensitive)"  data-by-field="coupon">
@@ -538,16 +593,16 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
 
 
         <!-- Newsletter -->
-        <section id="newsletter" class="section-light newsletter text-center">
+        <section id="newsletter" class="section-light newsletter text-center" style="background:#d83435;">
 
             <!-- Newsletter Container -->
             <div class="container">
 
                 <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
+                    <div class="col-md-6 col-md-offset-3 newsletterSection">
 
                         <!-- Newsletter Header -->
-                        <header>
+                        <header style="color:white;">
                             <h3>Stay informed</h3>
                             <h4>Subscribe to our newsletter</h4>
                         </header>
@@ -567,6 +622,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                                         offset: {from: 'top', amount: 20}
                                                     });
                                                 });
+                                            $('.newsletterSection').html('<h1 style="background:#d83435;color:white;">Thank You!!</h1>');
                                         } else {
                                             alert('Failed to send, please contact support');
                                         }
@@ -574,6 +630,23 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                 }
                                 return false;
                             }
+                            <?php
+                            //if the referrer is a non logged in user clicking the recap nav button
+                             if($therecapNotice){
+                             ?>
+                            $(document).ready(function(){
+                                var growlType = 'info';
+                                $.bootstrapGrowl('<h4><strong>Notice!</strong></h4> <p>Sorry you cant view this until you have subscribed.<br><a href="<?=$webPath;?>sample-recap/">View Sample Recap</a></p>', {
+                                    type: growlType,
+                                    delay: 8000,
+                                    allow_dismiss: true,
+                                    width: ($(document).width()-20),
+                                    offset: {from: 'top', amount: 20},
+                                });
+                            });
+                            <?php
+                             }
+                            ?>
                         </script>
                         <!-- Newsletter Form -->
                         <form class="form-inline" onsubmit="submitNewsletterInfo(); return false;">

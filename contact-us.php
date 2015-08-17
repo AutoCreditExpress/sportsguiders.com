@@ -105,7 +105,7 @@ include($docPath.'inc/header.php');
                                 <div class="col-xs-12">
                                     <textarea placeholder="Message" id="message" class="form-control" name="message"></textarea>
 
-                                    <button class="btn btn-blue btn-lg btn-rounded btn-iconned-right">Send Message <span class="fa fa-long-arrow-right"></span></button>
+                                    <button class="btn btn-red btn-lg btn-rounded btn-iconned-right">Send Message <span class="fa fa-long-arrow-right"></span></button>
                                 </div>
                             </div>
                         </form>
@@ -120,18 +120,18 @@ include($docPath.'inc/header.php');
         <!-- End Contacts -->
 
         <!-- Newsletter -->
-        <section id="newsletter" class="section-light newsletter text-center">
+        <section id="newsletter" class="section-light newsletter text-center" style="background:#d83435;">
 
             <!-- Newsletter Container -->
             <div class="container newsletterContainer">
 
                 <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
+                    <div class="col-md-6 col-md-offset-3 newsletterSection">
 
                         <!-- Newsletter Header -->
-                        <header>
-                            <h3>Stay informed</h3>
-                            <h4>Subscribe to our newsletter</h4>
+                        <header style="color:white!important;">
+                            <h3 style="color:white!important;">Stay informed</h3>
+                            <h4 style="color:white!important;">Subscribe to our newsletter</h4>
                         </header>
                         <!-- End Newsletter Header -->
                         <script>
@@ -168,7 +168,7 @@ include($docPath.'inc/header.php');
                         </form>
                         <!-- End Newsletter Form -->
 
-                        <p class="inform">
+                        <p class="inform" style="color:white!important;">
                             We will never send you spam. <b>We promise!</b>
                         </p>
 
@@ -196,6 +196,7 @@ include($docPath.'inc/header.php');
                 allow_dismiss: true,
                 offset: {from: 'top', amount: 20}
             });
+            $('.newsletterSection').html('<h1 style="background:#d83435;color:white;">Thank You!!</h1>');
         });
     </script>
     <?

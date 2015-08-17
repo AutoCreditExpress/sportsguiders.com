@@ -13,8 +13,8 @@
         <!-- Footer Social Links -->
         <div class="footer-social">
             <ul class="social-icons">
-                <li><a href="www.facebook.com/SportsGuiders" class="hvr-rectangle-out hvr-facebook"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#" class="hvr-rectangle-out hvr-twitter"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="//www.facebook.com/SportsGuiders" target="_blank" class="hvr-rectangle-out hvr-facebook"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="//twitter.com/sportsguiders" target="_blank" class="hvr-rectangle-out hvr-twitter"><i class="fa fa-twitter"></i></a></li>
             </ul>
         </div>
         <div class="footer-copy">

@@ -9,9 +9,6 @@ if ($login->isUserLoggedIn() == true) {
 */
 include($docPath.'inc/header.php');
 
-//
-//NOTE: if a user changes the plan from a plan that has a coupon discount the user will lose that coupons discount
-///
 
 $SubscriberDAO=new SubscriberDAO($db);
 ?>
@@ -217,12 +214,27 @@ $SubscriberDAO=new SubscriberDAO($db);
         </div>
     </div>
     <!-- End Page Heading -->
+
+    <!-- Checkout -->
+    <section id="checkout" class="checkout">
+
+    <!-- Checkout Container -->
+    <div class="container">
+    <div class="row">
+
+    <div class="col-sm-12">
+    <noscript>
+        <div class="bs-callout bs-callout-danger">
+            <h4>JavaScript is not enabled!</h4>
+            <p>This payment form requires your browser to have JavaScript enabled. Please activate JavaScript and reload this page. Check <a href="http://enable-javascript.com" target="_blank">enable-javascript.com</a> for more informations.</p>
+        </div>
+    </noscript>
     <?php
     //if there is post data and the user has already been created and is active, update the card info
     Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
     $error = '';
     $success = '';
-    if ($_POST) {
+        if ($_POST and $SubscriberDAO->getSubscriptionIdByEmail($_SESSION['user_email'])!=null) {
         try {
             if (empty($_POST['street']) || empty($_POST['city']) || empty($_POST['zip']))
                 throw new Exception("Fill out all required fields.");
@@ -232,109 +244,34 @@ $SubscriberDAO=new SubscriberDAO($db);
 
             $SubscriberDAO = new SubscriberDAO($db);
 
+            //grab customer from stripe using subscriber email
+            $cu = Stripe_Customer::retrieve($SubscriberDAO->getSubscriberIdByEmail($_SESSION['user_email']));
 
-            if($SubscriberDAO->getSubscriptionIdByEmail($_SESSION['user_email'])==false){
-                //stripe customer not found
-                //update plan, card, and user info, use data from gain access page
+            //create a new card from the information
+            $createcard = $cu->sources->create(array("source" => $token));
 
-                //create customer on stripe
-                $customer = Stripe_Customer::create(array(
-                        "source" => $token,
-                        "email" => $_SESSION['user_email'])
-                );
+            //grab customer card id from subscriber table and delete associated card
+            $deletecard = $cu->sources->retrieve($SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['user_email']))->delete();
 
-                //check plan using coupon code
-                $plan = $_POST['accountType'];
-                $subscriberEmail = $_SESSION['user_email'];
+            //update subscriber table with new card id
+            $SubscriberDAO->updateSubscriberCardId($_SESSION['user_email'],$createcard->id);
 
-                //retrieve stripe customer
-                $cu = Stripe_Customer::retrieve($customer->id);
-                //create subscriptions
-                $cu2 = $cu->subscriptions->create(array(
-                    "plan" => $plan
-                ));
-//                $Registration = new Registration();
-
-                //update subscriber table with new user billing info
-                $SubscriberDAO->updateSubscriberBillingInfo(array(
-                    'address' => $_POST['street'],
-                    'city' => $_POST['city'],
-                    'state' => $_POST['state'],
-                    'zip' => $_POST['zip'],
-                    'update_date' => date('Y-m-d h:i:s')
-                ));
-
-                //update subscriber table with id
-                $SubscriberDAO->updateSubscriberId('subscriber', $subscriberEmail, $customer->id);
-
-                //update user table with id
-                $SubscriberDAO->updateSubscriberId('users', $subscriberEmail, $customer->id);
-
-                //update subscriber table with card id
-                $SubscriberDAO->updateSubscriberCardId($subscriberEmail, $customer->default_source);
-
-                //update is active in subscriber table
-                $SubscriberDAO->updateSubscriberIsActive($subscriberEmail, '1');
-
-                //write subscription into table
-                $SubscriberDAO->updateSubscriberSubscriptionId($subscriberEmail, $cu2->id);
+            //update subscriber table with new user billing info
+            $SubscriberDAO->updateSubscriberBillingInfo(array(
+                'address'=>$_POST['street'],
+                'city'=>$_POST['city'],
+                'state'=>$_POST['state'],
+                'zip'=>$_POST['zip'],
+                'update_date'=>date('Y-m-d h:i:s')
+            ));
 
                 //////if no error caught display success message
                 $success = '<div class="alert alert-success">
-                                <strong>Success!</strong> Your plan has been updated successful.</div>';
+                                <strong>Success!</strong> Your card has been updated successful.</div>';
 
                 ///change the location of the page
-                echo "<script>location.assign('//www.sportsguiders.com/my-account/?Message=Plan_Updated');</script>";
-            }else {
-
-                //stripe customer found
-
-                //get stripe customer info
-                $cu = Stripe_Customer::retrieve($SubscriberDAO->getSubscriberIdByEmail($_SESSION['user_email']));
-
-                //get customer subscription info
-                $subscription = $cu->subscriptions->retrieve($SubscriberDAO->getSubscriptionIdByEmail($_SESSION['user_email']));
-                //echo "<pre>";var_dump($subscription->plan->id);echo "</pre>";
-
-                $subscriptionName = $subscription->plan->id;
-
-                //card update
-                //create a new card from the information
-                $createcard = $cu->sources->create(array("source" => $token));
-
-                //grab customer card id from subscriber table and delete associated card
-                $deletecard = $cu->sources->retrieve($SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['user_email']))->delete();
-
-                //update subscriber table with new card id
-                $SubscriberDAO->updateSubscriberCardId($_SESSION['user_email'], $createcard->id);
-
-                //IS UPDATE? check if the subscription matches
-                if(strpos('filler'.$subscriptionName,$_POST['accountType'])==false) {
-                    //change the plan
-                    $subscription->plan = $_POST['accountType'];
-                    $subscription->save();
-                }
-                //update subscriber table with new user billing info
-                $SubscriberDAO->updateSubscriberBillingInfo(array(
-                    'address' => $_POST['street'],
-                    'city' => $_POST['city'],
-                    'state' => $_POST['state'],
-                    'zip' => $_POST['zip'],
-                    'update_date' => date('Y-m-d h:i:s')
-                ));
-
-                //write subscription into table
-                $SubscriberDAO->updateSubscriberSubscriptionId($subscriberEmail, $cu2->id);
-
-                //////if no error caught display success message
-                $success = '<div class="alert alert-success">
-                                <strong>Success!</strong> Your plan has been updated successful.</div>';
-
-                ///change the location of the page
-                echo "<script>location.assign('//www.sportsguiders.com/my-account/?Message=Plan_Updated');</script>";
-
+                echo "<script>location.assign('my-account/?Message=Card_Updated');</script>";
             }
-        }
 
 
         catch (Exception $e) {
@@ -342,43 +279,74 @@ $SubscriberDAO=new SubscriberDAO($db);
 			  <strong>Error!</strong> '.$e->getMessage().'
 			  </div>';
         }
-        //if a card is found
-    }elseif($SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['user_email'])!=null){
-        $customer = Stripe_Customer::retrieve($SubscriberDAO->getSubscriberByEmail($_SESSION['user_email'])['subscriber_id']);
-        $card = $customer->sources->retrieve($SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['user_email']));
-        //get customer subscription info
-        $subscription = $customer->subscriptions->retrieve($SubscriberDAO->getSubscriptionIdByEmail($_SESSION['user_email']));
-        $subscriptionName = $subscription->plan->id;
+        ///if there is post data and no subscriptionID in the table
+        }elseif($_POST and $SubscriberDAO->getSubscriptionIdByEmail($_SESSION['user_email'])==null){
+            try {
+                if (empty($_POST['street']) || empty($_POST['city']) || empty($_POST['zip']))
+                    throw new Exception("Fill out all required fields.");
+                if (!isset($_POST['stripeToken']))
+                    throw new Exception("The Stripe Token was not generated correctly");
+                $token = $_POST['stripeToken'];
 
-        //$hiddenCardId = $SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['user_email']);
-        $thenumber = '**** **** ****'.$card->last4;
-        $expmonth=$card->exp_month;
-        $expyear = $card->exp_year;
-        $addressline1=$card->address_line1;
-        $addresscity=$card->address_city;
-        $addressstate = $card->address_state;
-        $addresszip = $card->address_zip;
-    }
+                //retrieve customer data from stripe
+                $cu = Stripe_Customer::retrieve($SubscriberDAO->getSubscriberIdByEmail($_SESSION['user_email']));
+
+                //create a new card from the information being posted
+                $createcard = $cu->sources->create(array("source" => $token));
+
+                //grab customer card id from subscriber table and delete associated card
+                $deletecard = $cu->sources->retrieve($SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['user_email']))->delete();
+
+                //create a new subscription
+                $cu2 = $cu->subscriptions->create(array("plan" => "basic"));
+
+                //write subscription in to table
+                $SubscriberDAO->updateSubscriberSubscriptionId($_SESSION['user_email'],$cu2->id);
+
+                //check new customer info
+                $customer2 = Stripe_Customer::retrieve($SubscriberDAO->getSubscriberIdByEmail($_SESSION['user_email']));
+
+                //update subscriber table with card id
+                $SubscriberDAO->updateSubscriberCardId($_SESSION['user_email'],$customer2->default_source);
+
+                //update subscriber is active in subscriber table
+                $SubscriberDAO->updateSubscriberIsActive($_SESSION['user_email'],'1');
+                //update subscriber table with new user billing info
+
+                $SubscriberDAO->updateSubscriberBillingInfo(array(
+                    'address'=>$_POST['street'],
+                    'city'=>$_POST['city'],
+                    'state'=>$_POST['state'],
+                    'zip'=>$_POST['zip'],
+                    'update_date'=>date('Y-m-d h:i:s')
+                ));
+                //////if no error caught display success message
+                $success = '<div class="alert alert-success">
+                                <strong>Success!</strong> Your card has been updated successful.</div>';
+
+                ///change the location of the page
+                echo "<script>location.assign('my-account/?Message=Card_Updated');</script>";
+             }
+
+
+            catch (Exception $e) {
+                $error = '<div class="alert alert-danger">
+                      <strong>Error!</strong> '.$e->getMessage().'
+                      </div>';
+            }
+        }elseif($SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['user_email'])!=null){
+               $customer = Stripe_Customer::retrieve($SubscriberDAO->getSubscriberByEmail($_SESSION['user_email'])['subscriber_id']);
+                $card = $customer->sources->retrieve($SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['user_email']));
+
+                $thenumber = '**** **** ****'.$card->last4;
+                $expmonth=$card->exp_month;
+                $expyear = $card->exp_year;
+                $addressline1=$card->address_line1;
+                $addresscity=$card->address_city;
+                $addressstate = $card->address_state;
+                $addresszip = $card->address_zip;
+        }
     ?>
-    <!-- Checkout -->
-    <section id="checkout" class="checkout">
-
-    <!-- Checkout Container -->
-    <div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <p>By canceling your subscription you will be reverted back to a BASIC(FREE) membership.  If you wish to cancel your account you can do so from the dashboard <a href="<?=$webPath?>cancel-account/">here</a>.</p>
-        </div>
-        <div class="col-md-6">
-            <p><strong>Current Subscription Type: </strong><i><?php echo strtoupper($subscriptionName);?></i></p>
-        </div>
-    <div class="col-sm-12">
-    <noscript>
-        <div class="bs-callout bs-callout-danger">
-            <h4>JavaScript is not enabled!</h4>
-            <p>This payment form requires your browser to have JavaScript enabled. Please activate JavaScript and reload this page. Check <a href="http://enable-javascript.com" target="_blank">enable-javascript.com</a> for more informations.</p>
-        </div>
-    </noscript>
     <div class="alert alert-danger" id="a_x200" style="display: none;"> <strong>Error!</strong> <span class="payment-errors"></span> </div>
   <span class="payment-success">
   <?= $success ?>
@@ -411,7 +379,7 @@ $SubscriberDAO=new SubscriberDAO($db);
                         </script>
                         <select id="accountType" class="form-control accountType" name="accountType" data-by-field="accountType">
                             <option value="guider">Guider Access -($9 annual)</option>
-                            <option value="expert" <?php //if(strpos('filler'.$subscriptionName,'guider')!=0) { echo 'selected';}?>>Expert Access -($19 annual)</option>
+                            <option value="expert">Expert Access -($19 annual)</option>
                         </select>
                     </div>
                 </div>

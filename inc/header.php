@@ -104,9 +104,27 @@ $(document).ready(function(){
     @media screen and (max-width: 768px) {
         .dropdown-toggle {background-color:#d83435;}
     }
+    .pageLink {text-shadow:2px 2px 1px red!important;}
 </style>
+<?php
+//active link
+$currentPage = substr(basename($_SERVER['PHP_SELF']),0,-4);
+if($currentPage=='the-recap'){$theRecapActiveClass='pageLink';};
+if($currentPage=='contact-us'){$contactActiveClass='pageLink';};
+if($currentPage=='logout'){$logoutActiveClass='pageLink';};
+if($currentPage=='login'){$loginActiveClass='pageLink';};
+if($currentPage=='my-account'){$myAccountActiveClass='pageLink';};
+if($currentPage=='gain-access'){$gainAccessRecapActiveClass='pageLink';};
+
+$currentPage =basename($path,".php");
+if($currentPage=='' or $currentPage=='index'){
+    $headerZindex = '99';
+}else{
+    $headerZindex = '1';
+}
+?>
 <!-- Header -->
-<section id="header" class="header header-revolution <?php if($pageID != 'home'){ echo 'header-sub';}?>">
+<section id="header" class="header header-revolution <?php if($pageID != 'home'){ echo 'header-sub';}?>" style="z-index:<?=$headerZindex;?>;">
 
     <!-- Navigation -->
     <nav class="navbar">
@@ -132,27 +150,27 @@ $(document).ready(function(){
 
                     <li class="dropdown">
                         <?php if($_SESSION['user_name']): ?>
-                        <a href="<?php echo $webPath;?>the-recap/" class="dropdown-toggle" aria-expanded="false">The Recap</a>
+                        <a href="<?php echo $webPath;?>the-recap/" class="dropdown-toggle <?=$theRecapActiveClass;?>" aria-expanded="false">The Recap</a>
                         <?php else: ?>
-                        <a href="<?php echo $webPath;?>gain-access/" class="dropdown-toggle" aria-expanded="false">The Recap</a>
+                        <a href="<?php echo $webPath;?>gain-access/?ref=therecap" class="dropdown-toggle <?=$theRecapActiveClass;?>" aria-expanded="false">The Recap</a>
                         <?php endif; ?>
 
                     </li>
                     <li class="dropdown">
-                        <a href="<?php echo $webPath;?>contact-us/" class="dropdown-toggle" aria-expanded="false">Contact</a>
+                        <a href="<?php echo $webPath;?>contact-us/" class="dropdown-toggle <?=$contactActiveClass;?>" aria-expanded="false">Contact</a>
                     </li>
                     <li class="dropdown">
                         <?php if($_SESSION['user_name']): ?>
-                            <a href="<?php echo $webPath;?>login/logout/" class="dropdown-toggle" aria-expanded="false">Logout</a>
+                            <a href="<?php echo $webPath;?>login/logout/" class="dropdown-toggle <?=$logoutActiveClass;?>" aria-expanded="false">Logout</a>
                         <?php else: ?>
-                            <a href="<?php echo $webPath;?>login/" class="dropdown-toggle" aria-expanded="false">Login</a>
+                            <a href="<?php echo $webPath;?>login/" class="dropdown-toggle <?=$loginActiveClass;?>" aria-expanded="false">Login</a>
                         <?php endif; ?>
                     </li>
                     <li class="dropdown active">
                         <?php if($_SESSION['user_name']): ?>
-                        <a href="<?php echo $webPath;?>my-account/" class="dropdown-toggle" aria-expanded="false">My Account</a>
+                        <a href="<?php echo $webPath;?>my-account/" class="dropdown-toggle <?=$myAccountActiveClass;?>" aria-expanded="false">My Account</a>
                         <?php else: ?>
-                            <a href="<?php echo $webPath;?>gain-access/" class="dropdown-toggle" aria-expanded="false">Gain Access</a>
+                            <a href="<?php echo $webPath;?>gain-access/" class="dropdown-toggle <?=$gainAccessRecapActiveClass;?>" aria-expanded="false">Gain Access</a>
                         <?php endif; ?>
                     </li>
                 </ul>
