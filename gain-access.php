@@ -440,7 +440,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                         <select class="form-control accountType" name="accountType" placeholder="Account Type" data-by-field="accountType">
                                             <option value="basic">Basic -(FREE)</option>
                                             <option value="guider">Guider Access -($9 annual)</option>
-                                            <option value="expert">Expert Access -($19 annual)</option>
+                                            <option value="expert">Expert Access -($49 annual)</option>
                                         </select>
                                     </div>
                                 </div>

@@ -150,7 +150,7 @@ if($currentPage=='' or $currentPage=='index'){
 
                     <li class="dropdown">
                         <?php if($_SESSION['user_name']): ?>
-                        <a href="<?php echo $webPath;?>the-recap/" class="dropdown-toggle <?=$theRecapActiveClass;?>" aria-expanded="false">The Recap</a>
+                        <a href="<?php echo $webPath;?>sample-recap/" class="dropdown-toggle <?=$theRecapActiveClass;?>" aria-expanded="false">The Recap</a>
                         <?php else: ?>
                         <a href="<?php echo $webPath;?>gain-access/?ref=therecap" class="dropdown-toggle <?=$theRecapActiveClass;?>" aria-expanded="false">The Recap</a>
                         <?php endif; ?>

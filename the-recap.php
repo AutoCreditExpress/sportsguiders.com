@@ -11,40 +11,6 @@ $PlayerDAO = new PlayerDAO($db);
 $Report = $ReportDAO->getLatestReport();
 include($docPath.'inc/header.php');
 ?>
-<style>
-    #quickNavSection {width:100%;background:red;color:white;height:50px;}
-    #quickNavUl {width:100%;margin-bottom:0px;}
-    #quickNavUl li {display:inline;margin:3px;padding:10px;padding-bottom:0px;float:left;}
-    .quickNavLink {padding:3px;border-radius:7px;color:white;text-decoration:none;}
-    .quickNavLink:hover {color:red;background:white;text-decoration:none;}
-    .fixed {position:fixed;top:0px;z-index:99999999;}
-</style>
-<section id="quickNavSection">
-    <ul id="quickNavUl">
-        <li><a class="quickNavLink" href="#top-performers">TP</a></li>
-        <li><a class="quickNavLink" href="#">WA</a></li>
-        <li><a class="quickNavLink" href="#">IR</a></li>
-        <li><a class="quickNavLink" href="#">Section 4</a></li>
-        <li><a class="quickNavLink" href="#">Section 5</a></li>
-        <li><a class="quickNavLink" href="#">Section 6</a></li>
-        <li><a class="quickNavLink" href="#">Section 7</a></li>
-        <li><a class="quickNavLink" href="#">Section 8</a></li>
-        <li><a class="quickNavLink" href="#">Section 9</a></li>
-        <li><a class="quickNavLink" href="#">Section 10</a></li>
-    </ul>
-</section>
-<script>
-            var sOffset = $("#quickNavSection").offset().top;
-            var shareheight = $("#quickNavSection").height() + 50;
-            $(window).scroll(function() {
-                var scrollYpos = $(document).scrollTop();
-                if (scrollYpos > sOffset - shareheight) {
-                    $("#quickNavSection").addClass("fixed");
-                }else{
-                    $("#quickNavSection").removeClass("fixed");
-                }
-            });
-</script>
     <!-- PAGE HEADER -->
     <section class="page-header">
         <div class="container text-center">
