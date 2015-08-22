@@ -82,7 +82,11 @@
 <script src="<?php echo $webPath;?>scripts/jquery.nicescroll.min.js"></script>
 <script src="<?php echo $webPath;?>scripts/wow.min.js"></script>
 <script>
-    new WOW().init();
+    <?php if($_GET['noAnimate']!=true){
+    ?>
+        new WOW().init();
+    <?php
+    }?>
     jQuery(document).ready(function() {
         jQuery('.revolution').revolution({
             delay:10000,
