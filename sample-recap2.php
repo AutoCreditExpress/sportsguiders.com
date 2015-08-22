@@ -99,12 +99,25 @@ include($docPath.'inc/header.php');
         });
 
         $(document).ready(function(){
+            //quick nav ui
             if($(document).width()<='790'){
                 $('#quickNavUl').hide();
                 $('#mobileQuickNav').fadeIn();
             }else{
                 $('#mobileQuickNav').hide();
                 $('#quickNavUl').fadeIn();
+            }
+
+            //check for noAnimate flag
+            var noAnimate = '<?=$_GET['noAnimate'];?>';
+            if(noAnimate){
+                showTP('qb');
+                showTP('wr');
+                showTP('rb');
+                showTP('te');
+                showTP('k');
+                showTP('ds');
+                $('.collapse').show();
             }
         });
     </script>
@@ -126,7 +139,10 @@ include($docPath.'inc/header.php');
 </style>
 <script>
     function showTP(section){
-        if($(document).width()<=768) {
+        //setup noAnimate
+        var noAnimate = '<?=$_GET['noAnimate'];?>';
+
+        if($(document).width()<=768 || noAnimate) {
             var thetitle = '.' + section + 'title';
             var theol = '.' + section + 'ol';
             var thecover = '.' + section + 'cover';
