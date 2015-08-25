@@ -164,7 +164,7 @@ $SubscriberDAO=new SubscriberDAO($db);
                 $("#payment-form").css('display', 'none');
                 $.get("<?php echo $webPath;?>cancelSubscription.php", function(data, status){
                     if(status=="success"){
-                        location.assign('index.php?Message=Subscription_Canceled');
+                        location.assign('//www.sportsguiders.com/my-account/?Message=Subscription_Canceled');
                     }else{
                         alert('Cancel has failed, please contact support');
                     }
@@ -344,12 +344,18 @@ $SubscriberDAO=new SubscriberDAO($db);
         }
         //if a card is found
     }elseif($SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['user_email'])!=null){
+
         $customer = Stripe_Customer::retrieve($SubscriberDAO->getSubscriberByEmail($_SESSION['user_email'])['subscriber_id']);
         $card = $customer->sources->retrieve($SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['user_email']));
-        //get customer subscription info
-        $subscription = $customer->subscriptions->retrieve($SubscriberDAO->getSubscriptionIdByEmail($_SESSION['user_email']));
-        $subscriptionName = $subscription->plan->id;
 
+        if($customer->subscriptions->total_count){
+            //get customer subscription info
+            $subscription = $customer->subscriptions->retrieve($SubscriberDAO->getSubscriptionIdByEmail($_SESSION['user_email']));
+            $subscriptionName = $subscription->plan->id;
+            if(!$subscriptionName){
+                $subscriptionName='BASIC';
+            }
+        }
         //$hiddenCardId = $SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['user_email']);
         $thenumber = '**** **** ****'.$card->last4;
         $expmonth=$card->exp_month;
@@ -490,8 +496,8 @@ $SubscriberDAO=new SubscriberDAO($db);
             </div>
             <!-- End Billing Form -->
             <div style="float:right;">
-                    <button class="btn btn-success updateSubscription" type="submit">Update details</button>
-                    <button class="btn btn-danger cancelSubscription">Cancel subscription</button>
+                    <button type="button" class="btn btn-success updateSubscription" type="submit">Update details</button>
+                    <button type="button" class="btn btn-danger cancelSubscription">Cancel subscription</button>
             </div>
         </form>
 
