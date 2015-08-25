@@ -5,7 +5,7 @@ $couponCode = $_GET['code'];
 
 $SubscriberDAO = new SubscriberDAO($db);
 
-$couponResponse = $SubscriberDAO->getPlanUsingCoupon($couponCode,true);
+$couponResponse = $SubscriberDAO->getPlanUsingCoupon($couponCode);
 
 //print_r($couponResponse);
 

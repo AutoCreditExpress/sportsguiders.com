@@ -151,17 +151,15 @@ class SubscriberDAO{
     }
 }
 
-    function getPlanUsingCoupon($coupon, $check = null){
+    function getPlanUsingCoupon($coupon){
         $q = $this->db->prepare("SELECT * FROM coupon WHERE BINARY code='".$coupon."'");
         try{
             $q->execute();
             $results = $q->fetchAll();
-            if($results[0]['plan_name']!=null and $check==null) {
+            if($results[0]['plan_name']!=null) {
                 return $results[0]['plan_name'];
-            }elseif($check!=null){
-                return $results;
-            }elseif($check==null){
-                return 'basic';
+            }else{
+                return '';
             }
         }catch(PDOException $e){
             //TODO: add logging
