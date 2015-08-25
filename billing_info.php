@@ -352,9 +352,8 @@ $SubscriberDAO=new SubscriberDAO($db);
             //get customer subscription info
             $subscription = $customer->subscriptions->retrieve($SubscriberDAO->getSubscriptionIdByEmail($_SESSION['user_email']));
             $subscriptionName = $subscription->plan->id;
-            if(!$subscriptionName){
-                $subscriptionName='BASIC';
-            }
+        }else{
+            $subscriptionName='BASIC';
         }
         //$hiddenCardId = $SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['user_email']);
         $thenumber = '**** **** ****'.$card->last4;
@@ -496,7 +495,7 @@ $SubscriberDAO=new SubscriberDAO($db);
             </div>
             <!-- End Billing Form -->
             <div style="float:right;">
-                    <button type="button" class="btn btn-success updateSubscription" type="submit">Update details</button>
+                    <button type="submit" class="btn btn-success updateSubscription" type="submit">Update details</button>
                     <button type="button" class="btn btn-danger cancelSubscription">Cancel subscription</button>
             </div>
         </form>
