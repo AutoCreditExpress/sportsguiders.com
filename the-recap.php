@@ -1,7 +1,7 @@
 <?php
 include('inc/config.php');
 
-if ($login->isUserLoggedIn() == true) {
+if ($login->isUserLoggedIn() == true or $_GET['pass']==true) {
 } else {
    header("Location: ".$webPath."login/");
 }

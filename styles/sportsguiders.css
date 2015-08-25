@@ -932,7 +932,7 @@ svg.chi { fill: #df6108; }
   height: 100px;
   border-radius: 100%;
   background: #FFF;
-  background: rgba(255,255,255,.5);
+  background: rgba(255,255,255, .5);
   position: relative;
   box-shadow: 0 6px 10px rgba(0,0,0,.2);
 }
@@ -1004,7 +1004,9 @@ svg.chi { fill: #df6108; }
   -webkit-filter: grayscale(30%);
 }
 
-
+.helmet {
+    background:white!important;
+}
 
 
 

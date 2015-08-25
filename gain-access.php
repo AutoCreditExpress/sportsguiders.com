@@ -261,10 +261,6 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                             <p style="padding:7px;width:100%;">Share us on facebook and receive $1 off on your subscription</p>
                             <img id="fbShareButton" src="http://www.sportsguiders.com/img/fbshare.png" style="cursor:pointer;max-width:200px;">
                         </div>
-                        <div class="checkout-form" style="margin-top:25px;border-radius:15px;height:175px;">
-                            <img id="" src="http://www.sportsguiders.com/images/ssl.jpg" style="float:left;max-height:150px;max-width:49%;">
-                            <h2 style="width:49%;margin:0px;padding:7px;float:right;font-family: 'Raleway', sans-serif;">This site is protected by SSL security.</h2>
-                        </div>
                     </div>
 
                     <div class="col-sm-6">
@@ -412,9 +408,9 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
   </span>
                     <span class="payment-expiry"></span>
                         <!-- Billing / Shipping Form -->
+                    <form method="post" id="payment-form" style>
                         <div class="well form-container active">
                             <div class="card-wrapper"></div>
-                            <form method="post" id="payment-form" style>
 
                                 <!--hidden box for dollar off sharing-->
                                 <input type="hidden" id="isFBshare" name="isFBshare" value="<?php echo $_POST['isFBshare'];?>">
@@ -429,25 +425,33 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                                 $( ".accountType" ).change(function() {
                                                     if($('.accountType').val()=='basic'){
                                                         $('.number, .cvc, .expiry').val(null);
-                                                        $('.fbSave,.number, .cvc, .expiry').fadeOut();
+                                                        $('.fbSave,.number, .cvc, .expiry, .card-wrapper,  .protectInfo').fadeOut();
                                                     }else{
                                                         $('.number, .cvc, .expiry').val(null);
-                                                        $('.fbSave,.number, .cvc, .expiry').fadeIn();
+                                                        $('.number, .cvc, .expiry, .card-wrapper, .protectInfo').fadeIn();
                                                     }
                                                 });
                                             });
                                         </script>
                                         <select class="form-control accountType" name="accountType" placeholder="Account Type" data-by-field="accountType">
                                             <option value="basic">Basic -(FREE)</option>
-                                            <option value="guider">Guider Access -($9 annual)</option>
+                                            <option value="guider" selected>Guider Access -($9 annual)</option>
                                             <option value="expert">Expert Access -($49 annual)</option>
                                         </select>
                                     </div>
                                 </div>
                                 <!-- Card Number -->
+                                <div class="col-xs-12 protectInfo">
+                                    <div class="form-group">
+                                        <div style="background:#e6f7fe;border:1px solid #6bd0f9;border-radius:4px;margin-top:10px;">
+                                            <p style="color:#31708f;padding:7px;">Sportsguiders.com protects your information with 256bit encryption</p>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="col-xs-6">
                                     <div class="form-group">
-                                        <input value="" style="display:none;" type="text" id="number" name="number" class="form-control number" placeholder="Card Number" data-by-field="number">
+                                        <input value="" style="" type="text" id="number" name="number" class="form-control number" placeholder="Card Number" data-by-field="number">
                                     </div>
                                 </div>
                                 <!-- End Card Number -->
@@ -455,7 +459,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                 <!-- Card Number -->
                                 <div class="col-xs-3">
                                     <div class="form-group">
-                                        <input value="" style="display:none;" type="text" name="expiry" class="form-control expiry" placeholder="MM/YY"  data-by-field="expiry">
+                                        <input value="" style="" type="text" name="expiry" class="form-control expiry" placeholder="MM/YY"  data-by-field="expiry">
                                     </div>
                                 </div>
                                 <!-- End Card Number -->
@@ -463,7 +467,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                 <!-- Card Number -->
                                 <div class="col-xs-3">
                                     <div class="form-group">
-                                        <input value="" style="display:none;" type="text" name="cvc" class="form-control cvc" placeholder="CVC" data-by-field="cvc">
+                                        <input value="" style="" type="text" name="cvc" class="form-control cvc" placeholder="CVC" data-by-field="cvc">
                                     </div>
                                 </div>
                                 <!-- End Card Number -->
@@ -539,9 +543,15 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <!-- End Billing Form -->
+
+                            </div>
+                        <div class="well">
+                            <div class="row">
 
                                 <div class="col-xs-12">
-                                    <h3 class="text-center">Login Details</h3>
+                                    <h3 class="text-center" style="margin-top:0px;">Login Details</h3>
                                 </div>
 
                                 <!-- Email Address -->
@@ -569,16 +579,17 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                     </div>
                                 </div>
                                 <!-- End password 1 -->
+
+
                                 <div class="col-xs-12">
-                                    <div style="float:right;">
+                                    <div style="float:right;margin-top:10px;">
                                         <button class="btn btn-red btn-lg btn-rounded payNow" type="submit" style="">Place Order</button>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- End Billing Form -->
-                            </form>
 
+                            </div>
                         </div>
+                    </form>
                         <!-- End Billing / Shipping Form -->
 
                     </div>
@@ -640,7 +651,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                     type: growlType,
                                     delay: 8000,
                                     allow_dismiss: true,
-                                    width: ($(document).width()-20),
+                                    width: 300,
                                     offset: {from: 'top', amount: 20},
                                 });
                             });

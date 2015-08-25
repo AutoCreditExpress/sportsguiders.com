@@ -42,7 +42,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="<?php echo $webPath;?>styles/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo $webPath;?>styles/hover.min.css">
-    <link rel="stylesheet" href="<?php echo $webPath;?>styles/animate.min.css">
+        <link rel="stylesheet" href="<?php echo $webPath;?>styles/animate.min.css">
     <link rel="stylesheet" href="<?php echo $webPath;?>styles/owl.carousel.min.css">
     <link rel="stylesheet" href="<?php echo $webPath;?>styles/owl.theme.default.min.css">
     <link rel="stylesheet" href="<?php echo $webPath;?>styles/font-awesome.min.css">
@@ -65,6 +65,7 @@
     <script src="<?php echo $webPath;?>scripts/modernizr.js"></script>
     <script type="text/javascript" src="<?php echo $webPath;?>scripts/jquery.min.js"></script>
     <script src="<?php echo $webPath;?>report/js/plugins.js"></script>
+
     <!-- End Scripts -->
     <Script>
 $(document).ready(function(){
@@ -91,7 +92,7 @@ $(document).ready(function(){
 });
     </Script>
 </head>
-<body>
+<body id="body">
 
 
 <!--[if lt IE 7]>
