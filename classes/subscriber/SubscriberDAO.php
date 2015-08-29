@@ -151,13 +151,17 @@ class SubscriberDAO{
     }
 }
 
-    function getPlanUsingCoupon($coupon){
+    function getPlanUsingCoupon($coupon, $getDesc = null){
         $q = $this->db->prepare("SELECT * FROM coupon WHERE BINARY code='".$coupon."'");
         try{
             $q->execute();
             $results = $q->fetchAll();
-            if($results[0]['plan_name']!=null) {
+            if($results[0]['plan_name']!=null and $getDesc!=true) {
                 return $results[0]['plan_name'];
+            }elseif($getDesc){
+                //if getDesc = true then the method is being called from the check-coupon module
+                //and it is asking for the external description of the internal coupon
+                return $results[0]['ex_desc'];
             }else{
                 return '';
             }

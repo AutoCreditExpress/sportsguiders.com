@@ -13,7 +13,9 @@ $cu = Stripe_Customer::retrieve($SubscriberDAO->getSubscriberIdByEmail($_SESSION
 
 //cancel subscription on stripe using subscription id
 if($SubscriberDAO->getSubscriptionIdByEmail($_SESSION['user_email'])) {
-    $cu->subscriptions->retrieve($SubscriberDAO->getSubscriptionIdByEmail($_SESSION['user_email']))->cancel();
+    if($cu->subscriptions->total_count){
+        $cu->subscriptions->retrieve($SubscriberDAO->getSubscriptionIdByEmail($_SESSION['user_email']))->cancel();
+    }
 }
 //disable subscription in subscriber table
 $SubscriberDAO->updateSubscriberIsActive($_SESSION['user_email'], "0");

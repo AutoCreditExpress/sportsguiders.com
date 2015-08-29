@@ -169,11 +169,10 @@ class Registration
      */
     public function sendVerificationEmail($user_id, $user_email, $user_activation_hash)
     {
-
         $mail = new PHPMailer;
 
-        // please look into the config/config.php for much more info on how to use this!
-        // use SMTP or use mail()
+// please look into the config/config.php for much more info on how to use this!
+// use SMTP or use mail()
         if (EMAIL_USE_SMTP) {
             // Set mailer to use SMTP
             $mail->IsSMTP();
@@ -195,19 +194,23 @@ class Registration
 
         }
 
-        $mail->From = 'info@sportsguiders.com';
-        $mail->FromName = 'Mailer';
-        $mail->AddAddress($user_email);
-        $mail->Subject = 'web mail';
+        $mail->From = EMAIL_VERIFICATION_FROM;
+        $mail->FromName = EMAIL_VERIFICATION_FROM_NAME;
+        $mail->AddAddress('jmct0425@gmail.com');
+        $mail->Subject = EMAIL_VERIFICATION_SUBJECT;
+//$link = EMAIL_VERIFICATION_URL.'?id='.urlencode($user_id).'&verification_code='.urlencode($user_activation_hash);
 
-        $link = EMAIL_VERIFICATION_URL.'?id='.urlencode($user_id).'&verification_code='.urlencode($user_activation_hash);
+// the link to your register.php, please set this value in config/email_verification.php
 
-        // the link to your register.php, please set this value in config/email_verification.php
-        $mail->Body = EMAIL_VERIFICATION_CONTENT.' '.$link;
+        $mail->IsHTML(true);
+        //echo "start";
+        $mail->Body=file_get_contents('http://www.sportsguiders.com/email/subscription/signup/congratulations.php?id='.urlencode($user_id).'&verification_code='.urlencode($user_activation_hash));
+        //echo "end";
         //$mail->Body = 'test data';
 
         if(!$mail->Send()) {
             $this->errors[] = MESSAGE_VERIFICATION_MAIL_NOT_SENT . $mail->ErrorInfo;
+            echo "failure";
             return false;
         } else {
             echo "mail sent....";

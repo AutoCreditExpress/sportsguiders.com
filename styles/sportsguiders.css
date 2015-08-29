@@ -22,7 +22,7 @@
 .page-header h1 {
   display: block;
   font-family: 'Raleway';
-  font-size: 80px;
+  font-size: 140px;
   line-height: 80px;
   font-weight: 100;
   position: relative;
@@ -999,9 +999,19 @@ svg.chi { fill: #df6108; }
   left: 0;
 }
 
-.scores .game .helmet.loss {
+.scores .game .helmet .loss {
   opacity: .5;
   -webkit-filter: grayscale(30%);
+}
+
+.scores .game .loss .city {
+    font-family: 'Source Sans Pro';
+    font-weight:200;
+}
+
+.scores .game .loss .score {
+    font-family: 'Source Sans Pro';
+    font-weight:200;
 }
 
 .helmet {

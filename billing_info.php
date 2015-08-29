@@ -298,6 +298,7 @@ $SubscriberDAO=new SubscriberDAO($db);
 
                 $subscriptionName = $subscription->plan->id;
 
+
                 //card update
                 //create a new card from the information
                 $createcard = $cu->sources->create(array("source" => $token));
@@ -347,7 +348,7 @@ $SubscriberDAO=new SubscriberDAO($db);
 
         $customer = Stripe_Customer::retrieve($SubscriberDAO->getSubscriberByEmail($_SESSION['user_email'])['subscriber_id']);
         $card = $customer->sources->retrieve($SubscriberDAO->getSubscriberCardIdByEmail($_SESSION['user_email']));
-
+        echo $customer->subscriptions->total_count;
         if($customer->subscriptions->total_count){
             //get customer subscription info
             $subscription = $customer->subscriptions->retrieve($SubscriberDAO->getSubscriptionIdByEmail($_SESSION['user_email']));
@@ -363,7 +364,12 @@ $SubscriberDAO=new SubscriberDAO($db);
         $addresscity=$card->address_city;
         $addressstate = $card->address_state;
         $addresszip = $card->address_zip;
+    }else{
+        //no card id present for user in db means the account is basic
+        $subscriptionName='BASIC';
     }
+
+
     ?>
     <!-- Checkout -->
     <section id="checkout" class="checkout">
@@ -423,7 +429,7 @@ $SubscriberDAO=new SubscriberDAO($db);
                 <!-- Account Type -->
 
                 <!-- Card Number -->
-                <div class="col-xs-6">
+                <div class="col-xs-12 col-sm-6">
                     <div class="form-group">
                         <input type="text" id="number" name="number" class="form-control number" placeholder="<?php if($thenumber){echo $thenumber;}else{echo "Card Number";}?>" data-by-field="number" required>
                     </div>
@@ -431,7 +437,7 @@ $SubscriberDAO=new SubscriberDAO($db);
                 <!-- End Card Number -->
 
                 <!-- Card Number -->
-                <div class="col-xs-3">
+                <div class="col-xs-12 col-sm-3">
                     <div class="form-group">
                         <input type="text" placeholder="<?php if($expmonth){echo $expmonth.' / '.$expyear;}else{echo 'MM/YY';}?>" name="expiry" class="form-control expiry" data-by-field="expiry" required>
                     </div>
@@ -439,7 +445,7 @@ $SubscriberDAO=new SubscriberDAO($db);
                 <!-- End Card Number -->
 
                 <!-- Card Number -->
-                <div class="col-xs-3">
+                <div class="col-xs-12 col-sm-3">
                     <div class="form-group">
                         <input type="text" name="cvc" class="form-control cvc" placeholder="CVC" data-by-field="cvc">
                     </div>
@@ -471,21 +477,21 @@ $SubscriberDAO=new SubscriberDAO($db);
                 <!-- End Address 2 -->
 
                 <!-- City -->
-                <div class="col-xs-4">
+                <div class="col-xs-12 col-sm-4">
                     <div class="form-group">
                         <input type="text" name="city" class="form-control city" placeholder="<?php if($addresscity){ echo $addresscity;}else{echo "City";}?>" data-by-field="city">
                     </div>
                 </div>
                 <!-- End City -->
                 <!-- State Code -->
-                <div class="col-xs-4">
+                <div class="col-xs-12 col-sm-4">
                     <div class="form-group">
                         <input type="text" class="form-control state" placeholder="<?php if($addressstate){ echo $addressstate;}else{echo "State";}?>" name="state"  data-by-field="state">
                     </div>
                 </div>
                 <!-- State Post Code -->
                 <!-- Post Code -->
-                <div class="col-xs-4">
+                <div class="col-xs-12 col-sm-4">
                     <div class="form-group">
                         <input type="text" class="form-control zip" name="zip" placeholder="<?php if($addresszip){ echo $addresszip;}else{echo "Post Code";}?>" data-by-field="zip">
                     </div>

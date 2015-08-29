@@ -70,13 +70,4 @@ spl_autoload_register(array($sg_autoloader, 'autoload'));
 include('login_config.php');
 
 $login = new Login();
-
-//facebook config
-require_once __DIR__ . '../lib/Facebook/autoload.php';
-
-$fb = new Facebook\Facebook([
-    'app_id' => '{app-id}',
-    'app_secret' => '{app-secret}',
-    'default_graph_version' => 'v2.2',
-]);
 ?>

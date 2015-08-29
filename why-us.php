@@ -18,9 +18,9 @@ include($docPath.'inc/header.php');
                         </div>
                         <div class="col-md-6">
                             <p style="padding-top:10px;">Fantasy sports are a <i>good thing</i>. They bring and keep people together, and season by season real relationships are built and grown. Fantasy sports are a healthy hobby and a fun experience. </p>
+                            <p style="padding-top:10px;">The problem is that most people have to sacrifice <i>family time</i> and <i>work productivity</i> in order to compete at a high level. Solving this problem is why SportsGuidersTM was created. </p>
                         </div>
                         <div class="col-md-6">
-                            <p style="padding-top:10px;">The problem is that most people have to sacrifice <i>family time</i> and <i>work productivity</i> in order to compete at a high level. Solving this problem is why SportsGuidersTM was created. </p>
                         </div>
 
                 </div>
@@ -55,7 +55,7 @@ include($docPath.'inc/header.php');
                         });
                     </script>
                     <div class="col-md-6">
-                        <span id="offerMore" style="color:#d83435;cursor:pointer;">CLICK HERE</span> to find out more about how The Recap can benefit you.
+                        <h2 style="color:#465366;"><span id="offerMore" style="color:#d83435;cursor:pointer;">CLICK HERE</span> to find out more about how The Recap can benefit you.</h2>
 
                     </div>
                     <div id="offerMoreInfo" class="col-md-12" style="padding:25px;display:none;">
@@ -107,7 +107,7 @@ include($docPath.'inc/header.php');
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <h4>To see a sample report from last year <a href="<?=$webPath;?>sample-recap/" style="color:#d83435;">CLICK HERE!</a></h4>
+                        <h4 style="margin:10px;margin-top:30px;">To see a sample report from last year <a href="<?=$webPath;?>sample-recap/" style="color:#d83435;">CLICK HERE!</a></h4>
 
                     </div>
                     <div class="col-md-6">
@@ -131,14 +131,14 @@ include($docPath.'inc/header.php');
                 <!-- Steps -->
 
                 <div class="col-md-6">
-                    <h4 style="font-size:38px;">Why <span style="color:#d83435;">do we limit the number of available subscriptions?</span></h4>
+                    <h4 style="font-size:38px;color:#d83435;">Why <span style="color:#d83435;">do we limit the number of available subscriptions?</span></h4>
                     <p style="padding-top:10px;">We limit the number of available subscriptions for two reasons. First, as a SportsGuiders Subscriber, we want you to win your league, and that’s not possible if everybody in your league is a SportsGuiders Subscriber. If everybody in your league used our service, it would be of less benefit to you than if you were the only person in your league to use it. This is also why we don’t suggest telling the people in your league about us. We also limit the number of available subscriptions to ensure that we have an adequate amount of experts on staff to properly service and chat with all of our paid subscribers. Our goal is to provide excellent service to an exclusive group of people who want our help. </p>
                 </div>
 
                 <!-- Steps -->
 
                 <div class="col-md-6">
-                    <h4 style="font-size:38px;">How <span style="color:#d83435;">are our subscriptions so cheap?</span></h4>
+                    <h4 style="font-size:38px;color:#d83435;">How <span style="color:#d83435;">are our subscriptions so cheap?</span></h4>
                     <p style="padding-top:10px;">We keep our costs down for your sake. We want to provide you with service that will make playing fantasy football more fun and less stressful for you. Purchasing expensive images, logo rights and headshots from big name companies only drives up the price of your subscription. We’re simple people, with a simple plan. Give you an excellent product at an extremely fair price. </p>
                 </div>
             </div>
@@ -154,14 +154,14 @@ include($docPath.'inc/header.php');
                 <!-- Steps -->
 
                 <div class="col-md-6">
-                    <h4 style="font-size:38px;">Isn't <span style="color:#d83435;">fantasy football just luck?</span></h4>
+                    <h4 style="font-size:38px;color:#d83435;">Isn't <span style="color:#d83435;">fantasy football just luck?</span></h4>
                     <p style="padding-top:10px;">No! There is a lot of skill, knowledge and decision making that majorly effects the game of fantasy football. There is an element of luck involved, but there is a reason why those who know more and study more do better, consistently. The good news is that, with us, you can spend a whole lot less time studying and a whole lot more time winning. </p>
                 </div>
 
                 <!-- Steps -->
 
                 <div class="col-md-6">
-                    <h4 style="font-size:38px;">Who <span style="color:#d83435;">qualifies as a SportsGuiders expert?</span></h4>
+                    <h4 style="font-size:38px;color:#d83435;">Who <span style="color:#d83435;">qualifies as a SportsGuiders expert?</span></h4>
                     <p style="padding-top:10px;">We don’t just let anyone build our reports and chat with you about winning your league. We have professionals on staff who know the weather, the trends, the coaches, the risks and more! You can trust us with your toughest decisions. We’ll help put your best team in play. </p>
                 </div>
             </div>

@@ -12,49 +12,65 @@ $Report = $ReportDAO->getLatestReport(true);
 include($docPath.'inc/header.php');
 ?>
     <style>
-        #quickNavSection {width:100%;background:red;color:white;min-height:50px;box-shadow:0px 0px 15px black;}
-        #quickNavUl {width:100%;margin-bottom:0px;}
-        #quickNavUl li {display:inline;margin:3px;padding:10px;padding-bottom:0px;float:left;}
+        #quickNavSection {width:100%;background:#d83435;color:white;min-height:50px;box-shadow:0px 0px 15px black;}
+        .quickNavUl {width:100%;margin-bottom:0px;}
+        .quickNavUl li {display:inline;margin:3px;padding:5px;padding-bottom:0px;float:left;}
         .quickNavLink {padding:3px;border-radius:7px;color:white;text-decoration:none;height:30px!important;}
         .quickNavLink:hover {color:red;text-decoration:none;}
-        #quickNavUl li a img:hover {border-bottom:1px solid white;}
+        .quickNavUl li a img:hover {border-bottom:1px solid white;}
         #mobileQuickNavUl li a {width:50px;margin:0px auto;color:white;font-size:22px;text-decoration:none;padding:10px;}
-        #mobileQuickNavUl li a:hover {padding:10px;border-radius:25px;background:white;color:red;}
+        #mobileQuickNavUl li a:hover {padding:10px;border-radius:25px;background:lightcoral;color:red;}
         #mobileQuickNavUl li {list-style-type:none;padding:7px;}
         .mobileQuickNavImg:hover {box-shadow:1px 1px 8px white;}
         .fixed {position:fixed;top:0px;z-index:99999999;}
     </style>
-    <section id="quickNavSection" style="display:none;">
-        <ul id="quickNavUl" style="display:none;">
-            <li><a class="quickNavLink" href="#top-performers"><img src="<?=$webPath?>images/report/top-performers-icon.png" style="height:30px;"></a></li>
-            <li><a class="quickNavLink" href="#waiver-adds"><img src="<?=$webPath?>images/report/waiver-winners-icon.png" style="height:30px;"></a></li>
-            <li><a class="quickNavLink" href="#injury-report"><img src="<?=$webPath?>images/report/injury-report-icon.png" style="height:30px;"></a></li>
-            <li><a class="quickNavLink" href="#power-ranking"><img src="<?=$webPath?>images/report/power-ranking-icon.png" style="height:30px;" alt="ppr"></a></li>
-            <li><a class="quickNavLink" href="#trending"><img src="<?=$webPath?>images/report/trending-upwards-icon.png" style="height:30px;"></a></li>
-            <li><a class="quickNavLink" href="#fun-facts"><img src="<?=$webPath?>images/report/fun-facts-icon.png" style="height:30px;" alt="ff"></a></li>
-            <li><a class="quickNavLink" href="#schedule"><img src="<?=$webPath?>images/report/schedule-icon.png" style="height:30px;" alt="sched"></a></li>
-            <li><a class="quickNavLink" href="#team-rankings"><img src="<?=$webPath?>images/report/power-rankings-icon.png" style="height:30px;" alt=""></a></li>
-            <li><a class="quickNavLink" href="#scores"><img src="<?=$webPath?>images/report/scores-icon.png" style="height:30px;" alt="score"></a></li>
-            <li><a class="quickNavLink" href="#standings"><img src="<?=$webPath?>images/report/standing-icon.png" style="height:30px;" alt="stand"></a></li>
-        </ul>
-        <div style="margin:10px;float:right;">
-            <a href="#" style="color:white;text-decoration:none;">Week 16</a>
-        </div>
-        <div id="mobileQuickNav" style="cursor:pointer;padding:10px;display:none;">
+
+    <section id="quickNavSection" class="row" style="margin-left:0px;margin-right:0px;">
+        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" style="padding-left:0px;">
+            <ul class="quickNavUl" style="padding-left:0px;display:none;">
+                <li style="margin-top:10px;font-weight:900;">Quick Links</li>
+                <li style="font-size:22px;border-left:1px solid indianred;height:35px;margin-top:8px;"></li>
+            </ul>
+            <div id="mobileQuickNav" style="cursor:pointer;padding:10px;display:none;">
                 <i class="fa fa-align-justify fa-2x"></i>
+                <div style="margin-top:0px;margin-right:5px;padding:3px;float:right;border:2px solid white;">
+                    <a href="#" style="color:white;text-decoration:none;font-weight:900;">Week 16</a>
+                </div>
+            </div>
+            <ul id="mobileQuickNavUl" style="display:none;width:100%;">
+                <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#top-performers"><img src="<?=$webPath?>images/quicknav/top-performers.png" style="height:30px;"> Power Rankings</a></div></li>
+                <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#waiver-adds"><img src="<?=$webPath?>images/quicknav/waiver-adds.png" style="height:30px;"> Waiver Adds</a></div></li>
+                <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#injury-report"><img src="<?=$webPath?>images/quicknav/injury-report.png" style="height:30px;"> Injury Report</a></div></li>
+                <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#power-ranking"><img src="<?=$webPath?>images/quicknav/player-power-rankings.png" style="height:30px;" alt="ppr"> P Power Ranking</a></div></li>
+                <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#trending"><img src="<?=$webPath?>images/quicknav/trending.png" style="height:30px;"> Trending</a></div></li>
+                <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#fun-facts"><img src="<?=$webPath?>images/quicknav/facts.png" style="height:30px;" alt="ff"> Fun Facts</a></div></li>
+                <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#schedule"><img src="<?=$webPath?>images/quicknav/schedule.png" style="height:30px;" alt="sched"> Schedule</a></div></li>
+                <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#team-rankings"><img src="<?=$webPath?>images/quicknav/team-power-rankings.png" style="height:30px;" alt=""> T Power Ranking</a></div></li>
+                <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#scores"><img src="<?=$webPath?>images/quicknav/score.png" style="height:30px;" alt="score"> Scores</a></div></li>
+                <li style="padding-right:50px;"><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#standings"><img src="<?=$webPath?>images/quicknav/standings.png" style="height:30px;" alt="stand"> Standings</a></div></li>
+            </ul>
         </div>
-                <ul id="mobileQuickNavUl" style="display:none;">
-                    <li><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#top-performers"><img src="<?=$webPath?>images/report/top-performers-icon.png" style="height:30px;"> Power Rankings</a></div></li>
-                    <li><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#waiver-adds"><img src="<?=$webPath?>images/report/waiver-winners-icon.png" style="height:30px;"> Waiver Adds</a></div></li>
-                    <li><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#injury-report"><img src="<?=$webPath?>images/report/injury-report-icon.png" style="height:30px;"> Injury Report</a></div></li>
-                    <li><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#power-ranking"><img src="<?=$webPath?>images/report/power-ranking-icon.png" style="height:30px;" alt="ppr"> P Power Ranking</a></div></li>
-                    <li><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#trending"><img src="<?=$webPath?>images/report/trending-upwards-icon.png" style="height:30px;"> Trending</a></div></li>
-                    <li><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#fun-facts"><img src="<?=$webPath?>images/report/fun-facts-icon.png" style="height:30px;" alt="ff"> Fun Facts</a></div></li>
-                    <li><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#schedule"><img src="<?=$webPath?>images/report/schedule-icon.png" style="height:30px;" alt="sched"> Schedule</a></div></li>
-                    <li><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#team-rankings"><img src="<?=$webPath?>images/report/power-rankings-icon.png" style="height:30px;" alt=""> T Power Ranking</a></div></li>
-                    <li><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#scores"><img src="<?=$webPath?>images/report/scores-icon.png" style="height:30px;" alt="score"> Scores</a></div></li>
-                    <li><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#standings"><img src="<?=$webPath?>images/report/standing-icon.png" style="height:30px;" alt="stand"> Standings</a></div></li>
+        <div id="fullNav" class="col-xs-10 col-sm-8 col-md-8 col-lg-8 text-center">
+            <div class="wrapper" style="display:table;margin:0px auto;">
+                <ul class="quickNavUl" style="padding-left:0px;display:none;">
+                    <li><a class="quickNavLink" href="#top-performers" title="Top Performers"><img src="<?=$webPath?>images/quicknav/top-performers.png" style="height:30px;"></a></li>
+                    <li><a class="quickNavLink" href="#waiver-adds" title="Waiver Adds"><img src="<?=$webPath?>images/quicknav/waiver-adds.png" style="height:30px;"></a></li>
+                    <li><a class="quickNavLink" href="#injury-report" title="Injury Report"><img src="<?=$webPath?>images/quicknav/injury-report.png" style="height:30px;"></a></li>
+                    <li><a class="quickNavLink" href="#power-ranking" title="Player Power Ranking"><img src="<?=$webPath?>images/quicknav/player-power-rankings.png" style="height:30px;" alt="ppr"></a></li>
+                    <li><a class="quickNavLink" href="#trending" title="Treding"><img src="<?=$webPath?>images/quicknav/trending.png" style="height:30px;"></a></li>
+                    <li><a class="quickNavLink" href="#fun-facts" title="Fun Facts"><img src="<?=$webPath?>images/quicknav/facts.png" style="height:30px;" alt="ff"></a></li>
+                    <li><a class="quickNavLink" href="#schedule" title="Upcoming Schedule"><img src="<?=$webPath?>images/quicknav/schedule.png" style="height:30px;" alt="sched"></a></li>
+                    <li><a class="quickNavLink" href="#team-rankings" title="Team Rankings"><img src="<?=$webPath?>images/quicknav/team-power-rankings.png" style="height:30px;" alt=""></a></li>
+                    <li><a class="quickNavLink" href="#scores" title="Scores"><img src="<?=$webPath?>images/quicknav/score.png" style="height:30px;" alt="score"></a></li>
+                    <li><a class="quickNavLink" href="#standings" title="Standing"><img src="<?=$webPath?>images/quicknav/standings.png" style="height:30px;" alt="stand"></a></li>
                 </ul>
+            </div>
+        </div>
+        <div id="fullWeek" class="col-xs-0 col-sm-2 col-md-2 col-lg-2 text-center" style="padding-right:0px;">
+            <div style="padding:5px;padding-top:15px;float:right;background:white;height:50px;">
+                <a href="#" style="color:red;text-decoration:none;font-weight:900;padding:0px 15px;">Week 16</a>
+            </div>
+        </div>
     </section>
     <script>
         var sOffset = $("#quickNavSection").offset().top;
@@ -71,23 +87,25 @@ include($docPath.'inc/header.php');
         //mobile quick nav
         $(window).resize(function(){
             if($(document).width()<='790'){
-                $('#quickNavUl').hide();
+                $('#fullNav, #fullWeek').hide();
+                $('.quickNavUl').hide();
                 $('#mobileQuickNav').fadeIn();
             }else{
+                $('#fullNav, #fullWeek').fadeIn();
                 $('#mobileQuickNav').hide();
-                $('#quickNavUl').fadeIn();
+                $('.quickNavUl').fadeIn();
             }
         });
 
         $('#mobileQuickNav').click(function(){
             if($('#mobileQuickNavUl').is(':hidden')){
-                $('#quickNavUl').fadeOut(function(){
+                $('.quickNavUl').fadeOut(function(){
                     $('#mobileQuickNavUl').slideDown();
                 });
             }else{
                 $('#mobileQuickNavUl').slideUp(function(){
                     if($(document).width()>='790'){
-                        $('#quickNavUl').fadeIn();
+                        $('.quickNavUl').fadeIn();
                     }
                 });
             }
@@ -99,34 +117,58 @@ include($docPath.'inc/header.php');
         });
 
         $(document).ready(function(){
+            //quick nav ui
             if($(document).width()<='790'){
-                $('#quickNavUl').hide();
+                $('#fullNav, #fullWeek').hide();
+                $('.quickNavUl').hide();
                 $('#mobileQuickNav').fadeIn();
             }else{
                 $('#mobileQuickNav').hide();
-                $('#quickNavUl').fadeIn();
+                $('.quickNavUl').fadeIn();
+                $('#fullNav, #fullWeek').fadeIn();
+            }
+
+            //check for noAnimate flag
+            var noAnimate = '<?=$_GET['noAnimate'];?>';
+            if(noAnimate){
+                showTP('qb');
+                showTP('wr');
+                showTP('rb');
+                showTP('te');
+                showTP('k');
+                showTP('ds');
+                $('.collapse').show();
             }
         });
     </script>
     <!-- PAGE HEADER -->
     <section class="page-header">
         <div class="container text-center">
-            <i class="fa fa-book"></i>
-            <h1 style="font-size:140px;">THE<b>RECAP</b></h1>
-            <span class="desc" style="padding-top:10px;">Your Curated Fantasy Football Guide</span>
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <i class="fa fa-book"></i>
+                    <h1 style="">THE<b>RECAP</b></h1>
+                    <span class="desc" style="padding-top:10px;">Your Curated Fantasy Football Guide</span>
+                </div>
+            </div>
         </div>
     </section>
     <!--/PAGE HEADER -->
 <style>
-
     /*patch for mobile devices undert the top performers*/
-    @media only screen and (max-device-width: 768px){
-
-    .TPmobileClickNotification {display:block;}
+    @media screen and (max-width: 1024px) {
+        #prHeading {font-size:30px;}
+    }
+    @media screen and (max-width: 767px) {
+        #prHeading {font-size:63px;}
+    }
 </style>
 <script>
     function showTP(section){
-        if($(document).width()<=768) {
+        //setup noAnimate
+        var noAnimate = '<?=$_GET['noAnimate'];?>';
+
+        if($(document).width()<=768 || noAnimate) {
             var thetitle = '.' + section + 'title';
             var theol = '.' + section + 'ol';
             var thecover = '.' + section + 'cover';
@@ -149,13 +191,14 @@ include($docPath.'inc/header.php');
         }
     }
 </script>
+
     <!-- TOP PERFORMERS -->
     <section id="top-performers" class="top-performers" style="padding:50px 15px;">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-center">
-                    <img class="heading-icon wow bounceInUp" style="max-width:125px;" src="<?=$webPath?>images/report/top-performers-icon.png">
-                    <span class="heading wow bounceInUp">TOP PERFORMERS</span>
+                    <img class="heading-icon bounceInUp" style="max-width:125px;" src="<?=$webPath?>images/report/top-performers-icon.png">
+                    <span class="heading bounceInUp">TOP PERFORMERS</span>
 
                     <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know who dominated the world of fantasy football last weekend. Having a quick recap of who the weeks' top performers were allows you to make quick decisions the following week on who to target in trades, start and sit.">
                         <img src="<?=$webPath?>images/report/info-icon-dark.png">
@@ -164,7 +207,7 @@ include($docPath.'inc/header.php');
             </div>
 
             <div class="row">
-                <div class="col-xs-12 col-sm-4 text-center">
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center">
                     <div class="position qb wow fadeInLeft" onclick="showTP('qb');">
                         <span class="title qbtitle" onclick="showTP('qb');">Quarterback</span>
                         <span class="TPmobileClickNotification">Click Here</span>
@@ -186,7 +229,7 @@ include($docPath.'inc/header.php');
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-sm-4 text-center">
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center">
                     <div class="position wr wow fadeInUp"   onclick="showTP('wr');">
                         <span class="title wrtitle"  onclick="showTP('wr');">Wide Reciever</span>
                         <span class="TPmobileClickNotification">Click Here</span>
@@ -207,7 +250,7 @@ include($docPath.'inc/header.php');
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-sm-4 text-center">
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center">
                     <div class="position rb wow fadeInRight" onclick="showTP('rb');">
                         <span class="title rbtitle " onclick="showTP('rb');">Running Back</span>
                         <span class="TPmobileClickNotification">Click Here</span>
@@ -227,7 +270,7 @@ include($docPath.'inc/header.php');
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-sm-4 text-center">
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center">
                     <div class="position wr wow fadeInLeft" onclick="showTP('te');">
                         <span class="title tetitle" onclick="showTP('te');">Tight End</span>
                         <span class="TPmobileClickNotification">Click Here</span>
@@ -247,7 +290,7 @@ include($docPath.'inc/header.php');
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-sm-4 text-center">
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center">
                     <div class="position k wow fadeInUp" onclick="showTP('k');">
                         <span class="title ktitle" onclick="showTP('k');">Kicker</span>
                         <span class="TPmobileClickNotification">Click Here</span>
@@ -267,7 +310,7 @@ include($docPath.'inc/header.php');
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-sm-4 text-center">
+                <div class="col-xs-12 col-sm-6 col-md-4 text-center">
                     <div class="position ds wow fadeInRight" onclick="showTP('ds');">
                         <span class="title dstitle" onclick="showTP('ds');">Defense/Special</span>
                         <span class="TPmobileClickNotification">Click Here</span>
@@ -449,7 +492,7 @@ include($docPath.'inc/header.php');
                 <div class="col-xs-4 text-center">
                     <span class="heading wow slideInUp" style="font-size:56px;"><i>NFL PLAYER</i> POWER<br><b>RANKINGS</b></span>
 
-                    <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which NFL teams will dominate the rest of the way. Finding stud players on prospering teams is a recipe for success in fantasy football.">
+                    <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which NFL players will dominate the rest of the way. Finding stud players on prospering teams is a recipe for success in fantasy football.">
                         <img src="<?=$webPath?>images/report/info-icon-white.png">
                     </button>
                 </div>
@@ -628,16 +671,23 @@ include($docPath.'inc/header.php');
         </div>
     </section>
     <!--/POWER RANKING-->
-
-
+<section  id="trending" class="trending" style="padding:50px 15px;padding-bottom:0px;">
+<div class="container">
+<div class="row">
+    <div class="col-xs-12">
+        <h4 class="wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;text-align:center;font-size:48px;">Recent <span style="color:#d83435;">Trends</span></h4>
+    </div>
+</div>
+</div>
+</section>
     <!--TRENDING-->
-    <section id="trending" class="trending" style="padding:50px 15px;">
+    <section class="trending" style="padding:50px 15px;padding-top:10px;">
         <div class="container">
             <section class="col-xs-12 col-sm-6 upwards">
                 <div class="row">
                     <div class="text-center">
                         <img class="heading-icon wow tada" src="<?=$webPath?>images/report/trending-upwards-icon.png">
-                        <span class="heading wow fadeInLeft">TRENDING<b>UPWARDS</b></span>
+                        <span class="heading wow fadeInLeft"><b>UPWARDS</b></span>
 
                         <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to get a quick glance at who has been performing well consistently over the last 3 weeks. These players aren't flaky, you can trust them to score some point this week. If you don't own them, try trading for them this week.">
                             <img src="<?=$webPath?>images/report/info-icon-dark.png">
@@ -772,7 +822,7 @@ include($docPath.'inc/header.php');
                 <div class="row">
                     <div class="text-center">
                         <img class="heading-icon wow tada" src="<?=$webPath?>images/report/trending-downwards-icon.png">
-                        <span class="heading wow fadeInRight">TRENDING<b>DOWNWARDS</b></span>
+                        <span class="heading wow fadeInRight"><b>DOWNWARDS</b></span>
 
                         <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to get a quick glance at who has been performing well consistently over the last 3 weeks. These players aren't flaky, you can trust them to score some point this week. If you don't own them, try trading for them this week.">
                             <img src="<?=$webPath?>images/report/info-icon-dark.png">
@@ -923,21 +973,21 @@ include($docPath.'inc/header.php');
                 <div class="col-xs-12 col-sm-4">
                     <div class="fact text-center">
                         <span class="category">FANTASY</span>
-                        <span class="info">The Detroit Lions haven’t won a playoff game since 1982.</span>
+                        <span class="info">Odell Beckham Jr. and Dez Bryant both caught every TD pass their Quarterback threw last week. </span>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-4">
                     <div class="fact text-center">
                         <span class="category">HISTORY</span>
-                        <span class="info">The Detroit Lions haven’t won a playoff game since 1982.</span>
+                        <span class="info">The Detroit Lions have just one playoff win since Dwight D. Eisenhower was President of the United States. </span>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-4">
                     <div class="fact text-center">
                         <span class="category">LIFE</span>
-                        <span class="info">The Detroit Lions haven’t won a playoff game since 1982.</span>
+                        <span class="info">Jamaal Charles once competed in the Special Olympics, which is where his talent for running the football was discovered. </span>
                     </div>
                 </div>
             </div>
@@ -959,7 +1009,7 @@ include($docPath.'inc/header.php');
             </div>
 
             <div class="row">
-                <div class="col-xs-12 col-sm-4">
+                <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="game clearfix">
                         <div class="helmet left">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -1012,7 +1062,7 @@ include($docPath.'inc/header.php');
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-sm-4">
+                <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="game clearfix">
                         <div class="helmet left">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -1065,7 +1115,7 @@ include($docPath.'inc/header.php');
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-sm-4">
+                <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="game clearfix">
                         <div class="helmet left">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -1117,10 +1167,7 @@ include($docPath.'inc/header.php');
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-12 col-sm-4">
+                <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="game clearfix">
                         <div class="helmet left">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -1173,7 +1220,7 @@ include($docPath.'inc/header.php');
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-sm-4">
+                <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="game clearfix">
                         <div class="helmet left">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -1226,7 +1273,7 @@ include($docPath.'inc/header.php');
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-sm-4">
+                <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="game clearfix">
                         <div class="helmet left">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -1287,21 +1334,20 @@ include($docPath.'inc/header.php');
     <section id="team-rankings" class="team-rankings" style="padding:50px 15px;">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 heading-col">
+                <div class="col-xs-12 col-sm-3 heading-col">
                     <img class="heading-icon wow tada" src="<?=$webPath?>images/report/power-rankings-icon.png">
-                    <span class="heading wow fadeInRight"><i>NFL TEAMS</i> POWER <b>RANKINGS</b></span>
+                    <span id="prHeading" class="heading wow fadeInRight"><i>NFL TEAMS</i> POWER <b>RANKINGS</b></span>
 
                     <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which NFL teams will dominate the rest of the way. Finding stud players on prospering teams is a recipe for success in fantasy football.">
                         <img src="<?=$webPath?>images/report/info-icon-dark.png">
                     </button>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-2">
+
+                <div class="col-xs-12 col-sm-3">
                     <section class="stat wow fadeInDown clearfix">
-                        <div class="helmet">
+                        <div class="helmet" style="width:65px;height:65px;">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 257.000000 250.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
                                 fill="#002244" stroke="none">
@@ -1322,15 +1368,15 @@ include($docPath.'inc/header.php');
                             <span class="city">NE</span>
                         </div>
 
-                        <span class="desc">Patriots</span>
+                        <span class="desc"><span style="font-weight:900;">1.</span> Patriots</span>
                     </section>
                 </div>
 
-                <div class="col-xs-12 col-sm-2">
+                <div class="col-xs-12 col-sm-3">
                     <section class="stat wow fadeInDown clearfix">
-                        <div class="helmet">
+                        <div class="helmet" style="width:65px;height:65px;">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 257.000000 250.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
                                 fill="#AA0000" stroke="none">
@@ -1351,15 +1397,15 @@ include($docPath.'inc/header.php');
                             <span class="city">SEA</span>
                         </div>
 
-                        <span class="desc">Seahawks</span>
+                        <span class="desc"><span style="font-weight:900;">2.</span> Seahawks</span>
                     </section>
                 </div>
 
-                <div class="col-xs-12 col-sm-2">
+                <div class="col-xs-12 col-sm-3">
                     <section class="stat wow fadeInDown clearfix" data-wow-delay=".25s">
-                        <div class="helmet">
+                        <div class="helmet" style="width:65px;height:65px;">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 257.000000 250.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
                                 fill="#203731" stroke="none">
@@ -1380,15 +1426,15 @@ include($docPath.'inc/header.php');
                             <span class="city">GB</span>
                         </div>
 
-                        <span class="desc">Packers</span>
+                        <span class="desc"><span style="font-weight:900;">3.</span> Packers</span>
                     </section>
                 </div>
 
-                <div class="col-xs-12 col-sm-2">
+                <div class="col-xs-12 col-sm-3">
                     <section class="stat wow fadeInDown clearfix" data-wow-delay=".25s">
-                        <div class="helmet">
+                        <div class="helmet" style="width:65px;height:65px;">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 257.000000 250.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
                                 fill="#002244" stroke="none">
@@ -1409,15 +1455,15 @@ include($docPath.'inc/header.php');
                             <span class="city">DEN</span>
                         </div>
 
-                        <span class="desc">Broncos</span>
+                        <span class="desc"><span style="font-weight:900;">4.</span> Broncos</span>
                     </section>
                 </div>
 
-                <div class="col-xs-12 col-sm-2">
+                <div class="col-xs-12 col-sm-3">
                     <section class="stat wow fadeInDown clearfix" data-wow-delay=".45s">
-                        <div class="helmet">
+                        <div class="helmet" style="width:65px;height:65px;">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 257.000000 250.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
                                 fill="#002C5F" stroke="none">
@@ -1438,15 +1484,15 @@ include($docPath.'inc/header.php');
                             <span class="city">IND</span>
                         </div>
 
-                        <span class="desc">Colts</span>
+                        <span class="desc"><span style="font-weight:900;">5.</span> Colts</span>
                     </section>
                 </div>
 
-                <div class="col-xs-12 col-sm-2">
+                <div class="col-xs-12 col-sm-3">
                     <section class="stat wow fadeInDown clearfix" data-wow-delay=".45s">
-                        <div class="helmet">
+                        <div class="helmet" style="width:65px;height:65px;">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 257.000000 250.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
                                 fill="#002244" stroke="none">
@@ -1467,7 +1513,7 @@ include($docPath.'inc/header.php');
                             <span class="city">DAL</span>
                         </div>
 
-                        <span class="desc">Cowboys</span>
+                        <span class="desc"><span style="font-weight:900;">6.</span> Cowboys</span>
                     </section>
                 </div>
             </div>
@@ -1480,1315 +1526,586 @@ include($docPath.'inc/header.php');
 <div class="row">
     <div class="col-xs-12 text-center">
         <span class="heading wow slideInUp">NFL<b>SCORES</b></span>
-
         <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which players will be playing the worst defensive in coming weeks. Playing a poor defensive is always a quick fix to a struggling player. Now might be the time to buy cheap on a player who has been struggling on one of these teams.">
             <img src="<?=$webPath?>images/report/info-icon-white.png">
         </button>
     </div>
 </div>
-
+<style>
+    .removeHelmet {background:transparent!important;box-shadow:none!important;}
+    .tightenScore {margin-top:40px!important;}
+    .gameScore {margin-bottom:15px!important;border-bottom:1px solid #888888;}
+</style>
 <div class="row">
-    <div class="col-xs-12 col-sm-4">
-        <div class="game clearfix">
-            <div class="helmet left loss">
-                <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                     width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                     preserveAspectRatio="xMidYMid meet">
-                    <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                       fill="#A71930" stroke="none">
-                        <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                    </g>
-                </svg>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="game gameScore clearfix">
+            <div class="helmet left win removeHelmet">
                 <span class="city">ATL</span>
-                <span class="score">24</span>
+                <span class="score tightenScore">24</span>
             </div>
 
             <div class="vs">AT</div>
 
-            <div class="helmet right win">
-                <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                     width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                     preserveAspectRatio="xMidYMid meet">
-                    <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                       fill="#9F8958" stroke="none">
-                        <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                    </g>
-                </svg>
-
+            <div class="helmet right loss removeHelmet">
                 <span class="city">NO</span>
-                <span class="score">14</span>
+                <span class="score tightenScore">14</span>
             </div>
         </div>
     </div>
 
-    <div class="col-xs-12 col-sm-4">
-        <div class="game clearfix">
-            <div class="helmet left loss">
-                <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                     width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                     preserveAspectRatio="xMidYMid meet">
-                    <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                       fill="#002244" stroke="none">
-                        <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                    </g>
-                </svg>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="game gameScore clearfix">
+            <div class="helmet left loss removeHelmet">
                 <span class="city">NE</span>
-                <span class="score">17</span>
+                <span class="score tightenScore">17</span>
             </div>
 
             <div class="vs">AT</div>
 
-            <div class="helmet right win">
-                <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                     width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                     preserveAspectRatio="xMidYMid meet">
-                    <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                       fill="#203731" stroke="none">
-                        <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                    </g>
-                </svg>
-
+            <div class="helmet right win removeHelmet">
                 <span class="city">NYJ</span>
-                <span class="score">16</span>
+                <span class="score tightenScore">16</span>
             </div>
         </div>
     </div>
 
-    <div class="col-xs-12 col-sm-4">
-        <div class="game clearfix">
-            <div class="helmet left win">
-                <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                     width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                     preserveAspectRatio="xMidYMid meet">
-                    <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                       fill="#E31837" stroke="none">
-                        <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                    </g>
-                </svg>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="game gameScore clearfix">
+            <div class="helmet left loss removeHelmet">
                 <span class="city">KC</span>
-                <span class="score">12</span>
+                <span class="score tightenScore">12</span>
             </div>
 
             <div class="vs">AT</div>
 
-            <div class="helmet right loss">
-                <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                     width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                     preserveAspectRatio="xMidYMid meet">
-                    <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                       fill="#000000" stroke="none">
-                        <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                    </g>
-                </svg>
-
+            <div class="helmet right win removeHelmet">
                 <span class="city">PIT</span>
-                <span class="score">20</span>
+                <span class="score tightenScore">20</span>
             </div>
         </div>
     </div>
-</div>
 
-<div class="row">
-<div class="col-xs-12 col-sm-4">
-    <div class="game clearfix">
-        <div class="helmet left loss">
-            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#203731" stroke="none">
-                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                </g>
-            </svg>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="game gameScore clearfix">
+        <div class="helmet left win removeHelmet">
             <span class="city">GB</span>
-            <span class="score">20</span>
+            <span class="score tightenScore">20</span>
         </div>
 
         <div class="vs">AT</div>
 
-        <div class="helmet right win">
-            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#D50A0A" stroke="none">
-                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                </g>
-            </svg>
-
+        <div class="helmet right loss removeHelmet">
             <span class="city">TB</span>
-            <span class="score">3</span>
+            <span class="score tightenScore">3</span>
         </div>
     </div>
 </div>
 
-<div class="col-xs-12 col-sm-4">
-    <div class="game clearfix">
-        <div class="helmet left loss">
-            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#00338D" stroke="none">
-                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                </g>
-            </svg>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="game gameScore clearfix">
+        <div class="helmet left loss removeHelmet">
             <span class="city">BUF</span>
-            <span class="score">24</span>
+            <span class="score tightenScore">24</span>
         </div>
 
         <div class="vs">AT</div>
 
-        <div class="helmet right win">
-            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#A5ACAF" stroke="none">
-                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                </g>
-            </svg>
-
+        <div class="helmet right win removeHelmet">
             <span class="city">OAK</span>
-            <span class="score">26</span>
+            <span class="score tightenScore">26</span>
         </div>
     </div>
 </div>
 
-<div class="col-xs-12 col-sm-4">
-    <div class="game clearfix">
-        <div class="helmet left win">
-            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#AA0000" stroke="none">
-                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                </g>
-            </svg>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="game gameScore clearfix">
+        <div class="helmet left win removeHelmet">
             <span class="city">SEA</span>
-            <span class="score">35</span>
+            <span class="score tightenScore">35</span>
         </div>
 
         <div class="vs">AT</div>
 
-        <div class="helmet right loss">
-            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#97233F" stroke="none">
-                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                </g>
-            </svg>
-
+        <div class="helmet right loss removeHelmet">
             <span class="city">ARI</span>
-            <span class="score">6</span>
+            <span class="score tightenScore">6</span>
         </div>
     </div>
 </div>
-<div class="col-xs-12 col-sm-4">
-    <div class="game clearfix">
-        <div class="helmet left win">
-            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#002244" stroke="none">
-                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                </g>
-            </svg>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="game gameScore clearfix">
+        <div class="helmet left loss removeHelmet">
             <span class="city">DEN</span>
-            <span class="score">28</span>
+            <span class="score tightenScore">28</span>
         </div>
 
         <div class="vs">AT</div>
 
-        <div class="helmet right loss">
-            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#000000" stroke="none">
-                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                </g>
-            </svg>
-
+        <div class="helmet right win removeHelmet">
             <span class="city">CIN</span>
-            <span class="score">37</span>
+            <span class="score tightenScore">37</span>
         </div>
     </div>
 </div>
-<div class="col-xs-12 col-sm-4">
-    <div class="game clearfix">
-        <div class="helmet left win">
-            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#002244" stroke="none">
-                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                </g>
-            </svg>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="game gameScore clearfix">
+        <div class="helmet left loss removeHelmet">
             <span class="city">TEN</span>
-            <span class="score">13</span>
+            <span class="score tightenScore">13</span>
         </div>
 
         <div class="vs">AT</div>
-
-        <div class="helmet right loss">
-            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#000000" stroke="none">
-                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                </g>
-            </svg>
-
+        <div class="helmet right win removeHelmet">
             <span class="city">JAX</span>
-            <span class="score">21</span>
+            <span class="score tightenScore">21</span>
         </div>
     </div>
 </div>
-<div class="col-xs-12 col-sm-4">
-    <div class="game clearfix">
-        <div class="helmet left win">
-            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#004953" stroke="none">
-                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                </g>
-            </svg>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="game gameScore clearfix">
+        <div class="helmet left loss removeHelmet">
             <span class="city">PHI</span>
-            <span class="score">24</span>
+            <span class="score tightenScore">24</span>
         </div>
 
         <div class="vs">AT</div>
 
-        <div class="helmet right loss">
-            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#773141" stroke="none">
-                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                </g>
-            </svg>
-
+        <div class="helmet right win removeHelmet">
             <span class="city">WAS</span>
-            <span class="score">27</span>
+            <span class="score tightenScore">27</span>
         </div>
     </div>
 </div>
-<div class="col-xs-12 col-sm-4">
-    <div class="game clearfix">
-        <div class="helmet left win">
-            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#002244" stroke="none">
-                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                </g>
-            </svg>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="game gameScore clearfix">
+        <div class="helmet left win removeHelmet">
             <span class="city">SD</span>
-            <span class="score">38</span>
+            <span class="score tightenScore">38</span>
         </div>
 
         <div class="vs">AT</div>
 
-        <div class="helmet right loss">
-            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#002244" stroke="none">
-                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                </g>
-            </svg>
-
+        <div class="helmet right loss removeHelmet">
             <span class="city">SF</span>
-            <span class="score">35</span>
+            <span class="score tightenScore">35</span>
         </div>
     </div>
 </div>
-<div class="col-xs-12 col-sm-4">
-    <div class="game clearfix">
-        <div class="helmet left win">
-            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#FB4F14" stroke="none">
-                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                </g>
-            </svg>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="game gameScore clearfix">
+        <div class="helmet left loss removeHelmet">
             <span class="city">CLE</span>
-            <span class="score">13</span>
+            <span class="score tightenScore">13</span>
         </div>
 
         <div class="vs">AT</div>
 
-        <div class="helmet right loss">
-            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#0085CA" stroke="none">
-                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                </g>
-            </svg>
-
+        <div class="helmet right win removeHelmet">
             <span class="city">CAR</span>
-            <span class="score">17</span>
+            <span class="score tightenScore">17</span>
         </div>
     </div>
 </div>
-<div class="col-xs-12 col-sm-4">
-    <div class="game clearfix">
-        <div class="helmet left win">
-            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#005A8B" stroke="none">
-                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                </g>
-            </svg>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="game gameScore clearfix">
+        <div class="helmet left win removeHelmet">
             <span class="city">DET</span>
-            <span class="score">20</span>
+            <span class="score tightenScore">20</span>
         </div>
 
         <div class="vs">AT</div>
 
-        <div class="helmet right loss">
-            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#0B162A" stroke="none">
-                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                </g>
-            </svg>
-
+        <div class="helmet right loss removeHelmet">
             <span class="city">CHI</span>
-            <span class="score">14</span>
+            <span class="score tightenScore">14</span>
         </div>
     </div>
 </div>
-<div class="col-xs-12 col-sm-4">
-    <div class="game clearfix">
-        <div class="helmet left win">
-            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#241773" stroke="none">
-                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                </g>
-            </svg>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="game gameScore clearfix">
+        <div class="helmet left loss removeHelmet">
             <span class="city">BAL</span>
-            <span class="score">13</span>
+            <span class="score tightenScore">13</span>
         </div>
 
         <div class="vs">AT</div>
 
-        <div class="helmet right loss">
-            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#03202F" stroke="none">
-                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                </g>
-            </svg>
-
+        <div class="helmet right win removeHelmet">
             <span class="city">HOU</span>
-            <span class="score">25</span>
+            <span class="score tightenScore">25</span>
         </div>
     </div>
 </div>
-<div class="col-xs-12 col-sm-4">
-    <div class="game clearfix">
-        <div class="helmet left win">
-            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#4F2683" stroke="none">
-                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                </g>
-            </svg>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="game gameScore clearfix">
+        <div class="helmet left loss removeHelmet">
             <span class="city">MIN</span>
-            <span class="score">35</span>
+            <span class="score tightenScore">35</span>
         </div>
 
         <div class="vs">AT</div>
 
-        <div class="helmet right loss">
-            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#008E97" stroke="none">
-                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                </g>
-            </svg>
-
+        <div class="helmet right win removeHelmet">
             <span class="city">MIA</span>
-            <span class="score">37</span>
+            <span class="score tightenScore">37</span>
         </div>
     </div>
 </div>
-<div class="col-xs-12 col-sm-4">
-    <div class="game clearfix">
-        <div class="helmet left win">
-            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#0B2265" stroke="none">
-                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                </g>
-            </svg>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="game gameScore clearfix">
+        <div class="helmet left win removeHelmet">
             <span class="city">NYG</span>
-            <span class="score">37</span>
+            <span class="score tightenScore">37</span>
         </div>
 
         <div class="vs">AT</div>
 
-        <div class="helmet right loss">
-            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#002244" stroke="none">
-                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                </g>
-            </svg>
-
+        <div class="helmet right loss removeHelmet">
             <span class="city">STL</span>
-            <span class="score">27</span>
+            <span class="score tightenScore">27</span>
         </div>
     </div>
 </div>
-<div class="col-xs-12 col-sm-4">
-    <div class="game clearfix">
-        <div class="helmet left win">
-            <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#002C5F" stroke="none">
-                    <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
-                                l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
-                                -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
-                                -81 26 -131 72 -182 192 -214 64 -16 151 -20 159 -7 13 21 57 425 48 434 -5 5
-                                -108 34 -228 65 -121 30 -223 58 -227 62 -11 11 17 64 50 95 14 14 65 39 112
-                                57 47 17 100 42 118 56 69 51 65 150 -12 299 -101 196 -252 330 -440 390 -103
-                                33 -249 41 -349 18z m123 -900 c26 -21 31 -33 31 -69 0 -36 -5 -48 -31 -69
-                                -37 -32 -77 -33 -113 -5 -38 30 -49 64 -35 106 20 62 96 81 148 37z m655 -159
-                                c64 -14 118 -25 121 -25 8 0 6 -38 -3 -44 -7 -4 -227 20 -248 28 -6 2 -14 18
-                                -16 35 -6 39 -5 39 146 6z m1 -138 l100 -13 -3 -64 c-2 -35 -7 -80 -11 -99 -7
-                                -34 -9 -36 -42 -33 -46 4 -119 41 -141 72 -18 25 -40 127 -31 143 5 9 5 9 128
-                                -6z"/>
-                </g>
-            </svg>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="game gameScore clearfix">
+        <div class="helmet left loss removeHelmet">
             <span class="city">IND</span>
-            <span class="score">7</span>
+            <span class="score tightenScore">7</span>
         </div>
 
         <div class="vs">AT</div>
 
-        <div class="helmet right loss">
-            <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                 width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
-                 preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                   fill="#002244" stroke="none">
-                    <path d="M731 1489 c-228 -44 -411 -188 -526 -413 -77 -149 -81 -248 -12 -299
-                                18 -14 71 -39 118 -56 47 -18 98 -43 112 -57 33 -31 61 -84 50 -95 -4 -4 -106
-                                -32 -227 -62 -120 -31 -223 -60 -228 -65 -9 -9 35 -413 48 -434 8 -13 95 -9
-                                159 7 120 32 166 83 192 214 14 71 19 81 38 81 16 0 23 -9 33 -44 43 -162 244
-                                -236 441 -164 29 11 89 45 133 75 44 30 95 61 114 69 40 17 96 18 111 3 5 -5
-                                34 -9 64 -7 l54 3 42 62 c129 193 158 471 73 706 -122 332 -465 540 -789 476z
-                                m249 -894 c35 -18 55 -71 41 -107 -13 -35 -58 -68 -92 -68 -15 0 -41 12 -58
-                                26 -26 21 -31 33 -31 69 0 36 5 48 31 69 35 29 67 33 109 11z m-618 -176 c-2
-                                -17 -10 -33 -16 -35 -21 -8 -241 -32 -248 -28 -5 3 -8 14 -8 24 0 15 12 21 58
-                                30 31 7 82 18 112 25 30 7 67 14 81 14 23 1 25 -2 21 -30z m-20 -169 c-5 -60
-                                -30 -110 -70 -137 -35 -23 -123 -46 -134 -35 -10 10 -31 182 -23 190 8 8 168
-                                30 205 28 23 -1 25 -4 22 -46z"/>
-                </g>
-            </svg>
-
+        <div class="helmet right win removeHelmet">
             <span class="city">DAL</span>
-            <span class="score">42</span>
+            <span class="score tightenScore">42</span>
         </div>
     </div>
 </div>
 </div>
 </div>
 </section>
-    <!-- NFL STANDINGS -->
-    <section id="standings" class="standings" style="padding:50px 15px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 text-center">
-                <span class="heading wow slideInUp">NFL<b>STANDINGS</b></span>
 
-                    <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which players will be playing the worst defensive in coming weeks. Playing a poor defensive is always a quick fix to a struggling player. Now might be the time to buy cheap on a player who has been struggling on one of these teams.">
-                        <img src="<?=$webPath?>images/report/info-icon-dark.png">
-                    </button>
-                </div>
-            </div>
+<!-- NFL STANDINGS -->
+<section id="standings" class="standings" style="padding:50px 15px;">
+<div class="container">
+<div class="row">
+    <div class="col-xs-12 text-center">
+        <span class="heading wow slideInUp">NFL<b>STANDINGS</b></span>
 
-            <div class="row">
-                <div class="table-expand" data-toggle="collapse" data-target="#afcTeams" aria-expanded="false" aria-controls="collapseExample">
-                    AFC Teams <b>+</b>
-                </div>
+        <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which players will be playing the worst defensive in coming weeks. Playing a poor defensive is always a quick fix to a struggling player. Now might be the time to buy cheap on a player who has been struggling on one of these teams.">
+            <img src="<?=$webPath?>images/report/info-icon-dark.png">
+        </button>
+    </div>
+</div>
 
-                <table class="table table-striped collapse" id="afcTeams">
-                    <thead>
-                        <tr>
-                            <th>AFC East Team</th>
-                            <th>W</th>
-                            <th>L</th>
-                            <th>T</th>
-                            <th>Pct</th>
-                            <th>PF</th>
-                            <th>PA</th>
-                            <th>Net Pts</th>
-                            <th>TD</th>
-                            <th>Home</th>
-                            <th>Road</th>
-                            <th>Div</th>
-                            <th>Pct</th>
-                            <th>Conf</th>
-                            <th>Pct</th>
-                            <th>Non-Conf</th>
-                            <th>Streak</th>
-                            <th>Last 5</th>
-                        </tr>
-                    </thead>
+<style>
+    #afcTeams tr:nth-child(even) {background:lightcoral;}
+    #nfcTeams tr:nth-child(even) {background:lightcoral;
+</style>
+<div class="row">
+<div class="col-xs-12 col-sm-6">
+<div class="table-expand" data-toggle="collapse" data-target="#afcTeams" aria-expanded="false" aria-controls="collapseExample">
+    AFC Teams <b>+</b>
+</div>
 
-                    <tbody>
-                        <tr>
-                            <td>Miami Dolphins</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>.000</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>--</td>
-                            <td>0-0</td>
-                        </tr>
-                        <tr>
-                            <td>New York Jets</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>.000</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>--</td>
-                            <td>0-0</td>
-                        </tr>
-                    </tbody>
-                    <thead>
-                        <tr>
-                            <th>AFC East Team</th>
-                            <th>W</th>
-                            <th>L</th>
-                            <th>T</th>
-                            <th>Pct</th>
-                            <th>PF</th>
-                            <th>PA</th>
-                            <th>Net Pts</th>
-                            <th>TD</th>
-                            <th>Home</th>
-                            <th>Road</th>
-                            <th>Div</th>
-                            <th>Pct</th>
-                            <th>Conf</th>
-                            <th>Pct</th>
-                            <th>Non-Conf</th>
-                            <th>Streak</th>
-                            <th>Last 5</th>
-                        </tr>
-                    </thead>
+<table class="table table-striped collapse" id="afcTeams">
+<thead>
+<tr>
+    <th>AFC West Team</th>
+    <th>Wins</th>
+    <th>Losses</th>
+    <th>Ties</th>
+</tr>
+</thead>
 
-                    <tbody>
-                        <tr>
-                            <td>Miami Dolphins</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>.000</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>--</td>
-                            <td>0-0</td>
-                        </tr>
-                        <tr>
-                            <td>New York Jets</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>.000</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>--</td>
-                            <td>0-0</td>
-                        </tr>
-                    </tbody>
-                    <thead>
-                        <tr>
-                            <th>AFC East Team</th>
-                            <th>W</th>
-                            <th>L</th>
-                            <th>T</th>
-                            <th>Pct</th>
-                            <th>PF</th>
-                            <th>PA</th>
-                            <th>Net Pts</th>
-                            <th>TD</th>
-                            <th>Home</th>
-                            <th>Road</th>
-                            <th>Div</th>
-                            <th>Pct</th>
-                            <th>Conf</th>
-                            <th>Pct</th>
-                            <th>Non-Conf</th>
-                            <th>Streak</th>
-                            <th>Last 5</th>
-                        </tr>
-                    </thead>
+<tbody>
+<tr>
+    <td>Denver Broncos</td>
+    <td>11</td>
+    <td>3</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>Kansas City Chiefs</td>
+    <td>8</td>
+    <td>6</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>San Diego Chargers</td>
+    <td>8</td>
+    <td>6</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>Oakland Raiders</td>
+    <td>2</td>
+    <td>12</td>
+    <td>0</td>
+</tr>
+</tbody>
+<thead>
+<tr>
+    <th>AFC East Team</th>
+    <th>Wins</th>
+    <th>Losses</th>
+    <th>Ties</th>
+</tr>
+</thead>
 
-                    <tbody>
-                        <tr>
-                            <td>Miami Dolphins</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>.000</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>--</td>
-                            <td>0-0</td>
-                        </tr>
-                        <tr>
-                            <td>New York Jets</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>.000</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>--</td>
-                            <td>0-0</td>
-                        </tr>
-                    </tbody>
-                    <thead>
-                        <tr>
-                            <th>AFC East Team</th>
-                            <th>W</th>
-                            <th>L</th>
-                            <th>T</th>
-                            <th>Pct</th>
-                            <th>PF</th>
-                            <th>PA</th>
-                            <th>Net Pts</th>
-                            <th>TD</th>
-                            <th>Home</th>
-                            <th>Road</th>
-                            <th>Div</th>
-                            <th>Pct</th>
-                            <th>Conf</th>
-                            <th>Pct</th>
-                            <th>Non-Conf</th>
-                            <th>Streak</th>
-                            <th>Last 5</th>
-                        </tr>
-                    </thead>
+<tbody>
+<tr>
+    <td>New England Patriots</td>
+    <td>11</td>
+    <td>3</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>Buffalo Bills</td>
+    <td>8</td>
+    <td>6</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>Miami Dolphins</td>
+    <td>7</td>
+    <td>7</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>New York Jets</td>
+    <td>3</td>
+    <td>11</td>
+    <td>0</td>
+</tr>
+</tbody>
+<thead>
+<tr>
+    <th>AFC North Team</th>
+    <th>Wins</th>
+    <th>Losses</th>
+    <th>Ties</th>
+</tr>
+</thead>
 
-                    <tbody>
-                        <tr>
-                            <td>Miami Dolphins</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>.000</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>--</td>
-                            <td>0-0</td>
-                        </tr>
-                        <tr>
-                            <td>New York Jets</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>.000</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>--</td>
-                            <td>0-0</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+<tbody>
+<tr>
+    <td>Cincinnati Bengals</td>
+    <td>9</td>
+    <td>4</td>
+    <td>1</td>
+</tr>
+<tr>
+    <td>Pittsburgh Steelers</td>
+    <td>9</td>
+    <td>5</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>Baltimore Ravens</td>
+    <td>9</td>
+    <td>5</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>Cleveland Browns</td>
+    <td>7</td>
+    <td>7</td>
+    <td>0</td>
+</tr>
+</tbody>
+<thead>
+<tr>
+    <th>AFC South Team</th>
+    <th>Wins</th>
+    <th>Losses</th>
+    <th>Ties</th>
+</tr>
+</thead>
 
-            <div class="row">
-                <div class="table-expand" data-toggle="collapse" data-target="#nfcTeams" aria-expanded="false" aria-controls="collapseExample">
-                    NFC Teams <b>+</b>
-                </div>
+<tbody>
+<tr>
+    <td>Indianapolis Colts</td>
+    <td>10</td>
+    <td>4</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>Houston Texans</td>
+    <td>7</td>
+    <td>7</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>Tennessee Titans</td>
+    <td>2</td>
+    <td>12</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>Jacksonville Jaguars</td>
+    <td>2</td>
+    <td>12</td>
+    <td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="col-xs-12 col-sm-6">
+    <div class="table-expand" data-toggle="collapse" data-target="#nfcTeams" aria-expanded="false" aria-controls="collapseExample">
+        NFC Teams <b>+</b>
+    </div>
 
-                <table class="table table-striped collapse" id="nfcTeams">
-                    <thead>
-                        <tr>
-                            <th>NFC East Team</th>
-                            <th>W</th>
-                            <th>L</th>
-                            <th>T</th>
-                            <th>Pct</th>
-                            <th>PF</th>
-                            <th>PA</th>
-                            <th>Net Pts</th>
-                            <th>TD</th>
-                            <th>Home</th>
-                            <th>Road</th>
-                            <th>Div</th>
-                            <th>Pct</th>
-                            <th>Conf</th>
-                            <th>Pct</th>
-                            <th>Non-Conf</th>
-                            <th>Streak</th>
-                            <th>Last 5</th>
-                        </tr>
-                    </thead>
+    <table class="table table-striped collapse" id="nfcTeams">
+        <thead>
+        <tr>
+            <th>NFC West Team</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Ties</th>
+        </tr>
+        </thead>
 
-                    <tbody>
-                        <tr>
-                            <td>Miami Dolphins</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>.000</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>--</td>
-                            <td>0-0</td>
-                        </tr>
-                        <tr>
-                            <td>New York Jets</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>.000</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>--</td>
-                            <td>0-0</td>
-                        </tr>
-                    </tbody>
-                    <thead>
-                        <tr>
-                            <th>NFC East Team</th>
-                            <th>W</th>
-                            <th>L</th>
-                            <th>T</th>
-                            <th>Pct</th>
-                            <th>PF</th>
-                            <th>PA</th>
-                            <th>Net Pts</th>
-                            <th>TD</th>
-                            <th>Home</th>
-                            <th>Road</th>
-                            <th>Div</th>
-                            <th>Pct</th>
-                            <th>Conf</th>
-                            <th>Pct</th>
-                            <th>Non-Conf</th>
-                            <th>Streak</th>
-                            <th>Last 5</th>
-                        </tr>
-                    </thead>
+        <tbody>
+        <tr>
+            <td>Arizona Cardinals</td>
+            <td>11</td>
+            <td>3</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>Seattle Seahawks</td>
+            <td>10</td>
+            <td>4</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>San Francisco 49ers</td>
+            <td>7</td>
+            <td>7</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>St. Louis Rams</td>
+            <td>6</td>
+            <td>8</td>
+            <td>0</td>
+        </tr>
+        </tbody>
+        <thead>
+        <tr>
+            <th>NFC East Team</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Ties</th>
+        </tr>
+        </thead>
 
-                    <tbody>
-                        <tr>
-                            <td>Miami Dolphins</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>.000</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>--</td>
-                            <td>0-0</td>
-                        </tr>
-                        <tr>
-                            <td>New York Jets</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>.000</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>.000</td>
-                            <td>0-0</td>
-                            <td>--</td>
-                            <td>0-0</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-    <!--/NFL STANDINGS -->
+        <tbody>
+        <tr>
+            <td>Dallas Cowboys</td>
+            <td>10</td>
+            <td>4</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>Philadelphia Eagles</td>
+            <td>9</td>
+            <td>5</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>New York Giants</td>
+            <td>5</td>
+            <td>9</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>Washington Redskins</td>
+            <td>3</td>
+            <td>11</td>
+            <td>0</td>
+        </tr>
+        </tbody>
+        <thead>
+        <tr>
+            <th>NFC North Team</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Tie</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td>Detroit Lions</td>
+            <td>10</td>
+            <td>4</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>Green Bay Packers</td>
+            <td>10</td>
+            <td>4</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>Minnesota Vikings</td>
+            <td>6</td>
+            <td>8</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>Chicago Bears</td>
+            <td>5</td>
+            <td>9</td>
+            <td>0</td>
+        </tr>
+        </tbody>
+        <thead>
+        <tr>
+            <th>NFC South Team</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Ties</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td>New Orleans Saints</td>
+            <td>6</td>
+            <td>8</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>Carolina Panthers</td>
+            <td>5</td>
+            <td>8</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Atlanta Falcons</td>
+            <td>5</td>
+            <td>9</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>Tampa Bay Buccaneers</td>
+            <td>2</td>
+            <td>12</td>
+            <td>0</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+</section>
+<!--/NFL STANDINGS -->
 
 
-<div style="width:100%;padding:10px;background:red;color:white;min-height:50px;">
-    <p style="text-align:center;color:white;">"It's that easy!  Now you know more than most of your opponents and it only took you 5 minutes!  Please use the time you just saved yourself however you wish, great job!"</p>
+<div style="width:100%;padding:10px;background:#d83435;color:white;min-height:50px;">
+    <p style="text-align:center;color:white;">“That was quick and painless and now you’re super knowledgeable. It’s that easy. Good luck this week!”</p>
 </div>
     <!--/NFL SCORES-->
 <?php include($docPath.'inc/footer.php'); ?>

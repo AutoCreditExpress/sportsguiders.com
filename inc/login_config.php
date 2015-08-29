@@ -61,13 +61,13 @@ define("COOKIE_SECRET_KEY", "{X`FGWc%<52x&6]Xh3v@m5");
  * It's really recommended to use SMTP!
  *
  */
-define("EMAIL_USE_SMTP", false);
-define("EMAIL_SMTP_HOST", "fairytaleyourparty.com");
+define("EMAIL_USE_SMTP", true);
+define("EMAIL_SMTP_HOST", "mail.sportsguiders.com");
 define("EMAIL_SMTP_AUTH", true);
-define("EMAIL_SMTP_USERNAME", "");
-define("EMAIL_SMTP_PASSWORD", "yourpassword");
-define("EMAIL_SMTP_PORT", 465);
-define("EMAIL_SMTP_ENCRYPTION", "ssl");
+define("EMAIL_SMTP_USERNAME", "info@sportsguiders.com");
+define("EMAIL_SMTP_PASSWORD", "SgInfossap2015!");
+define("EMAIL_SMTP_PORT", 25);
+//define("EMAIL_SMTP_ENCRYPTION", "ssl");
 
 /**
  * Configuration for: password reset email data
@@ -83,10 +83,10 @@ define("EMAIL_PASSWORDRESET_CONTENT", "Please click on this link to reset your p
  * Configuration for: verification email data
  * Set the absolute URL to register.php, necessary for email verification links
  */
-define("EMAIL_VERIFICATION_URL", "http://www.sportsguiders.com/login/verify-registration.php");
-define("EMAIL_VERIFICATION_FROM", "no-reply@example.com");
-define("EMAIL_VERIFICATION_FROM_NAME", "My Project");
-define("EMAIL_VERIFICATION_SUBJECT", "Account activation for PROJECT XY");
+define("EMAIL_VERIFICATION_URL", "http://127.0.0.1/php-login-advanced/register.php");
+define("EMAIL_VERIFICATION_FROM", "info@sportsguiders.com");
+define("EMAIL_VERIFICATION_FROM_NAME", "Sportsguiders.com");
+define("EMAIL_VERIFICATION_SUBJECT", "Account activation for Sportsguiders");
 define("EMAIL_VERIFICATION_CONTENT", "Please click on this link to activate your account:");
 
 /**

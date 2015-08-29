@@ -5,7 +5,7 @@ $couponCode = $_GET['code'];
 
 $SubscriberDAO = new SubscriberDAO($db);
 
-$couponResponse = $SubscriberDAO->getPlanUsingCoupon($couponCode);
+$couponResponse = $SubscriberDAO->getPlanUsingCoupon($couponCode,true);
 
 //print_r($couponResponse);
 
@@ -14,7 +14,7 @@ if($couponResponse==null){
 }else{
     $returnData = "Good news, we found a coupon code that matches.\n";
     $returnData .= "Code Entered:  ".$couponCode."\n";
-    $returnData .= "Description:  ".$couponResponse[0]['ex_desc']."\n";
+    $returnData .= "Description:  ".$couponResponse."\n";
 }
 
 echo $returnData;

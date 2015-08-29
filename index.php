@@ -31,7 +31,7 @@ include($docPath.'inc/header.php');
 
             <li data-transition="ZoomIn" data-slotamount="6">
                 <!--<img src="images/slide1.jpg" alt="">-->
-                <img src="<?=$webPath;?>img/SG-main-bg.jpg" alt="">
+                <img src="<?=$webPath;?>img/sg-main-banner.jpg" alt="">
 
                 <div class="tp-caption"
                      data-x="center"
@@ -52,7 +52,7 @@ include($docPath.'inc/header.php');
                      data-speed="600"
                     >
                     <h2 style="" class="text-center subHead">
-                        Expert advice and curated reports
+                        Fantasy Football Advice and Curated Reports
                     </h2>
                 </div>
 
@@ -126,34 +126,41 @@ include($docPath.'inc/header.php');
     <!-- End Work Process Container -->
 
 </section>
-<section id="welcome" class="welcome section-primary"  style="margin-top: 50px; background: #f6f8fc;">
+<style>
+    #welcome {background-image:url('img/recap-bg.jpg');background-size:cover;background-repeat:no-repeat;}
+</style>
+<section id="welcome" class="welcome section-primary"  style="margin-top: 50px;">
     <!-- Welcome Container -->
     <div class="container">
         <div class="row">
 
-            <div class="col-md-6" style="padding-bottom: 50px;padding-top:50px;">
+            <div class="col-sm-8 col-md-6" style="padding-bottom: 50px;padding-top:50px;">
 
                 <!-- Welcome Content -->
                 <div class="content wow fadeInUp animated" style="visibility: visible;">
                     <!-- Welcome Header -->
                     <header>
-                        <h2 style="color: #101010;">The <b>Recap</b>
-                        </h2>
-                        <h3>Our weekly recap will save you time and help you win by providing you simplified information in an easy-to-read format at just the right time every week.</h3>
+                        <h4 style="font-size:48px;color:white;">The <b style="color:#d83435;">Recap</b>
+                        </h4>
+                        <h3 style="color:white;">Our weekly recap will save you time and help you win by providing you simplified information in an easy-to-read format at just the right time every week.</h3>
                         <hr class="hr-left">
                     </header>
                     <!-- End Welcome Header -->
-                    <p>This recap is going to make your week so much easier! We provide you with only the high level information that matters, when it matters. We never try to bate you into clicking more links, and we will never show you an annoying slideshow. Our experts will curate a special report for you every week that will help you stay informed while maintaining a life outside of the game.</p>
+                    <p style="color:white;">This recap is going to make your week so much easier! We provide you with only the high level information that matters, when it matters. We never try to bate you into clicking more links, and we will never show you an annoying slideshow. Our experts will curate a special report for you every week that will help you stay informed while maintaining a life outside of the game.</p>
                 </div>
+                <style>
+                    .redHover {color:white;}
+                    .redHover:hover {color:red;}
+                </style>
                 <p>
-                    <a href="<?=$webPath;?>sample-recap/" class="btn btn-lg btn-rounded btn-iconned"><i class="fa fa-search fa-2x"></i> View Sample</a>
+                    <a href="<?=$webPath;?>sample-recap/" class="btn btn-lg btn-rounded btn-iconned redHover"><i class="fa fa-search fa-2x"></i> View Sample</a>
                     <a href="<?=$webPath;?>gain-access/" class="btn btn-secondary btn-lg btn-rounded btn-iconned"><i class="fa fa-check"></i> Get Started</a>
                 </p>
             </div>
             <!-- End Welcome Content -->
-            <div class="col-md-6" style="padding-bottom: 100px;">
+            <div class="col-sm-0 col-md-6" style="padding-bottom: 50px;">
             <!-- Welcome Image -->
-            <img src="images/welcome.png" class="img-welcome wow fadeIn animated" data-wow-delay=".2s" style="visibility: visible; -webkit-animation-delay: 0.2s;">
+<!--            <img src="images/welcome.png" class="img-welcome wow fadeIn animated" data-wow-delay=".2s" style="visibility: visible; -webkit-animation-delay: 0.2s;">-->
             <!-- End Welcome Image -->
             </div>
         </div>

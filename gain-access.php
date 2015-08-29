@@ -225,7 +225,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
             <!-- Checkout Container -->
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12 col-md-6">
 
                         <!-- Checkout Form -->
                         <div class="checkout-form" style="border-radius:15px;">
@@ -263,7 +263,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                         </div>
                     </div>
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-12 col-md-6">
                     <noscript>
                         <div class="bs-callout bs-callout-danger">
                             <h4>JavaScript is not enabled!</h4>
@@ -449,7 +449,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                     </div>
                                 </div>
 
-                                <div class="col-xs-6">
+                                <div class="col-xs-12 col-sm-6">
                                     <div class="form-group">
                                         <input value="" style="" type="text" id="number" name="number" class="form-control number" placeholder="Card Number" data-by-field="number">
                                     </div>
@@ -457,7 +457,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                 <!-- End Card Number -->
 
                                 <!-- Card Number -->
-                                <div class="col-xs-3">
+                                <div class="col-xs-6 col-sm-3">
                                     <div class="form-group">
                                         <input value="" style="" type="text" name="expiry" class="form-control expiry" placeholder="MM/YY"  data-by-field="expiry">
                                     </div>
@@ -465,7 +465,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                 <!-- End Card Number -->
 
                                 <!-- Card Number -->
-                                <div class="col-xs-3">
+                                <div class="col-xs-6 col-sm-3">
                                     <div class="form-group">
                                         <input value="" style="" type="text" name="cvc" class="form-control cvc" placeholder="CVC" data-by-field="cvc">
                                     </div>
@@ -535,10 +535,10 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                 <!-- coupon -->
                                 <div class="col-xs-12">
                                     <div class="form-group">
-                                        <div class="col-xs-4">
+                                        <div class="col-xs-12 col-sm-4">
                                             <button type="button" class=" couponButton btn btn-red btn-lg btn-rounded" style="padding-top:5px;padding-bottom:5px;">Verify Coupon</button>
                                         </div>
-                                        <div class="col-xs-8">
+                                        <div class="col-xs-12 col-sm-8">
                                             <input type="text" name="coupon" class="form-control coupon" placeholder="Coupon Code:(case sensitive)"  data-by-field="coupon">
                                         </div>
                                     </div>
