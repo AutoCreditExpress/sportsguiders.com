@@ -158,7 +158,7 @@
 
 <!-- ======= main section ======= -->
 <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="2b2e34"
-       style="background-image: url(www.sportsguiders.com/email/subscription/signup/img/bg.png); background-size: 100% 100%; background-position: top center;"
+       style="background-image: url('http://www.sportsguiders.com/email/subscription/signup/img/bg.png'); background-size: 100% 100%; background-position: top center;"
        background="img/bg.png">
 
     <tr>
@@ -228,11 +228,11 @@
 
                                         <?php
                                         if ($foundPlan) {
-                                            echo '...This is just a test...';
+                                           //echo '...This is just a test...';
                                         } else {
                                             ?>
-                                            <span
-                                                style="color: #1c2029;">Congratulations</span>, you're now a member of SportsGuiders! To get access your account click the link below.
+                                            <span style="color: #1c2029;">Congratulations</span> and welcome to SportsGuiders. You are 1 of just 3,000 who will be able to view The Recap for the 2015 NFL season.
+
                                         <?php
                                         }?>
 

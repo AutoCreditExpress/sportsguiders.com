@@ -9,6 +9,7 @@
     <title>Fantasy Football Guide - Sports Guiders</title>
     <meta name="description" content="KOEL is a multipurpose site template">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="http://www.sportsguiders.com/favicon.ico">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <meta property="og:url" content="http://www.sportsguiders.com" />
@@ -66,6 +67,10 @@
     <script type="text/javascript" src="<?php echo $webPath;?>scripts/jquery.min.js"></script>
     <script src="<?php echo $webPath;?>report/js/plugins.js"></script>
 
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="<?php echo $webPath;?>lib/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="<?php echo $webPath;?>lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
     <!-- End Scripts -->
     <Script>
 $(document).ready(function(){
@@ -105,7 +110,8 @@ $(document).ready(function(){
     @media screen and (max-width: 768px) {
         .dropdown-toggle {background-color:#d83435;}
     }
-    .pageLink {text-shadow:2px 2px 1px red!important;}
+    /*.pageLink {text-shadow:2px 2px 1px red!important;}*/
+    .pageLink {text-decoration:underline!important;}
 </style>
 <?php
 //active link
@@ -116,6 +122,7 @@ if($currentPage=='logout'){$logoutActiveClass='pageLink';};
 if($currentPage=='login'){$loginActiveClass='pageLink';};
 if($currentPage=='my-account'){$myAccountActiveClass='pageLink';};
 if($currentPage=='gain-access'){$gainAccessRecapActiveClass='pageLink';};
+if($currentPage=='why-us'){$whyUsActiveClass='pageLink';};
 
 $currentPage =basename($path,".php");
 if($currentPage=='' or $currentPage=='index'){
@@ -128,7 +135,7 @@ if($currentPage=='' or $currentPage=='index'){
 <section id="header" class="header header-revolution <?php if($pageID != 'home'){ echo 'header-sub';}?>" style="z-index:<?=$headerZindex;?>;">
 
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" style="">
 
         <!-- Navigation Container -->
         <div class="container">
@@ -139,23 +146,24 @@ if($currentPage=='' or $currentPage=='index'){
                 </button>
                 <?php if($pageID !='home'):?>
                 <a class="navbar-brand" href="<?php echo $webPath;?>">
-                    <img alt="Sports Guiders Logo" src="<?php echo $webPath;?>images/logo/sg-logo.png" style="max-width:200px;">
+                    <img class="animated bounceInLeft" alt="Sports Guiders Logo" src="<?php echo $webPath;?>images/logo/sg-logo.png" style="max-width:200px;">
                 </a>
                 <?php endif; ?>
             </div>
-            <div class="collapse navbar-collapse" id="navbar-collapse">
+            <div class="collapse navbar-collapse animated bounceInRight" id="navbar-collapse" style="max-width:100%;float:right;">
                 <ul class="nav navbar-nav navbar-right">
                     <!--<li class="dropdown">
                         <a href="<?php //echo $webPath;?>about/" class="dropdown-toggle" aria-expanded="false">About</a>
                     </li> -->
-
+                    <li class="dropdown">
+                        <a href="<?php echo $webPath;?>why-us/" class="dropdown-toggle <?=$whyUsActiveClass;?>" aria-expanded="false">Why SG</a>
+                    </li>
                     <li class="dropdown">
                         <?php if($_SESSION['user_name']): ?>
                         <a href="<?php echo $webPath;?>sample-recap/" class="dropdown-toggle <?=$theRecapActiveClass;?>" aria-expanded="false">The Recap</a>
                         <?php else: ?>
                         <a href="<?php echo $webPath;?>gain-access/?ref=therecap" class="dropdown-toggle <?=$theRecapActiveClass;?>" aria-expanded="false">The Recap</a>
                         <?php endif; ?>
-
                     </li>
                     <li class="dropdown">
                         <a href="<?php echo $webPath;?>contact-us/" class="dropdown-toggle <?=$contactActiveClass;?>" aria-expanded="false">Contact</a>

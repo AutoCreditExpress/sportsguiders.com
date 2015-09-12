@@ -67,7 +67,7 @@ include($docPath.'inc/header.php');
                     <div class="col-md-6 col-md-offset-3">
 
                         <!-- Contacts Information -->
-                        <div class="contacts-information">
+                        <div class="contacts-information animated bounceInRight">
                             <div class="row">
                                 <div class="col-xs-6">
                                     <div class="fa fa-map-marker"></div>
@@ -84,7 +84,7 @@ include($docPath.'inc/header.php');
                         <!-- End Contacts Information -->
 
                         <!-- Contacts Form -->
-                        <form method="post" action="">
+                        <form class="animated bounceInLeft" method="post" action="">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <input type="text" id="name" class="form-control" name="name" placeholder="Full Name">

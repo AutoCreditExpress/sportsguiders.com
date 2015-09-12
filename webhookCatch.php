@@ -4,7 +4,7 @@
 //require 'lib/Stripe.php';
 require 'inc/config.php';
 
-Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
+Stripe::setApiKey("sk_live_DBjtHb3jETlJt7uTV7mlUDd3");
 
 // Retrieve the request's body and parse it as JSON
 $input = @file_get_contents("php://input");
@@ -149,30 +149,24 @@ if($StripeWebhookHandler->getEventType()=="invoice.payment_failed"){
         //disable user account
         $SubscriberDAO->updateSubscriberIsActiveUsersTable($subscriberEmail,'0');
         echo "disabling user...";
-        //send email with link to billing update page
-        $mail = new PHPMailer;
-        //Set who the message is to be sent from
-        //$mail->setFrom('sportguiders.com', 'INFO');
-        $mail->From = 'info@sportsguiders.com';
-        $mail->FromName = 'Sportsguiders';
-        //Set an alternative reply-to address
-        $mail->addReplyTo('info@sportguiders.com', 'sportsguiders.com');
-        //Set who the message is to be sent to
-        $mail->addAddress($subscriberEmail);
-        //Set the subject line
-        $mail->Subject = 'Payment has failed';
-        //Read an HTML message body from an external file, convert referenced images to embedded,
-        //convert HTML into a basic plain-text alternative body
-        $mail->isHTML(true);
-        //$mail->msgHTML(file_get_contents('http://www.sportsguiders.com/email/subscription/signup/index.html'), dirname(__FILE__));
-        $mail->Body = "Your recent payment has failed, and your account has been deactivated.<br>Please update your billing information by clicking the <a href=\"http://www.sportsguiders.com/make-Payment/?subscriber_id=".$subscriberID."&user_email=".$subscriberEmail."\">link</a>.";
 
-        //send the message, check for errors
-        if (!$mail->send()) {
-            echo "Mailer Error: " . $mail->ErrorInfo;
-        } else {
-            echo "Mail Success...";
-            session_destroy();
+        $mandrill = new Mandrill('yj_MPJb4VNSohdk8kKdUMA');
+
+        $message = new stdClass();
+        //$message->html = file_get_contents('http://www.sportsguiders.com/email/subscription/signup/congratulations.php');;
+        $message->html = "Your recent payment has failed, and your account has been deactivated.<br>Please update your billing information by clicking the <a href=\"http://www.sportsguiders.com/make-Payment/?subscriber_id=".$subscriberID."&user_email=".$subscriberEmail."\">link</a>.";
+        $message->subject = 'Payment has failed';
+        $message->from_email = EMAIL_VERIFICATION_FROM;
+        $message->from_name  = EMAIL_VERIFICATION_FROM_NAME;
+        $message->to = array(array("email" => $subscriberEmail));
+        $message->track_opens = true;                        // Enable encryption, 'ssl' also accepted
+
+        $response = $mandrill->messages->send($message);
+
+        if($response[0]['status'] = 'sent'){
+            echo 'Mail Sent';
+        }else{
+            echo 'Error:'.$response->reject_reason;
         }
 
         //on success enable the user account

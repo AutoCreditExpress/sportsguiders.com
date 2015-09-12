@@ -26,7 +26,35 @@ function getAllTeams(){
 
     return $results;
 }
+    function getTeamColor1ByTeamShortName($teamName){
+        $sql = "SELECT team_hex_color1 FROM team WHERE team_short_name='".$teamName."'";
+        $pendingReport = $this->db->prepare($sql);
 
+        try{
+            $pendingReport->execute();
+            $results = $pendingReport->fetchAll();
+
+            return $results[0]['team_hex_color1'];
+        }catch(PDOException $e){
+            //echo $e;
+            return FALSE;
+        }
+    }
+
+    function getTeamFromID($teamID){
+        $sql = "SELECT * FROM team WHERE team_id='".$teamID."'";
+        $pendingReport = $this->db->prepare($sql);
+
+        try{
+            $pendingReport->execute();
+            $results = $pendingReport->fetchAll();
+
+            return $results[0];
+        }catch(PDOException $e){
+            //echo $e;
+            return FALSE;
+        }
+    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //                                                  Create

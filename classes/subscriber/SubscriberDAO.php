@@ -202,7 +202,7 @@ class SubscriberDAO{
     }
 
     function getNumberOfActiveSubscribers($noFormat=null){
-        $q = $this->db->prepare("SELECT COUNT(isActive) as Total FROM subscriber WHERE isActive='1' and create_date LIKE '2015%'");
+        $q = $this->db->prepare("SELECT COUNT(isActive) as Total FROM subscriber WHERE isActive='1' AND subscription_id!='' and create_date LIKE '2015%'");
         try{
             $q->execute();
             $results = $q->fetchAll();

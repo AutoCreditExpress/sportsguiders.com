@@ -20,6 +20,7 @@ class Report {
     protected $playerPowerRanking = array();
     protected $teamPowerRanking = array();
     protected $standings = array();
+    protected $scores = array();
 
     /**
      * @return string
@@ -231,7 +232,21 @@ class Report {
         $this->standings = $standings;
     }
 
-    
+    /**
+     * @return array
+     */
+    public function getScores()
+    {
+        return $this->scores;
+    }
+
+    /**
+     * @param array $standings
+     */
+    public function setScores($scores)
+    {
+        $this->scores = $scores;
+    }
 
 
 }

@@ -29,7 +29,8 @@ class Autoloader{
         'EasyScheduleDAO'                   => 'classes/report/EasyScheduleDAO.php',
         'ScoreDAO'                             => 'classes/report/ScoreDAO.php',
         'TopPerformers'                         => 'classes/report/TopPerformers.php',
-        'TopPerformersDAO'              => 'classes/report/TopPerformersDAO.php'
+        'TopPerformersDAO'              => 'classes/report/TopPerformersDAO.php',
+        'Mandrill'                      =>'classes/mandrill/Mandrill.php'
     );
 
     public function __construct($basePath) {

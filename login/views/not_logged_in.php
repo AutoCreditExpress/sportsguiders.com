@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="<?php echo $webPath;?>css/demo.css">
     <link rel="stylesheet" href="<?php echo $webPath;?>css/font-awesome.css">
     <link rel="stylesheet" href="<?php echo $webPath;?>css/sky-forms.css">
+    <link rel="stylesheet" href="<?php echo $webPath;?>css/animate.min.css">
     <!--[if lt IE 9]>
     <link rel="stylesheet" href="<?php echo $webPath;?>css/sky-forms-ie8.css">
     <![endif]-->
@@ -28,10 +29,10 @@
     <![endif]-->
 </head>
 
-<body class="" style="background-color:black;color:white;">
+<body class="animated tada" style="background-color:black;color:white;">
 <div class="body body-s">
     <form action="<?php echo $webPath.'login/'; ?>" method="post" id="sky-form" class="sky-form" style="box-shadow:3px 3px 8px grey;">
-        <header>SportsGuiders Login</header>
+        <header class="">SportsGuiders Login</header>
 
         <fieldset>
             <section>
@@ -68,7 +69,7 @@
                 </div>
             </section>
         </fieldset>
-        <footer>
+        <footer class="">
             <button type="submit" name="login" class="button">Log in</button>
             <button type="button" name="" class="button" onclick="location.assign('//www.sportsguiders.com');">Back</button>
             <a href="#" class="button button-secondary">Register</a>

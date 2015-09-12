@@ -19,50 +19,50 @@ include($docPath.'inc/header.php');
         .quickNavLink:hover {color:red;text-decoration:none;}
         .quickNavUl li a img:hover {border-bottom:1px solid white;}
         #mobileQuickNavUl li a {width:50px;margin:0px auto;color:white;font-size:22px;text-decoration:none;padding:10px;}
-        #mobileQuickNavUl li a:hover {padding:10px;border-radius:25px;background:lightcoral;color:red;}
+2        #mobileQuickNavUl li a:hover {padding:10px;border-radius:25px;background:lightcoral;color:red;}
         #mobileQuickNavUl li {list-style-type:none;padding:7px;}
         .mobileQuickNavImg:hover {box-shadow:1px 1px 8px white;}
         .fixed {position:fixed;top:0px;z-index:99999999;}
     </style>
 
-    <section id="quickNavSection" class="row" style="margin-left:0px;margin-right:0px;">
-        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" style="padding-left:0px;">
+    <section id="quickNavSection" class="row" style="margin-left:0px;">
+        <div id="quickNavDiv" class="col-xs-12 col-sm-2 col-md-2 col-lg-2" style="padding-left:0px;padding-right:0px;">
             <ul class="quickNavUl" style="padding-left:0px;display:none;">
                 <li style="margin-top:10px;font-weight:900;">Quick Links</li>
                 <li style="font-size:22px;border-left:1px solid indianred;height:35px;margin-top:8px;"></li>
             </ul>
-            <div id="mobileQuickNav" style="cursor:pointer;padding:10px;display:none;">
-                <i class="fa fa-align-justify fa-2x"></i>
-                <div style="margin-top:0px;margin-right:5px;padding:3px;float:right;border:2px solid white;">
-                    <a href="#" style="color:white;text-decoration:none;font-weight:900;">Week 16</a>
+            <div id="mobileQuickNav" style="cursor:pointer;padding-right:0px;display:none;">
+                <i class="fa fa-align-justify fa-2x" style="padding:10px;"></i>
+                <div style="padding:5px;padding-top:15px;float:right;background:white;height:50px;">
+                    <a href="#" style="color:red;text-decoration:none;font-weight:900;padding:0px 15px;">Week 16</a>
                 </div>
             </div>
             <ul id="mobileQuickNavUl" style="display:none;width:100%;">
-                <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#top-performers"><img src="<?=$webPath?>images/quicknav/top-performers.png" style="height:30px;"> Power Rankings</a></div></li>
                 <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#waiver-adds"><img src="<?=$webPath?>images/quicknav/waiver-adds.png" style="height:30px;"> Waiver Adds</a></div></li>
+                <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#top-performers"><img src="<?=$webPath?>images/quicknav/top-performers.png" style="height:30px;"> Power Rankings</a></div></li>
                 <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#injury-report"><img src="<?=$webPath?>images/quicknav/injury-report.png" style="height:30px;"> Injury Report</a></div></li>
-                <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#power-ranking"><img src="<?=$webPath?>images/quicknav/player-power-rankings.png" style="height:30px;" alt="ppr"> P Power Ranking</a></div></li>
                 <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#trending"><img src="<?=$webPath?>images/quicknav/trending.png" style="height:30px;"> Trending</a></div></li>
+                <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#power-ranking"><img src="<?=$webPath?>images/quicknav/player-power-rankings.png" style="height:30px;" alt="ppr"> P Power Ranking</a></div></li>
                 <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#fun-facts"><img src="<?=$webPath?>images/quicknav/facts.png" style="height:30px;" alt="ff"> Fun Facts</a></div></li>
-                <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#schedule"><img src="<?=$webPath?>images/quicknav/schedule.png" style="height:30px;" alt="sched"> Schedule</a></div></li>
+                <!--<li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#schedule"><img src="<?=$webPath?>images/quicknav/schedule.png" style="height:30px;" alt="sched"> Schedule</a></div></li>-->
                 <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#team-rankings"><img src="<?=$webPath?>images/quicknav/team-power-rankings.png" style="height:30px;" alt=""> T Power Ranking</a></div></li>
                 <li class=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#scores"><img src="<?=$webPath?>images/quicknav/score.png" style="height:30px;" alt="score"> Scores</a></div></li>
-                <li style="padding-right:50px;"><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#standings"><img src="<?=$webPath?>images/quicknav/standings.png" style="height:30px;" alt="stand"> Standings</a></div></li>
+                <li style=""><div style="width:300px;margin:0px auto;"><a class="mobilequickNavLink" href="#standings"><img src="<?=$webPath?>images/quicknav/standings.png" style="height:30px;" alt="stand"> Standings</a></div></li>
             </ul>
         </div>
         <div id="fullNav" class="col-xs-10 col-sm-8 col-md-8 col-lg-8 text-center">
             <div class="wrapper" style="display:table;margin:0px auto;">
                 <ul class="quickNavUl" style="padding-left:0px;display:none;">
-                    <li><a class="quickNavLink" href="#top-performers" title="Top Performers"><img src="<?=$webPath?>images/quicknav/top-performers.png" style="height:30px;"></a></li>
                     <li><a class="quickNavLink" href="#waiver-adds" title="Waiver Adds"><img src="<?=$webPath?>images/quicknav/waiver-adds.png" style="height:30px;"></a></li>
+                    <li><a class="quickNavLink" href="#top-performers" title="Top Performers"><img src="<?=$webPath?>images/quicknav/top-performers.png" style="height:30px;"></a></li>
                     <li><a class="quickNavLink" href="#injury-report" title="Injury Report"><img src="<?=$webPath?>images/quicknav/injury-report.png" style="height:30px;"></a></li>
+                    <li><a class="quickNavLink" href="#trending" title="Trending"><img src="<?=$webPath?>images/quicknav/trending.png" style="height:30px;"></a></li>
                     <li><a class="quickNavLink" href="#power-ranking" title="Player Power Ranking"><img src="<?=$webPath?>images/quicknav/player-power-rankings.png" style="height:30px;" alt="ppr"></a></li>
-                    <li><a class="quickNavLink" href="#trending" title="Treding"><img src="<?=$webPath?>images/quicknav/trending.png" style="height:30px;"></a></li>
                     <li><a class="quickNavLink" href="#fun-facts" title="Fun Facts"><img src="<?=$webPath?>images/quicknav/facts.png" style="height:30px;" alt="ff"></a></li>
-                    <li><a class="quickNavLink" href="#schedule" title="Upcoming Schedule"><img src="<?=$webPath?>images/quicknav/schedule.png" style="height:30px;" alt="sched"></a></li>
+                    <!--<li><a class="quickNavLink" href="#schedule" title="Upcoming Schedule"><img src="<?=$webPath?>images/quicknav/schedule.png" style="height:30px;" alt="sched"></a></li>-->
                     <li><a class="quickNavLink" href="#team-rankings" title="Team Rankings"><img src="<?=$webPath?>images/quicknav/team-power-rankings.png" style="height:30px;" alt=""></a></li>
                     <li><a class="quickNavLink" href="#scores" title="Scores"><img src="<?=$webPath?>images/quicknav/score.png" style="height:30px;" alt="score"></a></li>
-                    <li><a class="quickNavLink" href="#standings" title="Standing"><img src="<?=$webPath?>images/quicknav/standings.png" style="height:30px;" alt="stand"></a></li>
+                    <li><a class="quickNavLink" href="#standings" title="Standings"><img src="<?=$webPath?>images/quicknav/standings.png" style="height:30px;" alt="stand"></a></li>
                 </ul>
             </div>
         </div>
@@ -146,9 +146,11 @@ include($docPath.'inc/header.php');
         <div class="container text-center">
             <div class="row">
                 <div class="col-xs-12 text-center">
-                    <i class="fa fa-book"></i>
-                    <h1 style="">THE<b>RECAP</b></h1>
-                    <span class="desc" style="padding-top:10px;">Your Curated Fantasy Football Guide</span>
+                    <div id="animate shake">
+                        <i class="fa fa-book"></i>
+                        <h1 style="">THE<b>RECAP</b></h1>
+                        <span class="desc" style="padding-top:10px;">Your Curated Fantasy Football Guide</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -156,8 +158,24 @@ include($docPath.'inc/header.php');
     <!--/PAGE HEADER -->
 <style>
     /*patch for mobile devices undert the top performers*/
+
     @media screen and (max-width: 1024px) {
         #prHeading {font-size:30px;}
+
+    }
+    @media screen and (max-width: 870px) {
+        /*
+        nav bar 3 column fix
+        */
+        #fullNav {padding:0px;}
+        .quickNavUl li {margin:0px;}
+
+    }
+    @media screen and (max-width: 790px) {
+        /*
+        nav bar mobile week fix
+        */
+        #quickNavDiv {width:100%;}
     }
     @media screen and (max-width: 767px) {
         #prHeading {font-size:63px;}
@@ -192,13 +210,48 @@ include($docPath.'inc/header.php');
     }
 </script>
 
+<!-- WAIVER ADDS -->
+<section id="waiver-adds" class="waiver-adds" style="padding:50px 15px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 heading-col">
+                <img class="heading-icon wow tada" src="<?=$webPath?>images/report/waiver-winners-icon.png">
+                <span class="heading wow fadeInRight">WAIVER <b>ADDS</b></span>
+
+                <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know who to pick up off your league's waiver wire this week. Adding waivers and continuing to improve the depth of your team throughout the year will allow you to sustain injuries, add value to trades, and most importantly - make a run in the playoffs. ">
+                    <img src="<?=$webPath?>images/report/info-icon-dark.png">
+                </button>
+            </div>
+
+            <div class="col-xs-12 col-sm-8">
+                <section class="stat wow fadeInDown clearfix" data-wow-delay=".25s">
+                    <div class="number" style="margin-bottom:0px;">28</div>
+                    <div class="name">Rueben Randle<span class="position">WR</span> <span class="team">Giants</span></div>
+                    <span class="desc"></span>
+                </section>
+                <section class="stat wow fadeInDown clearfix" data-wow-delay=".25s">
+                    <div class="number" style="margin-bottom:0px;">17</div>
+                    <div class="name">Ryan Tannehill<span class="position">QB</span> <span class="team">Dolphins</span></div>
+                    <span class="desc"></span>
+                </section>
+                <section class="stat wow fadeInDown clearfix" data-wow-delay=".25s">
+                    <div class="number" style="margin-bottom:0px;">82</div>
+                    <div class="name">Luke Wilson<span class="position">TE</span> <span class="team">Seahawks</span></div>
+                    <span class="desc"></span>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/WAIVER WINNERS -->
+
     <!-- TOP PERFORMERS -->
     <section id="top-performers" class="top-performers" style="padding:50px 15px;">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-center">
-                    <img class="heading-icon bounceInUp" style="max-width:125px;" src="<?=$webPath?>images/report/top-performers-icon.png">
-                    <span class="heading bounceInUp">TOP PERFORMERS</span>
+                    <img class="heading-icon wow bounceInUp" style="max-width:125px;" src="<?=$webPath?>images/report/top-performers-icon.png">
+                    <span class="heading wow bounceInUp">TOP PERFORMERS</span>
 
                     <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know who dominated the world of fantasy football last weekend. Having a quick recap of who the weeks' top performers were allows you to make quick decisions the following week on who to target in trades, start and sit.">
                         <img src="<?=$webPath?>images/report/info-icon-dark.png">
@@ -334,41 +387,6 @@ include($docPath.'inc/header.php');
     </section>
     <!--/TOP PERFORMERS -->
 
-    <!-- WAIVER ADDS -->
-    <section id="waiver-adds" class="waiver-adds" style="padding:50px 15px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-4 heading-col">
-                    <img class="heading-icon wow tada" src="<?=$webPath?>images/report/waiver-winners-icon.png">
-                    <span class="heading wow fadeInRight">WAIVER <b>ADDS</b></span>
-
-                    <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know who to pick up off your league's waiver wire this week. Adding waivers and continuing to improve the depth of your team throughout the year will allow you to sustain injuries, add value to trades, and most importantly - make a run in the playoffs. ">
-                        <img src="<?=$webPath?>images/report/info-icon-dark.png">
-                    </button>
-                </div>
-
-                <div class="col-xs-12 col-sm-8">
-                    <section class="stat wow fadeInDown clearfix" data-wow-delay=".25s">
-                        <div class="number">28</div>
-                        <div class="name">Rueben Randle<span class="position">WR</span> <span class="team">Giants</span></div>
-                        <span class="desc"></span>
-                    </section>
-                    <section class="stat wow fadeInDown clearfix" data-wow-delay=".25s">
-                        <div class="number">17</div>
-                        <div class="name">Ryan Tannehill<span class="position">QB</span> <span class="team">Dolphins</span></div>
-                        <span class="desc"></span>
-                    </section>
-                    <section class="stat wow fadeInDown clearfix" data-wow-delay=".25s">
-                        <div class="number">82</div>
-                        <div class="name">Luke Wilson<span class="position">TE</span> <span class="team">Seahawks</span></div>
-                        <span class="desc"></span>
-                    </section>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--/WAIVER WINNERS -->
-
     <!--INJURY REPORT-->
     <section id="injury-report" class="injury-report" style="padding:50px 15px;">
         <div class="container">
@@ -382,11 +400,12 @@ include($docPath.'inc/header.php');
                     </button>
                 </div>
 
+
                 <div class="col-xs-12 col-sm-8">
                     <section class="player wow fadeIn" style="padding-bottom:20px;border-bottom: 1px solid #d1d4d9;">
-                        <div class="helmet">
+                        <div class="helmet" style="width:65px;height:65px;">
                             <svg class="min" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 257.000000 250.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
                                 fill="#A71930" stroke="none">
@@ -418,9 +437,9 @@ include($docPath.'inc/header.php');
 
 
                     <section class="stat player wow fadeIn" style="padding-bottom:20px;border-bottom: 1px solid #d1d4d9;">
-                        <div class="helmet">
+                        <div class="helmet" style="width:65px;height:65px;">
                             <svg class="det" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 257.000000 250.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
                                 fill="#773141" stroke="none">
@@ -450,9 +469,9 @@ include($docPath.'inc/header.php');
                     </section>
 
                     <section class="stat player wow fadeIn" style="padding-bottom:20px;border-bottom: 1px solid #d1d4d9;">
-                        <div class="helmet">
+                        <div class="helmet" style="width:65px;height:65px;">
                             <svg class="gb" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
+                             width="157.000000pt" height="150.000000pt" viewBox="0 0 257.000000 250.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
                                 fill="#004953" stroke="none">
@@ -485,202 +504,17 @@ include($docPath.'inc/header.php');
     </section>
     <!--/INJURY REPORT-->
 
-    <!--POWER RANKING-->
-    <section id="power-ranking" class="power-ranking" style="padding:50px 15px;">
+
+<!--TRENDING-->
+    <section  id="trending" class="trending" style="padding:50px 15px;padding-bottom:0px;">
         <div class="container">
             <div class="row">
-                <div class="col-xs-4 text-center">
-                    <span class="heading wow slideInUp" style="font-size:56px;"><i>NFL PLAYER</i> POWER<br><b>RANKINGS</b></span>
-
-                    <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which NFL players will dominate the rest of the way. Finding stud players on prospering teams is a recipe for success in fantasy football.">
-                        <img src="<?=$webPath?>images/report/info-icon-white.png">
-                    </button>
-                </div>
-
-                <div class="col-xs-12 col-sm-4 wow fadeInDown">
-                    <table class="stats table table-hover">
-                        <thead>
-                            <tr>
-                                <th colspan="4" class="text-center">QB</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                                <th>Aaron Rodgers</th>
-                                <td>ADP</td>
-                                <td><i class="fa fa-caret-up"></i></td>
-                                <td>342.00</td>
-                            </tr>
-                            <tr>
-                                <th>Andrew Luck</th>
-                                <td>ADP</td>
-                                <td><i class="fa fa-caret-down"></i></td>
-                                <td>336.00</td>
-                            </tr>
-                            <tr>
-                                <th>Russell Wilson</th>
-                                <td>ADP</td>
-                                <td><i class="fa fa-caret-down"></i></td>
-                                <td>312.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <table class="stats table table-hover">
-                        <thead>
-                            <tr>
-                                <th colspan="4" class="text-center">WR</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                                <th>Antonio Brown</th>
-                                <td>ADP</td>
-                                <td><i class="fa fa-caret-up"></i></td>
-                                <td>251.00</td>
-                            </tr>
-                            <tr>
-                                <th>Demaryius Thomas</th>
-                                <td>ADP</td>
-                                <td><i class="fa fa-caret-down"></i></td>
-                                <td>223.00</td>
-                            </tr>
-                            <tr>
-                                <th>Jordy Nelson</th>
-                                <td>ADP</td>
-                                <td><i class="fa fa-caret-down"></i></td>
-                                <td>221.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <table class="stats table table-hover">
-                        <thead>
-                            <tr>
-                                <th colspan="4" class="text-center">RB</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                                <th>DeMarco Murray</th>
-                                <td>ADP</td>
-                                <td><i class="fa fa-caret-up"></i></td>
-                                <td>282.00</td>
-                            </tr>
-                            <tr>
-                                <th>Le'Veon Bell</th>
-                                <td>ADP</td>
-                                <td><i class="fa fa-caret-down"></i></td>
-                                <td>272.00</td>
-                            </tr>
-                            <tr>
-                                <th>Marshawn Lynch</th>
-                                <td>ADP</td>
-                                <td><i class="fa fa-caret-down"></i></td>
-                                <td>253.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-xs-12 col-sm-4 wow fadeInDown">
-                    <table class="stats table table-hover">
-                        <thead>
-                            <tr>
-                                <th colspan="4" class="text-center">TE</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                                <th>Rob Gronkowski</th>
-                                <td>ADP</td>
-                                <td><i class="fa fa-caret-up"></i></td>
-                                <td>178.00</td>
-                            </tr>
-                            <tr>
-                                <th>Antonio Gates</th>
-                                <td>ADP</td>
-                                <td><i class="fa fa-caret-down"></i></td>
-                                <td>148.00</td>
-                            </tr>
-                            <tr>
-                                <th>Jimmy Graha</th>
-                                <td>ADP</td>
-                                <td><i class="fa fa-caret-down"></i></td>
-                                <td>137.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <table class="stats table table-hover">
-                        <thead>
-                            <tr>
-                                <th colspan="4" class="text-center">K</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                                <th>Stephen Gostkowski</th>
-                                <td>ADP</td>
-                                <td><i class="fa fa-caret-up"></i></td>
-                                <td>168.00</td>
-                            </tr>
-                            <tr>
-                                <th>Cody Parkey</th>
-                                <td>ADP</td>
-                                <td><i class="fa fa-caret-down"></i></td>
-                                <td>158.00</td>
-                            </tr>
-                            <tr>
-                                <th>Adam Vinatieri</th>
-                                <td>ADP</td>
-                                <td><i class="fa fa-caret-down"></i></td>
-                                <td>152.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <table class="stats table table-hover">
-                        <thead>
-                            <tr>
-                                <th colspan="4" class="text-center">DST</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                                <th>Bills</th>
-                                <td>ADP</td>
-                                <td><i class="fa fa-caret-up"></i></td>
-                                <td>170.00</td>
-                            </tr>
-                            <tr>
-                                <th>Eagles</th>
-                                <td>ADP</td>
-                                <td><i class="fa fa-caret-down"></i></td>
-                                <td>153.00</td>
-                            </tr>
-                            <tr>
-                                <th>Seahawks</th>
-                                <td>ADP</td>
-                                <td><i class="fa fa-caret-down"></i></td>
-                                <td>150.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="col-xs-12">
+                    <h4 class="wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;text-align:center;font-size:48px;">Recent <span style="color:#d83435;">Trends</span></h4>
                 </div>
             </div>
         </div>
     </section>
-    <!--/POWER RANKING-->
-<section  id="trending" class="trending" style="padding:50px 15px;padding-bottom:0px;">
-<div class="container">
-<div class="row">
-    <div class="col-xs-12">
-        <h4 class="wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;text-align:center;font-size:48px;">Recent <span style="color:#d83435;">Trends</span></h4>
-    </div>
-</div>
-</div>
-</section>
-    <!--TRENDING-->
     <section class="trending" style="padding:50px 15px;padding-top:10px;">
         <div class="container">
             <section class="col-xs-12 col-sm-6 upwards">
@@ -704,19 +538,19 @@ include($docPath.'inc/header.php');
                                     <tbody>
                                     <tr>
                                         <th>Week 15</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-up"></i></td>
                                         <td>22</td>
                                     </tr>
                                     <tr>
                                         <th>Week 14</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-down"></i></td>
                                         <td>22</td>
                                     </tr>
                                     <tr>
                                         <th>Week 13</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-down"></i></td>
                                         <td>22</td>
                                     </tr>
@@ -734,19 +568,19 @@ include($docPath.'inc/header.php');
                                     <tbody>
                                     <tr>
                                         <th>Week 15</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-up"></i></td>
                                         <td>22</td>
                                     </tr>
                                     <tr>
                                         <th>Week 14</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-down"></i></td>
                                         <td>22</td>
                                     </tr>
                                     <tr>
                                         <th>Week 13</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-down"></i></td>
                                         <td>22</td>
                                     </tr>
@@ -764,19 +598,19 @@ include($docPath.'inc/header.php');
                                     <tbody>
                                     <tr>
                                         <th>Week 15</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-up"></i></td>
                                         <td>22</td>
                                     </tr>
                                     <tr>
                                         <th>Week 14</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-down"></i></td>
                                         <td>22</td>
                                     </tr>
                                     <tr>
                                         <th>Week 13</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-down"></i></td>
                                         <td>22</td>
                                     </tr>
@@ -794,19 +628,19 @@ include($docPath.'inc/header.php');
                                     <tbody>
                                     <tr>
                                         <th>Week 15</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-up"></i></td>
                                         <td>22</td>
                                     </tr>
                                     <tr>
                                         <th>Week 14</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-down"></i></td>
                                         <td>22</td>
                                     </tr>
                                     <tr>
                                         <th>Week 13</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-down"></i></td>
                                         <td>22</td>
                                     </tr>
@@ -824,7 +658,7 @@ include($docPath.'inc/header.php');
                         <img class="heading-icon wow tada" src="<?=$webPath?>images/report/trending-downwards-icon.png">
                         <span class="heading wow fadeInRight"><b>DOWNWARDS</b></span>
 
-                        <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to get a quick glance at who has been performing well consistently over the last 3 weeks. These players aren't flaky, you can trust them to score some point this week. If you don't own them, try trading for them this week.">
+                        <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to get a quick glance at who has not been performing well consistently over the last 3 weeks. ">
                             <img src="<?=$webPath?>images/report/info-icon-dark.png">
                         </button>
 
@@ -833,25 +667,25 @@ include($docPath.'inc/header.php');
                                 <table class="stats table table-hover" style="border:1px solid #d1d4d9;">
                                     <thead>
                                     <tr style="background:#465366;">
-                                        <th colspan="4" class="text-center" style="color:white;">Andrew Lucy, QB</th>
+                                        <th colspan="4" class="text-center" style="color:white;">Andrew Luck, QB</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                      <tr>
                                         <th>Week 15</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-up"></i></td>
                                         <td>22</td>
                                     </tr>
                                     <tr>
                                         <th>Week 14</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-down"></i></td>
                                         <td>22</td>
                                     </tr>
                                     <tr>
                                         <th>Week 13</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-down"></i></td>
                                         <td>22</td>
                                     </tr>
@@ -869,19 +703,19 @@ include($docPath.'inc/header.php');
                                     <tbody>
                                     <tr>
                                         <th>Week 15</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-up"></i></td>
                                         <td>22</td>
                                     </tr>
                                     <tr>
                                         <th>Week 14</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-down"></i></td>
                                         <td>22</td>
                                     </tr>
                                     <tr>
                                         <th>Week 13</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-down"></i></td>
                                         <td>22</td>
                                     </tr>
@@ -899,19 +733,19 @@ include($docPath.'inc/header.php');
                                     <tbody>
                                     <tr>
                                         <th>Week 15</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-up"></i></td>
                                         <td>22</td>
                                     </tr>
                                     <tr>
                                         <th>Week 14</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-down"></i></td>
                                         <td>22</td>
                                     </tr>
                                     <tr>
                                         <th>Week 13</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-down"></i></td>
                                         <td>22</td>
                                     </tr>
@@ -929,19 +763,19 @@ include($docPath.'inc/header.php');
                                     <tbody>
                                     <tr>
                                         <th>Week 15</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-up"></i></td>
                                         <td>22</td>
                                     </tr>
                                     <tr>
                                         <th>Week 14</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-down"></i></td>
                                         <td>22</td>
                                     </tr>
                                     <tr>
                                         <th>Week 13</th>
-                                        <td>ADP</td>
+                                        <td></td>
                                         <td><i class="fa fa-caret-down"></i></td>
                                         <td>22</td>
                                     </tr>
@@ -960,7 +794,7 @@ include($docPath.'inc/header.php');
     <section id="fun-facts" class="fun-facts clearfix" style="padding:50px 15px;">
         <div class="container clearfix">
             <div class="row">
-                <div class="col-xs-12 text-center">
+                <div class="col-xs-12 text-center wow jello">
                     <span class="heading">FUN<b>FACTS</b></span>
 
                     <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to wow your friends, family and co-workers with your superior NFL knowledge. Use these facts in conversation to reign as Most Knowledgeable among your peers.">
@@ -971,21 +805,21 @@ include($docPath.'inc/header.php');
 
             <div class="row">
                 <div class="col-xs-12 col-sm-4">
-                    <div class="fact text-center">
+                    <div class="fact text-center wow rubberBand">
                         <span class="category">FANTASY</span>
                         <span class="info">Odell Beckham Jr. and Dez Bryant both caught every TD pass their Quarterback threw last week. </span>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-4">
-                    <div class="fact text-center">
+                    <div class="fact text-center wow rubberBand">
                         <span class="category">HISTORY</span>
                         <span class="info">The Detroit Lions have just one playoff win since Dwight D. Eisenhower was President of the United States. </span>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-4">
-                    <div class="fact text-center">
+                    <div class="fact text-center wow rubberBand">
                         <span class="category">LIFE</span>
                         <span class="info">Jamaal Charles once competed in the Special Olympics, which is where his talent for running the football was discovered. </span>
                     </div>
@@ -995,7 +829,193 @@ include($docPath.'inc/header.php');
     </section>
     <!--FUN FACTS-->
 
-    <!--UPCOMING SCHEDULE-->
+<!--POWER RANKING-->
+<section id="power-ranking" class="power-ranking" style="padding:50px 15px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 text-center">
+                <span class="heading wow slideInUp" style="font-size:56px;"><i>NFL PLAYER</i> POWER<br><b>RANKINGS</b></span>
+
+                <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which NFL players will dominate the rest of the way. Finding stud players on prospering teams is a recipe for success in fantasy football.">
+                    <img src="<?=$webPath?>images/report/info-icon-white.png">
+                </button>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 wow fadeInDown">
+                <table class="stats table table-hover">
+                    <thead>
+                    <tr>
+                        <th colspan="4" class="text-center">QB</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>Aaron Rodgers</th>
+                        <td></td>
+                        <td><i class="fa fa-caret-up"></i></td>
+                        <td>342.00</td>
+                    </tr>
+                    <tr>
+                        <th>Andrew Luck</th>
+                        <td></td>
+                        <td><i class="fa fa-caret-down"></i></td>
+                        <td>336.00</td>
+                    </tr>
+                    <tr>
+                        <th>Russell Wilson</th>
+                        <td></td>
+                        <td><i class="fa fa-caret-down"></i></td>
+                        <td>312.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="stats table table-hover">
+                    <thead>
+                    <tr>
+                        <th colspan="4" class="text-center">WR</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>Antonio Brown</th>
+                        <td></td>
+                        <td><i class="fa fa-caret-up"></i></td>
+                        <td>251.00</td>
+                    </tr>
+                    <tr>
+                        <th>Demaryius Thomas</th>
+                        <td></td>
+                        <td><i class="fa fa-caret-down"></i></td>
+                        <td>223.00</td>
+                    </tr>
+                    <tr>
+                        <th>Jordy Nelson</th>
+                        <td></td>
+                        <td><i class="fa fa-caret-down"></i></td>
+                        <td>221.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="stats table table-hover">
+                    <thead>
+                    <tr>
+                        <th colspan="4" class="text-center">RB</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>DeMarco Murray</th>
+                        <td></td>
+                        <td><i class="fa fa-caret-up"></i></td>
+                        <td>282.00</td>
+                    </tr>
+                    <tr>
+                        <th>Le'Veon Bell</th>
+                        <td></td>
+                        <td><i class="fa fa-caret-down"></i></td>
+                        <td>272.00</td>
+                    </tr>
+                    <tr>
+                        <th>Marshawn Lynch</th>
+                        <td></td>
+                        <td><i class="fa fa-caret-down"></i></td>
+                        <td>253.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-12 col-sm-4 wow fadeInDown">
+                <table class="stats table table-hover">
+                    <thead>
+                    <tr>
+                        <th colspan="4" class="text-center">TE</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>Rob Gronkowski</th>
+                        <td></td>
+                        <td><i class="fa fa-caret-up"></i></td>
+                        <td>178.00</td>
+                    </tr>
+                    <tr>
+                        <th>Antonio Gates</th>
+                        <td></td>
+                        <td><i class="fa fa-caret-down"></i></td>
+                        <td>148.00</td>
+                    </tr>
+                    <tr>
+                        <th>Jimmy Graha</th>
+                        <td></td>
+                        <td><i class="fa fa-caret-down"></i></td>
+                        <td>137.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="stats table table-hover">
+                    <thead>
+                    <tr>
+                        <th colspan="4" class="text-center">K</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>Stephen Gostkowski</th>
+                        <td></td>
+                        <td><i class="fa fa-caret-up"></i></td>
+                        <td>168.00</td>
+                    </tr>
+                    <tr>
+                        <th>Cody Parkey</th>
+                        <td></td>
+                        <td><i class="fa fa-caret-down"></i></td>
+                        <td>158.00</td>
+                    </tr>
+                    <tr>
+                        <th>Adam Vinatieri</th>
+                        <td></td>
+                        <td><i class="fa fa-caret-down"></i></td>
+                        <td>152.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="stats table table-hover">
+                    <thead>
+                    <tr>
+                        <th colspan="4" class="text-center">DST</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>Bills</th>
+                        <td></td>
+                        <td><i class="fa fa-caret-up"></i></td>
+                        <td>170.00</td>
+                    </tr>
+                    <tr>
+                        <th>Eagles</th>
+                        <td></td>
+                        <td><i class="fa fa-caret-down"></i></td>
+                        <td>153.00</td>
+                    </tr>
+                    <tr>
+                        <th>Seahawks</th>
+                        <td></td>
+                        <td><i class="fa fa-caret-down"></i></td>
+                        <td>150.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/POWER RANKING-->
+    <!--UPCOMING SCHEDULE
     <section id="schedule" class="schedule" style="padding:50px 15px;">
         <div class="container">
             <div class="row">
@@ -1010,7 +1030,7 @@ include($docPath.'inc/header.php');
 
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="game clearfix">
+                    <div class="game clearfix wow fadeInLeft">
                         <div class="helmet left">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
@@ -1063,7 +1083,7 @@ include($docPath.'inc/header.php');
                 </div>
 
                 <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="game clearfix">
+                    <div class="game clearfix wow fadeInDown">
                         <div class="helmet left">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
@@ -1116,7 +1136,7 @@ include($docPath.'inc/header.php');
                 </div>
 
                 <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="game clearfix">
+                    <div class="game clearfix wow fadeInRight">
                         <div class="helmet left">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
@@ -1168,7 +1188,7 @@ include($docPath.'inc/header.php');
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="game clearfix">
+                    <div class="game clearfix wow fadeInLeft">
                         <div class="helmet left">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
@@ -1221,7 +1241,7 @@ include($docPath.'inc/header.php');
                 </div>
 
                 <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="game clearfix">
+                    <div class="game clearfix wow fadeInUp">
                         <div class="helmet left">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
@@ -1274,7 +1294,7 @@ include($docPath.'inc/header.php');
                 </div>
 
                 <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="game clearfix">
+                    <div class="game clearfix wow fadeInRight">
                         <div class="helmet left">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 157.000000 150.000000"
@@ -1343,7 +1363,7 @@ include($docPath.'inc/header.php');
                     </button>
                 </div>
 
-                <div class="col-xs-12 col-sm-3">
+                <div class="col-xs-6 col-sm-3">
                     <section class="stat wow fadeInDown clearfix">
                         <div class="helmet" style="width:65px;height:65px;">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -1372,7 +1392,7 @@ include($docPath.'inc/header.php');
                     </section>
                 </div>
 
-                <div class="col-xs-12 col-sm-3">
+                <div class="col-xs-6 col-sm-3">
                     <section class="stat wow fadeInDown clearfix">
                         <div class="helmet" style="width:65px;height:65px;">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -1401,7 +1421,7 @@ include($docPath.'inc/header.php');
                     </section>
                 </div>
 
-                <div class="col-xs-12 col-sm-3">
+                <div class="col-xs-6 col-sm-3">
                     <section class="stat wow fadeInDown clearfix" data-wow-delay=".25s">
                         <div class="helmet" style="width:65px;height:65px;">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -1430,7 +1450,7 @@ include($docPath.'inc/header.php');
                     </section>
                 </div>
 
-                <div class="col-xs-12 col-sm-3">
+                <div class="col-xs-6 col-sm-3">
                     <section class="stat wow fadeInDown clearfix" data-wow-delay=".25s">
                         <div class="helmet" style="width:65px;height:65px;">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -1459,7 +1479,7 @@ include($docPath.'inc/header.php');
                     </section>
                 </div>
 
-                <div class="col-xs-12 col-sm-3">
+                <div class="col-xs-6 col-sm-3">
                     <section class="stat wow fadeInDown clearfix" data-wow-delay=".45s">
                         <div class="helmet" style="width:65px;height:65px;">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -1488,7 +1508,7 @@ include($docPath.'inc/header.php');
                     </section>
                 </div>
 
-                <div class="col-xs-12 col-sm-3">
+                <div class="col-xs-6 col-sm-3">
                     <section class="stat wow fadeInDown clearfix" data-wow-delay=".45s">
                         <div class="helmet" style="width:65px;height:65px;">
                             <svg class="chi" version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -1526,7 +1546,7 @@ include($docPath.'inc/header.php');
 <div class="row">
     <div class="col-xs-12 text-center">
         <span class="heading wow slideInUp">NFL<b>SCORES</b></span>
-        <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which players will be playing the worst defensive in coming weeks. Playing a poor defensive is always a quick fix to a struggling player. Now might be the time to buy cheap on a player who has been struggling on one of these teams.">
+        <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which players will be playing the worst defense in coming weeks. Playing a poor defense is always a quick fix to a struggling player. Now might be the time to buy cheap on a player who has been struggling on one of these teams.">
             <img src="<?=$webPath?>images/report/info-icon-white.png">
         </button>
     </div>
@@ -1538,7 +1558,7 @@ include($docPath.'inc/header.php');
 </style>
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="game gameScore clearfix">
+        <div class="game gameScore clearfix wow zoomInDown">
             <div class="helmet left win removeHelmet">
                 <span class="city">ATL</span>
                 <span class="score tightenScore">24</span>
@@ -1554,7 +1574,7 @@ include($docPath.'inc/header.php');
     </div>
 
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="game gameScore clearfix">
+        <div class="game gameScore clearfix wow zoomInDown">
             <div class="helmet left loss removeHelmet">
                 <span class="city">NE</span>
                 <span class="score tightenScore">17</span>
@@ -1570,7 +1590,7 @@ include($docPath.'inc/header.php');
     </div>
 
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="game gameScore clearfix">
+        <div class="game gameScore clearfix wow zoomInDown">
             <div class="helmet left loss removeHelmet">
                 <span class="city">KC</span>
                 <span class="score tightenScore">12</span>
@@ -1586,7 +1606,7 @@ include($docPath.'inc/header.php');
     </div>
 
 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="game gameScore clearfix">
+    <div class="game gameScore clearfix wow zoomInDown">
         <div class="helmet left win removeHelmet">
             <span class="city">GB</span>
             <span class="score tightenScore">20</span>
@@ -1602,7 +1622,7 @@ include($docPath.'inc/header.php');
 </div>
 
 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="game gameScore clearfix">
+    <div class="game gameScore clearfix wow zoomInLeft">
         <div class="helmet left loss removeHelmet">
             <span class="city">BUF</span>
             <span class="score tightenScore">24</span>
@@ -1618,7 +1638,7 @@ include($docPath.'inc/header.php');
 </div>
 
 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="game gameScore clearfix">
+    <div class="game gameScore clearfix wow zoomInLeft">
         <div class="helmet left win removeHelmet">
             <span class="city">SEA</span>
             <span class="score tightenScore">35</span>
@@ -1633,7 +1653,7 @@ include($docPath.'inc/header.php');
     </div>
 </div>
 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="game gameScore clearfix">
+    <div class="game gameScore clearfix wow zoomInRight">
         <div class="helmet left loss removeHelmet">
             <span class="city">DEN</span>
             <span class="score tightenScore">28</span>
@@ -1648,7 +1668,7 @@ include($docPath.'inc/header.php');
     </div>
 </div>
 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="game gameScore clearfix">
+    <div class="game gameScore clearfix wow zoomInRight">
         <div class="helmet left loss removeHelmet">
             <span class="city">TEN</span>
             <span class="score tightenScore">13</span>
@@ -1662,7 +1682,7 @@ include($docPath.'inc/header.php');
     </div>
 </div>
 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="game gameScore clearfix">
+    <div class="game gameScore clearfix wow zoomInLeft">
         <div class="helmet left loss removeHelmet">
             <span class="city">PHI</span>
             <span class="score tightenScore">24</span>
@@ -1677,7 +1697,7 @@ include($docPath.'inc/header.php');
     </div>
 </div>
 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="game gameScore clearfix">
+    <div class="game gameScore clearfix wow zoomInLeft">
         <div class="helmet left win removeHelmet">
             <span class="city">SD</span>
             <span class="score tightenScore">38</span>
@@ -1692,7 +1712,7 @@ include($docPath.'inc/header.php');
     </div>
 </div>
 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="game gameScore clearfix">
+    <div class="game gameScore clearfix wow zoomInRight">
         <div class="helmet left loss removeHelmet">
             <span class="city">CLE</span>
             <span class="score tightenScore">13</span>
@@ -1707,7 +1727,7 @@ include($docPath.'inc/header.php');
     </div>
 </div>
 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="game gameScore clearfix">
+    <div class="game gameScore clearfix wow zoomInRight">
         <div class="helmet left win removeHelmet">
             <span class="city">DET</span>
             <span class="score tightenScore">20</span>
@@ -1722,7 +1742,7 @@ include($docPath.'inc/header.php');
     </div>
 </div>
 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="game gameScore clearfix">
+    <div class="game gameScore clearfix wow zoomInUp">
         <div class="helmet left loss removeHelmet">
             <span class="city">BAL</span>
             <span class="score tightenScore">13</span>
@@ -1737,7 +1757,7 @@ include($docPath.'inc/header.php');
     </div>
 </div>
 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="game gameScore clearfix">
+    <div class="game gameScore clearfix wow zoomInUp">
         <div class="helmet left loss removeHelmet">
             <span class="city">MIN</span>
             <span class="score tightenScore">35</span>
@@ -1752,7 +1772,7 @@ include($docPath.'inc/header.php');
     </div>
 </div>
 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="game gameScore clearfix">
+    <div class="game gameScore clearfix wow zoomInUp">
         <div class="helmet left win removeHelmet">
             <span class="city">NYG</span>
             <span class="score tightenScore">37</span>
@@ -1767,7 +1787,7 @@ include($docPath.'inc/header.php');
     </div>
 </div>
 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="game gameScore clearfix">
+    <div class="game gameScore clearfix wow zoomInUp">
         <div class="helmet left loss removeHelmet">
             <span class="city">IND</span>
             <span class="score tightenScore">7</span>
@@ -1787,325 +1807,325 @@ include($docPath.'inc/header.php');
 
 <!-- NFL STANDINGS -->
 <section id="standings" class="standings" style="padding:50px 15px;">
-<div class="container">
-<div class="row">
-    <div class="col-xs-12 text-center">
-        <span class="heading wow slideInUp">NFL<b>STANDINGS</b></span>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <span class="heading wow slideInUp">NFL<b>STANDINGS</b></span>
 
-        <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which players will be playing the worst defensive in coming weeks. Playing a poor defensive is always a quick fix to a struggling player. Now might be the time to buy cheap on a player who has been struggling on one of these teams.">
-            <img src="<?=$webPath?>images/report/info-icon-dark.png">
-        </button>
+                <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which players will be playing the worst defensive in coming weeks. Playing a poor defensive is always a quick fix to a struggling player. Now might be the time to buy cheap on a player who has been struggling on one of these teams.">
+                    <img src="<?=$webPath?>images/report/info-icon-dark.png">
+                </button>
+            </div>
+        </div>
+
+        <style>
+            #afcTeams tr:nth-child(even) {background:lightcoral;}
+            #nfcTeams tr:nth-child(even) {background:lightcoral;
+        </style>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <div class="table-expand wow zoomInDown" data-toggle="collapse" data-target="#afcTeams" aria-expanded="false" aria-controls="collapseExample">
+                    AFC Teams <b>+</b>
+                </div>
+
+                <table class="table table-striped collapse" id="afcTeams">
+                <thead>
+                <tr>
+                    <th>AFC West Team</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Ties</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>Denver Broncos</td>
+                    <td>11</td>
+                    <td>3</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Kansas City Chiefs</td>
+                    <td>8</td>
+                    <td>6</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>San Diego Chargers</td>
+                    <td>8</td>
+                    <td>6</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Oakland Raiders</td>
+                    <td>2</td>
+                    <td>12</td>
+                    <td>0</td>
+                </tr>
+                </tbody>
+                <thead>
+                <tr>
+                    <th>AFC East Team</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Ties</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>New England Patriots</td>
+                    <td>11</td>
+                    <td>3</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Buffalo Bills</td>
+                    <td>8</td>
+                    <td>6</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Miami Dolphins</td>
+                    <td>7</td>
+                    <td>7</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>New York Jets</td>
+                    <td>3</td>
+                    <td>11</td>
+                    <td>0</td>
+                </tr>
+                </tbody>
+                <thead>
+                <tr>
+                    <th>AFC North Team</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Ties</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>Cincinnati Bengals</td>
+                    <td>9</td>
+                    <td>4</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Pittsburgh Steelers</td>
+                    <td>9</td>
+                    <td>5</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Baltimore Ravens</td>
+                    <td>9</td>
+                    <td>5</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Cleveland Browns</td>
+                    <td>7</td>
+                    <td>7</td>
+                    <td>0</td>
+                </tr>
+                </tbody>
+                <thead>
+                <tr>
+                    <th>AFC South Team</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Ties</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>Indianapolis Colts</td>
+                    <td>10</td>
+                    <td>4</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Houston Texans</td>
+                    <td>7</td>
+                    <td>7</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Tennessee Titans</td>
+                    <td>2</td>
+                    <td>12</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Jacksonville Jaguars</td>
+                    <td>2</td>
+                    <td>12</td>
+                    <td>0</td>
+                </tr>
+                </tbody>
+                </table>
+            </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="table-expand wow zoomInUp" data-toggle="collapse" data-target="#nfcTeams" aria-expanded="false" aria-controls="collapseExample">
+                NFC Teams <b>+</b>
+            </div>
+
+            <table class="table table-striped collapse" id="nfcTeams">
+                <thead>
+                <tr>
+                    <th>NFC West Team</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Ties</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>Arizona Cardinals</td>
+                    <td>11</td>
+                    <td>3</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Seattle Seahawks</td>
+                    <td>10</td>
+                    <td>4</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>San Francisco 49ers</td>
+                    <td>7</td>
+                    <td>7</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>St. Louis Rams</td>
+                    <td>6</td>
+                    <td>8</td>
+                    <td>0</td>
+                </tr>
+                </tbody>
+                <thead>
+                <tr>
+                    <th>NFC East Team</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Ties</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>Dallas Cowboys</td>
+                    <td>10</td>
+                    <td>4</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Philadelphia Eagles</td>
+                    <td>9</td>
+                    <td>5</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>New York Giants</td>
+                    <td>5</td>
+                    <td>9</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Washington Redskins</td>
+                    <td>3</td>
+                    <td>11</td>
+                    <td>0</td>
+                </tr>
+                </tbody>
+                <thead>
+                <tr>
+                    <th>NFC North Team</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Tie</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>Detroit Lions</td>
+                    <td>10</td>
+                    <td>4</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Green Bay Packers</td>
+                    <td>10</td>
+                    <td>4</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Minnesota Vikings</td>
+                    <td>6</td>
+                    <td>8</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Chicago Bears</td>
+                    <td>5</td>
+                    <td>9</td>
+                    <td>0</td>
+                </tr>
+                </tbody>
+                <thead>
+                <tr>
+                    <th>NFC South Team</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Ties</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>New Orleans Saints</td>
+                    <td>6</td>
+                    <td>8</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Carolina Panthers</td>
+                    <td>5</td>
+                    <td>8</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Atlanta Falcons</td>
+                    <td>5</td>
+                    <td>9</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Tampa Bay Buccaneers</td>
+                    <td>2</td>
+                    <td>12</td>
+                    <td>0</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-
-<style>
-    #afcTeams tr:nth-child(even) {background:lightcoral;}
-    #nfcTeams tr:nth-child(even) {background:lightcoral;
-</style>
-<div class="row">
-<div class="col-xs-12 col-sm-6">
-<div class="table-expand" data-toggle="collapse" data-target="#afcTeams" aria-expanded="false" aria-controls="collapseExample">
-    AFC Teams <b>+</b>
-</div>
-
-<table class="table table-striped collapse" id="afcTeams">
-<thead>
-<tr>
-    <th>AFC West Team</th>
-    <th>Wins</th>
-    <th>Losses</th>
-    <th>Ties</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-    <td>Denver Broncos</td>
-    <td>11</td>
-    <td>3</td>
-    <td>0</td>
-</tr>
-<tr>
-    <td>Kansas City Chiefs</td>
-    <td>8</td>
-    <td>6</td>
-    <td>0</td>
-</tr>
-<tr>
-    <td>San Diego Chargers</td>
-    <td>8</td>
-    <td>6</td>
-    <td>0</td>
-</tr>
-<tr>
-    <td>Oakland Raiders</td>
-    <td>2</td>
-    <td>12</td>
-    <td>0</td>
-</tr>
-</tbody>
-<thead>
-<tr>
-    <th>AFC East Team</th>
-    <th>Wins</th>
-    <th>Losses</th>
-    <th>Ties</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-    <td>New England Patriots</td>
-    <td>11</td>
-    <td>3</td>
-    <td>0</td>
-</tr>
-<tr>
-    <td>Buffalo Bills</td>
-    <td>8</td>
-    <td>6</td>
-    <td>0</td>
-</tr>
-<tr>
-    <td>Miami Dolphins</td>
-    <td>7</td>
-    <td>7</td>
-    <td>0</td>
-</tr>
-<tr>
-    <td>New York Jets</td>
-    <td>3</td>
-    <td>11</td>
-    <td>0</td>
-</tr>
-</tbody>
-<thead>
-<tr>
-    <th>AFC North Team</th>
-    <th>Wins</th>
-    <th>Losses</th>
-    <th>Ties</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-    <td>Cincinnati Bengals</td>
-    <td>9</td>
-    <td>4</td>
-    <td>1</td>
-</tr>
-<tr>
-    <td>Pittsburgh Steelers</td>
-    <td>9</td>
-    <td>5</td>
-    <td>0</td>
-</tr>
-<tr>
-    <td>Baltimore Ravens</td>
-    <td>9</td>
-    <td>5</td>
-    <td>0</td>
-</tr>
-<tr>
-    <td>Cleveland Browns</td>
-    <td>7</td>
-    <td>7</td>
-    <td>0</td>
-</tr>
-</tbody>
-<thead>
-<tr>
-    <th>AFC South Team</th>
-    <th>Wins</th>
-    <th>Losses</th>
-    <th>Ties</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-    <td>Indianapolis Colts</td>
-    <td>10</td>
-    <td>4</td>
-    <td>0</td>
-</tr>
-<tr>
-    <td>Houston Texans</td>
-    <td>7</td>
-    <td>7</td>
-    <td>0</td>
-</tr>
-<tr>
-    <td>Tennessee Titans</td>
-    <td>2</td>
-    <td>12</td>
-    <td>0</td>
-</tr>
-<tr>
-    <td>Jacksonville Jaguars</td>
-    <td>2</td>
-    <td>12</td>
-    <td>0</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="col-xs-12 col-sm-6">
-    <div class="table-expand" data-toggle="collapse" data-target="#nfcTeams" aria-expanded="false" aria-controls="collapseExample">
-        NFC Teams <b>+</b>
-    </div>
-
-    <table class="table table-striped collapse" id="nfcTeams">
-        <thead>
-        <tr>
-            <th>NFC West Team</th>
-            <th>Wins</th>
-            <th>Losses</th>
-            <th>Ties</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr>
-            <td>Arizona Cardinals</td>
-            <td>11</td>
-            <td>3</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>Seattle Seahawks</td>
-            <td>10</td>
-            <td>4</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>San Francisco 49ers</td>
-            <td>7</td>
-            <td>7</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>St. Louis Rams</td>
-            <td>6</td>
-            <td>8</td>
-            <td>0</td>
-        </tr>
-        </tbody>
-        <thead>
-        <tr>
-            <th>NFC East Team</th>
-            <th>Wins</th>
-            <th>Losses</th>
-            <th>Ties</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr>
-            <td>Dallas Cowboys</td>
-            <td>10</td>
-            <td>4</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>Philadelphia Eagles</td>
-            <td>9</td>
-            <td>5</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>New York Giants</td>
-            <td>5</td>
-            <td>9</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>Washington Redskins</td>
-            <td>3</td>
-            <td>11</td>
-            <td>0</td>
-        </tr>
-        </tbody>
-        <thead>
-        <tr>
-            <th>NFC North Team</th>
-            <th>Wins</th>
-            <th>Losses</th>
-            <th>Tie</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr>
-            <td>Detroit Lions</td>
-            <td>10</td>
-            <td>4</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>Green Bay Packers</td>
-            <td>10</td>
-            <td>4</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>Minnesota Vikings</td>
-            <td>6</td>
-            <td>8</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>Chicago Bears</td>
-            <td>5</td>
-            <td>9</td>
-            <td>0</td>
-        </tr>
-        </tbody>
-        <thead>
-        <tr>
-            <th>NFC South Team</th>
-            <th>Wins</th>
-            <th>Losses</th>
-            <th>Ties</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr>
-            <td>New Orleans Saints</td>
-            <td>6</td>
-            <td>8</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>Carolina Panthers</td>
-            <td>5</td>
-            <td>8</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>Atlanta Falcons</td>
-            <td>5</td>
-            <td>9</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>Tampa Bay Buccaneers</td>
-            <td>2</td>
-            <td>12</td>
-            <td>0</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-</div>
 </section>
 <!--/NFL STANDINGS -->
 
 
-<div style="width:100%;padding:10px;background:#d83435;color:white;min-height:50px;">
-    <p style="text-align:center;color:white;">“That was quick and painless and now you’re super knowledgeable. It’s that easy. Good luck this week!”</p>
+<div class="wow rollIn" style="width:100%;padding:10px;background:#d83435;color:white;min-height:50px;">
+    <p style="text-align:center;color:white;font-family:'Raleway', sans-serif;font-size:18px;text-transform:uppercase;font-weight:bold;">“That was quick and painless and now you’re super knowledgeable. It’s that easy. Good luck this week!”</p>
 </div>
     <!--/NFL SCORES-->
 <?php include($docPath.'inc/footer.php'); ?>

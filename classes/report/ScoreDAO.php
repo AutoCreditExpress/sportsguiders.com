@@ -34,7 +34,20 @@ class ScoreDAO {
         }
 
     }
+    function checkScore1ForWinner($score1,$score2){
+        try{
+            if($score1>$score2){
+             $results = 'win';
+            }else{
+             $results = 'loss';
+            }
+            return $results;
 
+        }
+        catch(PDOException $e){
+            return FALSE;
+        }
+    }
     function mapPlayerToObjects(PDOStatement $stmt){
 
         $players = array();

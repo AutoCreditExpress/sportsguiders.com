@@ -1,7 +1,7 @@
 <?php
 require 'inc/config.php';
 
-Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
+Stripe::setApiKey("sk_live_DBjtHb3jETlJt7uTV7mlUDd3");
 
     $SubscriberDAO = new SubscriberDAO($db);
 
@@ -15,4 +15,8 @@ Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
     //$SubscriberDAO->updateSubscriberIsActive($_SESSION['user_email'], "1");
 
     //remove subscription_id from subscriber table and replace with generic
-    $SubscriberDAO->updateSubscriberSubscriptionId($_SESSION['user_email'], 'sub_'.uniqid());
+    //$SubscriberDAO->updateSubscriberSubscriptionId($_SESSION['user_email'], 'sub_'.uniqid());
+
+//remove subscription_id from subscriber table and replace with generic
+//this was changed on 9/1/15 so that counting users with active subs and sub ids is the actually sub count
+    $SubscriberDAO->updateSubscriberSubscriptionId($_SESSION['user_email'], '');

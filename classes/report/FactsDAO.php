@@ -32,7 +32,21 @@ class FactsDAO {
         }
     }
 
-
+    function getFact($reportID,$type){
+        $check = $this->db->prepare("SELECT rf_value FROM report_facts WHERE rf_report_id='".$reportID."' and rf_type='".$type."'");
+        try{
+            $check->execute();
+            $results = $check->fetchAll();
+            if($results){
+                return $results[0]['rf_value'];
+            }
+            else{
+                return FALSE;
+            }
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
 
 
 }

@@ -22,8 +22,9 @@ hr {
   transition: 0.5s all;
 }
 .btn.btn-primary:hover {
-  background-color: #d83435;
-  border-color: #d83435;
+  background-color: white;
+  border-color: white;
+    color:#d83435;
 }
 .btn.btn-primary.btn-border {
   background-color: transparent;

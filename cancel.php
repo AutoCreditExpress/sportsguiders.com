@@ -4,7 +4,7 @@ include('inc/config.php');
 include($docPath.'inc/header.php');
 
 
-Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
+Stripe::setApiKey("sk_live_DBjtHb3jETlJt7uTV7mlUDd3");
 
 $SubscriberDAO = new SubscriberDAO($db);
 

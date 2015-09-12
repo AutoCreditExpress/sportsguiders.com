@@ -167,7 +167,7 @@ include($docPath.'inc/header.php');
     </script>
     <script type="text/javascript">
         // this identifies your website in the createToken call below
-        Stripe.setPublishableKey('pk_live_Iouvsrt1T1v64gKETw0Q0FMP');
+        Stripe.setPublishableKey('pk_live_5jIgP2Slc7M4baTLmU8XhxcS');
 
         function stripeResponseHandler(status, response) {
             if (response.error) {
@@ -226,7 +226,7 @@ include($docPath.'inc/header.php');
     </noscript>
     <?php
     //if there is post data and the user has already been created and is active, update the card info
-    Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
+    Stripe::setApiKey("sk_live_DBjtHb3jETlJt7uTV7mlUDd3");
     $error = '';
     $success = '';
         if ($_POST) {

@@ -10,6 +10,9 @@ class ReportDAO {
 
     protected $db = "";
 
+    public $standingsWinners=array();
+    public $standingsLosers=array();
+    public $standingsTies=array();
     function __construct(pdo $db){
       $this->db = $db;
     }
@@ -59,15 +62,29 @@ class ReportDAO {
             return FALSE;
         }
     }
+    function getActiveReportsForArchive(){
+        $pendingReport = $this->db->prepare("SELECT report_id from report where report_status = '1' and report_create_date LIKE '".date('Y')."%' order by report_create_date desc");
 
-    function getLatestReport($isSample=null){
+        try{
+            $pendingReport->execute();
+            $results = $pendingReport->fetchAll();
+
+            return $results;
+        }catch(PDOException $e){
+            //echo $e;
+            return FALSE;
+        }
+    }
+    function getLatestReport($isSample=null, $reportId=null){
 
         $getReport = $this->db->prepare("SELECT report_id from report order by report_create_date desc limit 1");
 
         $getReport->execute();
-        $reportResult = $getReport->fetch();
-        if($isSample){
+        $reportResult = $getReport->fetchColumn();
+        if($isSample) {
             $reportID = 1;
+        }elseif($reportId){
+            $reportID = $reportId;
         }else{
             $reportID = $reportResult['report_id'];
         }
@@ -80,6 +97,8 @@ class ReportDAO {
         $TopPerformers = $TopPerformersDAO->getTopPerformersForReport($reportID);
         $InjuryDAO = new InjuryDAO($this->db);
         $Injury = $InjuryDAO->getInjuryForReport($reportID);
+        $Scores = $this->getReportScores($reportID);
+        $Standings = $this->getReportStandings($reportID);
 
         $Report = new Report();
         $Report->setWaiver($Waivers);
@@ -87,7 +106,8 @@ class ReportDAO {
         $Report->setTrendingDown($TrendingDown);
         $Report->setTopPerformers($TopPerformers);
         $Report->setInjuries($Injury);
-        //var_dump($Waivers);
+        $Report->setScores($Scores);
+        $Report->setStandings($Standings);
 
         return $Report;
     }
@@ -136,7 +156,20 @@ class ReportDAO {
             return FALSE;
         }
     }
+    function getReportScores($reportID){
+        $sql = "Select * from score where score_report_id = '".$reportID."'";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        try{
+            $results = $query->fetchAll();
 
+            return $results;
+
+        }
+        catch(PDOException $e){
+            return FALSE;
+        }
+    }
     function getReportTopInjuries($reportID){
         $sql = "Select * from report_injuries where ri_report_id = '".$reportID."'";
         $query = $this->db->prepare($sql);
@@ -200,6 +233,51 @@ class ReportDAO {
 
 
         }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+    function getReportStandings($reportID){
+        $sql = "Select * from score where score_report_id = '".$reportID."'";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        try{
+            $results = $query->fetchAll();
+            foreach($results as $item){
+                   if($this->checkScore1ForWinner($item['score_home'],$item['score_away'])=='win'){
+                       array_push($standingsWinners,$item['score_home_team_id']);
+                       array_push($standingsLosers,$item['score_away_team_id']);
+                   }elseif($this->checkScore1ForWinner($item['score_home'],$item['score_away'])=='loss'){
+                       array_push($standingsWinners,$item['score_away_team_id']);
+                       array_push($standingsLosers,$item['score_home_team_id']);
+                   }elseif($this->checkScore1ForWinner($item['score_home'],$item['score_away'])=='draw'){
+                       array_push($standingsTies,$item['score_home_team_id']);
+                       array_push($standingsTies,$item['score_away_team_id']);
+                   }
+            }
+            $results = array('winners'=>$standingsWinners,'losers'=>$standingsLosers,'ties'=>$standingsTies);
+
+            //return the results
+            return $results;
+        }
+        catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function checkScore1ForWinner($score1,$score2){
+        try{
+            if($score1>$score2){
+                $results = 'win';
+            }elseif($score1<$score2){
+                $results = 'loss';
+            }elseif($score1==$score2){
+                $results='draw';
+            }
+            //echo $results;
+            return $results;
+
+        }
+        catch(PDOException $e){
             return FALSE;
         }
     }
@@ -379,6 +457,22 @@ class ReportDAO {
             }
 
 
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function checkReportIsValid($reportId){
+        $check = $this->db->prepare("SELECT report_id FROM report WHERE report_id='".$reportId."' AND report_status = '1'");
+        try{
+            $check->execute();
+            $results = $check->fetchColumn();
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
         }catch(PDOException $e){
             return FALSE;
         }

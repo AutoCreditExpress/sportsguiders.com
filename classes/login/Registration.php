@@ -37,6 +37,7 @@ class Registration
     public function __construct()
     {
         //session_start();
+
             $this->registerNewUser($_POST['name'],substr($_POST['name'],0,strpos($_POST['name']," ")),substr($_POST['name'],strpos($_POST['name']," ")), $_POST['email'], $_POST['password'], $_POST['password2']);
 
     }
@@ -58,6 +59,7 @@ class Registration
                 // @see http://wiki.hashphp.org/PDO_Tutorial_for_MySQL_Developers#Connecting_to_MySQL says:
                 // "Adding the charset to the DSN is very important for security reasons,
                 // most examples you'll see around leave it out. MAKE SURE TO INCLUDE THE CHARSET!"
+
                 $this->db_connection = new PDO('mysql:host=localhost;dbname=sportsguiders_main;charset=utf8', 'sgfantasy', '*DE5bBPa%.@Z');
                 return true;
             // If an error is catched, database connection failed
@@ -74,6 +76,7 @@ class Registration
      */
     public function registerNewUser($user_name, $user_first, $user_last, $user_email, $user_password, $user_password_repeat)
     {
+
         // we just remove extra space on username and email
         $user_name  = trim($user_name);
         $user_email = trim($user_email);
@@ -99,6 +102,7 @@ class Registration
         // finally if all the above checks are ok
         } else if ($this->databaseConnection()) {
             // check if username or email already exists
+
             $query_check_user_name = $this->db_connection->prepare('SELECT user_name, user_email FROM users WHERE user_name=:user_name OR user_email=:user_email');
             $query_check_user_name->bindValue(':user_name', $user_name, PDO::PARAM_STR);
             $query_check_user_name->bindValue(':user_email', $user_email, PDO::PARAM_STR);
@@ -169,53 +173,26 @@ class Registration
      */
     public function sendVerificationEmail($user_id, $user_email, $user_activation_hash)
     {
-        $mail = new PHPMailer;
 
-// please look into the config/config.php for much more info on how to use this!
-// use SMTP or use mail()
-        if (EMAIL_USE_SMTP) {
-            // Set mailer to use SMTP
-            $mail->IsSMTP();
-            //useful for debugging, shows full SMTP errors
-            //$mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
-            // Enable SMTP authentication
-            $mail->SMTPAuth = EMAIL_SMTP_AUTH;
-            // Enable encryption, usually SSL/TLS
-            if (defined(EMAIL_SMTP_ENCRYPTION)) {
-                $mail->SMTPSecure = EMAIL_SMTP_ENCRYPTION;
-            }
-            // Specify host server
-            $mail->Host = EMAIL_SMTP_HOST;
-            $mail->Username = EMAIL_SMTP_USERNAME;
-            $mail->Password = EMAIL_SMTP_PASSWORD;
-            $mail->Port = EMAIL_SMTP_PORT;
-        } else {
-            $mail->IsMail();
+        $mandrill = new Mandrill('yj_MPJb4VNSohdk8kKdUMA');
 
+        $message = new stdClass();
+        $message->html = file_get_contents('http://www.sportsguiders.com/email/subscription/signup/congratulations.php?id='.urlencode($user_id).'&verification_code='.urlencode($user_activation_hash));
+
+        $message->subject = EMAIL_VERIFICATION_SUBJECT;
+        $message->from_email = EMAIL_VERIFICATION_FROM;
+        $message->from_name  = EMAIL_VERIFICATION_FROM_NAME;
+        $message->to = array(array("email" => $user_email));
+        $message->track_opens = true;                        // Enable encryption, 'ssl' also accepted
+
+        $response = $mandrill->messages->send($message);
+
+        if($response[0]['status'] = 'sent'){
+            echo 'Mail Sent to...'.$user_email;
+        }else{
+            echo 'Error:'.$response->reject_reason;
         }
 
-        $mail->From = EMAIL_VERIFICATION_FROM;
-        $mail->FromName = EMAIL_VERIFICATION_FROM_NAME;
-        $mail->AddAddress('jmct0425@gmail.com');
-        $mail->Subject = EMAIL_VERIFICATION_SUBJECT;
-//$link = EMAIL_VERIFICATION_URL.'?id='.urlencode($user_id).'&verification_code='.urlencode($user_activation_hash);
-
-// the link to your register.php, please set this value in config/email_verification.php
-
-        $mail->IsHTML(true);
-        //echo "start";
-        $mail->Body=file_get_contents('http://www.sportsguiders.com/email/subscription/signup/congratulations.php?id='.urlencode($user_id).'&verification_code='.urlencode($user_activation_hash));
-        //echo "end";
-        //$mail->Body = 'test data';
-
-        if(!$mail->Send()) {
-            $this->errors[] = MESSAGE_VERIFICATION_MAIL_NOT_SENT . $mail->ErrorInfo;
-            echo "failure";
-            return false;
-        } else {
-            echo "mail sent....";
-            return true;
-        }
     }
 
     /**

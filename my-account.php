@@ -38,8 +38,8 @@ $showReport=$SubscriberDAO->getRoleId($_SESSION['user_email']);
 
                         <!-- Step -->
                         <div class="col-md-3 col-sm-6">
-                            <a href="<?php echo $webPath;?>the-recap/" style="text-decoration:none;">
-                                <div class="step">
+                            <a href="<?php echo $webPath;?>recap-archive/" style="text-decoration:none;">
+                                <div class="step animated fadeInLeft">
                                     <div class="icon">
                                         <span class="glyphicon glyphicon-bookmark"></span>
                                     </div>
@@ -53,7 +53,7 @@ $showReport=$SubscriberDAO->getRoleId($_SESSION['user_email']);
                         <!-- Step -->
                         <div class="col-md-3 col-sm-6">
                             <a href="<?php echo $webPath;?>billing_info/" style="text-decoration:none;">
-                            <div class="step">
+                            <div class="step animated fadeInLeft">
                                 <div class="icon">
                                     <span class="glyphicon glyphicon-credit-card"></span>
                                 </div>
@@ -68,7 +68,7 @@ $showReport=$SubscriberDAO->getRoleId($_SESSION['user_email']);
 
                             <div class="col-md-3 col-sm-6" >
                             <a href = "<?php echo $webPath;?>edit-password/" style = "text-decoration:none;" >
-                            <div class="step" >
+                            <div class="step animated fadeInLeft" >
                                 <div class="icon" >
                                     <span class="glyphicon glyphicon-lock" ></span >
                                 </div >
@@ -82,7 +82,7 @@ $showReport=$SubscriberDAO->getRoleId($_SESSION['user_email']);
                         <!-- Step -->
                         <div class="col-md-3 col-sm-6">
                             <a href="<?php echo $webPath;?>cancel-account/" style="text-decoration:none;">
-                            <div class="step">
+                            <div class="step animated fadeInLeft">
                                 <div class="icon">
                                     <span class="icon-caution"></span>
                                 </div>
@@ -107,7 +107,7 @@ $showReport=$SubscriberDAO->getRoleId($_SESSION['user_email']);
                         <!-- Step -->
                         <div class="col-md-3 col-sm-6">
                             <a href="<?php echo $webPath;?>report/create-new/" style="text-decoration:none;">
-                                <div class="step">
+                                <div class="step animated fadeInLeft">
                                     <div class="icon">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </div>
@@ -123,7 +123,7 @@ $showReport=$SubscriberDAO->getRoleId($_SESSION['user_email']);
                         <!-- Step -->
                         <div class="col-md-3 col-sm-6">
                             <a href="<?php echo $webPath;?>login/logout/" style="text-decoration:none;">
-                            <div class="step">
+                            <div class="step animated fadeInLeft">
                                 <div class="icon">
                                     <span class="glyphicon glyphicon-new-window"></span>
                                 </div>

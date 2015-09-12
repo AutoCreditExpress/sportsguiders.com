@@ -6,6 +6,10 @@ include($docPath.'inc/header.php');
 <style>
     .mainHead {font-size:104px;font-weight:100;}
     .subHead {font-size:26px;}
+    /*media screen > 1650*/
+    @media screen and (max-width: 2050px) {
+        .revolution {height:1000px;}
+    }
     @media screen and (max-width: 950px) {
         .mainHead {font-size:54px;font-weight:100;}
         .subHead {font-size:22px;margin-top:20px;}
@@ -31,7 +35,7 @@ include($docPath.'inc/header.php');
 
             <li data-transition="ZoomIn" data-slotamount="6">
                 <!--<img src="images/slide1.jpg" alt="">-->
-                <img src="<?=$webPath;?>img/sg-main-banner.jpg" alt="">
+                <img src="<?=$webPath;?>img/sg-main-banner.jpg" data-bgfit="cover" alt="">
 
                 <div class="tp-caption"
                      data-x="center"
@@ -46,13 +50,13 @@ include($docPath.'inc/header.php');
                 </div>
                 <div class="tp-caption"
                      data-x="center"
-                     data-y="345"
+                     data-y="295"
 
                      data-start="1000"
                      data-speed="600"
                     >
                     <h2 style="" class="text-center subHead">
-                        Fantasy Football Advice and Curated Reports
+                        We make fantasy football easy
                     </h2>
                 </div>
 
@@ -62,12 +66,17 @@ include($docPath.'inc/header.php');
     </div>
 </div>
 <!-- End Revolution Slider -->
-<header class="page-heading">
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".fancybox").fancybox();
+        });
+    </script>
+<header class="page-heading animated bounceInLeft">
     <!--<h1 class="text-center"><a href="#how-it-works" style="color: #ffffff;">Fantasy Football Winning Is Easy!</a></h1>-->
-    <a href="<?php echo $webPath;?>gain-access/" class="btn btn-white btn-lg btn-rounded" style="color:red;">
-        Get Started <b>Here</b>
+    <a href="<?php echo $webPath;?>why-us/" class="btn btn-white btn-lg btn-rounded" style="color:red;">
+        Why We <b>Do</b>
     </a>
-    <a href="<?=$webPath;?>sample-recap/" class="btn btn-lg btn-white btn-rounded btn-iconned" style="color:red;"><i class="fa fa-search fa-1x"></i> View Sample</a>
+    <a href="<?=$webPath;?>indexYouTubeVideo.php" class="fancybox fancybox.ajax btn btn-white btn-lg btn-rounded" style="color:red;"><i class="fa fa-play fa-1x"></i>&nbsp;&nbsp;&nbsp;View Our Video</a>
 </header>
 <section id="process">
     <a name="how-it-works"></a>
@@ -82,7 +91,7 @@ include($docPath.'inc/header.php');
                 <!-- Step -->
                 <div class="col-sm-4">
                     <a href="#cutClutter" style="text-decoration:none;">
-                        <div class="step">
+                        <div class="step wow fadeInRight">
                             <div class="icon">
                                 <span class="icon-documents"></span>
                             </div>
@@ -95,7 +104,7 @@ include($docPath.'inc/header.php');
                 <!-- Step -->
                 <div class="col-sm-4">
                     <a href="#saveTime" style="text-decoration:none;">
-                    <div class="step">
+                    <div class="step wow fadeInRight">
                         <div class="icon">
                             <span class="icon-trophy"></span>
                         </div>
@@ -108,7 +117,7 @@ include($docPath.'inc/header.php');
                 <!-- Step -->
                 <div class="col-sm-4">
                     <a href="#goodLife" style="text-decoration:none;">
-                    <div class="step">
+                    <div class="step wow fadeInRight">
                         <div class="icon">
                             <span class="icon-happy"></span>
                         </div>
@@ -146,7 +155,7 @@ include($docPath.'inc/header.php');
                         <hr class="hr-left">
                     </header>
                     <!-- End Welcome Header -->
-                    <p style="color:white;">This recap is going to make your week so much easier! We provide you with only the high level information that matters, when it matters. We never try to bate you into clicking more links, and we will never show you an annoying slideshow. Our experts will curate a special report for you every week that will help you stay informed while maintaining a life outside of the game.</p>
+                    <p style="color:white;">This recap is going to make your week so much easier! We provide you with only the high level information that matters, when it matters. We never try to bait you into clicking more links, and we will never show you an annoying slideshow. Our experts will curate a special report for you every week that will help you stay informed while maintaining a life outside of the game.</p>
                 </div>
                 <style>
                     .redHover {color:white;}
@@ -154,7 +163,7 @@ include($docPath.'inc/header.php');
                 </style>
                 <p>
                     <a href="<?=$webPath;?>sample-recap/" class="btn btn-lg btn-rounded btn-iconned redHover"><i class="fa fa-search fa-2x"></i> View Sample</a>
-                    <a href="<?=$webPath;?>gain-access/" class="btn btn-secondary btn-lg btn-rounded btn-iconned"><i class="fa fa-check"></i> Get Started</a>
+                    <a href="<?=$webPath;?>gain-access/" class="btn btn-primary btn-lg btn-rounded btn-iconned"><i class="fa fa-check"></i> Get Started</a>
                 </p>
             </div>
             <!-- End Welcome Content -->
@@ -174,7 +183,7 @@ include($docPath.'inc/header.php');
     <section id="welcome" class="welcome section-primary"  style="background: white;">
         <div class="container">
              <div class="row">
-                    <div id="cutClutter" class="col-md-6  wow fadeInUp animated" style="padding-bottom: 50px;padding-top:50px;">
+                    <div id="cutClutter" class="col-xs-12 col-md-6  wow fadeInUp animated" style="padding-bottom: 50px;padding-top:50px;">
                         <h4 style="font-size:48px;">Cut <span style="color:#d83435;">the Clutter</span></h4>
                         <p style="padding-top:10px;">
                             Our team of experts help you cut the informational clutter out of your life by curating an easy-to-read Recap that you will rely on every week. The Recaps contain only relevant content and useful information that is necessary to making winning decisions week in and week out.
@@ -189,7 +198,7 @@ include($docPath.'inc/header.php');
                             Forget the clutter, and the bouncing around, and sign up to receive The Recap today!
                         </p>
                     </div>
-                 <div id="" class="col-md-6  wow fadeInUp animated" style="padding-bottom: 50px;padding-top:50px;">
+                 <div id="" class="cols-xs-12 col-md-6  wow fadeInUp animated" style="padding-bottom: 50px;padding-top:50px;">
                      <div style="width:50%;margin:0px auto;">
                         <img src="<?=$webPath;?>images/cut.png" style="max-height:200px;">
                      </div>
@@ -200,7 +209,7 @@ include($docPath.'inc/header.php');
     <section id="welcome" class="welcome section-primary"  style="background: #f6f8fc;">
         <div class="container">
             <div class="row">
-                <div id="saveTime" class="col-md-6  wow fadeInUp animated" style="padding-bottom: 50px;padding-top:50px;">
+                <div id="saveTime" class="cols-xs-12 col-md-6  wow fadeInUp animated" style="padding-bottom: 50px;padding-top:50px;">
                     <h4 style="font-size:48px;">Save <span style="color:#d83435">Time and Win</span></h4>
                     <p style="padding-top:10px;">
                         You become the most knowledgeable person in your league without wasting your time by clicking on link after link and reading hours worth of useless information. You will use your knowledge to dominate the waiver wire, make the right trades, and start the right players every week.
@@ -212,7 +221,7 @@ include($docPath.'inc/header.php');
                         Use The Recap to stay informed in the most simple way possible!
                     </p>
                 </div>
-                <div id="" class="col-md-6 wow fadeInUp animated" style="padding-bottom: 50px;padding-top:50px;">
+                <div id="" class="col-xs-12 col-md-6 wow fadeInUp animated" style="padding-bottom: 50px;padding-top:50px;">
                     <div style="width:50%;margin:0px auto;">
                         <img src="<?=$webPath;?>images/save.png" style="max-height:200px;">
                     </div>
@@ -224,7 +233,7 @@ include($docPath.'inc/header.php');
     <section id="welcome" class="welcome section-primary"  style="background: white;">
         <div class="container">
             <div class="row">
-                <div id="goodLife" class="col-md-6 wow fadeInUp animated" style="padding-bottom: 50px;padding-top:50px;">
+                <div id="goodLife" class="col-xs-12 col-md-6 wow fadeInUp animated" style="padding-bottom: 50px;padding-top:50px;">
                     <h4 style="font-size:48px;">Enjoy <span style="color:#d83435;">the Good Life</span></h4>
                     <p style="padding-top:10px;">
                         This is why we do what we do. We want you to spend more time enjoying your friends, family and co-workers and less time panicking over not knowing enough. Playing fantasy football is a good thing, and it is way more fun when you’re winning.
@@ -236,7 +245,7 @@ include($docPath.'inc/header.php');
                         Winning is easy with SportGuiders!
                     </p>
                 </div>
-                <div id="" class="col-md-6 wow fadeInUp animated" style="padding-bottom: 50px;">
+                <div id="" class="col-xs-12 col-md-6 wow fadeInUp animated" style="padding-bottom: 50px;">
                     <div style="width:50%;margin:0px auto;">
                         <img src="<?=$webPath;?>images/enjoy.png" style="max-height:200px;margin-top:50px;">
                     </div>

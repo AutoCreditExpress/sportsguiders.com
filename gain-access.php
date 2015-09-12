@@ -1,4 +1,5 @@
-<?php require 'inc/config.php';
+<?php
+require 'inc/config.php';
 
 $SubscriberDAO=new SubscriberDAO($db);
 
@@ -10,7 +11,7 @@ if ($login->isUserLoggedIn() == true) {
 
 include($docPath.'inc/header.php');
 //if there is post data and the user has already been created and is active, update the card info
-Stripe::setApiKey("sk_live_N965e7oe6KUUhB9J6TQ93ovI");
+Stripe::setApiKey("sk_live_DBjtHb3jETlJt7uTV7mlUDd3");
 $error = '';
 $success = '';
 
@@ -173,7 +174,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
     </script>
     <script type="text/javascript">
         // this identifies your website in the createToken call below
-        Stripe.setPublishableKey('pk_live_Iouvsrt1T1v64gKETw0Q0FMP');
+        Stripe.setPublishableKey('pk_live_5jIgP2Slc7M4baTLmU8XhxcS');
 
         function stripeResponseHandler(status, response) {
             //if account type is a basic account skip validation
@@ -229,28 +230,28 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
 
                         <!-- Checkout Form -->
                         <div class="checkout-form" style="border-radius:15px;">
-                            <h2 class="text-center" style="color: #465366;">Getting Started</h2>
+                            <h2 class="text-center animated bounceInLeft" style="color: #465366;">Getting Started</h2>
 
-                            <p>
-                                It only costs $9 for a year to gain access to The Recap and other expert advice that will make you a Fantasy Football winner.
+                            <p class="animated bounceInLeft">
+                                It only costs <span class="animated bounce" style="font-weight:900;color:#d83435;">$9 for the whole year to gain access</span> to The Recap and other expert advice that will make you a Fantasy Football winner.
                             </p>
                             <style>
                                 /*.table .middle td {box-shadow:0px 0px 12px #666,0px 0px 50px #666;}*/
                             </style>
-                            <table class="table" style="">
+                            <table class="table animated bounceInLeft" style="">
                                 <tr class="subtotal" style="border-top:1px solid #bec9d9;">
-                                    <td class="cell1" style=""><b>Basic Membership</b></td>
+                                    <td class="cell1" style=""><b>Basic Access</b></td>
                                     <td class="cell2" style="">FREE</td>
                                     <td class="cell3">The most basic SportsGuiders account that allows you to read our articles and receive important email updates. </td>
                                 </tr>
-                                <tr style="border:1px solid #e3e3e3;font-weight:900;">
+                                <tr class=" animated bounceInLeft" style="border:1px solid #e3e3e3;font-weight:900;">
                                     <td class="clonecell1" style="background: #d83435;color:white;"><b>Guider Access</b></td>
-                                    <td class="clonecell2" style="background: #d83435;color:white;font-size:18px;">$9</td>
+                                    <td class="clonecell2" style="background: #d83435;color:white;font-size:18px;">$9/yr</td>
                                     <td class="clonecell3" style="background: #f5f5f5;">The most popular SportsGuiders account that gives you access to our articles, email updates and The Recap every week. </td>
                                 </tr>
-                                <tr class="">
+                                <tr class=" animated bounceInLeft">
                                     <td style=""><b>Expert Access</b></td>
-                                    <td style="">$49</td>
+                                    <td style="">$49/yr</td>
                                     <td>This account is for serious fantasy football players that need access to our articles, emails, The Recap and a 1-on-1 expert advice chat line open every Sunday morning from 9:30am to 12:30pm. </td>
                                 </tr>
                             </table>
@@ -358,6 +359,8 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                             "plan" => $plan
                                         ));
                                     }
+
+
                                     $Registration = new Registration();
 
                                     //create user in table
@@ -408,7 +411,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
   </span>
                     <span class="payment-expiry"></span>
                         <!-- Billing / Shipping Form -->
-                    <form method="post" id="payment-form" style>
+                    <form class="animated bounceInUp" method="post" id="payment-form" style>
                         <div class="well form-container active">
                             <div class="card-wrapper"></div>
 
@@ -443,8 +446,8 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                 <!-- Card Number -->
                                 <div class="col-xs-12 protectInfo">
                                     <div class="form-group">
-                                        <div style="background:#e6f7fe;border:1px solid #6bd0f9;border-radius:4px;margin-top:10px;">
-                                            <p style="color:#31708f;padding:7px;">Sportsguiders.com protects your information with 256bit encryption</p>
+                                        <div style="background:#d83435;border:1px solid #e3e3e3;;border-radius:4px;margin-top:10px;">
+                                            <p class="animated tada" style="color:white;padding:7px;">Sportsguiders.com protects your information with 256bit encryption</p>
                                         </div>
                                     </div>
                                 </div>
@@ -641,24 +644,45 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                 }
                                 return false;
                             }
-                            <?php
-                            //if the referrer is a non logged in user clicking the recap nav button
-                             if($therecapNotice){
-                             ?>
+                        </script>
+                        <?php
+                        //if the referrer is a non logged in user clicking the recap nav button
+                        if($therecapNotice){
+                            ?>
+                        <style>
+                            .alert-growl {border-color:#717d90;background:white;color:#465366;}
+                        </style>
+                        <script type="text/javascript">
+                            $(document).ready(function() {
+                                $(".fancybox").fancybox();
+                                $(".fancybox").eq(0).trigger('click');
+                            });
+                        </script>
+                        <a class="fancybox fancybox.ajax" href="<?=$webPath;?>lib/fancybox/gainAccessRecapNotice.php"></a>
+<!--
+                        <script>
                             $(document).ready(function(){
-                                var growlType = 'info';
+                                var growlType = 'growl';
+                                var growlHeight = $(document).height();
+                                var growlWidth = $(document).width();
                                 $.bootstrapGrowl('<h4><strong>Notice!</strong></h4> <p>Sorry you cant view this until you have subscribed.<br><a href="<?=$webPath;?>sample-recap/">View Sample Recap</a></p>', {
                                     type: growlType,
                                     delay: 8000,
                                     allow_dismiss: true,
                                     width: 300,
                                     offset: {from: 'top', amount: 20},
+                                    template: {
+                                        container: '<div class="alert-growl">',
+                                        title_divider: '<br/>'
+                                    }
                                 });
                             });
+                            </script>
+
+-->
                             <?php
                              }
                             ?>
-                        </script>
                         <!-- Newsletter Form -->
                         <form class="form-inline" onsubmit="submitNewsletterInfo(); return false;">
                             <div class="form-group">
