@@ -1,167 +1,170 @@
-/**
- * 
- * KOEL THEME
- *
- * This file is the source for the theme files for the different variants of the KOEL Template
- *
- */
-h1 b,
-h2 b,
-a,
-a:hover {
-  color: #d83435;
-}
-hr {
-  background: #d83435;
-}
-.btn.btn-primary {
-  background-color: #d83435;
-  color: #ffffff;
-  border: 1px solid #d83435;
-  -webkit-transition: 0.5s all;
-  transition: 0.5s all;
-}
-.btn.btn-primary:hover {
-  background-color: white;
-  border-color: white;
-    color:#d83435;
-}
-.btn.btn-primary.btn-border {
-  background-color: transparent;
-  color: #d83435;
-}
-.btn.btn-primary.btn-border:hover {
-  background-color: #d83435;
-  color: #ffffff;
-}
-.btn.btn-secondary {
-  background-color: #d83435;
-  color: white;
-  border: 1px solid #d83435;
-  -webkit-transition: 0.5s all;
-  transition: 0.5s all;
-}
-.btn.btn-secondary:hover {
-  background-color: #1582b0;
-  border-color: #1582b0;
-}
-.btn.btn-secondary.btn-border {
-  background-color: transparent;
-  color: #d83435;
-}
-.btn.btn-secondary.btn-border:hover {
-  background-color: #d83435;
-  color: white;
-}
-.navbar ul.nav > li:hover > a,
-.navbar ul.nav > li.active > a,
-.navbar ul.nav > li.dropdown.open > a,
-.navbar ul.nav > li .dropdown-menu > li:hover > a {
-  background: #d83435;
-  color: white;
-}
-.navbar ul.nav > li > a {
-  color: #ffffff;
-}
-.navbar.navbar-white ul.nav > li > a {
-  color: #f6f8fc;
-}
-.navbar ul.nav > li.round-icon a {
-  background: transparent;
-  color: #d83435;
-  border: 1px solid #d83435;
-}
-.navbar ul.nav > li.round-icon a:hover,
-.navbar ul.nav > li.round-icon a.active {
-  background: #d83435;
-  color: white;
-}
-.navbar ul.nav > li.search input {
-  border: 1px solid #d83435;
-  color: #ffffff;
-}
-.navbar ul.nav > li.search input::-webkit-input-placeholder {
-  color: #edf2f9;
-}
-.navbar ul.nav > li.search input:-moz-placeholder {
-  /* Firefox 18- */
-  color: #edf2f9;
-}
-.navbar ul.nav > li.search .icon {
-  color: #d83435;
-}
-.navbar ul.nav > li.search.active input {
-  border-color: #d83435;
-  background: #d83435;
-  color: white;
-}
-.navbar ul.nav > li.search.active .fa {
-  color: white;
-}
-.portfolio-item .portfolio-image .portfolio-hover {
-  background: rgba(27, 164, 221, 0.75);
-}
-.portfolio-item .portfolio-image .portfolio-hover .portfolio-hover-content hr {
-  background: #d83435;
-}
-::selection {
-  background: #d83435;
-  /* WebKit/Blink Browsers */
-}
-::-moz-selection {
-  background: #d83435;
-  /* Gecko Browsers */
-}
-.header.header-bg {
-  background-image: url("../images/slide1.png");
-}
-.header article h1 {
-  color: #ffffff;
-}
-.header article h1 b {
-  color: #d83435;
-}
-.header article p {
-  color: #ffffff;
-}
-.header article hr {
-  background-image: linear-gradient(-135deg, #a8e164 0%, #d83435 100%);
-}
-main section.section-primary {
-  background: #d83435;
-}
-main section.section-secondary {
-  background: #d83435;
-}
-main section.section-secondary hr {
-  background-color: #d83435;
-}
-main section.section-secondary h2 b {
-  color: #d83435;
-}
-.testimonials small {
-  color: #d83435;
-}
-div.contacts-information .fa {
-  color: white;
-  background: #d83435;
-}
-.shop-item .shop-image .shop-hover {
-  background: rgba(27, 164, 221, 0.25);
-}
-.steps .step:hover .icon {
-  background: #d83435;
-  color: #ffffff;
-}
-.page-heading {
-  background: #d83435;
-}
-.page-heading h1 {
-  color: #f6f8fc;
-}
-ul.nav-tabs li.active > a,
-ul.nav-tabs li.active > a:hover {
-  border-bottom: 2px solid #d83435;
-  color: #d83435;
-}
-/* Button Mixin */
+/**
+ * 
+ * KOEL THEME
+ *
+ * This file is the source for the theme files for the different variants of the KOEL Template
+ *
+ */
+h1 b,
+h2 b,
+a,
+a:hover {
+  color: #d83435;
+}
+hr {
+  background: #d83435;
+}
+
+.grey {background:grey!important;}
+
+.btn.btn-primary {
+  background-color: #d83435;
+  color: #ffffff;
+  border: 1px solid #d83435;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+}
+.btn.btn-primary:hover {
+  background-color: white;
+  border-color: white;
+    color:#d83435;
+}
+.btn.btn-primary.btn-border {
+  background-color: transparent;
+  color: #d83435;
+}
+.btn.btn-primary.btn-border:hover {
+  background-color: #d83435;
+  color: #ffffff;
+}
+.btn.btn-secondary {
+  background-color: #d83435;
+  color: white;
+  border: 1px solid #d83435;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+}
+.btn.btn-secondary:hover {
+  background-color: #1582b0;
+  border-color: #1582b0;
+}
+.btn.btn-secondary.btn-border {
+  background-color: transparent;
+  color: #d83435;
+}
+.btn.btn-secondary.btn-border:hover {
+  background-color: #d83435;
+  color: white;
+}
+.navbar ul.nav > li:hover > a,
+.navbar ul.nav > li.active > a,
+.navbar ul.nav > li.dropdown.open > a,
+.navbar ul.nav > li .dropdown-menu > li:hover > a {
+  background: #d83435;
+  color: white;
+}
+.navbar ul.nav > li > a {
+  color: #ffffff;
+}
+.navbar.navbar-white ul.nav > li > a {
+  color: #f6f8fc;
+}
+.navbar ul.nav > li.round-icon a {
+  background: transparent;
+  color: #d83435;
+  border: 1px solid #d83435;
+}
+.navbar ul.nav > li.round-icon a:hover,
+.navbar ul.nav > li.round-icon a.active {
+  background: #d83435;
+  color: white;
+}
+.navbar ul.nav > li.search input {
+  border: 1px solid #d83435;
+  color: #ffffff;
+}
+.navbar ul.nav > li.search input::-webkit-input-placeholder {
+  color: #edf2f9;
+}
+.navbar ul.nav > li.search input:-moz-placeholder {
+  /* Firefox 18- */
+  color: #edf2f9;
+}
+.navbar ul.nav > li.search .icon {
+  color: #d83435;
+}
+.navbar ul.nav > li.search.active input {
+  border-color: #d83435;
+  background: #d83435;
+  color: white;
+}
+.navbar ul.nav > li.search.active .fa {
+  color: white;
+}
+.portfolio-item .portfolio-image .portfolio-hover {
+  background: rgba(27, 164, 221, 0.75);
+}
+.portfolio-item .portfolio-image .portfolio-hover .portfolio-hover-content hr {
+  background: #d83435;
+}
+::selection {
+  background: #d83435;
+  /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #d83435;
+  /* Gecko Browsers */
+}
+.header.header-bg {
+  background-image: url("../images/slide1.png");
+}
+.header article h1 {
+  color: #ffffff;
+}
+.header article h1 b {
+  color: #d83435;
+}
+.header article p {
+  color: #ffffff;
+}
+.header article hr {
+  background-image: linear-gradient(-135deg, #a8e164 0%, #d83435 100%);
+}
+main section.section-primary {
+  background: #d83435;
+}
+main section.section-secondary {
+  background: #d83435;
+}
+main section.section-secondary hr {
+  background-color: #d83435;
+}
+main section.section-secondary h2 b {
+  color: #d83435;
+}
+.testimonials small {
+  color: #d83435;
+}
+div.contacts-information .fa {
+  color: white;
+  background: #d83435;
+}
+.shop-item .shop-image .shop-hover {
+  background: rgba(27, 164, 221, 0.25);
+}
+.steps .step:hover .icon {
+  background: #d83435;
+  color: #ffffff;
+}
+.page-heading {
+  background: #d83435;
+}
+.page-heading h1 {
+  color: #f6f8fc;
+}
+ul.nav-tabs li.active > a,
+ul.nav-tabs li.active > a:hover {
+  border-bottom: 2px solid #d83435;
+  color: #d83435;
+}
+/* Button Mixin */

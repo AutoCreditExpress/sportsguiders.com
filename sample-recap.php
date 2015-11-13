@@ -1,6 +1,10 @@
 <?php
 include('inc/config.php');
 
+    //disable recap page
+ header("Location: ".$webPath."week1/");// temp until report platform is complete, remove once completed
+
+
 $ReportDAO = new ReportDAO($db);
 $PlayerDAO = new PlayerDAO($db);
 
@@ -218,8 +222,8 @@ include($docPath.'inc/header.php');
                 <img class="heading-icon wow tada" src="<?=$webPath?>images/report/waiver-winners-icon.png">
                 <span class="heading wow fadeInRight">WAIVER <b>ADDS</b></span>
 
-                <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know who to pick up off your league's waiver wire this week. Adding waivers and continuing to improve the depth of your team throughout the year will allow you to sustain injuries, add value to trades, and most importantly - make a run in the playoffs. ">
-                    <img src="<?=$webPath?>images/report/info-icon-dark.png">
+                <button type="button" class="info-icon" style="width:auto;" data-toggle="tooltip" data-placement="bottom" title="Use this section to know who to pick up off your league's waiver wire this week. Adding waivers and continuing to improve the depth of your team throughout the year will allow you to sustain injuries, add value to trades, and most importantly - make a run in the playoffs. ">
+                    What's this section for&nbsp;<i class="fa fa-question-circle fa-3x red"></i>
                 </button>
             </div>
 
@@ -253,8 +257,8 @@ include($docPath.'inc/header.php');
                     <img class="heading-icon wow bounceInUp" style="max-width:125px;" src="<?=$webPath?>images/report/top-performers-icon.png">
                     <span class="heading wow bounceInUp">TOP PERFORMERS</span>
 
-                    <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know who dominated the world of fantasy football last weekend. Having a quick recap of who the weeks' top performers were allows you to make quick decisions the following week on who to target in trades, start and sit.">
-                        <img src="<?=$webPath?>images/report/info-icon-dark.png">
+                    <button type="button" class="info-icon" style="width:auto;" data-toggle="tooltip" data-placement="bottom" title="Use this section to know who dominated the world of fantasy football last weekend. Having a quick recap of who the weeks' top performers were allows you to make quick decisions the following week on who to target in trades, start and sit.">
+                        What's this section for&nbsp;<i class="fa fa-question-circle fa-3x red"></i>
                     </button>
                 </div>
             </div>
@@ -391,12 +395,12 @@ include($docPath.'inc/header.php');
     <section id="injury-report" class="injury-report" style="padding:50px 15px;">
         <div class="container">
             <div class="row">
-                <div class="col-xs-4 text-center">
+                <div class="col-xs-12 col-md-4 text-center">
                     <img class="heading-icon wow fadeInUp" src="<?=$webPath?>images/report/injury-report-icon.png">
                     <span class="heading wow fadeInDown">INJURY <b>REPORT</b></span>
 
-                    <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know who you need to keep an eye on throughout the week. Never have an injured player in your starting lineup again by taking a minute to browse this list of damaged players each week.">
-                        <img src="<?=$webPath?>images/report/info-icon-white.png">
+                    <button type="button" class="info-icon" style="width:auto;" data-toggle="tooltip" data-placement="bottom" title="Use this section to know who you need to keep an eye on throughout the week. Never have an injured player in your starting lineup again by taking a minute to browse this list of damaged players each week.">
+                        What's this section for&nbsp;<i class="fa fa-question-circle fa-3x white"></i>
                     </button>
                 </div>
 
@@ -523,8 +527,8 @@ include($docPath.'inc/header.php');
                         <img class="heading-icon wow tada" src="<?=$webPath?>images/report/trending-upwards-icon.png">
                         <span class="heading wow fadeInLeft"><b>UPWARDS</b></span>
 
-                        <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to get a quick glance at who has been performing well consistently over the last 3 weeks. These players aren't flaky, you can trust them to score some point this week. If you don't own them, try trading for them this week.">
-                            <img src="<?=$webPath?>images/report/info-icon-dark.png">
+                        <button type="button" class="info-icon" style="width:auto;" data-toggle="tooltip" data-placement="bottom" title="Use this section to get a quick glance at who has been performing well consistently over the last 3 weeks. These players aren't flaky, you can trust them to score some point this week. If you don't own them, try trading for them this week.">
+                            What's this section for&nbsp;<i class="fa fa-question-circle fa-3x red"></i>
                         </button>
 
                         <div class="stats wow fadeIn">
@@ -658,8 +662,8 @@ include($docPath.'inc/header.php');
                         <img class="heading-icon wow tada" src="<?=$webPath?>images/report/trending-downwards-icon.png">
                         <span class="heading wow fadeInRight"><b>DOWNWARDS</b></span>
 
-                        <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to get a quick glance at who has not been performing well consistently over the last 3 weeks. ">
-                            <img src="<?=$webPath?>images/report/info-icon-dark.png">
+                        <button type="button" class="info-icon" style="width:auto;" data-toggle="tooltip" data-placement="bottom" title="Use this section to get a quick glance at who has not been performing well consistently over the last 3 weeks. ">
+                            What's this section for&nbsp;<i class="fa fa-question-circle fa-3x red"></i>
                         </button>
 
                         <div class="stats wow fadeIn">
@@ -797,8 +801,8 @@ include($docPath.'inc/header.php');
                 <div class="col-xs-12 text-center wow jello">
                     <span class="heading">FUN<b>FACTS</b></span>
 
-                    <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to wow your friends, family and co-workers with your superior NFL knowledge. Use these facts in conversation to reign as Most Knowledgeable among your peers.">
-                        <img src="<?=$webPath?>images/report/info-icon-white.png">
+                    <button type="button" class="info-icon" style="width:auto;" data-toggle="tooltip" data-placement="bottom" title="Use this section to wow your friends, family and co-workers with your superior NFL knowledge. Use these facts in conversation to reign as Most Knowledgeable among your peers.">
+                        What's this section for&nbsp;<i class="fa fa-question-circle fa-3x red"></i>
                     </button>
                 </div>
             </div>
@@ -836,8 +840,8 @@ include($docPath.'inc/header.php');
             <div class="col-xs-4 text-center">
                 <span class="heading wow slideInUp" style="font-size:56px;"><i>NFL PLAYER</i> POWER<br><b>RANKINGS</b></span>
 
-                <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which NFL players will dominate the rest of the way. Finding stud players on prospering teams is a recipe for success in fantasy football.">
-                    <img src="<?=$webPath?>images/report/info-icon-white.png">
+                <button type="button" class="info-icon" style="width:auto;color:white;" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which NFL players will dominate the rest of the way. Finding stud players on prospering teams is a recipe for success in fantasy football.">
+                    What's this section for&nbsp;<i class="fa fa-question-circle fa-3x red"></i>
                 </button>
             </div>
 
@@ -1358,8 +1362,8 @@ include($docPath.'inc/header.php');
                     <img class="heading-icon wow tada" src="<?=$webPath?>images/report/power-rankings-icon.png">
                     <span id="prHeading" class="heading wow fadeInRight"><i>NFL TEAMS</i> POWER <b>RANKINGS</b></span>
 
-                    <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which NFL teams will dominate the rest of the way. Finding stud players on prospering teams is a recipe for success in fantasy football.">
-                        <img src="<?=$webPath?>images/report/info-icon-dark.png">
+                    <button type="button" class="info-icon" style="width:auto;" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which NFL teams will dominate the rest of the way. Finding stud players on prospering teams is a recipe for success in fantasy football.">
+                        What's this section for&nbsp;<i class="fa fa-question-circle fa-3x red"></i>
                     </button>
                 </div>
 
@@ -1546,8 +1550,8 @@ include($docPath.'inc/header.php');
 <div class="row">
     <div class="col-xs-12 text-center">
         <span class="heading wow slideInUp">NFL<b>SCORES</b></span>
-        <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which players will be playing the worst defense in coming weeks. Playing a poor defense is always a quick fix to a struggling player. Now might be the time to buy cheap on a player who has been struggling on one of these teams.">
-            <img src="<?=$webPath?>images/report/info-icon-white.png">
+        <button type="button" class="info-icon" style="width:auto;color:white;" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which players will be playing the worst defense in coming weeks. Playing a poor defense is always a quick fix to a struggling player. Now might be the time to buy cheap on a player who has been struggling on one of these teams.">
+            What's this section for&nbsp;<i class="fa fa-question-circle fa-3x red"></i>
         </button>
     </div>
 </div>
@@ -1812,8 +1816,8 @@ include($docPath.'inc/header.php');
             <div class="col-xs-12 text-center">
                 <span class="heading wow slideInUp">NFL<b>STANDINGS</b></span>
 
-                <button type="button" class="info-icon" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which players will be playing the worst defensive in coming weeks. Playing a poor defensive is always a quick fix to a struggling player. Now might be the time to buy cheap on a player who has been struggling on one of these teams.">
-                    <img src="<?=$webPath?>images/report/info-icon-dark.png">
+                <button type="button" class="info-icon" style="width:auto;" data-toggle="tooltip" data-placement="bottom" title="Use this section to know which players will be playing the worst defensive in coming weeks. Playing a poor defensive is always a quick fix to a struggling player. Now might be the time to buy cheap on a player who has been struggling on one of these teams.">
+                    What's this section for&nbsp;<i class="fa fa-question-circle fa-3x red"></i>
                 </button>
             </div>
         </div>
@@ -2125,7 +2129,7 @@ include($docPath.'inc/header.php');
 
 
 <div class="wow rollIn" style="width:100%;padding:10px;background:#d83435;color:white;min-height:50px;">
-    <p style="text-align:center;color:white;font-family:'Raleway', sans-serif;font-size:18px;text-transform:uppercase;font-weight:bold;">“That was quick and painless and now you’re super knowledgeable. It’s that easy. Good luck this week!”</p>
+    <p style="text-align:center;color:white;font-family:'Raleway', sans-serif;font-size:18px;text-transform:uppercase;font-weight:500;">“That was <span style="font-size:22px;font-weight:900;">quick</span> and <span style="font-size:22px;font-weight:900;">painless</span> and now you’re super knowledgeable. It’s that <span style="font-size:22px;font-weight:900;">easy</span>. Good luck this week!”</p>
 </div>
     <!--/NFL SCORES-->
 <?php include($docPath.'inc/footer.php'); ?>

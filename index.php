@@ -74,7 +74,7 @@ include($docPath.'inc/header.php');
 <header class="page-heading animated bounceInLeft">
     <!--<h1 class="text-center"><a href="#how-it-works" style="color: #ffffff;">Fantasy Football Winning Is Easy!</a></h1>-->
     <a href="<?php echo $webPath;?>why-us/" class="btn btn-white btn-lg btn-rounded" style="color:red;">
-        Why We <b>Do</b>
+        Why <b>SG ?</b>
     </a>
     <a href="<?=$webPath;?>indexYouTubeVideo.php" class="fancybox fancybox.ajax btn btn-white btn-lg btn-rounded" style="color:red;"><i class="fa fa-play fa-1x"></i>&nbsp;&nbsp;&nbsp;View Our Video</a>
 </header>
@@ -159,10 +159,10 @@ include($docPath.'inc/header.php');
                 </div>
                 <style>
                     .redHover {color:white;}
-                    .redHover:hover {color:red;}
+                    .redHover:hover {color:#d83435;}
                 </style>
                 <p>
-                    <a href="<?=$webPath;?>sample-recap/" class="btn btn-lg btn-rounded btn-iconned redHover"><i class="fa fa-search fa-2x"></i> View Sample</a>
+                    <a href="<?=$webPath;?>week3/" class="btn btn-lg btn-rounded btn-iconned redHover"><i class="fa fa-search fa-2x"></i> View Sample</a>
                     <a href="<?=$webPath;?>gain-access/" class="btn btn-primary btn-lg btn-rounded btn-iconned"><i class="fa fa-check"></i> Get Started</a>
                 </p>
             </div>
@@ -242,7 +242,7 @@ include($docPath.'inc/header.php');
                         There’s no longer a need to sacrifice your quality time in order to stay a step ahead of the rest of your league. You no longer have to spend several hours researching every week because we've done that work for you. You'll keep your work and family lives in order with the time you've decided to save.
                     </p>
                     <p>
-                        Winning is easy with SportGuiders!
+                        Winning is easy with SportsGuiders!
                     </p>
                 </div>
                 <div id="" class="col-xs-12 col-md-6 wow fadeInUp animated" style="padding-bottom: 50px;">

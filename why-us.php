@@ -14,11 +14,11 @@ include($docPath.'inc/header.php');
                     <!-- Steps -->
 
                         <div class="col-md-12">
-                            <h4 style="font-size:40px;color:white;">Why <span style="color:#d83435;">Sportsguiders&trade;?</span></h4>
+                            <h4 style="font-size:40px;color:white;">Why <span style="color:#d83435;">Sportsguiders?</span></h4>
                         </div>
                         <div class="col-md-6">
                             <p style="padding-top:10px;color:white;">Fantasy sports are a <i>good thing</i>. They bring and keep people together, and season by season real relationships are built and grown. Fantasy sports are a healthy hobby and a fun experience. </p>
-                            <p style="padding-top:10px;color:white;">The problem is that most people have to sacrifice <i>family time</i> and <i>work productivity</i> in order to compete at a high level. Solving this problem is why SportsGuidersTM was created. </p>
+                            <p style="padding-top:10px;color:white;">The problem is that most people have to sacrifice <i>family time</i> and <i>work productivity</i> in order to compete at a high level. Solving this problem is why SportsGuiders&trade; was created. </p>
                         </div>
                         <div class="col-md-6">
                         </div>
@@ -58,7 +58,7 @@ include($docPath.'inc/header.php');
                     <div class="col-md-12">
                     </div>
                     <style>
-                        .recapBenefits {font-size:18px;}
+                        .recapBenefits {font-size:18px;font-weight:700;}
                     </style>
                     <div id="offerMoreInfo" class="col-md-12" style="padding:25px;display:none;">
                         <div class="col-md-12">
@@ -106,7 +106,7 @@ include($docPath.'inc/header.php');
                                     <p>Use this section to know which players will be playing the worst defensive in coming weeks. Playing a poor defensive is always a quick fix to a struggling player. Now might be the time to buy cheap on a player who has been struggling on one of these teams. </p>
                                 </li>-->
                                 <li>
-                                    <h4 style="font-size:28px;">NFL <span style="color:#d83435;">Teams Power Rankings</span></h4>
+                                    <a href="<?=$webPath;?>sample-recap/#team-rankings"><h4 style="font-size:28px;">NFL <span style="color:#d83435;">Teams Power Rankings</span></h4></a>
                                     <p>Use this section to know which NFL teams will dominate the rest of the way. Finding stud players on prospering teams is a recipe for success in fantasy football.</p>
                                 </li>
                             </ol>

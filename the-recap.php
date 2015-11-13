@@ -2,7 +2,11 @@
 include('inc/config.php');
 
 if ($login->isUserLoggedIn() == true) {
-    //header("Location: ".$webPath."sample-recap/");// temp until report platform is complete, remove once completed
+
+    //disable recap page
+    header("Location: ".$webPath."sample-recap/");// temp until report platform is complete, remove once completed
+
+
     //check to see if the report called is a valid one
     $ReportDAO = new ReportDAO($db);
     if($_GET['id']){
@@ -1212,16 +1216,18 @@ include($docPath.'inc/header.php');
                 </div>
 
                 <table class="table table-striped collapse" id="afcTeams">
+                    <!--
                     <?php foreach($Report->getStandings() as $Standings):; ?>
                         <tr>
                             <td>
-                            <?php print_r($Report->getStandings());?>
+                            <?php //print_r($Report->getStandings());?>
                             </td>
                             <td>11</td>
                             <td>3</td>
                             <td>0</td>
                         </tr>
                     <?php endforeach; ?>
+                    -->
                 <thead>
                 <tr>
                     <th>AFC West Team</th>

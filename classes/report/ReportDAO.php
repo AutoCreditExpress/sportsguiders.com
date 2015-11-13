@@ -1,749 +1,749 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: brianslaght
- * Date: 5/25/15
- * Time: 10:39 PM
- */
-
-class ReportDAO {
-
-    protected $db = "";
-
-    public $standingsWinners=array();
-    public $standingsLosers=array();
-    public $standingsTies=array();
-    function __construct(pdo $db){
-      $this->db = $db;
-    }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//                                                  Find
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    function createNewReport(){
-        $new = $this->db->prepare("INSERT INTO report (report_create_date,report_status) VALUES (:reportDate,:reportStatus)");
-
-        try{
-            $new->execute(array(
-                ':reportDate' => date('Y-m-d H:i:s'),
-                ':reportStatus' => 0
-            ));
-
-            return $this->db->lastInsertId();
-        }catch(PDOException $e){
-            return FALSE;
-        }
-
-    }
-
-    function publishReport($reportID){
-        $sql = $this->db->prepare("Update report set report_status = '1' where report_id = '".$reportID."'");
-
-        try{
-            $sql->execute();
-            return TRUE;
-        }catch(PDOException $e){
-            return FALSE;
-        }
-
-    }
-
-    function getPendingReportID(){
-        $pendingReport = $this->db->prepare("SELECT report_id from report where report_status = '0' order by report_create_date desc");
-
-        try{
-            $pendingReport->execute();
-            $results = $pendingReport->fetchColumn();
-
-            return $results;
-        }catch(PDOException $e){
-            //echo $e;
-            return FALSE;
-        }
-    }
-    function getActiveReportsForArchive(){
-        $pendingReport = $this->db->prepare("SELECT report_id from report where report_status = '1' and report_create_date LIKE '".date('Y')."%' order by report_create_date desc");
-
-        try{
-            $pendingReport->execute();
-            $results = $pendingReport->fetchAll();
-
-            return $results;
-        }catch(PDOException $e){
-            //echo $e;
-            return FALSE;
-        }
-    }
-    function getLatestReport($isSample=null, $reportId=null){
-
-        $getReport = $this->db->prepare("SELECT report_id from report order by report_create_date desc limit 1");
-
-        $getReport->execute();
-        $reportResult = $getReport->fetchColumn();
-        if($isSample) {
-            $reportID = 1;
-        }elseif($reportId){
-            $reportID = $reportId;
-        }else{
-            $reportID = $reportResult['report_id'];
-        }
-
-
-        $Waivers = $this->getReportWaivers($reportID);
-        $TrendingUp = $this->getRepotTrending($reportID, 'up');
-        $TrendingDown = $this->getRepotTrending($reportID, 'down');
-        $TopPerformersDAO = new TopPerformersDAO($this->db);
-        $TopPerformers = $TopPerformersDAO->getTopPerformersForReport($reportID);
-        $InjuryDAO = new InjuryDAO($this->db);
-        $Injury = $InjuryDAO->getInjuryForReport($reportID);
-        $Scores = $this->getReportScores($reportID);
-        $Standings = $this->getReportStandings($reportID);
-
-        $Report = new Report();
-        $Report->setWaiver($Waivers);
-        $Report->setTrendingUp($TrendingUp);
-        $Report->setTrendingDown($TrendingDown);
-        $Report->setTopPerformers($TopPerformers);
-        $Report->setInjuries($Injury);
-        $Report->setScores($Scores);
-        $Report->setStandings($Standings);
-
-        return $Report;
-    }
-
-    function getReportWaivers($reportID){
-        $sql = "Select * from report_waiver where rw_report_id = '".$reportID."'";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        try{
-            $results = $this->mapWaiverToObjects($query);
-
-            return $results;
-
-        }
-        catch(PDOException $e){
-            return FALSE;
-        }
-    }
-
-    function getReportFacts($reportID){
-        $sql = "Select * from report_facts where rf_report_id = '".$reportID."'";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        try{
-            $results = $this->mapFactsToObjects($query);
-
-            return $results;
-
-        }
-        catch(PDOException $e){
-            return FALSE;
-        }
-    }
-
-    function getReportTopPerformers($reportID){
-        $sql = "Select * from report_top_performers where rtp_report_id = '".$reportID."'";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        try{
-            $results = $this->mapTopPerformersToObjects($query);
-
-            return $results;
-
-        }
-        catch(PDOException $e){
-            return FALSE;
-        }
-    }
-    function getReportScores($reportID){
-        $sql = "Select * from score where score_report_id = '".$reportID."'";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        try{
-            $results = $query->fetchAll();
-
-            return $results;
-
-        }
-        catch(PDOException $e){
-            return FALSE;
-        }
-    }
-    function getReportTopInjuries($reportID){
-        $sql = "Select * from report_injuries where ri_report_id = '".$reportID."'";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        try{
-            $results = $this->mapInjuriesToObjects($query);
-
-            return $results;
-
-        }
-        catch(PDOException $e){
-            return FALSE;
-        }
-    }
-
-    function getRepotTrending($reportID,$type){
-        $sql = "Select * from report_trending where rt_report_id = '".$reportID."' and rt_type = '".$type."'";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        try{
-            $results = $this->mapTrendingToObjects($query);
-
-            return $results;
-
-        }
-        catch(PDOException $e){
-            return FALSE;
-        }
-    }
-
-    function getRepotEasySchedule($reportID){
-        $sql = "Select * from report_easy_schedule where res_report_id = '".$reportID."'";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        try{
-            $results = $this->mapEasyScheduleToObjects($query);
-
-            return $results;
-
-        }
-        catch(PDOException $e){
-            return FALSE;
-        }
-    }
-
-    function checkTopPerformers($positionID){
-
-        $reportID = $this->getPendingReportID();
-
-        $checkTP = $this->db->prepare("SELECT count(*) as cnt from report_top_performers where rtp_report_id = '".$reportID."' and rtp_position_id = '".$positionID."'");
-
-        try{
-            $checkTP->execute();
-            $results = $checkTP->fetchColumn();
-            if($results >= 1){
-                return TRUE;
-            }
-            else{
-                return FALSE;
-            }
-
-
-        }catch(PDOException $e){
-            return FALSE;
-        }
-    }
-    function getReportStandings($reportID){
-        $sql = "Select * from score where score_report_id = '".$reportID."'";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        try{
-            $results = $query->fetchAll();
-            foreach($results as $item){
-                   if($this->checkScore1ForWinner($item['score_home'],$item['score_away'])=='win'){
-                       array_push($standingsWinners,$item['score_home_team_id']);
-                       array_push($standingsLosers,$item['score_away_team_id']);
-                   }elseif($this->checkScore1ForWinner($item['score_home'],$item['score_away'])=='loss'){
-                       array_push($standingsWinners,$item['score_away_team_id']);
-                       array_push($standingsLosers,$item['score_home_team_id']);
-                   }elseif($this->checkScore1ForWinner($item['score_home'],$item['score_away'])=='draw'){
-                       array_push($standingsTies,$item['score_home_team_id']);
-                       array_push($standingsTies,$item['score_away_team_id']);
-                   }
-            }
-            $results = array('winners'=>$standingsWinners,'losers'=>$standingsLosers,'ties'=>$standingsTies);
-
-            //return the results
-            return $results;
-        }
-        catch(PDOException $e){
-            return FALSE;
-        }
-    }
-
-    function checkScore1ForWinner($score1,$score2){
-        try{
-            if($score1>$score2){
-                $results = 'win';
-            }elseif($score1<$score2){
-                $results = 'loss';
-            }elseif($score1==$score2){
-                $results='draw';
-            }
-            //echo $results;
-            return $results;
-
-        }
-        catch(PDOException $e){
-            return FALSE;
-        }
-    }
-
-    function checkPowerRankings($positionID){
-
-        $reportID = $this->getPendingReportID();
-
-        $check = $this->db->prepare("SELECT count(*) as cnt from report_power_rankings where rpr_report_id = '".$reportID."' and rpr_position_id = '".$positionID."'");
-
-        try{
-            $check->execute();
-            $results = $check->fetchColumn();
-
-            if($results >= 1){
-                return TRUE;
-            }
-            else{
-                return FALSE;
-            }
-
-
-        }catch(PDOException $e){
-            return FALSE;
-        }
-    }
-    function checkWaivers(){
-
-        $reportID = $this->getPendingReportID();
-
-        $check = $this->db->prepare("SELECT count(*) as cnt from report_waiver where rw_report_id = '".$reportID."'");
-
-        try{
-            $check->execute();
-            $results = $check->fetchColumn();
-
-            if($results >= 1){
-                return TRUE;
-            }
-            else{
-                return FALSE;
-            }
-
-
-        }catch(PDOException $e){
-            return FALSE;
-        }
-    }
-
-    function checkInjuryReport(){
-
-        $reportID = $this->getPendingReportID();
-
-        $check = $this->db->prepare("SELECT count(*) as cnt from report_injuries where ri_report_id = '".$reportID."'");
-
-        try{
-            $check->execute();
-            $results = $check->fetchColumn();
-
-            if($results >= 1){
-                return TRUE;
-            }
-            else{
-                return FALSE;
-            }
-
-
-        }catch(PDOException $e){
-            return FALSE;
-        }
-    }
-    function checkTrending($trendType){
-
-        $reportID = $this->getPendingReportID();
-
-        $check = $this->db->prepare("SELECT count(*) as cnt from report_trending where rt_report_id = '".$reportID."' and tr_type='".$trendType."'");
-
-        try{
-            $check->execute();
-            $results = $check->fetchColumn();
-
-            if($results >= 1){
-                return TRUE;
-            }
-            else{
-                return FALSE;
-            }
-
-
-        }catch(PDOException $e){
-            return FALSE;
-        }
-    }
-
-    function checkFacts($factType){
-        //history
-        //fantasy
-        //life
-        $reportID = $this->getPendingReportID();
-        $check = $this->db->prepare("SELECT count(*) as cnt from report_facts where rf_report_id = '".$reportID."' and rf_type='".$factType."'");
-
-        try{
-            $check->execute();
-            $results = $check->fetchColumn();
-            if($results >= 1){
-                return TRUE;
-            }
-            else{
-                return FALSE;
-            }
-
-
-        }catch(PDOException $e){
-            return FALSE;
-        }
-    }
-
-    function checkSchedule(){
-
-        $reportID = $this->getPendingReportID();
-
-        $check = $this->db->prepare("SELECT count(*) as cnt from report_easy_schedule where res_report_id = '".$reportID."'");
-
-        try{
-            $check->execute();
-            $results = $check->fetchColumn();
-
-            if($results >= 1){
-                return TRUE;
-            }
-            else{
-                return FALSE;
-            }
-
-
-        }catch(PDOException $e){
-            return FALSE;
-        }
-    }
-    function checkTeamPowerRankings(){
-
-        $reportID = $this->getPendingReportID();
-
-        $check = $this->db->prepare("SELECT count(*) as cnt from report_team_power_rankings where rtpr_report_id = '".$reportID."'");
-
-        try{
-            $check->execute();
-            $results = $check->fetchColumn();
-
-            if($results >= 1){
-                return TRUE;
-            }
-            else{
-                return FALSE;
-            }
-
-
-        }catch(PDOException $e){
-            return FALSE;
-        }
-    }
-    function checkScore(){
-
-        $reportID = $this->getPendingReportID();
-
-        $check = $this->db->prepare("SELECT count(*) as cnt from score where score_report_id = '".$reportID."'");
-
-        try{
-            $check->execute();
-            $results = $check->fetchColumn();
-
-            if($results >= 1){
-                return TRUE;
-            }
-            else{
-                return FALSE;
-            }
-
-
-        }catch(PDOException $e){
-            return FALSE;
-        }
-    }
-
-    function checkReportIsValid($reportId){
-        $check = $this->db->prepare("SELECT report_id FROM report WHERE report_id='".$reportId."' AND report_status = '1'");
-        try{
-            $check->execute();
-            $results = $check->fetchColumn();
-            if($results >= 1){
-                return TRUE;
-            }
-            else{
-                return FALSE;
-            }
-        }catch(PDOException $e){
-            return FALSE;
-        }
-    }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//                                                  Create
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//                                                  Update
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//                                                  Delete
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//                                                  Mapping
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    function fetchSql($sql){
-
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        try{
-            $results = $this->mapCharacterToObjects($query);
-
-            return $results;
-
-        }
-        catch(PDOException $e){
-            return FALSE;
-        }
-    }
-
-    function mapFactsToObjects(PDOStatement $stmt){
-        $facts = array();
-        try{
-
-            if( ($aRow = $stmt->fetch()) === false) {
-                return array();
-            }
-
-            $factsArray = array();
-
-            do{
-
-                if(!in_array($aRow['rf_id'],$factsArray)){
-                    $fact = new Facts();
-                    $fact->setID($aRow['rf_id']);
-                    $fact->setFact($aRow['rf_value']);
-                    $fact->setType($aRow['rf_type']);
-                    $facts[] = $fact;
-                }
-
-            } while(($aRow = $stmt->fetch()) !== false);
-
-        } catch(\Exception $e){
-            return false;
-        }
-
-        $count = count($facts);
-
-        if($count == 1){
-            return $facts[0];
-        }
-        else{
-            return $facts ;
-        }
-    }
-
-    function mapInjuriesToObjects(PDOStatement $stmt){
-        $injuries = array();
-        try{
-
-            if( ($aRow = $stmt->fetch()) === false) {
-                return array();
-            }
-
-            $injuriesArray = array();
-
-            do{
-
-                if(!in_array($aRow['ri_id'],$injuriesArray)){
-                    $injury = new Injuries();
-                    $injury->setID($aRow['ri_id']);
-                    $injury->setReportID($aRow['ri_report_id']);
-                    $injury->setPlayerID($aRow['ri_player_id']);
-                    $injury->setDuration($aRow['ri_duration']);
-                    $injury->setDescription($aRow['ri_description']);
-                    $injuries[] = $injury;
-                }
-
-            } while(($aRow = $stmt->fetch()) !== false);
-
-        } catch(\Exception $e){
-            return false;
-        }
-
-        $count = count($injuries);
-
-        if($count == 1){
-            return $injuries[0];
-        }
-        else{
-            return $injuries ;
-        }
-    }
-
-    function mapTopPerformersToObjects(PDOStatement $stmt){
-        $topPerformers = array();
-        try{
-
-            if( ($aRow = $stmt->fetch()) === false) {
-                return array();
-            }
-
-            $topPerformersArray = array();
-
-            do{
-
-                if(!in_array($aRow['rtp_id'],$topPerformersArray)){
-                    $topPerformer = new TopPerformers();
-                    $topPerformer->setID($aRow['rtp_id']);
-                    $topPerformer->setReportID($aRow['rtp_report_id']);
-                    $topPerformer->setPositionID($aRow['rtp_position_id']);
-                    $topPerformer->setPlayerID($aRow['rtp_player_id']);
-                    $topPerformers[] = $topPerformer;
-                }
-
-            } while(($aRow = $stmt->fetch()) !== false);
-
-        } catch(\Exception $e){
-            return false;
-        }
-
-        $count = count($topPerformers);
-
-        if($count == 1){
-            return $topPerformers[0];
-        }
-        else{
-            return $topPerformers ;
-        }
-    }
-
-    function mapWaiverToObjects(PDOStatement $stmt){
-        $waivers = array();
-        try{
-
-            if( ($aRow = $stmt->fetch()) === false) {
-                return array();
-            }
-
-            $waiverArray = array();
-
-            do{
-
-                if(!in_array($aRow['rw_id'],$waiverArray)){
-                    $waiver = new Waiver();
-                    $waiver->setID($aRow['rw_id']);
-                    $waiver->setReportID($aRow['rw_report_id']);
-                    $waiver->setType($aRow['rw_type']);
-                    $waiver->setValue($aRow['rw_value']);
-                    $waiver->setPlayerID($aRow['rw_player_id']);
-                    $waivers[] = $waiver;
-                }
-
-            } while(($aRow = $stmt->fetch()) !== false);
-
-        } catch(\Exception $e){
-            return false;
-        }
-
-        $count = count($waivers);
-
-        if($count == 1){
-            return $waivers[0];
-        }
-        else{
-            return $waivers ;
-        }
-    }
-
-    function mapTrendingToObjects(PDOStatement $stmt){
-        $trendingPlayers = array();
-        try{
-
-            if( ($aRow = $stmt->fetch()) === false) {
-                return array();
-            }
-
-            $trendingArray = array();
-
-            do{
-                if(!in_array($aRow['rt_id'],$trendingArray)){
-                    $trending = new Trending();
-                    $trending->setID($aRow['rt_id']);
-                    $trending->setReportID($aRow['rt_report_id']);
-                    $trending->setType($aRow['rt_type']);
-                    $trending->setPlayerID($aRow['rt_player_id']);
-                    $trending->setPositionID($aRow['rt_player_id']);
-                    $trending->setPoints($aRow['rt_points']);
-                    $trending->setAverage($aRow['rt_average_points  ']);
-                    $trendingPlayers[] = $trending;
-                }
-
-            } while(($aRow = $stmt->fetch()) !== false);
-
-        } catch(\Exception $e){
-            return false;
-        }
-
-        $count = count($trendingPlayers);
-
-        if($count == 1){
-            return $trendingPlayers[0];
-        }
-        else{
-            return $trendingPlayers ;
-        }
-    }
-
-    function mapEasyScheduleToObjects(PDOStatement $stmt){
-
-        $easySche = array();
-        try{
-
-            if( ($aRow = $stmt->fetch()) === false) {
-                return array();
-            }
-
-            $easyScheArray = array();
-
-            do{
-                if(!in_array($aRow['rt_id'],$easyScheArray)){
-                    $sch = new EasySchedule();
-                    $sch->setID($aRow['rt_id']);
-                    $sch->setReportID($aRow['rt_report_id']);
-                    $sch->setHomeTeamID($aRow['res_home_team_id']);
-                    $sch->setAwayTeamID($aRow['res_away_team_id']);
-                    $easySche[] = $sch;
-                }
-
-            } while(($aRow = $stmt->fetch()) !== false);
-
-        } catch(\Exception $e){
-            return false;
-        }
-
-        $count = count($easySche);
-
-        if($count == 1){
-            return $easySche[0];
-        }
-        else{
-            return $easySche ;
-        }
-
-    }
-
-    function mapReportToObjects(PDOStatement $stmt){
-
-    }
-
+<?php
+/**
+ * Created by PhpStorm.
+ * User: brianslaght
+ * Date: 5/25/15
+ * Time: 10:39 PM
+ */
+
+class ReportDAO {
+
+    protected $db = "";
+
+    public $standingsWinners=array();
+    public $standingsLosers=array();
+    public $standingsTies=array();
+    function __construct(pdo $db){
+      $this->db = $db;
+    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//                                                  Find
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    function createNewReport(){
+        $new = $this->db->prepare("INSERT INTO report (report_create_date,report_status) VALUES (:reportDate,:reportStatus)");
+
+        try{
+            $new->execute(array(
+                ':reportDate' => date('Y-m-d H:i:s'),
+                ':reportStatus' => 0
+            ));
+
+            return $this->db->lastInsertId();
+        }catch(PDOException $e){
+            return FALSE;
+        }
+
+    }
+
+    function publishReport($reportID){
+        $sql = $this->db->prepare("Update report set report_status = '1' where report_id = '".$reportID."'");
+
+        try{
+            $sql->execute();
+            return TRUE;
+        }catch(PDOException $e){
+            return FALSE;
+        }
+
+    }
+
+    function getPendingReportID(){
+        $pendingReport = $this->db->prepare("SELECT report_id from report where report_status = '0' order by report_create_date desc");
+
+        try{
+            $pendingReport->execute();
+            $results = $pendingReport->fetchColumn();
+
+            return $results;
+        }catch(PDOException $e){
+            //echo $e;
+            return FALSE;
+        }
+    }
+    function getActiveReportsForArchive(){
+        $pendingReport = $this->db->prepare("SELECT report_id from report where report_status = '1' and report_create_date LIKE '".date('Y')."%' order by report_create_date desc");
+
+        try{
+            $pendingReport->execute();
+            $results = $pendingReport->fetchAll();
+
+            return $results;
+        }catch(PDOException $e){
+            //echo $e;
+            return FALSE;
+        }
+    }
+    function getLatestReport($isSample=null, $reportId=null){
+
+        $getReport = $this->db->prepare("SELECT report_id from report order by report_create_date desc limit 1");
+
+        $getReport->execute();
+        $reportResult = $getReport->fetchColumn();
+        if($isSample) {
+            $reportID = 1;
+        }elseif($reportId){
+            $reportID = $reportId;
+        }else{
+            $reportID = $reportResult['report_id'];
+        }
+
+
+        $Waivers = $this->getReportWaivers($reportID);
+        $TrendingUp = $this->getRepotTrending($reportID, 'up');
+        $TrendingDown = $this->getRepotTrending($reportID, 'down');
+        $TopPerformersDAO = new TopPerformersDAO($this->db);
+        $TopPerformers = $TopPerformersDAO->getTopPerformersForReport($reportID);
+        $InjuryDAO = new InjuryDAO($this->db);
+        $Injury = $InjuryDAO->getInjuryForReport($reportID);
+        $Scores = $this->getReportScores($reportID);
+        $Standings = $this->getReportStandings($reportID);
+
+        $Report = new Report();
+        $Report->setWaiver($Waivers);
+        $Report->setTrendingUp($TrendingUp);
+        $Report->setTrendingDown($TrendingDown);
+        $Report->setTopPerformers($TopPerformers);
+        $Report->setInjuries($Injury);
+        $Report->setScores($Scores);
+        $Report->setStandings($Standings);
+
+        return $Report;
+    }
+
+    function getReportWaivers($reportID){
+        $sql = "Select * from report_waiver where rw_report_id = '".$reportID."'";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        try{
+            $results = $this->mapWaiverToObjects($query);
+
+            return $results;
+
+        }
+        catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function getReportFacts($reportID){
+        $sql = "Select * from report_facts where rf_report_id = '".$reportID."'";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        try{
+            $results = $this->mapFactsToObjects($query);
+
+            return $results;
+
+        }
+        catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function getReportTopPerformers($reportID){
+        $sql = "Select * from report_top_performers where rtp_report_id = '".$reportID."'";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        try{
+            $results = $this->mapTopPerformersToObjects($query);
+
+            return $results;
+
+        }
+        catch(PDOException $e){
+            return FALSE;
+        }
+    }
+    function getReportScores($reportID){
+        $sql = "Select * from score where score_report_id = '".$reportID."'";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        try{
+            $results = $query->fetchAll();
+
+            return $results;
+
+        }
+        catch(PDOException $e){
+            return FALSE;
+        }
+    }
+    function getReportTopInjuries($reportID){
+        $sql = "Select * from report_injuries where ri_report_id = '".$reportID."'";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        try{
+            $results = $this->mapInjuriesToObjects($query);
+
+            return $results;
+
+        }
+        catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function getRepotTrending($reportID,$type){
+        $sql = "Select * from report_trending where rt_report_id = '".$reportID."' and rt_type = '".$type."'";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        try{
+            $results = $this->mapTrendingToObjects($query);
+
+            return $results;
+
+        }
+        catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function getRepotEasySchedule($reportID){
+        $sql = "Select * from report_easy_schedule where res_report_id = '".$reportID."'";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        try{
+            $results = $this->mapEasyScheduleToObjects($query);
+
+            return $results;
+
+        }
+        catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function checkTopPerformers($positionID){
+
+        $reportID = $this->getPendingReportID();
+
+        $checkTP = $this->db->prepare("SELECT count(*) as cnt from report_top_performers where rtp_report_id = '".$reportID."' and rtp_position_id = '".$positionID."'");
+
+        try{
+            $checkTP->execute();
+            $results = $checkTP->fetchColumn();
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+    function getReportStandings($reportID){
+        $sql = "Select * from score where score_report_id = '".$reportID."'";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        try{
+            $results = $query->fetchAll();
+            foreach($results as $item){
+                   if($this->checkScore1ForWinner($item['score_home'],$item['score_away'])=='win'){
+                       array_push($standingsWinners,$item['score_home_team_id']);
+                       array_push($standingsLosers,$item['score_away_team_id']);
+                   }elseif($this->checkScore1ForWinner($item['score_home'],$item['score_away'])=='loss'){
+                       array_push($standingsWinners,$item['score_away_team_id']);
+                       array_push($standingsLosers,$item['score_home_team_id']);
+                   }elseif($this->checkScore1ForWinner($item['score_home'],$item['score_away'])=='draw'){
+                       array_push($standingsTies,$item['score_home_team_id']);
+                       array_push($standingsTies,$item['score_away_team_id']);
+                   }
+            }
+            $results = array('winners'=>$standingsWinners,'losers'=>$standingsLosers,'ties'=>$standingsTies);
+
+            //return the results
+            return $results;
+        }
+        catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function checkScore1ForWinner($score1,$score2){
+        try{
+            if($score1>$score2){
+                $results = 'win';
+            }elseif($score1<$score2){
+                $results = 'loss';
+            }elseif($score1==$score2){
+                $results='draw';
+            }
+            //echo $results;
+            return $results;
+
+        }
+        catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function checkPowerRankings($positionID){
+
+        $reportID = $this->getPendingReportID();
+
+        $check = $this->db->prepare("SELECT count(*) as cnt from report_power_rankings where rpr_report_id = '".$reportID."' and rpr_position_id = '".$positionID."'");
+
+        try{
+            $check->execute();
+            $results = $check->fetchColumn();
+
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+    function checkWaivers(){
+
+        $reportID = $this->getPendingReportID();
+
+        $check = $this->db->prepare("SELECT count(*) as cnt from report_waiver where rw_report_id = '".$reportID."'");
+
+        try{
+            $check->execute();
+            $results = $check->fetchColumn();
+
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function checkInjuryReport(){
+
+        $reportID = $this->getPendingReportID();
+
+        $check = $this->db->prepare("SELECT count(*) as cnt from report_injuries where ri_report_id = '".$reportID."'");
+
+        try{
+            $check->execute();
+            $results = $check->fetchColumn();
+
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+    function checkTrending($trendType){
+
+        $reportID = $this->getPendingReportID();
+
+        $check = $this->db->prepare("SELECT count(*) as cnt from report_trending where rt_report_id = '".$reportID."' and tr_type='".$trendType."'");
+
+        try{
+            $check->execute();
+            $results = $check->fetchColumn();
+
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function checkFacts($factType){
+        //history
+        //fantasy
+        //life
+        $reportID = $this->getPendingReportID();
+        $check = $this->db->prepare("SELECT count(*) as cnt from report_facts where rf_report_id = '".$reportID."' and rf_type='".$factType."'");
+
+        try{
+            $check->execute();
+            $results = $check->fetchColumn();
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function checkSchedule(){
+
+        $reportID = $this->getPendingReportID();
+
+        $check = $this->db->prepare("SELECT count(*) as cnt from report_easy_schedule where res_report_id = '".$reportID."'");
+
+        try{
+            $check->execute();
+            $results = $check->fetchColumn();
+
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+    function checkTeamPowerRankings(){
+
+        $reportID = $this->getPendingReportID();
+
+        $check = $this->db->prepare("SELECT count(*) as cnt from report_team_power_rankings where rtpr_report_id = '".$reportID."'");
+
+        try{
+            $check->execute();
+            $results = $check->fetchColumn();
+
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+    function checkScore(){
+
+        $reportID = $this->getPendingReportID();
+
+        $check = $this->db->prepare("SELECT count(*) as cnt from score where score_report_id = '".$reportID."'");
+
+        try{
+            $check->execute();
+            $results = $check->fetchColumn();
+
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+
+
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function checkReportIsValid($reportId){
+        $check = $this->db->prepare("SELECT report_id FROM report WHERE report_id='".$reportId."' AND report_status = '1'");
+        try{
+            $check->execute();
+            $results = $check->fetchColumn();
+            if($results >= 1){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
+        }catch(PDOException $e){
+            return FALSE;
+        }
+    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//                                                  Create
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//                                                  Update
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//                                                  Delete
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//                                                  Mapping
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    function fetchSql($sql){
+
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        try{
+            $results = $this->mapCharacterToObjects($query);
+
+            return $results;
+
+        }
+        catch(PDOException $e){
+            return FALSE;
+        }
+    }
+
+    function mapFactsToObjects(PDOStatement $stmt){
+        $facts = array();
+        try{
+
+            if( ($aRow = $stmt->fetch()) === false) {
+                return array();
+            }
+
+            $factsArray = array();
+
+            do{
+
+                if(!in_array($aRow['rf_id'],$factsArray)){
+                    $fact = new Facts();
+                    $fact->setID($aRow['rf_id']);
+                    $fact->setFact($aRow['rf_value']);
+                    $fact->setType($aRow['rf_type']);
+                    $facts[] = $fact;
+                }
+
+            } while(($aRow = $stmt->fetch()) !== false);
+
+        } catch(\Exception $e){
+            return false;
+        }
+
+        $count = count($facts);
+
+        if($count == 1){
+            return $facts[0];
+        }
+        else{
+            return $facts ;
+        }
+    }
+
+    function mapInjuriesToObjects(PDOStatement $stmt){
+        $injuries = array();
+        try{
+
+            if( ($aRow = $stmt->fetch()) === false) {
+                return array();
+            }
+
+            $injuriesArray = array();
+
+            do{
+
+                if(!in_array($aRow['ri_id'],$injuriesArray)){
+                    $injury = new Injuries();
+                    $injury->setID($aRow['ri_id']);
+                    $injury->setReportID($aRow['ri_report_id']);
+                    $injury->setPlayerID($aRow['ri_player_id']);
+                    $injury->setDuration($aRow['ri_duration']);
+                    $injury->setDescription($aRow['ri_description']);
+                    $injuries[] = $injury;
+                }
+
+            } while(($aRow = $stmt->fetch()) !== false);
+
+        } catch(\Exception $e){
+            return false;
+        }
+
+        $count = count($injuries);
+
+        if($count == 1){
+            return $injuries[0];
+        }
+        else{
+            return $injuries ;
+        }
+    }
+
+    function mapTopPerformersToObjects(PDOStatement $stmt){
+        $topPerformers = array();
+        try{
+
+            if( ($aRow = $stmt->fetch()) === false) {
+                return array();
+            }
+
+            $topPerformersArray = array();
+
+            do{
+
+                if(!in_array($aRow['rtp_id'],$topPerformersArray)){
+                    $topPerformer = new TopPerformers();
+                    $topPerformer->setID($aRow['rtp_id']);
+                    $topPerformer->setReportID($aRow['rtp_report_id']);
+                    $topPerformer->setPositionID($aRow['rtp_position_id']);
+                    $topPerformer->setPlayerID($aRow['rtp_player_id']);
+                    $topPerformers[] = $topPerformer;
+                }
+
+            } while(($aRow = $stmt->fetch()) !== false);
+
+        } catch(\Exception $e){
+            return false;
+        }
+
+        $count = count($topPerformers);
+
+        if($count == 1){
+            return $topPerformers[0];
+        }
+        else{
+            return $topPerformers ;
+        }
+    }
+
+    function mapWaiverToObjects(PDOStatement $stmt){
+        $waivers = array();
+        try{
+
+            if( ($aRow = $stmt->fetch()) === false) {
+                return array();
+            }
+
+            $waiverArray = array();
+
+            do{
+
+                if(!in_array($aRow['rw_id'],$waiverArray)){
+                    $waiver = new Waiver();
+                    $waiver->setID($aRow['rw_id']);
+                    $waiver->setReportID($aRow['rw_report_id']);
+                    $waiver->setType($aRow['rw_type']);
+                    $waiver->setValue($aRow['rw_value']);
+                    $waiver->setPlayerID($aRow['rw_player_id']);
+                    $waivers[] = $waiver;
+                }
+
+            } while(($aRow = $stmt->fetch()) !== false);
+
+        } catch(\Exception $e){
+            return false;
+        }
+
+        $count = count($waivers);
+
+        if($count == 1){
+            return $waivers[0];
+        }
+        else{
+            return $waivers ;
+        }
+    }
+
+    function mapTrendingToObjects(PDOStatement $stmt){
+        $trendingPlayers = array();
+        try{
+
+            if( ($aRow = $stmt->fetch()) === false) {
+                return array();
+            }
+
+            $trendingArray = array();
+
+            do{
+                if(!in_array($aRow['rt_id'],$trendingArray)){
+                    $trending = new Trending();
+                    $trending->setID($aRow['rt_id']);
+                    $trending->setReportID($aRow['rt_report_id']);
+                    $trending->setType($aRow['rt_type']);
+                    $trending->setPlayerID($aRow['rt_player_id']);
+                    $trending->setPositionID($aRow['rt_player_id']);
+                    $trending->setPoints($aRow['rt_points']);
+                    $trending->setAverage($aRow['rt_average_points  ']);
+                    $trendingPlayers[] = $trending;
+                }
+
+            } while(($aRow = $stmt->fetch()) !== false);
+
+        } catch(\Exception $e){
+            return false;
+        }
+
+        $count = count($trendingPlayers);
+
+        if($count == 1){
+            return $trendingPlayers[0];
+        }
+        else{
+            return $trendingPlayers ;
+        }
+    }
+
+    function mapEasyScheduleToObjects(PDOStatement $stmt){
+
+        $easySche = array();
+        try{
+
+            if( ($aRow = $stmt->fetch()) === false) {
+                return array();
+            }
+
+            $easyScheArray = array();
+
+            do{
+                if(!in_array($aRow['rt_id'],$easyScheArray)){
+                    $sch = new EasySchedule();
+                    $sch->setID($aRow['rt_id']);
+                    $sch->setReportID($aRow['rt_report_id']);
+                    $sch->setHomeTeamID($aRow['res_home_team_id']);
+                    $sch->setAwayTeamID($aRow['res_away_team_id']);
+                    $easySche[] = $sch;
+                }
+
+            } while(($aRow = $stmt->fetch()) !== false);
+
+        } catch(\Exception $e){
+            return false;
+        }
+
+        $count = count($easySche);
+
+        if($count == 1){
+            return $easySche[0];
+        }
+        else{
+            return $easySche ;
+        }
+
+    }
+
+    function mapReportToObjects(PDOStatement $stmt){
+
+    }
+
 }

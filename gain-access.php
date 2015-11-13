@@ -323,10 +323,12 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                     $SubscriberDAO->updateSubscriberIsActive($subscriberEmail, '1');
 
                                     $success = '<div class="alert alert-success">
-                                    <strong>Success!</strong> Your payment was successful.</div>';
+                                    <strong>Success!</strong>  Account creation successful.Please validate your email address.  REDIRECTING to login in screen in 7 seconds...</div>';
 
                                     ///change the location of the page
-                                    echo "<script>location.assign('http://www.sportsguiders.com/login/?Message=Payment_successful');</script>";
+                                    echo "<script>";
+                                    echo "setTimeout(function(){location.assign('http://www.sportsguiders.com/login/?Message=Please Validate')},8000);";
+                                    echo "</script>";
                                 }
                             }else{
                                 if($_POST['password']!=$_POST['password2']) {
@@ -334,27 +336,24 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                                 <strong>Error!</strong> Passwords dont match</div>';
                                 }else{
 
-
-                                    //create customer on stripe
-                                    $customer = Stripe_Customer::create(array(
-                                            "source" => $token,
-                                            "email" => $_POST['email'])
-                                    );
-
                                     //check plan using coupon code
-                                    $plan = $_POST['accountType'].$SubscriberDAO->getPlanUsingCoupon($_POST['coupon']);
-                                    $subscriberEmail = $_POST['email'];
+                                    $plan = $_POST['accountType'];
+                                    $subscriberEmail = strtolower($_POST['email']);
+
+                                        //create customer on stripe
+                                        $customer = Stripe_Customer::create(array(
+                                                "source" => $token,
+                                                "email" => $subscriberEmail)
+                                        );
 
                                     //retrieve stripe customer
                                     $cu = Stripe_Customer::retrieve($customer->id);
-                                    if($_POST['isFBshare']){
-                                        //create subscriptions
+                                    if($_POST['passedCoupon']){
                                         $cu2 = $cu->subscriptions->create(array(
                                             "plan" => $plan,
-                                            "coupon" => Stripe_Coupon::retrieve("dollaroff"),
+                                            "coupon" => $_POST['passedCoupon'],
                                         ));
                                     }else{
-                                        //create subscriptions
                                         $cu2 = $cu->subscriptions->create(array(
                                             "plan" => $plan
                                         ));
@@ -388,15 +387,22 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                     $SubscriberDAO->updateSubscriberSubscriptionId($subscriberEmail, $cu2->id);
 
                                     $success = '<div class="alert alert-success">
-                                    <strong>Success!</strong> Your payment was successful.</div>';
+                                    <strong>Success!</strong> Your payment was successful.  Please validate your email address.  REDIRECTING to login in screen in 7 seconds...</div>';
 
                                     ///change the location of the page
-                                    echo "<script>location.assign('http://www.sportsguiders.com/login/?Message=Payment_successful');</script>";
+                                    echo "<script>";
+                                    echo "setTimeout(function(){location.assign('http://www.sportsguiders.com/login/?Message=Please validate')},8000);";
+                                    echo "</script>";
                                 }
                             }
 
                          }
                         catch (Exception $e) {
+                            if(!$cu2){
+                                if($cu){
+                                    $cu->delete();
+                                }
+                            }
                             $error = '<div class="alert alert-danger">
 			                <strong>Error!</strong> '.$e->getMessage().'
 			                </div>';
@@ -411,6 +417,7 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
   </span>
                     <span class="payment-expiry"></span>
                         <!-- Billing / Shipping Form -->
+                    <img src="<?=$webPath;?>img/loading.gif" id="couponLoading" style="display:none;margin-top:300px;">
                     <form class="animated bounceInUp" method="post" id="payment-form" style>
                         <div class="well form-container active">
                             <div class="card-wrapper"></div>
@@ -444,13 +451,13 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                     </div>
                                 </div>
                                 <!-- Card Number -->
-                                <div class="col-xs-12 protectInfo">
+                               <!-- <div class="col-xs-12 protectInfo">
                                     <div class="form-group">
                                         <div style="background:#d83435;border:1px solid #e3e3e3;;border-radius:4px;margin-top:10px;">
                                             <p class="animated tada" style="color:white;padding:7px;">Sportsguiders.com protects your information with 256bit encryption</p>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
 
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-group">
@@ -524,11 +531,22 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                 <script>
                                     $(document).ready(function(){
                                         $('.couponButton').click(function(){
+                                            $('#payment-form').hide();
+                                            $('#couponLoading').fadeIn();
                                             var coupon = $('.coupon').val();
                                             if(coupon!='') {
                                                 $.get("<?php echo $webPath;?>check-coupon.php?code=" + coupon, function (data, status) {
                                                     if (status == "success") {
+                                                        $('#couponLoading').hide();
+                                                        $('#payment-form').fadeIn();
                                                         alert(data);
+                                                        var thecoupon = $('#coupon').val();
+                                                        if(data.indexOf('Error')==-1){
+                                                            $('#passedCoupon').val(thecoupon);
+                                                        }
+                                                    }else{
+                                                        $('#couponLoading').hide();
+                                                        $('#payment-form').fadeIn();
                                                     }
                                                 });
                                             }
@@ -539,11 +557,17 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
                                 <div class="col-xs-12">
                                     <div class="form-group">
                                         <div class="col-xs-12 col-sm-4">
-                                            <button type="button" class=" couponButton btn btn-red btn-lg btn-rounded" style="padding-top:5px;padding-bottom:5px;">Verify Coupon</button>
+                                            <button type="button" class=" couponButton btn btn-red btn-lg btn-rounded" style="padding-top:5px;padding-bottom:5px;">Apply Coupon</button>
                                         </div>
                                         <div class="col-xs-12 col-sm-8">
-                                            <input type="text" name="coupon" class="form-control coupon" placeholder="Coupon Code:(case sensitive)"  data-by-field="coupon">
+                                            <input type="text" id="coupon" name="coupon" class="form-control coupon" placeholder="Coupon Code:(case sensitive)"  data-by-field="coupon">
+                                            <input type="hidden" id="passedCoupon" name="passedCoupon">
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div style="background:#d83435;border:1px solid #e3e3e3;;border-radius:4px;margin-top:10px;">
+                                        <p class="animated tada text-center" style="color:white;padding:7px;">We're excited about you gaining access to everything SportsGuiders has to offer.  We're so exicited that we're going to give you <b>50% off</b> your first year.  Apply code "<b>SG50</b>" above, because you're awesome.</p>
                                     </div>
                                 </div>
                             </div>
@@ -585,12 +609,16 @@ if($SubscriberDAO->getNumberOfActiveSubscribers(true)>0){
 
 
                                 <div class="col-xs-12">
+                                    <img src="<?=$webPath;?>img/SSL_icon.png" style="float:left;max-width:75px;">
                                     <div style="float:right;margin-top:10px;">
                                         <button class="btn btn-red btn-lg btn-rounded payNow" type="submit" style="">Place Order</button>
                                     </div>
                                 </div>
 
                             </div>
+                        </div>
+                        <div class="col-xs-12">
+                            
                         </div>
                     </form>
                         <!-- End Billing / Shipping Form -->

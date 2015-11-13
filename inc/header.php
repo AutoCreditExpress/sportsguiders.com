@@ -7,7 +7,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Fantasy Football Guide - Sports Guiders</title>
-    <meta name="description" content="KOEL is a multipurpose site template">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="http://www.sportsguiders.com/favicon.ico">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -123,6 +122,8 @@ if($currentPage=='login'){$loginActiveClass='pageLink';};
 if($currentPage=='my-account'){$myAccountActiveClass='pageLink';};
 if($currentPage=='gain-access'){$gainAccessRecapActiveClass='pageLink';};
 if($currentPage=='why-us'){$whyUsActiveClass='pageLink';};
+if($currentPage=='index'){$homeActiveClass='pageLink';};
+if($currentPage=='advice'){$adviceActiveClass='pageLink';};
 
 $currentPage =basename($path,".php");
 if($currentPage=='' or $currentPage=='index'){
@@ -132,7 +133,7 @@ if($currentPage=='' or $currentPage=='index'){
 }
 ?>
 <!-- Header -->
-<section id="header" class="header header-revolution <?php if($pageID != 'home'){ echo 'header-sub';}?>" style="z-index:<?=$headerZindex;?>;">
+<section id="header" class="header header-revolution header-sub" style="z-index:<?=$headerZindex;?>;">
 
     <!-- Navigation -->
     <nav class="navbar" style="">
@@ -144,11 +145,9 @@ if($currentPage=='' or $currentPage=='index'){
                 <button type="button" class="navbar-toggle collapsed">
                     <span class="fa fa-bars"></span>
                 </button>
-                <?php if($pageID !='home'):?>
                 <a class="navbar-brand" href="<?php echo $webPath;?>">
                     <img class="animated bounceInLeft" alt="Sports Guiders Logo" src="<?php echo $webPath;?>images/logo/sg-logo.png" style="max-width:200px;">
                 </a>
-                <?php endif; ?>
             </div>
             <div class="collapse navbar-collapse animated bounceInRight" id="navbar-collapse" style="max-width:100%;float:right;">
                 <ul class="nav navbar-nav navbar-right">
@@ -156,23 +155,23 @@ if($currentPage=='' or $currentPage=='index'){
                         <a href="<?php //echo $webPath;?>about/" class="dropdown-toggle" aria-expanded="false">About</a>
                     </li> -->
                     <li class="dropdown">
+                        <a href="<?php echo $webPath;?>" class="dropdown-toggle <?=$homeActiveClass;?>" aria-expanded="false">Home</a>
+                    </li>
+                    <li class="dropdown">
                         <a href="<?php echo $webPath;?>why-us/" class="dropdown-toggle <?=$whyUsActiveClass;?>" aria-expanded="false">Why SG</a>
                     </li>
                     <li class="dropdown">
                         <?php if($_SESSION['user_name']): ?>
-                        <a href="<?php echo $webPath;?>sample-recap/" class="dropdown-toggle <?=$theRecapActiveClass;?>" aria-expanded="false">The Recap</a>
+                        <a href="<?php echo $webPath;?>week10/" class="dropdown-toggle <?=$theRecapActiveClass;?>" aria-expanded="false">The Recap</a>
                         <?php else: ?>
-                        <a href="<?php echo $webPath;?>gain-access/?ref=therecap" class="dropdown-toggle <?=$theRecapActiveClass;?>" aria-expanded="false">The Recap</a>
+                        <a href="<?php echo $webPath;?>week10/" class="dropdown-toggle <?=$theRecapActiveClass;?>" aria-expanded="false">The Recap</a>
                         <?php endif; ?>
                     </li>
                     <li class="dropdown">
-                        <a href="<?php echo $webPath;?>contact-us/" class="dropdown-toggle <?=$contactActiveClass;?>" aria-expanded="false">Contact</a>
-                    </li>
-                    <li class="dropdown">
                         <?php if($_SESSION['user_name']): ?>
-                            <a href="<?php echo $webPath;?>login/logout/" class="dropdown-toggle <?=$logoutActiveClass;?>" aria-expanded="false">Logout</a>
+                            <a href="<?php echo $webPath;?>advice/" class="dropdown-toggle <?=$adviceActiveClass;?>" aria-expanded="false">Advice</a>
                         <?php else: ?>
-                            <a href="<?php echo $webPath;?>login/" class="dropdown-toggle <?=$loginActiveClass;?>" aria-expanded="false">Login</a>
+                            <a href="<?php echo $webPath;?>contact-us/" class="dropdown-toggle <?=$contactActiveClass;?>" aria-expanded="false">Contact</a>
                         <?php endif; ?>
                     </li>
                     <li class="dropdown active">
@@ -180,6 +179,13 @@ if($currentPage=='' or $currentPage=='index'){
                         <a href="<?php echo $webPath;?>my-account/" class="dropdown-toggle <?=$myAccountActiveClass;?>" aria-expanded="false">My Account</a>
                         <?php else: ?>
                             <a href="<?php echo $webPath;?>gain-access/" class="dropdown-toggle <?=$gainAccessRecapActiveClass;?>" aria-expanded="false">Gain Access</a>
+                        <?php endif; ?>
+                    </li>
+                    <li class="dropdown">
+                        <?php if($_SESSION['user_name']): ?>
+                            <a href="<?php echo $webPath;?>login/logout/" class="dropdown-toggle <?=$logoutActiveClass;?>" aria-expanded="false" title="Logout"><i class="fa fa-sign-out fa-2x" style=""></i></a>
+                        <?php else: ?>
+                            <a href="<?php echo $webPath;?>login/" class="dropdown-toggle <?=$loginActiveClass;?>" aria-expanded="false" title="Log In"><i class="fa fa-sign-in fa-2x" style=""></i></a>
                         <?php endif; ?>
                     </li>
                 </ul>
@@ -190,3 +196,6 @@ if($currentPage=='' or $currentPage=='index'){
     <!-- End Navigation -->
 </section>
 <!-- End Header -->
+<style>
+    .info-icon[title]:hover:after {background:black!important;}
+</style>
