@@ -1,0 +1,786 @@
+/*
+  Author: Lumberjacks
+  Template: Timber (Coming Soon)
+  Version: 1.0
+  URL: http://themeforest.net/user/Lumberjacks/
+*/
+
+
+
+/* TABLE OF CONTENTS
+
+  1. Import section
+  2. Basic styles
+  3. Typography
+  4. Breakpoint for high-res devices
+  5. Menu
+  6. Header
+  7. Contact
+  8. Footer
+  9. Breakpoints
+  10. Animations
+
+*/
+
+
+
+/* 1. IMPORT SECTION */
+
+  @import url("bootstrap.css");
+  @import url("http://fonts.googleapis.com/css?family=Roboto:400,100,300,500&subset=latin,latin-ext");
+  @import url("ionicons.css");
+  @import url("animate.min.css");
+
+
+
+/* 2. BASIC STYLES */
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    font: 16px/1.5 "Roboto", "Century Gothic", "Trebuchet MS", Helvetica, sans-serif;
+    background-color: #1c1c1c;
+    color: #737373;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  a { 
+    color: #296dd9;
+    transition: all 0.125s ease-in-out 0s;
+    -moz-transition: all 0.125s ease-in-out 0s;
+    -webkit-transition: all 0.125s ease-in-out 0s;
+    -o-transition: all 0.125s ease-in-out 0s;
+    -ms-transition: all 0.125s ease-in-out 0s;
+  }
+
+  a:hover {
+    color: #296dd9;
+  }
+
+  a, a:hover, a:active, a:focus {
+    outline: 0;
+    border: 0;
+    text-decoration: none;
+  }
+
+  .lj-float-left {
+    float: left;
+  }
+
+  .lj-float-right {
+    float: right;
+  }
+  
+  .lj-block-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .lj-show {
+    display: block !important;
+  }
+  
+  .lj-hide {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  .lj-preloader {
+    background: #fff url('../img/preloader.svg') no-repeat center center;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 99999;
+  }
+
+
+
+/* 3. TYPOGRAPHY */
+
+  p {
+    line-height: 1.5;
+  }
+    
+  .lj-text-uppercase {
+    text-transform: uppercase;
+  }
+
+  .lj-text-center {
+    text-align: center;
+  }
+
+  .lj-text-left {
+    text-align: left;
+  }
+
+  .lj-text-right {
+    text-align: right;
+  }
+
+  .lj-text-justify {
+    text-align: justify;
+  }
+
+  .lj-text-underline {
+    text-decoration: underline;
+  }
+
+
+
+/* 4. BREAKPOINT FOR HIGH-RES DEVICES */
+
+  @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (   min--moz-device-pixel-ratio: 2),
+    only screen and (     -o-min-device-pixel-ratio: 2/1),
+    only screen and (        min-device-pixel-ratio: 2),
+    only screen and (                min-resolution: 192dpi),
+    only screen and (                min-resolution: 2dppx) {
+
+    /* put your styles here */
+
+  } 
+
+
+
+/* 5. MENU */
+
+  .menu {
+    width: 100%;
+    padding: 25px 0;
+    background-color: rgba(28,28,28,0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    border-bottom: 0;
+  }
+  
+  .lj-logo a,
+  .lj-logo img {
+    display: block;
+    height: 50px;
+  }
+  
+  .lj-logo a {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .lj-socials {
+    text-align: right;
+  }
+
+  .lj-socials ul {
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style-type: none;
+    text-align: right;
+  }
+
+  .lj-socials ul li {
+    display: inline-block;
+    margin-left: 5px;
+  }
+
+  .lj-socials ul li a {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    font-size: 1.25em;
+    border: 2px solid transparent;
+    color: #fff;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    text-align: center;
+    line-height: 46px;
+  }
+
+  .lj-socials ul li a:hover {
+    border: 2px solid rgba(255,255,255,0.5);
+    color: #fff;
+  }
+
+  .lj-socials ul li.lj-first-social {
+    margin-left: 40px;
+  }
+
+  .ion-pause:before {
+    padding-left: 1px;
+  }
+
+  .ion-play:before {
+    padding-left: 4px;
+  }
+
+
+
+/* 6. HEADER */
+
+  header {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: #1c1c1c !important;
+  }
+  
+  header > .container {
+    position: relative;
+    padding-top: 250px;
+    padding-bottom: 150px;
+  }
+  
+  .lj-overlay {
+    width: 100%;
+    height: 100%;   
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .lj-background-repeat {
+      background-repeat: repeat;
+  }
+  
+  .lj-background-no-repeat {
+    background-repeat: no-repeat;
+  }
+  
+  .lj-overlay-none {
+    display: none;
+    visibility: hidden;
+  }
+  
+  .lj-overlay-image {
+    background-image: url('../img/lines.png');
+    background-repeat: repeat;
+  }
+  
+  .lj-overlay-color {
+      background-color: rgba(75,75,75,0.75);
+  }
+  
+  .lj-overlay-gradient {
+    background: -moz-linear-gradient(215deg,  rgba(0,204,255,0.8) 0%, rgba(196,255,0,0.8) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgba(0,204,255,0.8)), color-stop(100%,rgba(196,255,0,0.8))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(215deg,  rgba(0,204,255,0.8) 0%,rgba(196,255,0,0.8) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(215deg,  rgba(0,204,255,0.8) 0%,rgba(196,255,0,0.8) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(215deg,  rgba(0,204,255,0.8) 0%,rgba(196,255,0,0.8) 100%); /* IE10+ */
+    background: linear-gradient(215deg,  rgba(0,204,255,0.8) 0%,rgba(196,255,0,0.8) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ccff', endColorstr='#c4ff00',GradientType=1 ) progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/1x1.png'); /* IE6-9 fallback on horizontal gradient */
+    pointer-events:none;
+  }
+
+  .lj-overlay-gradient-animation {
+    background: linear-gradient(226deg, #9277bf, #55bbff, #5cba47);
+    background-size: 600% 600%;
+    -webkit-animation: gradient-animation 24s ease infinite;
+    -moz-animation: gradient-animation 24s ease infinite;
+    -o-animation: gradient-animation 24s ease infinite;
+    animation: gradient-animation 24s ease infinite;
+  }
+
+  @-webkit-keyframes gradient-animation {
+      0%{background-position:0% 91%}
+      50%{background-position:100% 10%}
+      100%{background-position:0% 91%}
+  }
+  @-moz-keyframes gradient-animation {
+      0%{background-position:0% 91%}
+      50%{background-position:100% 10%}
+      100%{background-position:0% 91%}
+  }
+  @-o-keyframes gradient-animation {
+      0%{background-position:0% 91%}
+      50%{background-position:100% 10%}
+      100%{background-position:0% 91%}
+  }
+  @keyframes gradient-animation { 
+      0%{background-position:0% 91%}
+      50%{background-position:100% 10%}
+      100%{background-position:0% 91%}
+  }
+
+  header.yt-background {
+    background-image: url('../img/video.jpg');
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+  .mobile .mbYTP_wrapper,
+  .tablet .mbYTP_wrapper {
+    z-index: -1 !important;
+  }
+
+  .mobile .yt-controls,
+  .tablet .yt-controls {
+    display: none;
+  }
+  
+  .lj-header-texts > span {
+    color: #fff;
+    font-weight: 300;
+  }
+
+  .lj-header-texts > span strong {
+    color: #fff;
+    font-weight: 400;
+  }
+
+  .lj-header-texts h1 {
+    font-size: 3em;
+    font-weight: 100;
+    color: #fff;
+    margin: 20px 0 0;
+    word-wrap: break-word;
+  }
+  
+  .lj-header-texts h1 strong {
+    color: #fff;
+    font-weight: 400;
+  }
+
+  .lj-header-texts h1 span.icon {
+    display: inline-block;
+    animation: beat 1s infinite;
+    -webkit-animation: beat 1s infinite;
+    color: #ff5b5b;
+  }
+
+  .lj-header-texts h1 span.icon:before {
+    padding: 0 3px;
+  }
+
+  .lj-header-texts p {
+    margin-top: 25px;
+    color: #fff;
+    margin: 20px 0 0;
+  }
+
+  .lj-subscribe-form {
+    margin-top: 50px;
+  }
+
+  .lj-subscribe-form input:focus {
+    outline: 0;
+  }
+
+  .lj-subscribe-form input[type=text],
+  .lj-subscribe-form input[type=submit] {
+    height: 60px; 
+    display: inline-block;
+    transition: all 0.125s ease-in-out 0s;
+    -moz-transition: all 0.125s ease-in-out 0s;
+    -webkit-transition: all 0.125s ease-in-out 0s;
+    -o-transition: all 0.125s ease-in-out 0s;
+    -ms-transition: all 0.125s ease-in-out 0s;  
+  }
+
+  .lj-subscribe-form input[type=text] {
+    width: 300px;
+    background-color: transparent;
+    color: #fff;
+    font-weight: 300;
+    padding: 0 25px;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    border-left: 2px solid #fff;
+    border-right: 0;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    -webkit-border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+    -moz-border-radius-topright: 0;
+    -moz-border-radius-bottomright: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .lj-subscribe-form input[type=text]:focus {
+    border-top: 2px solid rgba(255,255,255,0.5);
+    border-bottom: 2px solid rgba(255,255,255,0.5);
+    border-left: 2px solid rgba(255,255,255,0.5);
+  }
+
+  .lj-subscribe-form input[type=submit] {
+    text-align: center;
+    background-color: transparent;
+    color: #fff;
+    font-weight: 400;
+    padding: 0 25px;
+    border: 2px solid #fff;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -webkit-border-top-left-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius-topleft: 0;
+    -moz-border-radius-bottomleft: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .lj-subscribe-form input[type=submit]:hover {
+    color: #1c1c1c;
+    background-color: #fff;
+  }
+
+  .lj-subscribe-form input[type=text]::-webkit-input-placeholder { /* WebKit browsers */
+      color: #fff;
+  }
+  .lj-subscribe-form input[type=text]:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+     color: #fff;
+     opacity: 1;
+  }
+  .lj-subscribe-form input[type=text]::-moz-placeholder { /* Mozilla Firefox 19+ */
+     color: #fff;
+     opacity: 1;
+  }
+  .lj-subscribe-form input[type=text]:-ms-input-placeholder { /* Internet Explorer 10+ */
+     color: #fff;
+  }
+
+  .lj-subscribe-message {
+    display: block;
+    height: 15px;
+    line-height: 15px;
+    padding: 0 25px;
+    color: #fff;
+    font-size: 0.9em;
+    margin-top: 15px;
+  }
+
+  .lj-subscribe-message i {
+    margin-right: 5px;
+  }
+
+  .lj-subscribe-message .ion-android-warning {
+    color: #f57846;
+  }
+
+  .lj-subscribe-message .ion-android-done {
+    color: #43cb83;
+  }
+
+
+
+/* 7. CONTACT */
+
+  .contact {
+    background-color: #1c1c1c;
+    padding: 75px 0;
+  }
+
+  .lj-contact h4 {
+    margin: 0 0 20px;
+    color: #fff;
+    font-size: 1.25em;
+    font-weight: 500;
+  }
+
+  .lj-contact span {
+    font-size: 3em;
+  }
+
+  .lj-contact-one span {
+    color: #296dd9;
+  }
+
+  .lj-contact-two span {
+    color: #296dd9;
+  }
+
+  .lj-contact-three span {
+    color: #296dd9;
+  }
+
+  .lj-contact p {
+    margin: 0;    
+    font-size: 0.9em;
+    color: #737373;
+  }
+
+
+
+/* 8. FOOTER */
+
+  .footer {
+    background-color: #1c1c1c;
+    padding: 50px 0;
+  }
+
+  .lj-footer-left p,
+  .lj-footer-right p {
+    font-size: 0.9em;
+    line-height: 40px;
+    margin: 0;
+    color: #737373;
+  }
+
+  .lj-footer-right p {
+    text-align: right;
+  }
+  
+  .lj-footer-left a,
+  .lj-footer-right a {
+    color: #818085;
+    font-weight: 500;
+  }
+
+  .lj-footer-left a:hover,
+  .lj-footer-right a:hover {
+    color: #fff;
+  }
+
+
+
+/* 9. BREAKPOINTS */
+
+  @media (max-width: 767px) {
+
+    /* 5. MENU */
+
+    .lj-logo,
+    .lj-socials,
+    .lj-socials ul {
+      text-align: center;
+    }
+
+    .lj-socials {
+      margin-top: 20px;
+    }
+
+    .lj-socials ul li.lj-first-social {
+      margin-left: 5px;
+    }
+
+    /* 6. HEADER */
+
+    header > .container {
+      padding-bottom: 100px;
+    }
+
+    .lj-header-texts,
+    .lj-subscribe-form {
+      text-align: center;
+    }
+
+    .lj-subscribe-form input[type=text],
+    .lj-subscribe-form input[type=submit] {
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      border: 2px solid #fff;
+    }
+
+    .lj-subscribe-form input[type=text] {
+      width: 90%;
+    }
+
+    .lj-subscribe-form input[type=text]:focus {
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    
+    .lj-subscribe-form input[type=submit] {
+      margin-top: 20px;
+    }
+
+    /* 7. CONTACT */
+
+    .lj-contact {
+      text-align: center;
+      margin-top: 75px;
+    }
+
+    .lj-contact:first-child {
+      margin-top: 0;
+    }
+
+    .lj-contact span {
+      font-size: 4em;
+    }
+
+    /* 8. FOOTER */
+
+    .lj-footer-left p,
+    .lj-footer-right p {
+      text-align: center;
+    }
+
+  }
+
+
+
+/* 10. ANIMATIONS */
+
+  /* HEART BEAT */
+  @keyframes beat {
+    from {
+      transform: scale(1);
+      transform-origin: center center;
+      animation-timing-function: ease-out;
+    }
+    10% {
+      transform: scale(1.1);
+      animation-timing-function: ease-in;
+    }
+    15% {
+      transform: scale(1);
+      animation-timing-function: ease-out;
+    }
+    25% {
+      transform: scale(1.05);
+      animation-timing-function: ease-in;
+    }
+    35% {
+      transform: scale(1);
+      animation-timing-function: ease-out;
+    }
+  }
+
+  @-webkit-keyframes beat {
+    from {
+      -webkit-transform: scale(1);
+      -webkit-transform-origin: center center;
+      -webkit-animation-timing-function: ease-out;
+    }
+    10% {
+      -webkit-transform: scale(1.1);
+      -webkit-animation-timing-function: ease-in;
+    }
+    15% {
+      -webkit-transform: scale(1);
+      -webkit-animation-timing-function: ease-out;
+    }
+    25% {
+      -webkit-transform: scale(1.05);
+      -webkit-animation-timing-function: ease-in;
+    }
+    35% {
+      -webkit-transform: scale(1);
+      -webkit-animation-timing-function: ease-out;
+    }
+  }
+
+  /* ROTATE */
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    };
+  }
+
+  @-webkit-keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(360deg);
+    };
+  }
+
+  @keyframes spin-off {
+    0% {
+      transform: rotate(-45deg);
+    }
+
+    100% {
+      transform: rotate(-360deg);
+    };
+  }
+
+  @-webkit-keyframes spin-off {
+    0% {
+      -webkit-transform: rotate(-45deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(-360deg);
+    };
+  }
+
+  /* ALARM */
+  @keyframes alarm {
+    0% {
+      transform: scale(1);
+      transform-origin: center center;
+      animation-timing-function: ease-out;
+    }
+    5% {
+      transform: rotate(10deg);
+      animation-timing-function: ease-out;
+    }
+    10% {
+      transform: rotate(-10deg);
+      animation-timing-function: ease-in;
+    }
+    15% {
+      transform: rotate(10deg);
+      animation-timing-function: ease-out;
+    }
+    20% {
+      transform: rotate(-10deg);
+      animation-timing-function: ease-in;
+    }
+    25% {
+      transform: scale(1);
+      animation-timing-function: ease-out;
+    }
+  }
+
+  @-webkit-keyframes alarm {
+    0% {
+      -webkit-transform: scale(1);
+      -webkit-transform-origin: center center;
+      -webkit-animation-timing-function: ease-out;
+    }
+    5% {
+      -webkit-transform: rotate(10deg);
+      -webkit-animation-timing-function: ease-out;
+    }
+    10% {
+      -webkit-transform: rotate(-10deg);
+      -webkit-animation-timing-function: ease-in;
+    }
+    15% {
+      -webkit-transform: rotate(10deg);
+      -webkit-animation-timing-function: ease-out;
+    }
+    20% {
+      -webkit-transform: rotate(-10deg);
+      -webkit-animation-timing-function: ease-in;
+    }
+    25% {
+      -webkit-transform: scale(1);
+      -webkit-animation-timing-function: ease-out;
+    }
+  }

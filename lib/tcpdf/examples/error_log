@@ -1,0 +1,7 @@
+[21-Aug-2015 18:34:20 UTC] PHP Warning:  file_get_contents(../../index.php): failed to open stream: No such file or directory in /home/sglogin/public_html/lib/tcpdf/examples/example_061.php on line 87
+[21-Aug-2015 18:36:31 UTC] PHP Warning:  preg_match_all() expects parameter 2 to be string, resource given in /home/sglogin/public_html/lib/tcpdf/tcpdf.php on line 16244
+[21-Aug-2015 18:36:31 UTC] PHP Warning:  preg_match_all() expects parameter 2 to be string, resource given in /home/sglogin/public_html/lib/tcpdf/tcpdf.php on line 16252
+[21-Aug-2015 18:36:31 UTC] PHP Warning:  preg_match_all() expects parameter 2 to be string, resource given in /home/sglogin/public_html/lib/tcpdf/tcpdf.php on line 16275
+[21-Aug-2015 18:36:56 UTC] PHP Warning:  preg_match_all() expects parameter 2 to be string, resource given in /home/sglogin/public_html/lib/tcpdf/tcpdf.php on line 16244
+[21-Aug-2015 18:36:56 UTC] PHP Warning:  preg_match_all() expects parameter 2 to be string, resource given in /home/sglogin/public_html/lib/tcpdf/tcpdf.php on line 16252
+[21-Aug-2015 18:36:56 UTC] PHP Warning:  preg_match_all() expects parameter 2 to be string, resource given in /home/sglogin/public_html/lib/tcpdf/tcpdf.php on line 16275
