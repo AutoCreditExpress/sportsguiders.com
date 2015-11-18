@@ -162,9 +162,9 @@ if($currentPage=='' or $currentPage=='index'){
                     </li>
                     <li class="dropdown">
                         <?php if($_SESSION['user_name']): ?>
-                        <a href="<?php echo $webPath;?>week10/" class="dropdown-toggle <?=$theRecapActiveClass;?>" aria-expanded="false">The Recap</a>
+                        <a href="<?php echo $webPath;?>week11/" class="dropdown-toggle <?=$theRecapActiveClass;?>" aria-expanded="false">Your Weekly Playbook</a>
                         <?php else: ?>
-                        <a href="<?php echo $webPath;?>week10/" class="dropdown-toggle <?=$theRecapActiveClass;?>" aria-expanded="false">The Recap</a>
+                        <a href="<?php echo $webPath;?>week11/" class="dropdown-toggle <?=$theRecapActiveClass;?>" aria-expanded="false">Your Weekly Playbook</a>
                         <?php endif; ?>
                     </li>
                     <li class="dropdown">

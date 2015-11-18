@@ -413,7 +413,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 257.000000 250.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="gold" stroke="none">
+                                fill="darkgreen" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -448,7 +448,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 257.000000 250.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="lightgrey" stroke="none">
+                                fill="#FF6600" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -481,7 +481,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 257.000000 250.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="purple" stroke="none">
+                                fill="#DC143C" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -532,7 +532,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 257.000000 250.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="black" stroke="none">
+                                fill="lightgrey" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -565,7 +565,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 257.000000 250.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="blue" stroke="#002244">
+                                fill="gold" stroke="#002244">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -631,7 +631,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 257.000000 250.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="green" stroke="none">
+                                fill="#8B0000" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -664,7 +664,7 @@ include($docPath.'inc/header.php');
                              width="157.000000pt" height="150.000000pt" viewBox="0 0 257.000000 250.000000"
                              preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                fill="darkgreen" stroke="none">
+                                fill="#FF4500" stroke="none">
                                 <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -697,7 +697,8 @@ include($docPath.'inc/header.php');
                                      width="157.000000pt" height="150.000000pt" viewBox="0 0 257.000000 250.000000"
                                      preserveAspectRatio="xMidYMid meet">
                                     <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)"
-                                       fill="darkgreen" stroke="none">
+
+                                       fill="darkblue" stroke="none">
                                         <path d="M576 1484 c-352 -79 -598 -421 -573 -797 10 -148 51 -276 120 -380
                                 l42 -62 54 -3 c30 -2 59 2 64 7 15 15 71 14 111 -3 19 -8 70 -39 114 -69 44
                                 -30 104 -64 133 -75 197 -72 398 2 441 164 10 35 17 44 33 44 19 0 24 -10 38
@@ -769,7 +770,7 @@ include($docPath.'inc/header.php');
                                     <tr>
                                         <th>Week 10</th>
                                         <td><i class="fa fa-caret-up"></i></td>
-                                        <td>352</td>
+                                        <td>35.2</td>
                                     </tr>
                                     <tr>
                                         <th>Week 9</th>
@@ -796,7 +797,7 @@ include($docPath.'inc/header.php');
                                     <tr>
                                         <th>Week 10</th>
                                         <td><i class="fa fa-caret-up"></i></td>
-                                        <td>37.3</td>
+                                        <td>36.3</td>
                                     </tr>
                                     <tr>
                                         <th>Week 9</th>
@@ -1108,7 +1109,7 @@ include($docPath.'inc/header.php');
                         <th>2. Adrian Peterson</th>
                     </tr>
                     <tr>
-                        <th>3. DeVante Freeman</th>
+                        <th>3. DeVonta Freeman</th>
                     </tr>
                     <tr>
                         <th>4. Lamar Miller</th>
